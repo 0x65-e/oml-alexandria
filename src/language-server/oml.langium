@@ -1,6 +1,521 @@
 grammar Oml
 // import 'oml-types'
 
+//includes start
+type ID = string;
+
+type Namespace = string;
+
+type UnsignedInteger = string;
+
+// type RangeRestrictionKind = RangeRestrictionKind_all | RangeRestrictionKind_some;
+// type RangeRestrictionKind_some = 'some';
+// type RangeRestrictionKind_all = 'all';
+type RangeRestrictionKind = string;
+
+type UnsignedInt = string;
+
+// type CardinalityRestrictionKind = CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max;
+// type CardinalityRestrictionKind_exactly = 'exactly';
+// type CardinalityRestrictionKind_min = 'min';
+// type CardinalityRestrictionKind_max = 'max';
+type CardinalityRestrictionKind = string;
+
+type Decimal = string;
+
+interface Ontology extends IdentifiedElement {
+	namespace: string
+	prefix: string
+}
+
+interface IdentifiedElement extends AnnotatedElement {
+}
+
+interface AnnotatedElement {
+	ownedAnnotations: Annotation[]
+}
+
+// interface Element {
+// }
+
+interface Annotation {
+	property: @AnnotationProperty
+	value?: Literal_Union
+	referenceValue?: @Member
+	owningElement?: @AnnotatedElement
+	owningReference?: @OmlReference
+}
+
+interface AnnotationProperty extends Property, SpecializableTerm {
+}
+
+interface Property extends Feature {
+}
+
+interface Feature extends Term {
+}
+
+interface Term extends Member {
+}
+
+interface Member extends IdentifiedElement {
+	name: string
+}
+
+interface SpecializableTerm extends Term {
+	ownedSpecializations: SpecializationAxiom[]
+}
+
+interface VocabularyStatement extends Statement {
+	owningVocabulary: @Vocabulary
+}
+
+interface Statement {
+}
+
+interface Vocabulary extends VocabularyBox {
+	ownedImports: VocabularyImport_Union[]
+	ownedStatements: VocabularyStatement_Union[]
+}
+
+interface VocabularyBox extends Ontology {
+}
+
+interface VocabularyImport extends Import {
+	// owningVocabulary: @Vocabulary
+}
+
+interface Import extends AnnotatedElement {
+	namespace: string
+	prefix?: string
+}
+
+interface SpecializationAxiom extends Axiom {
+	specializedTerm: @SpecializableTerm
+	owningTerm?: @SpecializableTerm
+	owningReference?: @SpecializableTermReference
+}
+
+interface Axiom {
+}
+
+interface SpecializableTermReference extends OmlReference {
+	ownedSpecializations: SpecializationAxiom[]
+}
+
+interface OmlReference {
+	ownedAnnotations: Annotation[]
+}
+
+interface Literal {
+}
+
+interface VocabularyBundle extends VocabularyBox {
+	ownedImports: VocabularyBundleImport_Union[]
+}
+
+interface VocabularyBundleImport extends Import {
+	// owningVocabularyBundle: @VocabularyBundle
+}
+
+interface DescriptionBox extends Ontology {
+}
+
+interface Description extends DescriptionBox {
+	ownedImports: DescriptionImport_Union[]
+	ownedStatements: DescriptionStatement_Union[]
+}
+
+interface DescriptionImport extends Import {
+	// owningDescription: @Description
+}
+
+interface DescriptionStatement extends Statement {
+	owningDescription: @Description
+}
+
+interface DescriptionBundle extends DescriptionBox {
+	ownedImports: DescriptionBundleImport_Union[]
+}
+
+interface DescriptionBundleImport extends Import {
+	// owningDescriptionBundle: @DescriptionBundle
+}
+
+interface Type extends SpecializableTerm {
+}
+
+interface Classifier extends Type {
+	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
+}
+
+interface PropertyRestrictionAxiom extends RestrictionAxiom {
+	owningClassifier?: @Classifier
+	owningReference?: @ClassifierReference
+}
+
+interface RestrictionAxiom extends Axiom {
+}
+
+interface ClassifierReference extends SpecializableTermReference {
+	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
+}
+
+interface Entity extends Classifier {
+	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
+	ownedKeys: KeyAxiom[]
+}
+
+interface RelationRestrictionAxiom extends RestrictionAxiom {
+	relation: @Relation
+	owningEntity?: @Entity
+	owningReference?: @EntityReference
+}
+
+interface Relation extends Feature {
+}
+
+interface EntityReference extends ClassifierReference {
+	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
+	ownedKeys: KeyAxiom[]
+}
+
+interface KeyAxiom extends Axiom {
+	properties: @Feature[]
+	owningEntity?: @Entity
+	owningReference?: @EntityReference
+}
+
+interface Aspect extends Entity {
+}
+
+interface Concept extends Entity {
+	enumeratedInstances: @ConceptInstance[]
+}
+
+interface ConceptInstance extends NamedInstance {
+	ownedTypes: ConceptTypeAssertion[]
+}
+
+interface NamedInstance extends Member, Instance {
+	ownedLinks: LinkAssertion[]
+}
+
+interface Instance {
+	ownedPropertyValues: PropertyValueAssertion_Union[]
+}
+
+interface PropertyValueAssertion extends Assertion {
+	owningInstance?: @Instance
+	owningReference?: @NamedInstanceReference
+}
+
+interface Assertion {
+}
+
+interface NamedInstanceReference extends OmlReference {
+	ownedPropertyValues: PropertyValueAssertion_Union[]
+	ownedLinks: LinkAssertion[]
+}
+
+interface LinkAssertion extends Assertion {
+	relation: @Relation
+	target: @NamedInstance
+	owningInstance?: @NamedInstance
+	owningReference?: @NamedInstanceReference
+}
+
+interface ConceptTypeAssertion extends TypeAssertion {
+	^type: @Concept
+	owningInstance?: @ConceptInstance
+	owningReference?: @ConceptInstanceReference
+}
+
+interface TypeAssertion extends Assertion {
+}
+
+interface ConceptInstanceReference extends NamedInstanceReference {
+	instance: @ConceptInstance
+	ownedTypes: ConceptTypeAssertion[]
+}
+
+interface RelationEntity extends Entity {
+	source: @Entity
+	target: @Entity
+	forwardRelation?: ForwardRelation
+	reverseRelation?: ReverseRelation
+	functional: boolean
+	inverseFunctional: boolean
+	symmetric: boolean
+	asymmetric: boolean
+	reflexive: boolean
+	irreflexive: boolean
+	transitive: boolean
+}
+
+interface ForwardRelation extends Relation {
+}
+
+interface ReverseRelation extends Relation {
+}
+
+interface Structure extends Classifier {
+}
+
+interface SemanticProperty extends Property {
+}
+
+interface ScalarProperty extends SemanticProperty, SpecializableTerm {
+	functional: boolean
+	domain: @Classifier
+	range: @Scalar
+}
+
+interface Scalar extends Type {
+}
+
+interface StructuredProperty extends SemanticProperty, SpecializableTerm {
+	functional: boolean
+	domain: @Classifier
+	range: @Structure
+}
+
+interface FacetedScalar extends Scalar {
+	length?: UnsignedInteger
+	minLength?: UnsignedInteger
+	maxLength?: UnsignedInteger
+	pattern?: string
+	language?: string
+	minInclusive?: Literal_Union
+	minExclusive?: Literal_Union
+	maxInclusive?: Literal_Union
+	maxExclusive?: Literal_Union
+}
+
+interface EnumeratedScalar extends Scalar {
+	literals: Literal_Union[]
+}
+
+interface Rule extends Member {
+	antecedent: Predicate_Union[]
+	consequent: Predicate_Union[]
+}
+
+interface Predicate {
+	antecedentRule?: @Rule
+	consequentRule?: @Rule
+}
+
+interface StructureInstance extends Instance {
+	^type: @Structure
+	owningAxiom?: @StructuredPropertyValueRestrictionAxiom
+	owningAssertion?: @StructuredPropertyValueAssertion
+}
+
+interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+	value: StructureInstance
+}
+
+interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
+	property: @StructuredProperty
+}
+
+interface StructuredPropertyValueAssertion extends PropertyValueAssertion {
+	property: @StructuredProperty
+	value: StructureInstance
+}
+
+interface RelationInstance extends NamedInstance {
+	ownedTypes: RelationTypeAssertion[]
+	sources: @NamedInstance[]
+	targets: @NamedInstance[]
+}
+
+interface RelationTypeAssertion extends TypeAssertion {
+	^type: @RelationEntity
+	owningInstance?: @RelationInstance
+	owningReference?: @RelationInstanceReference
+}
+
+interface RelationInstanceReference extends NamedInstanceReference {
+	instance: @RelationInstance
+	ownedTypes: RelationTypeAssertion[]
+}
+
+interface AspectReference extends EntityReference {
+	aspect: @Aspect
+}
+
+interface ConceptReference extends EntityReference {
+	concept: @Concept
+}
+
+interface RelationEntityReference extends EntityReference {
+	entity: @RelationEntity
+}
+
+interface StructureReference extends ClassifierReference {
+	structure: @Structure
+}
+
+interface AnnotationPropertyReference extends SpecializableTermReference {
+	property: @AnnotationProperty
+}
+
+interface ScalarPropertyReference extends SpecializableTermReference {
+	property: @ScalarProperty
+}
+
+interface StructuredPropertyReference extends SpecializableTermReference {
+	property: @StructuredProperty
+}
+
+interface FacetedScalarReference extends SpecializableTermReference {
+	scalar: @FacetedScalar
+}
+
+interface EnumeratedScalarReference extends SpecializableTermReference {
+	scalar: @EnumeratedScalar
+}
+
+interface RelationReference extends OmlReference {
+	relation: @Relation
+}
+
+interface RuleReference extends OmlReference {
+	rule: @Rule
+}
+
+interface VocabularyExtension extends VocabularyImport {
+}
+
+interface VocabularyUsage extends VocabularyImport {
+}
+
+interface VocabularyBundleInclusion extends VocabularyBundleImport {
+}
+
+interface VocabularyBundleExtension extends VocabularyBundleImport {
+}
+
+interface DescriptionUsage extends DescriptionImport {
+}
+
+interface DescriptionExtension extends DescriptionImport {
+}
+
+interface DescriptionBundleInclusion extends DescriptionBundleImport {
+}
+
+interface DescriptionBundleExtension extends DescriptionBundleImport {
+}
+
+interface DescriptionBundleUsage extends DescriptionBundleImport {
+}
+
+interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
+	property: @ScalarProperty
+}
+
+interface ScalarPropertyRangeRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+	range: @Scalar
+	kind: RangeRestrictionKind
+}
+
+interface ScalarPropertyCardinalityRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+	cardinality: UnsignedInteger
+	kind: CardinalityRestrictionKind
+	range?: @Scalar
+}
+
+interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+	value: Literal_Union
+}
+
+interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+	range: @Structure
+	kind: RangeRestrictionKind
+}
+
+interface StructuredPropertyCardinalityRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+	cardinality: UnsignedInteger
+	kind: CardinalityRestrictionKind
+	range?: @Structure
+}
+
+interface RelationRangeRestrictionAxiom extends RelationRestrictionAxiom {
+	range: @Entity
+	kind: RangeRestrictionKind
+}
+
+interface RelationCardinalityRestrictionAxiom extends RelationRestrictionAxiom {
+	cardinality: UnsignedInteger
+	kind: CardinalityRestrictionKind
+	range?: @Entity
+}
+
+interface RelationTargetRestrictionAxiom extends RelationRestrictionAxiom {
+	target: @NamedInstance
+}
+
+interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
+	property: @ScalarProperty
+	value: Literal_Union
+}
+
+interface UnaryPredicate extends Predicate {
+	variable: string
+}
+
+interface TypePredicate extends UnaryPredicate {
+	^type: @Type
+}
+
+interface BinaryPredicate extends Predicate {
+	variable1: string
+	variable2?: string
+	instance2?: @NamedInstance
+}
+
+interface RelationEntityPredicate extends BinaryPredicate {
+	entity: @RelationEntity
+	entityVariable: string
+}
+
+interface FeaturePredicate extends BinaryPredicate {
+	feature: @Feature
+	literal2?: Literal_Union
+}
+
+interface SameAsPredicate extends BinaryPredicate {
+}
+
+interface DifferentFromPredicate extends BinaryPredicate {
+}
+
+interface IntegerLiteral extends Literal {
+	value?: number
+}
+
+interface DecimalLiteral extends Literal {
+	value: Decimal
+}
+
+interface DoubleLiteral extends Literal {
+	value?: number
+}
+
+interface BooleanLiteral extends Literal {
+	value: boolean
+}
+
+interface QuotedLiteral extends Literal {
+	value: string
+	langTag?: string
+	^type?: @Scalar
+}
+
+//includes end
 entry Ontology infers Ontology_Union:
     VocabularyBox | DescriptionBox 
 ;
@@ -510,521 +1025,4 @@ hidden terminal WS returns string:(' ' | '\t' | '\r' | '\n' )+;
 terminal IDFRAG returns string:'^'? (ALPHA | DIGIT | '_' )(ALPHA | DIGIT | '_' | '-' | '.' | '$' )* ;
 terminal ALPHA returns string:'a' ..'z' | 'A' ..'Z' ;
 terminal DIGIT returns string:'0' ..'9' ;
-
-
-//Includes here
-
-
-type ID = string;
-
-type Namespace = string;
-
-type UnsignedInteger = string;
-
-// type RangeRestrictionKind = RangeRestrictionKind_all | RangeRestrictionKind_some;
-// type RangeRestrictionKind_some = 'some';
-// type RangeRestrictionKind_all = 'all';
-type RangeRestrictionKind = string;
-
-type UnsignedInt = string;
-
-// type CardinalityRestrictionKind = CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max;
-// type CardinalityRestrictionKind_exactly = 'exactly';
-// type CardinalityRestrictionKind_min = 'min';
-// type CardinalityRestrictionKind_max = 'max';
-type CardinalityRestrictionKind = string;
-
-type Decimal = string;
-
-interface Ontology extends IdentifiedElement {
-	namespace: Namespace
-	prefix: ID
-}
-
-interface IdentifiedElement extends AnnotatedElement {
-}
-
-interface AnnotatedElement {
-	ownedAnnotations: Annotation[]
-}
-
-// interface Element {
-// }
-
-interface Annotation {
-	property: @AnnotationProperty
-	value?: Literal_Union
-	referenceValue?: @Member
-	owningElement?: @AnnotatedElement
-	owningReference?: @OmlReference
-}
-
-interface AnnotationProperty extends Property, SpecializableTerm {
-}
-
-interface Property extends Feature {
-}
-
-interface Feature extends Term {
-}
-
-interface Term extends Member {
-}
-
-interface Member extends IdentifiedElement {
-	name: ID
-}
-
-interface SpecializableTerm extends Term {
-	ownedSpecializations: SpecializationAxiom[]
-}
-
-interface VocabularyStatement extends Statement {
-	owningVocabulary: @Vocabulary
-}
-
-interface Statement {
-}
-
-interface Vocabulary extends VocabularyBox {
-	ownedImports: VocabularyImport_Union[]
-	ownedStatements: VocabularyStatement_Union[]
-}
-
-interface VocabularyBox extends Ontology {
-}
-
-interface VocabularyImport extends Import {
-	// owningVocabulary: @Vocabulary
-}
-
-interface Import extends AnnotatedElement {
-	namespace: Namespace
-	prefix?: ID
-}
-
-interface SpecializationAxiom extends Axiom {
-	specializedTerm: @SpecializableTerm
-	owningTerm?: @SpecializableTerm
-	owningReference?: @SpecializableTermReference
-}
-
-interface Axiom {
-}
-
-interface SpecializableTermReference extends OmlReference {
-	ownedSpecializations: SpecializationAxiom[]
-}
-
-interface OmlReference {
-	ownedAnnotations: Annotation[]
-}
-
-interface Literal {
-}
-
-interface VocabularyBundle extends VocabularyBox {
-	ownedImports: VocabularyBundleImport_Union[]
-}
-
-interface VocabularyBundleImport extends Import {
-	// owningVocabularyBundle: @VocabularyBundle
-}
-
-interface DescriptionBox extends Ontology {
-}
-
-interface Description extends DescriptionBox {
-	ownedImports: DescriptionImport_Union[]
-	ownedStatements: DescriptionStatement_Union[]
-}
-
-interface DescriptionImport extends Import {
-	// owningDescription: @Description
-}
-
-interface DescriptionStatement extends Statement {
-	owningDescription: @Description
-}
-
-interface DescriptionBundle extends DescriptionBox {
-	ownedImports: DescriptionBundleImport_Union[]
-}
-
-interface DescriptionBundleImport extends Import {
-	// owningDescriptionBundle: @DescriptionBundle
-}
-
-interface Type extends SpecializableTerm {
-}
-
-interface Classifier extends Type {
-	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
-}
-
-interface PropertyRestrictionAxiom extends RestrictionAxiom {
-	owningClassifier?: @Classifier
-	owningReference?: @ClassifierReference
-}
-
-interface RestrictionAxiom extends Axiom {
-}
-
-interface ClassifierReference extends SpecializableTermReference {
-	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
-}
-
-interface Entity extends Classifier {
-	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
-	ownedKeys: KeyAxiom[]
-}
-
-interface RelationRestrictionAxiom extends RestrictionAxiom {
-	relation: @Relation
-	owningEntity?: @Entity
-	owningReference?: @EntityReference
-}
-
-interface Relation extends Feature {
-}
-
-interface EntityReference extends ClassifierReference {
-	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
-	ownedKeys: KeyAxiom[]
-}
-
-interface KeyAxiom extends Axiom {
-	properties: @Feature[]
-	owningEntity?: @Entity
-	owningReference?: @EntityReference
-}
-
-interface Aspect extends Entity {
-}
-
-interface Concept extends Entity {
-	enumeratedInstances: @ConceptInstance[]
-}
-
-interface ConceptInstance extends NamedInstance {
-	ownedTypes: ConceptTypeAssertion[]
-}
-
-interface NamedInstance extends Member, Instance {
-	ownedLinks: LinkAssertion[]
-}
-
-interface Instance {
-	ownedPropertyValues: PropertyValueAssertion_Union[]
-}
-
-interface PropertyValueAssertion extends Assertion {
-	owningInstance?: @Instance
-	owningReference?: @NamedInstanceReference
-}
-
-interface Assertion {
-}
-
-interface NamedInstanceReference extends OmlReference {
-	ownedPropertyValues: PropertyValueAssertion_Union[]
-	ownedLinks: LinkAssertion[]
-}
-
-interface LinkAssertion extends Assertion {
-	relation: @Relation
-	target: @NamedInstance
-	owningInstance?: @NamedInstance
-	owningReference?: @NamedInstanceReference
-}
-
-interface ConceptTypeAssertion extends TypeAssertion {
-	^type: @Concept
-	owningInstance?: @ConceptInstance
-	owningReference?: @ConceptInstanceReference
-}
-
-interface TypeAssertion extends Assertion {
-}
-
-interface ConceptInstanceReference extends NamedInstanceReference {
-	instance: @ConceptInstance
-	ownedTypes: ConceptTypeAssertion[]
-}
-
-interface RelationEntity extends Entity {
-	source: @Entity
-	target: @Entity
-	forwardRelation?: ForwardRelation
-	reverseRelation?: ReverseRelation
-	functional: boolean
-	inverseFunctional: boolean
-	symmetric: boolean
-	asymmetric: boolean
-	reflexive: boolean
-	irreflexive: boolean
-	transitive: boolean
-}
-
-interface ForwardRelation extends Relation {
-}
-
-interface ReverseRelation extends Relation {
-}
-
-interface Structure extends Classifier {
-}
-
-interface SemanticProperty extends Property {
-}
-
-interface ScalarProperty extends SemanticProperty, SpecializableTerm {
-	functional: boolean
-	domain: @Classifier
-	range: @Scalar
-}
-
-interface Scalar extends Type {
-}
-
-interface StructuredProperty extends SemanticProperty, SpecializableTerm {
-	functional: boolean
-	domain: @Classifier
-	range: @Structure
-}
-
-interface FacetedScalar extends Scalar {
-	length?: UnsignedInteger
-	minLength?: UnsignedInteger
-	maxLength?: UnsignedInteger
-	pattern?: string
-	language?: string
-	minInclusive?: Literal_Union
-	minExclusive?: Literal_Union
-	maxInclusive?: Literal_Union
-	maxExclusive?: Literal_Union
-}
-
-interface EnumeratedScalar extends Scalar {
-	literals: Literal_Union[]
-}
-
-interface Rule extends Member {
-	antecedent: Predicate_Union[]
-	consequent: Predicate_Union[]
-}
-
-interface Predicate {
-	antecedentRule?: @Rule
-	consequentRule?: @Rule
-}
-
-interface StructureInstance extends Instance {
-	^type: @Structure
-	owningAxiom?: @StructuredPropertyValueRestrictionAxiom
-	owningAssertion?: @StructuredPropertyValueAssertion
-}
-
-interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	value: StructureInstance
-}
-
-interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
-	property: @StructuredProperty
-}
-
-interface StructuredPropertyValueAssertion extends PropertyValueAssertion {
-	property: @StructuredProperty
-	value: StructureInstance
-}
-
-interface RelationInstance extends NamedInstance {
-	ownedTypes: RelationTypeAssertion[]
-	sources: @NamedInstance[]
-	targets: @NamedInstance[]
-}
-
-interface RelationTypeAssertion extends TypeAssertion {
-	^type: @RelationEntity
-	owningInstance?: @RelationInstance
-	owningReference?: @RelationInstanceReference
-}
-
-interface RelationInstanceReference extends NamedInstanceReference {
-	instance: @RelationInstance
-	ownedTypes: RelationTypeAssertion[]
-}
-
-interface AspectReference extends EntityReference {
-	aspect: @Aspect
-}
-
-interface ConceptReference extends EntityReference {
-	concept: @Concept
-}
-
-interface RelationEntityReference extends EntityReference {
-	entity: @RelationEntity
-}
-
-interface StructureReference extends ClassifierReference {
-	structure: @Structure
-}
-
-interface AnnotationPropertyReference extends SpecializableTermReference {
-	property: @AnnotationProperty
-}
-
-interface ScalarPropertyReference extends SpecializableTermReference {
-	property: @ScalarProperty
-}
-
-interface StructuredPropertyReference extends SpecializableTermReference {
-	property: @StructuredProperty
-}
-
-interface FacetedScalarReference extends SpecializableTermReference {
-	scalar: @FacetedScalar
-}
-
-interface EnumeratedScalarReference extends SpecializableTermReference {
-	scalar: @EnumeratedScalar
-}
-
-interface RelationReference extends OmlReference {
-	relation: @Relation
-}
-
-interface RuleReference extends OmlReference {
-	rule: @Rule
-}
-
-interface VocabularyExtension extends VocabularyImport {
-}
-
-interface VocabularyUsage extends VocabularyImport {
-}
-
-interface VocabularyBundleInclusion extends VocabularyBundleImport {
-}
-
-interface VocabularyBundleExtension extends VocabularyBundleImport {
-}
-
-interface DescriptionUsage extends DescriptionImport {
-}
-
-interface DescriptionExtension extends DescriptionImport {
-}
-
-interface DescriptionBundleInclusion extends DescriptionBundleImport {
-}
-
-interface DescriptionBundleExtension extends DescriptionBundleImport {
-}
-
-interface DescriptionBundleUsage extends DescriptionBundleImport {
-}
-
-interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
-	property: @ScalarProperty
-}
-
-interface ScalarPropertyRangeRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	range: @Scalar
-	kind: RangeRestrictionKind
-}
-
-interface ScalarPropertyCardinalityRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Scalar
-}
-
-interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	value: Literal_Union
-}
-
-interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	range: @Structure
-	kind: RangeRestrictionKind
-}
-
-interface StructuredPropertyCardinalityRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Structure
-}
-
-interface RelationRangeRestrictionAxiom extends RelationRestrictionAxiom {
-	range: @Entity
-	kind: RangeRestrictionKind
-}
-
-interface RelationCardinalityRestrictionAxiom extends RelationRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Entity
-}
-
-interface RelationTargetRestrictionAxiom extends RelationRestrictionAxiom {
-	target: @NamedInstance
-}
-
-interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
-	property: @ScalarProperty
-	value: Literal_Union
-}
-
-interface UnaryPredicate extends Predicate {
-	variable: ID
-}
-
-interface TypePredicate extends UnaryPredicate {
-	^type: @Type
-}
-
-interface BinaryPredicate extends Predicate {
-	variable1: ID
-	variable2?: ID
-	instance2?: @NamedInstance
-}
-
-interface RelationEntityPredicate extends BinaryPredicate {
-	entity: @RelationEntity
-	entityVariable: ID
-}
-
-interface FeaturePredicate extends BinaryPredicate {
-	feature: @Feature
-	literal2?: Literal_Union
-}
-
-interface SameAsPredicate extends BinaryPredicate {
-}
-
-interface DifferentFromPredicate extends BinaryPredicate {
-}
-
-interface IntegerLiteral extends Literal {
-	value?: number
-}
-
-interface DecimalLiteral extends Literal {
-	value: Decimal
-}
-
-interface DoubleLiteral extends Literal {
-	value?: number
-}
-
-interface BooleanLiteral extends Literal {
-	value: boolean
-}
-
-interface QuotedLiteral extends Literal {
-	value: string
-	langTag?: string
-	^type?: @Scalar
-}
 

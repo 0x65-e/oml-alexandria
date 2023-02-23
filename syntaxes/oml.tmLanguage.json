@@ -10,22 +10,12 @@
     },
     {
       "name": "keyword.control.oml",
-      "match": "\\b(Hello|person)\\b"
+      "match": "\\b(all|annotation|as|aspect|asymmetric|bundle|ci|concept|description|differentFrom|domain|entity|enumerated|enumerates|exactly|extends|forward|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|reverse|ri|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses|vocabulary)\\b"
     },
     {
       "name": "string.quoted.double.oml",
       "begin": "\"",
-      "end": "\"",
-      "patterns": [
-        {
-          "include": "#string-character-escape"
-        }
-      ]
-    },
-    {
-      "name": "string.quoted.single.oml",
-      "begin": "'",
-      "end": "'",
+      "end": "\"\"\"",
       "patterns": [
         {
           "include": "#string-character-escape"
@@ -34,35 +24,6 @@
     }
   ],
   "repository": {
-    "comments": {
-      "patterns": [
-        {
-          "name": "comment.block.oml",
-          "begin": "/\\*",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.oml"
-            }
-          },
-          "end": "\\*/",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.oml"
-            }
-          }
-        },
-        {
-          "begin": "//",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.whitespace.comment.leading.oml"
-            }
-          },
-          "end": "(?=$)",
-          "name": "comment.line.oml"
-        }
-      ]
-    },
     "string-character-escape": {
       "name": "constant.character.escape.oml",
       "match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
