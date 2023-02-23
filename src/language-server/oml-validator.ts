@@ -1,4 +1,4 @@
-import { ValidationAcceptor, ValidationChecks } from 'langium';
+import { ValidationChecks } from 'langium';
 import { OmlAstType } from './generated/ast';
 import type { OmlServices } from './oml-module';
 

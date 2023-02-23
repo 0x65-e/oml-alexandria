@@ -2,26 +2,27 @@ grammar Oml
 // import 'oml-types'
 
 //includes start
-type ID = string;
+//type ID = string;
 
-type Namespace = string;
+//type Namespace = string;
 
-type UnsignedInteger = string;
+//type UnsignedInteger = number;
 
 // type RangeRestrictionKind = RangeRestrictionKind_all | RangeRestrictionKind_some;
 // type RangeRestrictionKind_some = 'some';
 // type RangeRestrictionKind_all = 'all';
-type RangeRestrictionKind = string;
+// type RangeRestrictionKind = string;
 
-type UnsignedInt = string;
+//type UnsignedInt = string;
 
 // type CardinalityRestrictionKind = CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max;
 // type CardinalityRestrictionKind_exactly = 'exactly';
 // type CardinalityRestrictionKind_min = 'min';
 // type CardinalityRestrictionKind_max = 'max';
-type CardinalityRestrictionKind = string;
+// type CardinalityRestrictionKind = string;
+// type CardinalityRestrictionKind = 'exactly' | 'min' | 'max';
 
-type Decimal = string;
+//type Decimal = string;
 
 interface Ontology extends IdentifiedElement {
 	namespace: string
@@ -417,42 +418,42 @@ interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 	property: @ScalarProperty
 }
 
-interface ScalarPropertyRangeRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	range: @Scalar
-	kind: RangeRestrictionKind
-}
+//interface ScalarPropertyRangeRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+//	range: @Scalar
+//	kind: RangeRestrictionKind
+//}
 
-interface ScalarPropertyCardinalityRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Scalar
-}
+//interface ScalarPropertyCardinalityRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+//	cardinality: UnsignedInteger
+//	kind: CardinalityRestrictionKind
+//	range?: @Scalar
+//}
 
 interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
 	value: Literal_Union
 }
 
-interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	range: @Structure
-	kind: RangeRestrictionKind
-}
+//interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+//	range: @Structure
+//	kind: RangeRestrictionKind
+//}
 
-interface StructuredPropertyCardinalityRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Structure
-}
+//interface StructuredPropertyCardinalityRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+//	cardinality: UnsignedInteger
+//	kind: CardinalityRestrictionKind
+//	range?: @Structure
+//}
 
-interface RelationRangeRestrictionAxiom extends RelationRestrictionAxiom {
-	range: @Entity
-	kind: RangeRestrictionKind
-}
+//interface RelationRangeRestrictionAxiom extends RelationRestrictionAxiom {
+//	range: @Entity
+//	kind: RangeRestrictionKind
+//}
 
-interface RelationCardinalityRestrictionAxiom extends RelationRestrictionAxiom {
-	cardinality: UnsignedInteger
-	kind: CardinalityRestrictionKind
-	range?: @Entity
-}
+//interface RelationCardinalityRestrictionAxiom extends RelationRestrictionAxiom {
+//	cardinality: UnsignedInteger
+//	kind: CardinalityRestrictionKind
+//	range?: @Entity
+//}
 
 interface RelationTargetRestrictionAxiom extends RelationRestrictionAxiom {
 	target: @NamedInstance
@@ -493,6 +494,7 @@ interface SameAsPredicate extends BinaryPredicate {
 interface DifferentFromPredicate extends BinaryPredicate {
 }
 
+/*
 interface IntegerLiteral extends Literal {
 	value?: number
 }
@@ -508,6 +510,7 @@ interface DoubleLiteral extends Literal {
 interface BooleanLiteral extends Literal {
 	value: boolean
 }
+*/
 
 interface QuotedLiteral extends Literal {
 	value: string
@@ -840,11 +843,13 @@ ScalarPropertyRestrictionAxiom infers ScalarPropertyRestrictionAxiom_Union:
     ScalarPropertyRangeRestrictionAxiom | ScalarPropertyCardinalityRestrictionAxiom | ScalarPropertyValueRestrictionAxiom 
 ;
 
-ScalarPropertyRangeRestrictionAxiom returns ScalarPropertyRangeRestrictionAxiom:
+//ScalarPropertyRangeRestrictionAxiom returns ScalarPropertyRangeRestrictionAxiom:
+ScalarPropertyRangeRestrictionAxiom:
     'restricts' kind=RangeRestrictionKind  'scalar' 'property' property=[ScalarProperty:Ref ] 'to' range=[Scalar:Ref ]  
 ;
 
-ScalarPropertyCardinalityRestrictionAxiom returns ScalarPropertyCardinalityRestrictionAxiom:
+//ScalarPropertyCardinalityRestrictionAxiom returns ScalarPropertyCardinalityRestrictionAxiom:
+ScalarPropertyCardinalityRestrictionAxiom:
     'restricts' 'scalar' 'property' property=[ScalarProperty:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Scalar:Ref ])?  
 ;
 
@@ -856,11 +861,13 @@ StructuredPropertyRestrictionAxiom infers StructuredPropertyRestrictionAxiom_Uni
     StructuredPropertyRangeRestrictionAxiom | StructuredPropertyCardinalityRestrictionAxiom | StructuredPropertyValueRestrictionAxiom 
 ;
 
-StructuredPropertyRangeRestrictionAxiom returns StructuredPropertyRangeRestrictionAxiom:
+//StructuredPropertyRangeRestrictionAxiom returns StructuredPropertyRangeRestrictionAxiom:
+StructuredPropertyRangeRestrictionAxiom:
     'restricts' kind=RangeRestrictionKind  'structured' 'property' property=[StructuredProperty:Ref ] 'to' range=[Structure:Ref ]  
 ;
 
-StructuredPropertyCardinalityRestrictionAxiom returns StructuredPropertyCardinalityRestrictionAxiom:
+//StructuredPropertyCardinalityRestrictionAxiom returns StructuredPropertyCardinalityRestrictionAxiom:
+StructuredPropertyCardinalityRestrictionAxiom:
     'restricts' 'structured' 'property' property=[StructuredProperty:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Structure:Ref ])?  
 ;
 
@@ -872,11 +879,13 @@ RelationRestrictionAxiom infers RelationRestrictionAxiom_Union:
     RelationRangeRestrictionAxiom | RelationCardinalityRestrictionAxiom | RelationTargetRestrictionAxiom 
 ;
 
-RelationRangeRestrictionAxiom returns RelationRangeRestrictionAxiom:
+//RelationRangeRestrictionAxiom returns RelationRangeRestrictionAxiom:
+RelationRangeRestrictionAxiom:
     'restricts' kind=RangeRestrictionKind  'relation' relation=[Relation:Ref ] 'to' range=[Entity:Ref ]  
 ;
 
-RelationCardinalityRestrictionAxiom returns RelationCardinalityRestrictionAxiom:
+//RelationCardinalityRestrictionAxiom returns RelationCardinalityRestrictionAxiom:
+RelationCardinalityRestrictionAxiom:
     'restricts' 'relation' relation=[Relation:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Entity:Ref ])?  
 ;
 
@@ -948,38 +957,53 @@ Literal infers Literal_Union:
     IntegerLiteral | DecimalLiteral | DoubleLiteral | BooleanLiteral | QuotedLiteral 
 ;
 
-IntegerLiteral returns IntegerLiteral:
-    value=Integer  
+IntegerLiteral:
+    value=INTEGER_STR  
 ;
 
-DecimalLiteral returns DecimalLiteral:
-    value=Decimal  
+DecimalLiteral:
+    value=DECIMAL_STR  
 ;
 
-DoubleLiteral returns DoubleLiteral:
-    value=Double  
+DoubleLiteral:
+    value=DOUBLE_STR  
 ;
 
-BooleanLiteral returns BooleanLiteral:
-    value=Boolean  
+BooleanLiteral:
+    value=BOOLEAN_STR  
+;
+
+UnsignedInteger:
+    value=UNSIGNED_INTEGER_STR
 ;
 
 QuotedLiteral returns QuotedLiteral:
     value=STRING  (('^^' ^type=[Scalar:Ref ] ) | ('$' langTag=ID  ) )? 
 ;
 
+//RangeRestrictionKind returns string:
+//    RangeRestrictionKind_all | RangeRestrictionKind_some
+//;
+//RangeRestrictionKind_all returns string: 'all' ;
+//RangeRestrictionKind_some returns string: 'some' ;
+
 RangeRestrictionKind returns string:
-    RangeRestrictionKind_all | RangeRestrictionKind_some
+    'all' | 'some'
 ;
-RangeRestrictionKind_all returns string: 'all' ;
-RangeRestrictionKind_some returns string: 'some' ;
+
+//CardinalityRestrictionKind returns string:
+//    CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max
+//;
+//CardinalityRestrictionKind_exactly returns string: 'exactly' ;
+//CardinalityRestrictionKind_min returns string: 'min' ;
+//CardinalityRestrictionKind_max returns string: 'max' ;
+//CardinalityRestrictionKind returns string:
+//    'exactly' | 'min' | 'max'
+//;
 
 CardinalityRestrictionKind returns string:
-    CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max
+    'exactly' | 'min' | 'max'
 ;
-CardinalityRestrictionKind_exactly returns string: 'exactly' ;
-CardinalityRestrictionKind_min returns string: 'min' ;
-CardinalityRestrictionKind_max returns string: 'max' ;
 
 Ref returns string:
     ID | QNAME | IRI 
@@ -989,6 +1013,7 @@ CrossRef returns string:
     QNAME | IRI
 ;
 
+/*
 Boolean returns boolean:
     BOOLEAN_STR 
 ;
@@ -1008,6 +1033,7 @@ Decimal returns string:
 Double returns number:
     DOUBLE_STR 
 ;
+*/
 
 terminal BOOLEAN_STR returns string:'false' | 'true' ;
 terminal UNSIGNED_INTEGER_STR returns string:DIGIT+ ;
@@ -1023,6 +1049,6 @@ hidden terminal ML_COMMENT returns string:'/*'  -> '*/'  ;
 hidden terminal SL_COMMENT returns string:'//'  !('\n' | '\r' )('\r'? '\n' )?  ;
 hidden terminal WS returns string:(' ' | '\t' | '\r' | '\n' )+;
 terminal IDFRAG returns string:'^'? (ALPHA | DIGIT | '_' )(ALPHA | DIGIT | '_' | '-' | '.' | '$' )* ;
-terminal ALPHA returns string:'a' ..'z' | 'A' ..'Z' ;
-terminal DIGIT returns string:'0' ..'9' ;
+terminal ALPHA returns string:/a-z/ | /A-Z/ ;
+terminal DIGIT returns string:/0-9/ ;
 
