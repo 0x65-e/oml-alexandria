@@ -1,0 +1,12 @@
+{
+    "projectName": "Oml",
+    "languages": [{
+        "id": "oml",
+        "grammar": "src/language-server/oml.langium",
+        "fileExtensions": [".oml"],
+        "textMate": {
+            "out": "syntaxes/oml.tmLanguage.json"
+        }
+    }],
+    "out": "src/language-server/generated"
+}
