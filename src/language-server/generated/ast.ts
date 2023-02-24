@@ -138,14 +138,6 @@ export function isProperty_Union(item: unknown): item is Property_Union {
     return reflection.isInstance(item, Property_Union);
 }
 
-export type PropertyRestrictionAxiom_Union = ScalarPropertyRestrictionAxiom_Union | StructuredPropertyRestrictionAxiom_Union;
-
-export const PropertyRestrictionAxiom_Union = 'PropertyRestrictionAxiom_Union';
-
-export function isPropertyRestrictionAxiom_Union(item: unknown): item is PropertyRestrictionAxiom_Union {
-    return reflection.isInstance(item, PropertyRestrictionAxiom_Union);
-}
-
 export type PropertyValueAssertion_Union = ScalarPropertyValueAssertion | StructuredPropertyValueAssertion;
 
 export const PropertyValueAssertion_Union = 'PropertyValueAssertion_Union';
@@ -174,14 +166,6 @@ export function isScalar_Union(item: unknown): item is Scalar_Union {
     return reflection.isInstance(item, Scalar_Union);
 }
 
-export type ScalarPropertyRestrictionAxiom_Union = ScalarPropertyCardinalityRestrictionAxiom | ScalarPropertyRangeRestrictionAxiom | ScalarPropertyValueRestrictionAxiom;
-
-export const ScalarPropertyRestrictionAxiom_Union = 'ScalarPropertyRestrictionAxiom_Union';
-
-export function isScalarPropertyRestrictionAxiom_Union(item: unknown): item is ScalarPropertyRestrictionAxiom_Union {
-    return reflection.isInstance(item, ScalarPropertyRestrictionAxiom_Union);
-}
-
 export type SemanticProperty_Union = ScalarProperty | StructuredProperty;
 
 export const SemanticProperty_Union = 'SemanticProperty_Union';
@@ -204,14 +188,6 @@ export const SpecializableTermReference_Union = 'SpecializableTermReference_Unio
 
 export function isSpecializableTermReference_Union(item: unknown): item is SpecializableTermReference_Union {
     return reflection.isInstance(item, SpecializableTermReference_Union);
-}
-
-export type StructuredPropertyRestrictionAxiom_Union = StructuredPropertyCardinalityRestrictionAxiom | StructuredPropertyRangeRestrictionAxiom | StructuredPropertyValueRestrictionAxiom;
-
-export const StructuredPropertyRestrictionAxiom_Union = 'StructuredPropertyRestrictionAxiom_Union';
-
-export function isStructuredPropertyRestrictionAxiom_Union(item: unknown): item is StructuredPropertyRestrictionAxiom_Union {
-    return reflection.isInstance(item, StructuredPropertyRestrictionAxiom_Union);
 }
 
 export type Type_Union = Classifier_Union | Scalar_Union;
@@ -434,35 +410,6 @@ export function isReverseRelation(item: unknown): item is ReverseRelation {
     return reflection.isInstance(item, ReverseRelation);
 }
 
-export interface ScalarPropertyCardinalityRestrictionAxiom extends AstNode {
-    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'ScalarPropertyCardinalityRestrictionAxiom';
-    cardinality: UnsignedInteger
-    kind: CardinalityRestrictionKind
-    property: Reference<ScalarProperty>
-    range?: Reference<Scalar>
-}
-
-export const ScalarPropertyCardinalityRestrictionAxiom = 'ScalarPropertyCardinalityRestrictionAxiom';
-
-export function isScalarPropertyCardinalityRestrictionAxiom(item: unknown): item is ScalarPropertyCardinalityRestrictionAxiom {
-    return reflection.isInstance(item, ScalarPropertyCardinalityRestrictionAxiom);
-}
-
-export interface ScalarPropertyRangeRestrictionAxiom extends AstNode {
-    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'ScalarPropertyRangeRestrictionAxiom';
-    kind: RangeRestrictionKind
-    property: Reference<ScalarProperty>
-    range: Reference<Scalar>
-}
-
-export const ScalarPropertyRangeRestrictionAxiom = 'ScalarPropertyRangeRestrictionAxiom';
-
-export function isScalarPropertyRangeRestrictionAxiom(item: unknown): item is ScalarPropertyRangeRestrictionAxiom {
-    return reflection.isInstance(item, ScalarPropertyRangeRestrictionAxiom);
-}
-
 export interface Statement extends AstNode {
     readonly $type: 'DescriptionStatement' | 'Statement' | 'VocabularyStatement';
 }
@@ -471,35 +418,6 @@ export const Statement = 'Statement';
 
 export function isStatement(item: unknown): item is Statement {
     return reflection.isInstance(item, Statement);
-}
-
-export interface StructuredPropertyCardinalityRestrictionAxiom extends AstNode {
-    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'StructuredPropertyCardinalityRestrictionAxiom';
-    cardinality: UnsignedInteger
-    kind: CardinalityRestrictionKind
-    property: Reference<StructuredProperty>
-    range?: Reference<Structure>
-}
-
-export const StructuredPropertyCardinalityRestrictionAxiom = 'StructuredPropertyCardinalityRestrictionAxiom';
-
-export function isStructuredPropertyCardinalityRestrictionAxiom(item: unknown): item is StructuredPropertyCardinalityRestrictionAxiom {
-    return reflection.isInstance(item, StructuredPropertyCardinalityRestrictionAxiom);
-}
-
-export interface StructuredPropertyRangeRestrictionAxiom extends AstNode {
-    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'StructuredPropertyRangeRestrictionAxiom';
-    kind: RangeRestrictionKind
-    property: Reference<StructuredProperty>
-    range: Reference<Structure>
-}
-
-export const StructuredPropertyRangeRestrictionAxiom = 'StructuredPropertyRangeRestrictionAxiom';
-
-export function isStructuredPropertyRangeRestrictionAxiom(item: unknown): item is StructuredPropertyRangeRestrictionAxiom {
-    return reflection.isInstance(item, StructuredPropertyRangeRestrictionAxiom);
 }
 
 export interface UnsignedInteger extends AstNode {
@@ -593,7 +511,7 @@ export function isKeyAxiom(item: unknown): item is KeyAxiom {
 
 export interface RestrictionAxiom extends Axiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'PropertyRestrictionAxiom' | 'RelationCardinalityRestrictionAxiom' | 'RelationRangeRestrictionAxiom' | 'RelationRestrictionAxiom' | 'RelationTargetRestrictionAxiom' | 'RestrictionAxiom' | 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
+    readonly $type: 'PropertyRestrictionAxiom' | 'RelationCardinalityRestrictionAxiom' | 'RelationRangeRestrictionAxiom' | 'RelationRestrictionAxiom' | 'RelationTargetRestrictionAxiom' | 'RestrictionAxiom' | 'ScalarPropertyCardinalityRestrictionAxiom' | 'ScalarPropertyRangeRestrictionAxiom' | 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom' | 'StructuredPropertyCardinalityRestrictionAxiom' | 'StructuredPropertyRangeRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
 }
 
 export const RestrictionAxiom = 'RestrictionAxiom';
@@ -755,7 +673,7 @@ export function isVocabularyStatement(item: unknown): item is VocabularyStatemen
 
 export interface Member extends IdentifiedElement {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'ConceptInstance' | 'Feature' | 'ForwardRelation' | 'Member' | 'NamedInstance' | 'Property' | 'Relation' | 'RelationInstance' | 'ReverseRelation' | 'Rule' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
+    readonly $type: 'AnnotationProperty' | 'ConceptInstance' | 'Feature' | 'Member' | 'NamedInstance' | 'Property' | 'RelationInstance' | 'Rule' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type' | 'SemanticProperty' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity';
     name: string
 }
 
@@ -878,7 +796,7 @@ export function isRelationTypeAssertion(item: unknown): item is RelationTypeAsse
 
 export interface PropertyRestrictionAxiom extends RestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'PropertyRestrictionAxiom' | 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
+    readonly $type: 'PropertyRestrictionAxiom' | 'ScalarPropertyCardinalityRestrictionAxiom' | 'ScalarPropertyRangeRestrictionAxiom' | 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom' | 'StructuredPropertyCardinalityRestrictionAxiom' | 'StructuredPropertyRangeRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
     owningClassifier?: Reference<Classifier>
     owningReference?: Reference<ClassifierReference>
 }
@@ -970,7 +888,7 @@ export function isAnnotationPropertyReference(item: unknown): item is Annotation
 export interface ClassifierReference extends SpecializableTermReference {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AspectReference' | 'ClassifierReference' | 'ConceptReference' | 'EntityReference' | 'RelationEntityReference' | 'StructureReference';
-    ownedPropertyRestrictions: Array<PropertyRestrictionAxiom_Union>
+    ownedPropertyRestrictions: Array<PropertyRestrictionAxiom>
 }
 
 export const ClassifierReference = 'ClassifierReference';
@@ -1102,7 +1020,7 @@ export function isRule(item: unknown): item is Rule {
 
 export interface Term extends Member {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'Feature' | 'ForwardRelation' | 'Property' | 'Relation' | 'ReverseRelation' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
+    readonly $type: 'AnnotationProperty' | 'Feature' | 'Property' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type' | 'SemanticProperty' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity';
 }
 
 export const Term = 'Term';
@@ -1234,7 +1152,7 @@ export function isVocabularyUsage(item: unknown): item is VocabularyUsage {
 
 export interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom';
+    readonly $type: 'ScalarPropertyCardinalityRestrictionAxiom' | 'ScalarPropertyRangeRestrictionAxiom' | 'ScalarPropertyRestrictionAxiom' | 'ScalarPropertyValueRestrictionAxiom';
     property: Reference<ScalarProperty>
 }
 
@@ -1246,7 +1164,7 @@ export function isScalarPropertyRestrictionAxiom(item: unknown): item is ScalarP
 
 export interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
+    readonly $type: 'StructuredPropertyCardinalityRestrictionAxiom' | 'StructuredPropertyRangeRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
     property: Reference<StructuredProperty>
 }
 
@@ -1325,7 +1243,7 @@ export function isStructureReference(item: unknown): item is StructureReference 
 
 export interface Feature extends Term {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'Feature' | 'ForwardRelation' | 'Property' | 'Relation' | 'ReverseRelation' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
+    readonly $type: 'AnnotationProperty' | 'Feature' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
 }
 
 export const Feature = 'Feature';
@@ -1336,7 +1254,7 @@ export function isFeature(item: unknown): item is Feature {
 
 export interface SpecializableTerm extends Term {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
+    readonly $type: 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity';
     ownedSpecializations: Array<SpecializationAxiom>
 }
 
@@ -1396,9 +1314,39 @@ export function isVocabularyBundle(item: unknown): item is VocabularyBundle {
     return reflection.isInstance(item, VocabularyBundle);
 }
 
+export interface ScalarPropertyCardinalityRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
+    readonly $type: 'ScalarPropertyCardinalityRestrictionAxiom';
+    cardinality: UnsignedInteger
+    kind: CardinalityRestrictionKind
+    property: Reference<ScalarProperty>
+    range?: Reference<Scalar>
+}
+
+export const ScalarPropertyCardinalityRestrictionAxiom = 'ScalarPropertyCardinalityRestrictionAxiom';
+
+export function isScalarPropertyCardinalityRestrictionAxiom(item: unknown): item is ScalarPropertyCardinalityRestrictionAxiom {
+    return reflection.isInstance(item, ScalarPropertyCardinalityRestrictionAxiom);
+}
+
+export interface ScalarPropertyRangeRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
+    readonly $type: 'ScalarPropertyRangeRestrictionAxiom';
+    kind: RangeRestrictionKind
+    property: Reference<ScalarProperty>
+    range: Reference<Scalar>
+}
+
+export const ScalarPropertyRangeRestrictionAxiom = 'ScalarPropertyRangeRestrictionAxiom';
+
+export function isScalarPropertyRangeRestrictionAxiom(item: unknown): item is ScalarPropertyRangeRestrictionAxiom {
+    return reflection.isInstance(item, ScalarPropertyRangeRestrictionAxiom);
+}
+
 export interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
     readonly $type: 'ScalarPropertyValueRestrictionAxiom';
+    property: Reference<ScalarProperty>
     value: Literal_Union
 }
 
@@ -1408,9 +1356,39 @@ export function isScalarPropertyValueRestrictionAxiom(item: unknown): item is Sc
     return reflection.isInstance(item, ScalarPropertyValueRestrictionAxiom);
 }
 
+export interface StructuredPropertyCardinalityRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
+    readonly $type: 'StructuredPropertyCardinalityRestrictionAxiom';
+    cardinality: UnsignedInteger
+    kind: CardinalityRestrictionKind
+    property: Reference<StructuredProperty>
+    range?: Reference<Structure>
+}
+
+export const StructuredPropertyCardinalityRestrictionAxiom = 'StructuredPropertyCardinalityRestrictionAxiom';
+
+export function isStructuredPropertyCardinalityRestrictionAxiom(item: unknown): item is StructuredPropertyCardinalityRestrictionAxiom {
+    return reflection.isInstance(item, StructuredPropertyCardinalityRestrictionAxiom);
+}
+
+export interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+    readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
+    readonly $type: 'StructuredPropertyRangeRestrictionAxiom';
+    kind: RangeRestrictionKind
+    property: Reference<StructuredProperty>
+    range: Reference<Structure>
+}
+
+export const StructuredPropertyRangeRestrictionAxiom = 'StructuredPropertyRangeRestrictionAxiom';
+
+export function isStructuredPropertyRangeRestrictionAxiom(item: unknown): item is StructuredPropertyRangeRestrictionAxiom {
+    return reflection.isInstance(item, StructuredPropertyRangeRestrictionAxiom);
+}
+
 export interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
     readonly $type: 'StructuredPropertyValueRestrictionAxiom';
+    property: Reference<StructuredProperty>
     value: StructureInstance
 }
 
@@ -1508,7 +1486,7 @@ export function isStructuredProperty(item: unknown): item is StructuredProperty 
 
 export interface Type extends SpecializableTerm {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
+    readonly $type: 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type' | 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity';
 }
 
 export const Type = 'Type';
@@ -1531,7 +1509,7 @@ export function isSemanticProperty(item: unknown): item is SemanticProperty {
 export interface Classifier extends Type {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
-    ownedPropertyRestrictions: Array<PropertyRestrictionAxiom_Union>
+    ownedPropertyRestrictions: Array<PropertyRestrictionAxiom>
 }
 
 export const Classifier = 'Classifier';
@@ -1723,7 +1701,6 @@ export interface OmlAstType {
     Predicate_Union: Predicate_Union
     Property: Property
     PropertyRestrictionAxiom: PropertyRestrictionAxiom
-    PropertyRestrictionAxiom_Union: PropertyRestrictionAxiom_Union
     PropertyValueAssertion: PropertyValueAssertion
     PropertyValueAssertion_Union: PropertyValueAssertion_Union
     Property_Union: Property_Union
@@ -1751,7 +1728,6 @@ export interface OmlAstType {
     ScalarPropertyRangeRestrictionAxiom: ScalarPropertyRangeRestrictionAxiom
     ScalarPropertyReference: ScalarPropertyReference
     ScalarPropertyRestrictionAxiom: ScalarPropertyRestrictionAxiom
-    ScalarPropertyRestrictionAxiom_Union: ScalarPropertyRestrictionAxiom_Union
     ScalarPropertyValueAssertion: ScalarPropertyValueAssertion
     ScalarPropertyValueRestrictionAxiom: ScalarPropertyValueRestrictionAxiom
     Scalar_Union: Scalar_Union
@@ -1771,7 +1747,6 @@ export interface OmlAstType {
     StructuredPropertyRangeRestrictionAxiom: StructuredPropertyRangeRestrictionAxiom
     StructuredPropertyReference: StructuredPropertyReference
     StructuredPropertyRestrictionAxiom: StructuredPropertyRestrictionAxiom
-    StructuredPropertyRestrictionAxiom_Union: StructuredPropertyRestrictionAxiom_Union
     StructuredPropertyValueAssertion: StructuredPropertyValueAssertion
     StructuredPropertyValueRestrictionAxiom: StructuredPropertyValueRestrictionAxiom
     Term: Term
@@ -1801,7 +1776,7 @@ export interface OmlAstType {
 export class OmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'ClassifierReference_Union', 'Classifier_Union', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBox_Union', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleImport_Union', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionImport_Union', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EntityReference_Union', 'Entity_Union', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'Feature_Union', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Literal_Union', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'NamedInstance_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyRestrictionAxiom_Union', 'PropertyValueAssertion', 'PropertyValueAssertion_Union', 'Property_Union', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyRestrictionAxiom_Union', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'Scalar_Union', 'SemanticProperty', 'SemanticProperty_Union', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializableTermReference_Union', 'SpecializableTerm_Union', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyRestrictionAxiom_Union', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'Type_Union', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBox_Union', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleImport_Union', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyImport_Union', 'VocabularyStatement', 'VocabularyStatement_Union', 'VocabularyUsage'];
+        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'ClassifierReference_Union', 'Classifier_Union', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBox_Union', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleImport_Union', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionImport_Union', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EntityReference_Union', 'Entity_Union', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'Feature_Union', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Literal_Union', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'NamedInstance_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'PropertyValueAssertion_Union', 'Property_Union', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'Scalar_Union', 'SemanticProperty', 'SemanticProperty_Union', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializableTermReference_Union', 'SpecializableTerm_Union', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'Type_Union', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBox_Union', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleImport_Union', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyImport_Union', 'VocabularyStatement', 'VocabularyStatement_Union', 'VocabularyUsage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -1986,23 +1961,17 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(SemanticProperty, supertype) || this.isSubtype(SemanticProperty_Union, supertype) || this.isSubtype(SpecializableTerm, supertype) || this.isSubtype(SpecializableTerm_Union, supertype);
             }
             case ScalarPropertyCardinalityRestrictionAxiom:
-            case ScalarPropertyRangeRestrictionAxiom: {
-                return this.isSubtype(ScalarPropertyRestrictionAxiom_Union, supertype);
+            case ScalarPropertyRangeRestrictionAxiom:
+            case ScalarPropertyValueRestrictionAxiom: {
+                return this.isSubtype(ScalarPropertyRestrictionAxiom, supertype);
             }
             case ScalarPropertyRestrictionAxiom:
             case StructuredPropertyRestrictionAxiom: {
                 return this.isSubtype(PropertyRestrictionAxiom, supertype);
             }
-            case ScalarPropertyRestrictionAxiom_Union:
-            case StructuredPropertyRestrictionAxiom_Union: {
-                return this.isSubtype(PropertyRestrictionAxiom_Union, supertype);
-            }
             case ScalarPropertyValueAssertion:
             case StructuredPropertyValueAssertion: {
                 return this.isSubtype(PropertyValueAssertion, supertype) || this.isSubtype(PropertyValueAssertion_Union, supertype);
-            }
-            case ScalarPropertyValueRestrictionAxiom: {
-                return this.isSubtype(ScalarPropertyRestrictionAxiom, supertype) || this.isSubtype(ScalarPropertyRestrictionAxiom_Union, supertype);
             }
             case SemanticProperty: {
                 return this.isSubtype(Property, supertype);
@@ -2018,11 +1987,9 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(Classifier, supertype) || this.isSubtype(Classifier_Union, supertype);
             }
             case StructuredPropertyCardinalityRestrictionAxiom:
-            case StructuredPropertyRangeRestrictionAxiom: {
-                return this.isSubtype(StructuredPropertyRestrictionAxiom_Union, supertype);
-            }
+            case StructuredPropertyRangeRestrictionAxiom:
             case StructuredPropertyValueRestrictionAxiom: {
-                return this.isSubtype(StructuredPropertyRestrictionAxiom, supertype) || this.isSubtype(StructuredPropertyRestrictionAxiom_Union, supertype);
+                return this.isSubtype(StructuredPropertyRestrictionAxiom, supertype);
             }
             case StructureInstance: {
                 return this.isSubtype(Instance, supertype);
@@ -2172,16 +2139,24 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case 'PropertyRestrictionAxiom:owningClassifier':
             case 'ScalarProperty:domain':
+            case 'ScalarPropertyCardinalityRestrictionAxiom:owningClassifier':
+            case 'ScalarPropertyRangeRestrictionAxiom:owningClassifier':
             case 'ScalarPropertyRestrictionAxiom:owningClassifier':
             case 'ScalarPropertyValueRestrictionAxiom:owningClassifier':
             case 'StructuredProperty:domain':
+            case 'StructuredPropertyCardinalityRestrictionAxiom:owningClassifier':
+            case 'StructuredPropertyRangeRestrictionAxiom:owningClassifier':
             case 'StructuredPropertyRestrictionAxiom:owningClassifier':
             case 'StructuredPropertyValueRestrictionAxiom:owningClassifier': {
                 return Classifier;
             }
             case 'PropertyRestrictionAxiom:owningReference':
+            case 'ScalarPropertyCardinalityRestrictionAxiom:owningReference':
+            case 'ScalarPropertyRangeRestrictionAxiom:owningReference':
             case 'ScalarPropertyRestrictionAxiom:owningReference':
             case 'ScalarPropertyValueRestrictionAxiom:owningReference':
+            case 'StructuredPropertyCardinalityRestrictionAxiom:owningReference':
+            case 'StructuredPropertyRangeRestrictionAxiom:owningReference':
             case 'StructuredPropertyRestrictionAxiom:owningReference':
             case 'StructuredPropertyValueRestrictionAxiom:owningReference': {
                 return ClassifierReference;
@@ -2210,10 +2185,13 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return RelationInstanceReference;
             }
             case 'ScalarPropertyCardinalityRestrictionAxiom:property':
+            case 'ScalarPropertyCardinalityRestrictionAxiom:property':
+            case 'ScalarPropertyRangeRestrictionAxiom:property':
             case 'ScalarPropertyRangeRestrictionAxiom:property':
             case 'ScalarPropertyReference:property':
             case 'ScalarPropertyRestrictionAxiom:property':
             case 'ScalarPropertyValueAssertion:property':
+            case 'ScalarPropertyValueRestrictionAxiom:property':
             case 'ScalarPropertyValueRestrictionAxiom:property': {
                 return ScalarProperty;
             }
@@ -2232,10 +2210,13 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return Structure;
             }
             case 'StructuredPropertyCardinalityRestrictionAxiom:property':
+            case 'StructuredPropertyCardinalityRestrictionAxiom:property':
+            case 'StructuredPropertyRangeRestrictionAxiom:property':
             case 'StructuredPropertyRangeRestrictionAxiom:property':
             case 'StructuredPropertyReference:property':
             case 'StructuredPropertyRestrictionAxiom:property':
             case 'StructuredPropertyValueAssertion:property':
+            case 'StructuredPropertyValueRestrictionAxiom:property':
             case 'StructuredPropertyValueRestrictionAxiom:property': {
                 return StructuredProperty;
             }

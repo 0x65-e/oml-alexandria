@@ -147,7 +147,7 @@ interface Type extends SpecializableTerm {
 }
 
 interface Classifier extends Type {
-	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
+	ownedPropertyRestrictions: PropertyRestrictionAxiom[]
 }
 
 interface PropertyRestrictionAxiom extends RestrictionAxiom {
@@ -159,7 +159,7 @@ interface RestrictionAxiom extends Axiom {
 }
 
 interface ClassifierReference extends SpecializableTermReference {
-	ownedPropertyRestrictions: PropertyRestrictionAxiom_Union[]
+	ownedPropertyRestrictions: PropertyRestrictionAxiom[]
 }
 
 interface Entity extends Classifier {
@@ -313,9 +313,9 @@ interface StructureInstance extends Instance {
 	owningAssertion?: @StructuredPropertyValueAssertion
 }
 
-interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
-	value: StructureInstance
-}
+//interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
+//	value: StructureInstance
+//}
 
 interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 	property: @StructuredProperty
@@ -429,9 +429,9 @@ interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 //	range?: @Scalar
 //}
 
-interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-	value: Literal_Union
-}
+//interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
+//	value: Literal_Union
+//}
 
 //interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
 //	range: @Structure
@@ -828,45 +828,32 @@ SpecializationAxiom returns SpecializationAxiom:
     specializedTerm=[SpecializableTerm:Ref ] 
 ;
 
-PropertyRestrictionAxiom infers PropertyRestrictionAxiom_Union:
-    ScalarPropertyRestrictionAxiom | StructuredPropertyRestrictionAxiom 
-;
+PropertyRestrictionAxiom returns PropertyRestrictionAxiom:
+    ScalarPropertyRestrictionAxiom | StructuredPropertyRestrictionAxiom;
 
-ScalarPropertyRestrictionAxiom infers ScalarPropertyRestrictionAxiom_Union:
-    ScalarPropertyRangeRestrictionAxiom | ScalarPropertyCardinalityRestrictionAxiom | ScalarPropertyValueRestrictionAxiom 
-;
+ScalarPropertyRestrictionAxiom returns ScalarPropertyRestrictionAxiom:
+    ScalarPropertyRangeRestrictionAxiom | ScalarPropertyCardinalityRestrictionAxiom | ScalarPropertyValueRestrictionAxiom;
 
-//ScalarPropertyRangeRestrictionAxiom returns ScalarPropertyRangeRestrictionAxiom:
 ScalarPropertyRangeRestrictionAxiom:
-    'restricts' kind=RangeRestrictionKind  'scalar' 'property' property=[ScalarProperty:Ref ] 'to' range=[Scalar:Ref ]  
-;
+    'restricts' kind=RangeRestrictionKind 'scalar' 'property' property=[ScalarProperty:Ref] 'to' range=[Scalar:Ref];
 
-//ScalarPropertyCardinalityRestrictionAxiom returns ScalarPropertyCardinalityRestrictionAxiom:
 ScalarPropertyCardinalityRestrictionAxiom:
-    'restricts' 'scalar' 'property' property=[ScalarProperty:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Scalar:Ref ])?  
-;
+    'restricts' 'scalar' 'property' property=[ScalarProperty:Ref] 'to' kind=CardinalityRestrictionKind cardinality=UnsignedInteger (range=[Scalar:Ref])?;
 
-ScalarPropertyValueRestrictionAxiom returns ScalarPropertyValueRestrictionAxiom:
-    'restricts' 'scalar' 'property' property=[ScalarProperty:Ref ] 'to' value=Literal   
-;
+ScalarPropertyValueRestrictionAxiom:
+    'restricts' 'scalar' 'property' property=[ScalarProperty:Ref] 'to' value=Literal;
 
-StructuredPropertyRestrictionAxiom infers StructuredPropertyRestrictionAxiom_Union:
-    StructuredPropertyRangeRestrictionAxiom | StructuredPropertyCardinalityRestrictionAxiom | StructuredPropertyValueRestrictionAxiom 
-;
+StructuredPropertyRestrictionAxiom returns StructuredPropertyRestrictionAxiom:
+    StructuredPropertyRangeRestrictionAxiom | StructuredPropertyCardinalityRestrictionAxiom | StructuredPropertyValueRestrictionAxiom;
 
-//StructuredPropertyRangeRestrictionAxiom returns StructuredPropertyRangeRestrictionAxiom:
 StructuredPropertyRangeRestrictionAxiom:
-    'restricts' kind=RangeRestrictionKind  'structured' 'property' property=[StructuredProperty:Ref ] 'to' range=[Structure:Ref ]  
-;
+    'restricts' kind=RangeRestrictionKind 'structured' 'property' property=[StructuredProperty:Ref] 'to' range=[Structure:Ref];
 
-//StructuredPropertyCardinalityRestrictionAxiom returns StructuredPropertyCardinalityRestrictionAxiom:
 StructuredPropertyCardinalityRestrictionAxiom:
-    'restricts' 'structured' 'property' property=[StructuredProperty:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Structure:Ref ])?  
-;
+    'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' kind=CardinalityRestrictionKind cardinality=UnsignedInteger (range=[Structure:Ref])?;
 
-StructuredPropertyValueRestrictionAxiom returns StructuredPropertyValueRestrictionAxiom:
-    'restricts' 'structured' 'property' property=[StructuredProperty:Ref ] 'to' value=StructureInstance   
-;
+StructuredPropertyValueRestrictionAxiom:
+    'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' value=StructureInstance;
 
 RelationRestrictionAxiom returns RelationRestrictionAxiom:
    RelationRangeRestrictionAxiom | RelationCardinalityRestrictionAxiom | RelationTargetRestrictionAxiom;
