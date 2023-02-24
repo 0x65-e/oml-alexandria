@@ -382,7 +382,7 @@ export function isIntegerLiteral(item: unknown): item is IntegerLiteral {
 
 export interface Literal extends AstNode {
     readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
-    readonly $type: 'BooleanLiteral' | 'DecimalLiteral' | 'DoubleLiteral' | 'IntegerLiteral' | 'Literal' | 'QuotedLiteral';
+    readonly $type: 'Literal' | 'QuotedLiteral';
 }
 
 export const Literal = 'Literal';

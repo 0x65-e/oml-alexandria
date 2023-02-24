@@ -1006,11 +1006,11 @@ CardinalityRestrictionKind returns string:
 ;
 
 Ref returns string:
-    ID | QNAME | IRI 
+    ID | ABBREVIATED_IRI | FULL_IRI 
 ;
 
 CrossRef returns string:
-    QNAME | IRI
+    ABBREVIATED_IRI | FULL_IRI
 ;
 
 /*
@@ -1035,20 +1035,18 @@ Double returns number:
 ;
 */
 
-terminal BOOLEAN_STR returns string:'false' | 'true' ;
-terminal UNSIGNED_INTEGER_STR returns string:DIGIT+ ;
-terminal INTEGER_STR returns string:('+' | '-' )?DIGIT+  ;
-terminal DECIMAL_STR returns string:(('+' | '-' )?(DIGIT+ ('.' DIGIT* )?  | ('.' DIGIT+ ) )) ;
-terminal DOUBLE_STR returns string:('+' | '-' )?(DIGIT+ ('.' DIGIT* )?  | ('.' DIGIT+ ) )(('e' | 'E' )('+' | '-' )?DIGIT+ )?  ;
+hidden terminal WS returns string:/\s+/;
+terminal BOOLEAN_STR returns string: /false|true/ ;
+terminal DOUBLE_STR: /[+-]?((\d+\.\d*)|(\.\d+))[eE][+-]?\d+/;
+terminal DECIMAL_STR returns number: /[+-]?(\d+\.\d*)|(\.\d+)/;
+terminal INTEGER_STR returns number: /[+-]?\d+/;
+terminal UNSIGNED_INTEGER_STR returns number: /\d+/; // PROBLEM: this also matches INTEGER_STR, ambiguity
+terminal NAMESPACE: /<[^>\s#]+[#\/]>/;
+terminal FULL_IRI: /<[^>\s#]+>/;
+terminal fragment IDFRAG: /[a-zA-z_][\w\-\.$]*/;
+terminal ABBREVIATED_IRI: IDFRAG ':' IDFRAG;
+terminal ID: IDFRAG;
 terminal STRING returns string:('"' ( !('"' | '\\' )| '\\' . )*'"' ) | ("'" ( !("'" | '\\' )| '\\' . )*"'" ) | ("'''"  -> "'''" ) | '"""'  -> '"""'  ;
-terminal NAMESPACE returns string:'<'  !('>' | ' ' | '#' )('#' | '/' )'>'  ;
-terminal IRI returns string:'<'  !('>' | ' ' )'>'  ;
-terminal ID returns string:IDFRAG ;
-terminal QNAME returns string:IDFRAG ':' IDFRAG  ;
-hidden terminal ML_COMMENT returns string:'/*'  -> '*/'  ;
-hidden terminal SL_COMMENT returns string:'//'  !('\n' | '\r' )('\r'? '\n' )?  ;
-hidden terminal WS returns string:(' ' | '\t' | '\r' | '\n' )+;
-terminal IDFRAG returns string:'^'? (ALPHA | DIGIT | '_' )(ALPHA | DIGIT | '_' | '-' | '.' | '$' )* ;
-terminal ALPHA returns string:/a-z/ | /A-Z/ ;
-terminal DIGIT returns string:/0-9/ ;
+hidden terminal ML_COMMENT: /\/\*[\s\S]*?\*\//;
+hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;
 

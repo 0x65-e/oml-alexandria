@@ -2951,7 +2951,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3052,7 +3052,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3169,7 +3169,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3270,7 +3270,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3491,7 +3491,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3638,7 +3638,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -3847,7 +3847,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4142,7 +4142,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4318,7 +4318,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4446,7 +4446,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4611,7 +4611,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4805,7 +4805,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -4941,7 +4941,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@110"
+                            "$ref": "#/rules@116"
                           },
                           "arguments": []
                         }
@@ -4962,7 +4962,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@113"
+                            "$ref": "#/rules@115"
                           },
                           "arguments": []
                         }
@@ -5109,7 +5109,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -5287,7 +5287,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -5334,7 +5334,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -5381,7 +5381,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -5599,7 +5599,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -5734,7 +5734,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -7806,7 +7806,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -7875,7 +7875,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -7977,7 +7977,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8046,7 +8046,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8148,7 +8148,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8217,7 +8217,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8326,7 +8326,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8395,7 +8395,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -8464,7 +8464,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -9795,7 +9795,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -9899,7 +9899,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -9915,7 +9915,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -9934,7 +9934,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -10012,7 +10012,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -10031,7 +10031,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -10106,7 +10106,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -10125,7 +10125,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -10188,7 +10188,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@113"
+                "$ref": "#/rules@115"
               },
               "arguments": []
             }
@@ -10207,7 +10207,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@113"
+                    "$ref": "#/rules@115"
                   },
                   "arguments": []
                 }
@@ -10310,7 +10310,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@107"
+            "$ref": "#/rules@109"
           },
           "arguments": []
         }
@@ -10354,7 +10354,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@109"
+            "$ref": "#/rules@107"
           },
           "arguments": []
         }
@@ -10376,7 +10376,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@105"
+            "$ref": "#/rules@106"
           },
           "arguments": []
         }
@@ -10398,7 +10398,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@106"
+            "$ref": "#/rules@110"
           },
           "arguments": []
         }
@@ -10426,7 +10426,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@110"
+                "$ref": "#/rules@116"
               },
               "arguments": []
             }
@@ -10476,7 +10476,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@113"
+                        "$ref": "#/rules@115"
                       },
                       "arguments": []
                     }
@@ -10557,7 +10557,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@113"
+              "$ref": "#/rules@115"
             },
             "arguments": []
           },
@@ -10616,29 +10616,58 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "TerminalRule",
+      "hidden": true,
+      "name": "WS",
+      "type": {
+        "$type": "ReturnType",
+        "name": "string"
+      },
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "\\\\s+"
+      },
+      "fragment": false
+    },
+    {
+      "$type": "TerminalRule",
       "name": "BOOLEAN_STR",
       "type": {
         "$type": "ReturnType",
         "name": "string"
       },
       "definition": {
-        "$type": "TerminalAlternatives",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "false"
-            }
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "true"
-            }
-          }
-        ]
+        "$type": "RegexToken",
+        "regex": "false|true"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "DOUBLE_STR",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "[+-]?((\\\\d+\\\\.\\\\d*)|(\\\\.\\\\d+))[eE][+-]?\\\\d+"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "DECIMAL_STR",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "[+-]?(\\\\d+\\\\.\\\\d*)|(\\\\.\\\\d+)"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "INTEGER_STR",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "[+-]?\\\\d+"
       },
       "fragment": false,
       "hidden": false
@@ -10651,51 +10680,66 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "name": "string"
       },
       "definition": {
-        "$type": "TerminalRuleCall",
-        "rule": {
-          "$ref": "#/rules@120"
-        },
-        "cardinality": "+"
+        "$type": "RegexToken",
+        "regex": "\\\\d+"
       },
       "fragment": false,
       "hidden": false
     },
     {
       "$type": "TerminalRule",
-      "name": "INTEGER_STR",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
+      "name": "NAMESPACE",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "<[^>\\\\s#]+[#\\\\/]>"
       },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "FULL_IRI",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "<[^>\\\\s#]+>"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "fragment": true,
+      "name": "IDFRAG",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "[a-zA-z_][\\\\w\\\\-\\\\.$]*"
+      },
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "ABBREVIATED_IRI",
       "definition": {
         "$type": "TerminalGroup",
         "elements": [
           {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "+"
-                }
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "-"
-                }
-              }
-            ],
-            "cardinality": "?"
+            "$type": "TerminalRuleCall",
+            "rule": {
+              "$ref": "#/rules@113"
+            }
+          },
+          {
+            "$type": "CharacterRange",
+            "left": {
+              "$type": "Keyword",
+              "value": ":"
+            }
           },
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@120"
-            },
-            "cardinality": "+"
+              "$ref": "#/rules@113"
+            }
           }
         ]
       },
@@ -10704,234 +10748,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "TerminalRule",
-      "name": "DECIMAL_STR",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
+      "name": "ID",
       "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "+"
-                }
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "-"
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "TerminalGroup",
-                "elements": [
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@120"
-                    },
-                    "cardinality": "+"
-                  },
-                  {
-                    "$type": "TerminalGroup",
-                    "elements": [
-                      {
-                        "$type": "CharacterRange",
-                        "left": {
-                          "$type": "Keyword",
-                          "value": "."
-                        }
-                      },
-                      {
-                        "$type": "TerminalRuleCall",
-                        "rule": {
-                          "$ref": "#/rules@120"
-                        },
-                        "cardinality": "*"
-                      }
-                    ],
-                    "cardinality": "?"
-                  }
-                ]
-              },
-              {
-                "$type": "TerminalGroup",
-                "elements": [
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "."
-                    }
-                  },
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@120"
-                    },
-                    "cardinality": "+"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "DOUBLE_STR",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "+"
-                }
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "-"
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "TerminalGroup",
-                "elements": [
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@120"
-                    },
-                    "cardinality": "+"
-                  },
-                  {
-                    "$type": "TerminalGroup",
-                    "elements": [
-                      {
-                        "$type": "CharacterRange",
-                        "left": {
-                          "$type": "Keyword",
-                          "value": "."
-                        }
-                      },
-                      {
-                        "$type": "TerminalRuleCall",
-                        "rule": {
-                          "$ref": "#/rules@120"
-                        },
-                        "cardinality": "*"
-                      }
-                    ],
-                    "cardinality": "?"
-                  }
-                ]
-              },
-              {
-                "$type": "TerminalGroup",
-                "elements": [
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "."
-                    }
-                  },
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@120"
-                    },
-                    "cardinality": "+"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "$type": "TerminalGroup",
-            "elements": [
-              {
-                "$type": "TerminalAlternatives",
-                "elements": [
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "e"
-                    }
-                  },
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "E"
-                    }
-                  }
-                ]
-              },
-              {
-                "$type": "TerminalAlternatives",
-                "elements": [
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "+"
-                    }
-                  },
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "-"
-                    }
-                  }
-                ],
-                "cardinality": "?"
-              },
-              {
-                "$type": "TerminalRuleCall",
-                "rule": {
-                  "$ref": "#/rules@120"
-                },
-                "cardinality": "+"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
+        "$type": "TerminalRuleCall",
+        "rule": {
+          "$ref": "#/rules@113"
+        }
       },
       "fragment": false,
       "hidden": false
@@ -11131,216 +10953,11 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "TerminalRule",
-      "name": "NAMESPACE",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "<"
-            }
-          },
-          {
-            "$type": "NegatedToken",
-            "terminal": {
-              "$type": "TerminalAlternatives",
-              "elements": [
-                {
-                  "$type": "TerminalAlternatives",
-                  "elements": [
-                    {
-                      "$type": "CharacterRange",
-                      "left": {
-                        "$type": "Keyword",
-                        "value": ">"
-                      }
-                    },
-                    {
-                      "$type": "CharacterRange",
-                      "left": {
-                        "$type": "Keyword",
-                        "value": " "
-                      }
-                    }
-                  ]
-                },
-                {
-                  "$type": "CharacterRange",
-                  "left": {
-                    "$type": "Keyword",
-                    "value": "#"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "#"
-                }
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "/"
-                }
-              }
-            ]
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": ">"
-            }
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "IRI",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "<"
-            }
-          },
-          {
-            "$type": "NegatedToken",
-            "terminal": {
-              "$type": "TerminalAlternatives",
-              "elements": [
-                {
-                  "$type": "CharacterRange",
-                  "left": {
-                    "$type": "Keyword",
-                    "value": ">"
-                  }
-                },
-                {
-                  "$type": "CharacterRange",
-                  "left": {
-                    "$type": "Keyword",
-                    "value": " "
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": ">"
-            }
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "ID",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalRuleCall",
-        "rule": {
-          "$ref": "#/rules@118"
-        }
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "QNAME",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "TerminalRuleCall",
-            "rule": {
-              "$ref": "#/rules@118"
-            }
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": ":"
-            }
-          },
-          {
-            "$type": "TerminalRuleCall",
-            "rule": {
-              "$ref": "#/rules@118"
-            }
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
       "hidden": true,
       "name": "ML_COMMENT",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
       "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "/*"
-            }
-          },
-          {
-            "$type": "UntilToken",
-            "terminal": {
-              "$type": "CharacterRange",
-              "left": {
-                "$type": "Keyword",
-                "value": "*/"
-              }
-            }
-          }
-        ]
+        "$type": "RegexToken",
+        "regex": "\\\\/\\\\*[\\\\s\\\\S]*?\\\\*\\\\/"
       },
       "fragment": false
     },
@@ -11348,275 +10965,11 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "TerminalRule",
       "hidden": true,
       "name": "SL_COMMENT",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "//"
-            }
-          },
-          {
-            "$type": "NegatedToken",
-            "terminal": {
-              "$type": "TerminalAlternatives",
-              "elements": [
-                {
-                  "$type": "CharacterRange",
-                  "left": {
-                    "$type": "Keyword",
-                    "value": "\\n"
-                  }
-                },
-                {
-                  "$type": "CharacterRange",
-                  "left": {
-                    "$type": "Keyword",
-                    "value": "\\r"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "$type": "TerminalGroup",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "\\r"
-                },
-                "cardinality": "?"
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "\\n"
-                }
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "fragment": false
-    },
-    {
-      "$type": "TerminalRule",
-      "hidden": true,
-      "name": "WS",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalAlternatives",
-        "elements": [
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "TerminalAlternatives",
-                "elements": [
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": " "
-                    }
-                  },
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "\\t"
-                    }
-                  }
-                ]
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "\\r"
-                }
-              }
-            ]
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "\\n"
-            }
-          }
-        ],
-        "cardinality": "+"
-      },
-      "fragment": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "IDFRAG",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "^"
-            },
-            "cardinality": "?"
-          },
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "TerminalAlternatives",
-                "elements": [
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@119"
-                    }
-                  },
-                  {
-                    "$type": "TerminalRuleCall",
-                    "rule": {
-                      "$ref": "#/rules@120"
-                    }
-                  }
-                ]
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "_"
-                }
-              }
-            ]
-          },
-          {
-            "$type": "TerminalAlternatives",
-            "elements": [
-              {
-                "$type": "TerminalAlternatives",
-                "elements": [
-                  {
-                    "$type": "TerminalAlternatives",
-                    "elements": [
-                      {
-                        "$type": "TerminalAlternatives",
-                        "elements": [
-                          {
-                            "$type": "TerminalAlternatives",
-                            "elements": [
-                              {
-                                "$type": "TerminalRuleCall",
-                                "rule": {
-                                  "$ref": "#/rules@119"
-                                }
-                              },
-                              {
-                                "$type": "TerminalRuleCall",
-                                "rule": {
-                                  "$ref": "#/rules@120"
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "$type": "CharacterRange",
-                            "left": {
-                              "$type": "Keyword",
-                              "value": "_"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "$type": "CharacterRange",
-                        "left": {
-                          "$type": "Keyword",
-                          "value": "-"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "CharacterRange",
-                    "left": {
-                      "$type": "Keyword",
-                      "value": "."
-                    }
-                  }
-                ]
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "$"
-                }
-              }
-            ],
-            "cardinality": "*"
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "ALPHA",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
-      "definition": {
-        "$type": "TerminalAlternatives",
-        "elements": [
-          {
-            "$type": "RegexToken",
-            "regex": "a-z"
-          },
-          {
-            "$type": "RegexToken",
-            "regex": "A-Z"
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "DIGIT",
-      "type": {
-        "$type": "ReturnType",
-        "name": "string"
-      },
       "definition": {
         "$type": "RegexToken",
-        "regex": "0-9"
+        "regex": "\\\\/\\\\/[^\\\\n\\\\r]*"
       },
-      "fragment": false,
-      "hidden": false
+      "fragment": false
     }
   ],
   "definesHiddenTokens": false,
