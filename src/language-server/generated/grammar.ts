@@ -95,7 +95,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         },
@@ -459,12 +459,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "Interface",
-      "name": "Literal",
-      "attributes": [],
-      "superTypes": []
-    },
-    {
-      "$type": "Interface",
       "attributes": [
         {
           "$type": "TypeAttribute",
@@ -543,7 +537,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Description",
       "superTypes": [
         {
-          "$ref": "#/interfaces@23"
+          "$ref": "#/interfaces@22"
         }
       ]
     },
@@ -568,7 +562,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@24"
+                "$ref": "#/interfaces@23"
               }
             }
           },
@@ -603,7 +597,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionBundle",
       "superTypes": [
         {
-          "$ref": "#/interfaces@23"
+          "$ref": "#/interfaces@22"
         }
       ]
     },
@@ -638,7 +632,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@31"
+                "$ref": "#/interfaces@30"
               }
             }
           },
@@ -648,7 +642,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Classifier",
       "superTypes": [
         {
-          "$ref": "#/interfaces@29"
+          "$ref": "#/interfaces@28"
         }
       ]
     },
@@ -664,7 +658,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@30"
+                "$ref": "#/interfaces@29"
               }
             }
           }
@@ -678,7 +672,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@33"
+                "$ref": "#/interfaces@32"
               }
             }
           }
@@ -687,7 +681,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "PropertyRestrictionAxiom",
       "superTypes": [
         {
-          "$ref": "#/interfaces@32"
+          "$ref": "#/interfaces@31"
         }
       ]
     },
@@ -712,7 +706,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@31"
+                "$ref": "#/interfaces@30"
               }
             }
           },
@@ -737,7 +731,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@35"
+                "$ref": "#/interfaces@34"
               }
             }
           },
@@ -751,7 +745,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@37"
+                "$ref": "#/interfaces@36"
               }
             }
           },
@@ -761,7 +755,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Entity",
       "superTypes": [
         {
-          "$ref": "#/interfaces@30"
+          "$ref": "#/interfaces@29"
         }
       ]
     },
@@ -791,7 +785,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               }
             }
           }
@@ -805,7 +799,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@36"
+                "$ref": "#/interfaces@35"
               }
             }
           }
@@ -814,7 +808,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationRestrictionAxiom",
       "superTypes": [
         {
-          "$ref": "#/interfaces@32"
+          "$ref": "#/interfaces@31"
         }
       ]
     },
@@ -829,7 +823,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@35"
+                "$ref": "#/interfaces@34"
               }
             }
           },
@@ -843,7 +837,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@37"
+                "$ref": "#/interfaces@36"
               }
             }
           },
@@ -853,7 +847,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "EntityReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@33"
+          "$ref": "#/interfaces@32"
         }
       ]
     },
@@ -886,7 +880,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               }
             }
           }
@@ -900,7 +894,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@36"
+                "$ref": "#/interfaces@35"
               }
             }
           }
@@ -918,7 +912,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Aspect",
       "superTypes": [
         {
-          "$ref": "#/interfaces@34"
+          "$ref": "#/interfaces@33"
         }
       ],
       "attributes": []
@@ -936,7 +930,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "referenceType": {
                 "$type": "SimpleType",
                 "typeRef": {
-                  "$ref": "#/interfaces@40"
+                  "$ref": "#/interfaces@39"
                 }
               }
             }
@@ -947,7 +941,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Concept",
       "superTypes": [
         {
-          "$ref": "#/interfaces@34"
+          "$ref": "#/interfaces@33"
         }
       ]
     },
@@ -962,7 +956,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@47"
+                "$ref": "#/interfaces@46"
               }
             }
           },
@@ -972,7 +966,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ConceptInstance",
       "superTypes": [
         {
-          "$ref": "#/interfaces@41"
+          "$ref": "#/interfaces@40"
         }
       ]
     },
@@ -987,7 +981,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@46"
+                "$ref": "#/interfaces@45"
               }
             }
           },
@@ -1000,7 +994,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "$ref": "#/interfaces@8"
         },
         {
-          "$ref": "#/interfaces@42"
+          "$ref": "#/interfaces@41"
         }
       ]
     },
@@ -1015,7 +1009,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@82/inferredType"
+                "$ref": "#/interfaces@42"
               }
             }
           },
@@ -1037,7 +1031,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@42"
+                "$ref": "#/interfaces@41"
               }
             }
           }
@@ -1051,7 +1045,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@45"
+                "$ref": "#/interfaces@44"
               }
             }
           }
@@ -1060,7 +1054,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "PropertyValueAssertion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@44"
+          "$ref": "#/interfaces@43"
         }
       ]
     },
@@ -1081,7 +1075,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@82/inferredType"
+                "$ref": "#/interfaces@42"
               }
             }
           },
@@ -1095,7 +1089,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@46"
+                "$ref": "#/interfaces@45"
               }
             }
           },
@@ -1134,60 +1128,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@41"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningInstance",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@41"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@45"
-              }
-            }
-          }
-        }
-      ],
-      "name": "LinkAssertion",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@44"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "type",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@39"
+                "$ref": "#/interfaces@40"
               }
             }
           },
@@ -1216,7 +1157,60 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@49"
+                "$ref": "#/interfaces@44"
+              }
+            }
+          }
+        }
+      ],
+      "name": "LinkAssertion",
+      "superTypes": [
+        {
+          "$ref": "#/interfaces@43"
+        }
+      ]
+    },
+    {
+      "$type": "Interface",
+      "attributes": [
+        {
+          "$type": "TypeAttribute",
+          "name": "type",
+          "type": {
+            "$type": "ReferenceType",
+            "referenceType": {
+              "$type": "SimpleType",
+              "typeRef": {
+                "$ref": "#/interfaces@38"
+              }
+            }
+          },
+          "isOptional": false
+        },
+        {
+          "$type": "TypeAttribute",
+          "name": "owningInstance",
+          "isOptional": true,
+          "type": {
+            "$type": "ReferenceType",
+            "referenceType": {
+              "$type": "SimpleType",
+              "typeRef": {
+                "$ref": "#/interfaces@39"
+              }
+            }
+          }
+        },
+        {
+          "$type": "TypeAttribute",
+          "name": "owningReference",
+          "isOptional": true,
+          "type": {
+            "$type": "ReferenceType",
+            "referenceType": {
+              "$type": "SimpleType",
+              "typeRef": {
+                "$ref": "#/interfaces@48"
               }
             }
           }
@@ -1225,7 +1219,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ConceptTypeAssertion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@48"
+          "$ref": "#/interfaces@47"
         }
       ]
     },
@@ -1234,7 +1228,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "TypeAssertion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@44"
+          "$ref": "#/interfaces@43"
         }
       ],
       "attributes": []
@@ -1250,7 +1244,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@40"
+                "$ref": "#/interfaces@39"
               }
             }
           },
@@ -1264,7 +1258,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@47"
+                "$ref": "#/interfaces@46"
               }
             }
           },
@@ -1274,7 +1268,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ConceptInstanceReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@45"
+          "$ref": "#/interfaces@44"
         }
       ]
     },
@@ -1289,7 +1283,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               }
             }
           },
@@ -1303,7 +1297,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               }
             }
           },
@@ -1398,7 +1392,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationEntity",
       "superTypes": [
         {
-          "$ref": "#/interfaces@34"
+          "$ref": "#/interfaces@33"
         }
       ]
     },
@@ -1407,7 +1401,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Structure",
       "superTypes": [
         {
-          "$ref": "#/interfaces@30"
+          "$ref": "#/interfaces@29"
         }
       ],
       "attributes": []
@@ -1442,7 +1436,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@30"
+                "$ref": "#/interfaces@29"
               }
             }
           },
@@ -1456,7 +1450,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@54"
+                "$ref": "#/interfaces@53"
               }
             }
           },
@@ -1466,7 +1460,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ScalarProperty",
       "superTypes": [
         {
-          "$ref": "#/interfaces@52"
+          "$ref": "#/interfaces@51"
         },
         {
           "$ref": "#/interfaces@9"
@@ -1478,7 +1472,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "Scalar",
       "superTypes": [
         {
-          "$ref": "#/interfaces@29"
+          "$ref": "#/interfaces@28"
         }
       ],
       "attributes": []
@@ -1503,7 +1497,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@30"
+                "$ref": "#/interfaces@29"
               }
             }
           },
@@ -1517,7 +1511,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               }
             }
           },
@@ -1527,7 +1521,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "StructuredProperty",
       "superTypes": [
         {
-          "$ref": "#/interfaces@52"
+          "$ref": "#/interfaces@51"
         },
         {
           "$ref": "#/interfaces@9"
@@ -1595,7 +1589,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         },
@@ -1606,7 +1600,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         },
@@ -1617,7 +1611,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         },
@@ -1628,7 +1622,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         }
@@ -1636,7 +1630,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "FacetedScalar",
       "superTypes": [
         {
-          "$ref": "#/interfaces@54"
+          "$ref": "#/interfaces@53"
         }
       ]
     },
@@ -1651,7 +1645,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@94/inferredType"
+                "$ref": "#/rules@94"
               }
             }
           },
@@ -1661,7 +1655,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "EnumeratedScalar",
       "superTypes": [
         {
-          "$ref": "#/interfaces@54"
+          "$ref": "#/interfaces@53"
         }
       ]
     },
@@ -1716,7 +1710,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@58"
+                "$ref": "#/interfaces@57"
               }
             }
           }
@@ -1730,7 +1724,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@58"
+                "$ref": "#/interfaces@57"
               }
             }
           }
@@ -1750,7 +1744,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               }
             }
           },
@@ -1779,7 +1773,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@62"
+                "$ref": "#/rules@84"
               }
             }
           }
@@ -1788,7 +1782,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "StructureInstance",
       "superTypes": [
         {
-          "$ref": "#/interfaces@42"
+          "$ref": "#/interfaces@41"
         }
       ]
     },
@@ -1803,7 +1797,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               }
             }
           },
@@ -1813,43 +1807,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "StructuredPropertyRestrictionAxiom",
       "superTypes": [
         {
-          "$ref": "#/interfaces@31"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "property",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@55"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "value",
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/interfaces@60"
-            }
-          },
-          "isOptional": false
-        }
-      ],
-      "name": "StructuredPropertyValueAssertion",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@43"
+          "$ref": "#/interfaces@30"
         }
       ]
     },
@@ -1864,7 +1822,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@64"
+                "$ref": "#/interfaces@62"
               }
             }
           },
@@ -1880,7 +1838,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "referenceType": {
                 "$type": "SimpleType",
                 "typeRef": {
-                  "$ref": "#/interfaces@41"
+                  "$ref": "#/interfaces@40"
                 }
               }
             }
@@ -1897,7 +1855,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "referenceType": {
                 "$type": "SimpleType",
                 "typeRef": {
-                  "$ref": "#/interfaces@41"
+                  "$ref": "#/interfaces@40"
                 }
               }
             }
@@ -1908,7 +1866,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationInstance",
       "superTypes": [
         {
-          "$ref": "#/interfaces@41"
+          "$ref": "#/interfaces@40"
         }
       ]
     },
@@ -1923,7 +1881,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@50"
+                "$ref": "#/interfaces@49"
               }
             }
           },
@@ -1938,7 +1896,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@63"
+                "$ref": "#/interfaces@61"
               }
             }
           }
@@ -1952,7 +1910,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@65"
+                "$ref": "#/interfaces@63"
               }
             }
           }
@@ -1961,7 +1919,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationTypeAssertion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@48"
+          "$ref": "#/interfaces@47"
         }
       ]
     },
@@ -1976,7 +1934,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@63"
+                "$ref": "#/interfaces@61"
               }
             }
           },
@@ -1990,7 +1948,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@64"
+                "$ref": "#/interfaces@62"
               }
             }
           },
@@ -2000,7 +1958,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationInstanceReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@45"
+          "$ref": "#/interfaces@44"
         }
       ]
     },
@@ -2015,7 +1973,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@38"
+                "$ref": "#/interfaces@37"
               }
             }
           },
@@ -2025,7 +1983,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "AspectReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@36"
+          "$ref": "#/interfaces@35"
         }
       ]
     },
@@ -2040,7 +1998,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@39"
+                "$ref": "#/interfaces@38"
               }
             }
           },
@@ -2050,7 +2008,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ConceptReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@36"
+          "$ref": "#/interfaces@35"
         }
       ]
     },
@@ -2065,7 +2023,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@50"
+                "$ref": "#/interfaces@49"
               }
             }
           },
@@ -2075,7 +2033,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationEntityReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@36"
+          "$ref": "#/interfaces@35"
         }
       ]
     },
@@ -2090,7 +2048,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               }
             }
           },
@@ -2100,7 +2058,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "StructureReference",
       "superTypes": [
         {
-          "$ref": "#/interfaces@33"
+          "$ref": "#/interfaces@32"
         }
       ]
     },
@@ -2140,7 +2098,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               }
             }
           },
@@ -2165,7 +2123,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               }
             }
           },
@@ -2190,7 +2148,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@56"
+                "$ref": "#/interfaces@55"
               }
             }
           },
@@ -2215,7 +2173,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@57"
+                "$ref": "#/interfaces@56"
               }
             }
           },
@@ -2265,7 +2223,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@58"
+                "$ref": "#/interfaces@57"
               }
             }
           },
@@ -2304,7 +2262,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "VocabularyBundleInclusion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@22"
+          "$ref": "#/interfaces@21"
         }
       ],
       "attributes": []
@@ -2314,7 +2272,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "VocabularyBundleExtension",
       "superTypes": [
         {
-          "$ref": "#/interfaces@22"
+          "$ref": "#/interfaces@21"
         }
       ],
       "attributes": []
@@ -2324,7 +2282,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionUsage",
       "superTypes": [
         {
-          "$ref": "#/interfaces@25"
+          "$ref": "#/interfaces@24"
         }
       ],
       "attributes": []
@@ -2334,7 +2292,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionExtension",
       "superTypes": [
         {
-          "$ref": "#/interfaces@25"
+          "$ref": "#/interfaces@24"
         }
       ],
       "attributes": []
@@ -2344,7 +2302,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionBundleInclusion",
       "superTypes": [
         {
-          "$ref": "#/interfaces@28"
+          "$ref": "#/interfaces@27"
         }
       ],
       "attributes": []
@@ -2354,7 +2312,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionBundleExtension",
       "superTypes": [
         {
-          "$ref": "#/interfaces@28"
+          "$ref": "#/interfaces@27"
         }
       ],
       "attributes": []
@@ -2364,7 +2322,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DescriptionBundleUsage",
       "superTypes": [
         {
-          "$ref": "#/interfaces@28"
+          "$ref": "#/interfaces@27"
         }
       ],
       "attributes": []
@@ -2380,7 +2338,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               }
             }
           },
@@ -2390,43 +2348,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "ScalarPropertyRestrictionAxiom",
       "superTypes": [
         {
-          "$ref": "#/interfaces@31"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "property",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@53"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "value",
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@94/inferredType"
-            }
-          },
-          "isOptional": false
-        }
-      ],
-      "name": "ScalarPropertyValueAssertion",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@43"
+          "$ref": "#/interfaces@30"
         }
       ]
     },
@@ -2446,7 +2368,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "UnaryPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@59"
+          "$ref": "#/interfaces@58"
         }
       ]
     },
@@ -2461,7 +2383,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@29"
+                "$ref": "#/interfaces@28"
               }
             }
           },
@@ -2471,7 +2393,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "TypePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@88"
+          "$ref": "#/interfaces@85"
         }
       ]
     },
@@ -2505,7 +2427,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@41"
+                "$ref": "#/interfaces@40"
               }
             }
           }
@@ -2514,7 +2436,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "BinaryPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@59"
+          "$ref": "#/interfaces@58"
         }
       ]
     },
@@ -2529,7 +2451,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@50"
+                "$ref": "#/interfaces@49"
               }
             }
           },
@@ -2548,7 +2470,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationEntityPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@90"
+          "$ref": "#/interfaces@87"
         }
       ]
     },
@@ -2576,7 +2498,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@94/inferredType"
+              "$ref": "#/rules@94"
             }
           }
         }
@@ -2584,7 +2506,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "FeaturePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@90"
+          "$ref": "#/interfaces@87"
         }
       ]
     },
@@ -2593,7 +2515,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "SameAsPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@90"
+          "$ref": "#/interfaces@87"
         }
       ],
       "attributes": []
@@ -2603,53 +2525,10 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DifferentFromPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@90"
+          "$ref": "#/interfaces@87"
         }
       ],
       "attributes": []
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "value",
-          "type": {
-            "$type": "SimpleType",
-            "primitiveType": "string"
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "langTag",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "primitiveType": "string"
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "type",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@54"
-              }
-            }
-          }
-        }
-      ],
-      "name": "QuotedLiteral",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@20"
-        }
-      ]
     }
   ],
   "rules": [
@@ -2904,7 +2783,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyBundle",
       "returnType": {
-        "$ref": "#/interfaces@21"
+        "$ref": "#/interfaces@20"
       },
       "definition": {
         "$type": "Group",
@@ -3025,7 +2904,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Description",
       "returnType": {
-        "$ref": "#/interfaces@24"
+        "$ref": "#/interfaces@23"
       },
       "definition": {
         "$type": "Group",
@@ -3122,7 +3001,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionBundle",
       "returnType": {
-        "$ref": "#/interfaces@27"
+        "$ref": "#/interfaces@26"
       },
       "definition": {
         "$type": "Group",
@@ -3416,7 +3295,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Aspect",
       "returnType": {
-        "$ref": "#/interfaces@38"
+        "$ref": "#/interfaces@37"
       },
       "definition": {
         "$type": "Group",
@@ -3563,7 +3442,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Concept",
       "returnType": {
-        "$ref": "#/interfaces@39"
+        "$ref": "#/interfaces@38"
       },
       "definition": {
         "$type": "Group",
@@ -3704,7 +3583,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "CrossReference",
                       "type": {
-                        "$ref": "#/interfaces@40"
+                        "$ref": "#/interfaces@39"
                       },
                       "terminal": {
                         "$type": "RuleCall",
@@ -3730,7 +3609,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "CrossReference",
                           "type": {
-                            "$ref": "#/interfaces@40"
+                            "$ref": "#/interfaces@39"
                           },
                           "terminal": {
                             "$type": "RuleCall",
@@ -3768,7 +3647,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationEntity",
       "returnType": {
-        "$ref": "#/interfaces@50"
+        "$ref": "#/interfaces@49"
       },
       "definition": {
         "$type": "Group",
@@ -3865,7 +3744,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -3888,7 +3767,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -4067,7 +3946,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Structure",
       "returnType": {
-        "$ref": "#/interfaces@51"
+        "$ref": "#/interfaces@50"
       },
       "definition": {
         "$type": "Group",
@@ -4367,7 +4246,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ScalarProperty",
       "returnType": {
-        "$ref": "#/interfaces@53"
+        "$ref": "#/interfaces@52"
       },
       "definition": {
         "$type": "Group",
@@ -4467,7 +4346,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@30"
+                    "$ref": "#/interfaces@29"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -4490,7 +4369,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@54"
+                    "$ref": "#/interfaces@53"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -4532,7 +4411,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructuredProperty",
       "returnType": {
-        "$ref": "#/interfaces@55"
+        "$ref": "#/interfaces@54"
       },
       "definition": {
         "$type": "Group",
@@ -4632,7 +4511,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@30"
+                    "$ref": "#/interfaces@29"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -4655,7 +4534,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@51"
+                    "$ref": "#/interfaces@50"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -4730,7 +4609,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "FacetedScalar",
       "returnType": {
-        "$ref": "#/interfaces@56"
+        "$ref": "#/interfaces@55"
       },
       "definition": {
         "$type": "Group",
@@ -5030,7 +4909,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "EnumeratedScalar",
       "returnType": {
-        "$ref": "#/interfaces@57"
+        "$ref": "#/interfaces@56"
       },
       "definition": {
         "$type": "Group",
@@ -5267,7 +5146,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Rule",
       "returnType": {
-        "$ref": "#/interfaces@58"
+        "$ref": "#/interfaces@57"
       },
       "definition": {
         "$type": "Group",
@@ -5394,7 +5273,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructureInstance",
       "returnType": {
-        "$ref": "#/interfaces@60"
+        "$ref": "#/interfaces@59"
       },
       "definition": {
         "$type": "Group",
@@ -5406,7 +5285,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -5485,7 +5364,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ConceptInstance",
       "returnType": {
-        "$ref": "#/interfaces@40"
+        "$ref": "#/interfaces@39"
       },
       "definition": {
         "$type": "Group",
@@ -5620,7 +5499,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationInstance",
       "returnType": {
-        "$ref": "#/interfaces@63"
+        "$ref": "#/interfaces@61"
       },
       "definition": {
         "$type": "Group",
@@ -5713,7 +5592,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@41"
+                "$ref": "#/interfaces@40"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -5739,7 +5618,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -5765,7 +5644,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@41"
+                "$ref": "#/interfaces@40"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -5791,7 +5670,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -5987,7 +5866,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "AspectReference",
       "returnType": {
-        "$ref": "#/interfaces@66"
+        "$ref": "#/interfaces@64"
       },
       "definition": {
         "$type": "Group",
@@ -6016,6 +5895,164 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "Assignment",
             "feature": "aspect",
+            "operator": "=",
+            "terminal": {
+              "$type": "CrossReference",
+              "type": {
+                "$ref": "#/interfaces@37"
+              },
+              "terminal": {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@103"
+                },
+                "arguments": []
+              },
+              "deprecatedSyntax": false
+            }
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ":>"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedSpecializations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@65"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ","
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@65"
+                      },
+                      "arguments": []
+                    }
+                  }
+                ],
+                "cardinality": "*"
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": "["
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedKeys",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@79"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedPropertyRestrictions",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@66"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedRelationRestrictions",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@75"
+                      },
+                      "arguments": []
+                    }
+                  }
+                ],
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "]"
+              }
+            ],
+            "cardinality": "?"
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "ConceptReference",
+      "returnType": {
+        "$ref": "#/interfaces@65"
+      },
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Assignment",
+            "feature": "ownedAnnotations",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "Keyword",
+            "value": "ref"
+          },
+          {
+            "$type": "Keyword",
+            "value": "concept"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "concept",
             "operator": "=",
             "terminal": {
               "$type": "CrossReference",
@@ -6143,167 +6180,9 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "ConceptReference",
-      "returnType": {
-        "$ref": "#/interfaces@67"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "ref"
-          },
-          {
-            "$type": "Keyword",
-            "value": "concept"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "concept",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@39"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@103"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@65"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@65"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Alternatives",
-                "elements": [
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedKeys",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@79"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedPropertyRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@66"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedRelationRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@75"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
       "name": "RelationEntityReference",
       "returnType": {
-        "$ref": "#/interfaces@68"
+        "$ref": "#/interfaces@66"
       },
       "definition": {
         "$type": "Group",
@@ -6340,7 +6219,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@50"
+                "$ref": "#/interfaces@49"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -6465,7 +6344,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructureReference",
       "returnType": {
-        "$ref": "#/interfaces@69"
+        "$ref": "#/interfaces@67"
       },
       "definition": {
         "$type": "Group",
@@ -6498,7 +6377,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -6594,7 +6473,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "AnnotationPropertyReference",
       "returnType": {
-        "$ref": "#/interfaces@70"
+        "$ref": "#/interfaces@68"
       },
       "definition": {
         "$type": "Group",
@@ -6700,7 +6579,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ScalarPropertyReference",
       "returnType": {
-        "$ref": "#/interfaces@71"
+        "$ref": "#/interfaces@69"
       },
       "definition": {
         "$type": "Group",
@@ -6737,7 +6616,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -6806,7 +6685,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructuredPropertyReference",
       "returnType": {
-        "$ref": "#/interfaces@72"
+        "$ref": "#/interfaces@70"
       },
       "definition": {
         "$type": "Group",
@@ -6839,6 +6718,108 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "Assignment",
             "feature": "property",
+            "operator": "=",
+            "terminal": {
+              "$type": "CrossReference",
+              "type": {
+                "$ref": "#/interfaces@54"
+              },
+              "terminal": {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@103"
+                },
+                "arguments": []
+              },
+              "deprecatedSyntax": false
+            }
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ":>"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedSpecializations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@65"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ","
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@65"
+                      },
+                      "arguments": []
+                    }
+                  }
+                ],
+                "cardinality": "*"
+              }
+            ],
+            "cardinality": "?"
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "FacetedScalarReference",
+      "returnType": {
+        "$ref": "#/interfaces@71"
+      },
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Assignment",
+            "feature": "ownedAnnotations",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "Keyword",
+            "value": "ref"
+          },
+          {
+            "$type": "Keyword",
+            "value": "scalar"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "scalar",
             "operator": "=",
             "terminal": {
               "$type": "CrossReference",
@@ -6910,9 +6891,9 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "FacetedScalarReference",
+      "name": "EnumeratedScalarReference",
       "returnType": {
-        "$ref": "#/interfaces@73"
+        "$ref": "#/interfaces@72"
       },
       "definition": {
         "$type": "Group",
@@ -6933,6 +6914,10 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "Keyword",
             "value": "ref"
+          },
+          {
+            "$type": "Keyword",
+            "value": "enumerated"
           },
           {
             "$type": "Keyword",
@@ -7012,115 +6997,9 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "EnumeratedScalarReference",
-      "returnType": {
-        "$ref": "#/interfaces@74"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "ref"
-          },
-          {
-            "$type": "Keyword",
-            "value": "enumerated"
-          },
-          {
-            "$type": "Keyword",
-            "value": "scalar"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "scalar",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@57"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@103"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@65"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@65"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
       "name": "RelationReference",
       "returnType": {
-        "$ref": "#/interfaces@75"
+        "$ref": "#/interfaces@73"
       },
       "definition": {
         "$type": "Group",
@@ -7178,7 +7057,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RuleReference",
       "returnType": {
-        "$ref": "#/interfaces@76"
+        "$ref": "#/interfaces@74"
       },
       "definition": {
         "$type": "Group",
@@ -7211,7 +7090,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@58"
+                "$ref": "#/interfaces@57"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -7269,7 +7148,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ConceptInstanceReference",
       "returnType": {
-        "$ref": "#/interfaces@49"
+        "$ref": "#/interfaces@48"
       },
       "definition": {
         "$type": "Group",
@@ -7302,7 +7181,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@40"
+                "$ref": "#/interfaces@39"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -7411,7 +7290,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationInstanceReference",
       "returnType": {
-        "$ref": "#/interfaces@65"
+        "$ref": "#/interfaces@63"
       },
       "definition": {
         "$type": "Group",
@@ -7444,7 +7323,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@63"
+                "$ref": "#/interfaces@61"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -7673,7 +7552,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyExtension",
       "returnType": {
-        "$ref": "#/interfaces@77"
+        "$ref": "#/interfaces@75"
       },
       "definition": {
         "$type": "Group",
@@ -7742,7 +7621,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyUsage",
       "returnType": {
-        "$ref": "#/interfaces@78"
+        "$ref": "#/interfaces@76"
       },
       "definition": {
         "$type": "Group",
@@ -7844,7 +7723,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyBundleInclusion",
       "returnType": {
-        "$ref": "#/interfaces@79"
+        "$ref": "#/interfaces@77"
       },
       "definition": {
         "$type": "Group",
@@ -7913,7 +7792,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyBundleExtension",
       "returnType": {
-        "$ref": "#/interfaces@80"
+        "$ref": "#/interfaces@78"
       },
       "definition": {
         "$type": "Group",
@@ -8015,7 +7894,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionUsage",
       "returnType": {
-        "$ref": "#/interfaces@81"
+        "$ref": "#/interfaces@79"
       },
       "definition": {
         "$type": "Group",
@@ -8084,7 +7963,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionExtension",
       "returnType": {
-        "$ref": "#/interfaces@82"
+        "$ref": "#/interfaces@80"
       },
       "definition": {
         "$type": "Group",
@@ -8193,7 +8072,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionBundleInclusion",
       "returnType": {
-        "$ref": "#/interfaces@83"
+        "$ref": "#/interfaces@81"
       },
       "definition": {
         "$type": "Group",
@@ -8262,7 +8141,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionBundleExtension",
       "returnType": {
-        "$ref": "#/interfaces@84"
+        "$ref": "#/interfaces@82"
       },
       "definition": {
         "$type": "Group",
@@ -8331,7 +8210,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionBundleUsage",
       "returnType": {
-        "$ref": "#/interfaces@85"
+        "$ref": "#/interfaces@83"
       },
       "definition": {
         "$type": "Group",
@@ -8432,7 +8311,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "PropertyRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@31"
+        "$ref": "#/interfaces@30"
       },
       "definition": {
         "$type": "Alternatives",
@@ -8464,7 +8343,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ScalarPropertyRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@86"
+        "$ref": "#/interfaces@84"
       },
       "definition": {
         "$type": "Alternatives",
@@ -8536,7 +8415,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8559,7 +8438,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@54"
+                "$ref": "#/interfaces@53"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8605,7 +8484,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8652,7 +8531,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@54"
+                "$ref": "#/interfaces@53"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8699,7 +8578,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8740,7 +8619,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructuredPropertyRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@61"
+        "$ref": "#/interfaces@60"
       },
       "definition": {
         "$type": "Alternatives",
@@ -8812,7 +8691,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8835,7 +8714,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8881,7 +8760,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8928,7 +8807,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@51"
+                "$ref": "#/interfaces@50"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -8975,7 +8854,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9016,7 +8895,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@35"
+        "$ref": "#/interfaces@34"
       },
       "definition": {
         "$type": "Alternatives",
@@ -9055,7 +8934,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationRangeRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@35"
+        "$ref": "#/interfaces@34"
       },
       "definition": {
         "$type": "Group",
@@ -9117,7 +8996,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9142,7 +9021,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationCardinalityRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@35"
+        "$ref": "#/interfaces@34"
       },
       "definition": {
         "$type": "Group",
@@ -9216,7 +9095,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@34"
+                "$ref": "#/interfaces@33"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9242,7 +9121,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationTargetRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@35"
+        "$ref": "#/interfaces@34"
       },
       "definition": {
         "$type": "Group",
@@ -9292,7 +9171,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@41"
+                "$ref": "#/interfaces@40"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9317,7 +9196,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "KeyAxiom",
       "returnType": {
-        "$ref": "#/interfaces@37"
+        "$ref": "#/interfaces@36"
       },
       "definition": {
         "$type": "Group",
@@ -9387,7 +9266,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ConceptTypeAssertion",
       "returnType": {
-        "$ref": "#/interfaces@47"
+        "$ref": "#/interfaces@46"
       },
       "definition": {
         "$type": "Assignment",
@@ -9396,7 +9275,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "CrossReference",
           "type": {
-            "$ref": "#/interfaces@39"
+            "$ref": "#/interfaces@38"
           },
           "terminal": {
             "$type": "RuleCall",
@@ -9419,7 +9298,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationTypeAssertion",
       "returnType": {
-        "$ref": "#/interfaces@64"
+        "$ref": "#/interfaces@62"
       },
       "definition": {
         "$type": "Assignment",
@@ -9428,7 +9307,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "CrossReference",
           "type": {
-            "$ref": "#/interfaces@50"
+            "$ref": "#/interfaces@49"
           },
           "terminal": {
             "$type": "RuleCall",
@@ -9450,9 +9329,8 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "PropertyValueAssertion",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "PropertyValueAssertion_Union"
+      "returnType": {
+        "$ref": "#/interfaces@42"
       },
       "definition": {
         "$type": "Alternatives",
@@ -9483,9 +9361,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "ScalarPropertyValueAssertion",
-      "returnType": {
-        "$ref": "#/interfaces@87"
-      },
       "definition": {
         "$type": "Group",
         "elements": [
@@ -9496,7 +9371,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@53"
+                "$ref": "#/interfaces@52"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9532,9 +9407,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "StructuredPropertyValueAssertion",
-      "returnType": {
-        "$ref": "#/interfaces@62"
-      },
       "definition": {
         "$type": "Group",
         "elements": [
@@ -9545,7 +9417,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@54"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9582,7 +9454,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "LinkAssertion",
       "returnType": {
-        "$ref": "#/interfaces@46"
+        "$ref": "#/interfaces@45"
       },
       "definition": {
         "$type": "Group",
@@ -9613,7 +9485,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@41"
+                "$ref": "#/interfaces@40"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9692,7 +9564,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "TypePredicate",
       "returnType": {
-        "$ref": "#/interfaces@89"
+        "$ref": "#/interfaces@86"
       },
       "definition": {
         "$type": "Group",
@@ -9704,7 +9576,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@29"
+                "$ref": "#/interfaces@28"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9796,7 +9668,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationEntityPredicate",
       "returnType": {
-        "$ref": "#/interfaces@91"
+        "$ref": "#/interfaces@88"
       },
       "definition": {
         "$type": "Group",
@@ -9808,7 +9680,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@50"
+                "$ref": "#/interfaces@49"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9878,7 +9750,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -9909,7 +9781,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "FeaturePredicate",
       "returnType": {
-        "$ref": "#/interfaces@92"
+        "$ref": "#/interfaces@89"
       },
       "definition": {
         "$type": "Group",
@@ -9987,7 +9859,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -10018,7 +9890,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "SameAsPredicate",
       "returnType": {
-        "$ref": "#/interfaces@93"
+        "$ref": "#/interfaces@90"
       },
       "definition": {
         "$type": "Group",
@@ -10069,7 +9941,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -10100,7 +9972,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DifferentFromPredicate",
       "returnType": {
-        "$ref": "#/interfaces@94"
+        "$ref": "#/interfaces@91"
       },
       "definition": {
         "$type": "Group",
@@ -10151,7 +10023,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@41"
+                    "$ref": "#/interfaces@40"
                   },
                   "terminal": {
                     "$type": "RuleCall",
@@ -10181,10 +10053,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "Literal",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Literal_Union"
-      },
       "definition": {
         "$type": "Alternatives",
         "elements": [
@@ -10236,16 +10104,33 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "IntegerLiteral",
       "definition": {
-        "$type": "Assignment",
-        "feature": "value",
-        "operator": "=",
-        "terminal": {
-          "$type": "RuleCall",
-          "rule": {
-            "$ref": "#/rules@109"
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "Assignment",
+            "feature": "value",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@110"
+              },
+              "arguments": []
+            }
           },
-          "arguments": []
-        }
+          {
+            "$type": "Assignment",
+            "feature": "value",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@109"
+              },
+              "arguments": []
+            }
+          }
+        ]
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -10330,7 +10215,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@110"
+            "$ref": "#/rules@109"
           },
           "arguments": []
         }
@@ -10345,9 +10230,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "QuotedLiteral",
-      "returnType": {
-        "$ref": "#/interfaces@95"
-      },
       "definition": {
         "$type": "Group",
         "elements": [
@@ -10380,7 +10262,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "CrossReference",
                       "type": {
-                        "$ref": "#/interfaces@54"
+                        "$ref": "#/interfaces@53"
                       },
                       "terminal": {
                         "$type": "RuleCall",
@@ -10600,20 +10482,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "TerminalRule",
-      "name": "INTEGER_STR",
-      "type": {
-        "$type": "ReturnType",
-        "name": "number"
-      },
-      "definition": {
-        "$type": "RegexToken",
-        "regex": "[+-]?\\\\d+"
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
       "name": "UNSIGNED_INTEGER_STR",
       "type": {
         "$type": "ReturnType",
@@ -10622,6 +10490,20 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "definition": {
         "$type": "RegexToken",
         "regex": "\\\\d+"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "SIGNED_INTEGER_STR",
+      "type": {
+        "$type": "ReturnType",
+        "name": "number"
+      },
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "[+-]\\\\d+"
       },
       "fragment": false,
       "hidden": false

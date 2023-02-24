@@ -41,7 +41,7 @@ interface AnnotatedElement {
 
 interface Annotation {
 	property: @AnnotationProperty
-	value?: Literal_Union
+	value?: Literal
 	referenceValue?: @Member
 	owningElement?: @AnnotatedElement
 	owningReference?: @OmlReference
@@ -108,8 +108,8 @@ interface OmlReference {
 	ownedAnnotations: Annotation[]
 }
 
-interface Literal {
-}
+//interface Literal {
+//}
 
 interface VocabularyBundle extends VocabularyBox {
 	ownedImports: VocabularyBundleImport_Union[]
@@ -203,7 +203,7 @@ interface NamedInstance extends Member, Instance {
 }
 
 interface Instance {
-	ownedPropertyValues: PropertyValueAssertion_Union[]
+	ownedPropertyValues: PropertyValueAssertion[]
 }
 
 interface PropertyValueAssertion extends Assertion {
@@ -215,7 +215,7 @@ interface Assertion {
 }
 
 interface NamedInstanceReference extends OmlReference {
-	ownedPropertyValues: PropertyValueAssertion_Union[]
+	ownedPropertyValues: PropertyValueAssertion[]
 	ownedLinks: LinkAssertion[]
 }
 
@@ -287,14 +287,14 @@ interface FacetedScalar extends Scalar {
 	maxLength?: UnsignedInteger
 	pattern?: string
 	language?: string
-	minInclusive?: Literal_Union
-	minExclusive?: Literal_Union
-	maxInclusive?: Literal_Union
-	maxExclusive?: Literal_Union
+	minInclusive?: Literal
+	minExclusive?: Literal
+	maxInclusive?: Literal
+	maxExclusive?: Literal
 }
 
 interface EnumeratedScalar extends Scalar {
-	literals: Literal_Union[]
+	literals: Literal[]
 }
 
 interface Rule extends Member {
@@ -321,10 +321,10 @@ interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 	property: @StructuredProperty
 }
 
-interface StructuredPropertyValueAssertion extends PropertyValueAssertion {
-	property: @StructuredProperty
-	value: StructureInstance
-}
+//interface StructuredPropertyValueAssertion extends PropertyValueAssertion {
+//	property: @StructuredProperty
+//	value: StructureInstance
+//}
 
 interface RelationInstance extends NamedInstance {
 	ownedTypes: RelationTypeAssertion[]
@@ -430,7 +430,7 @@ interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 //}
 
 //interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionAxiom {
-//	value: Literal_Union
+//	value: Literal
 //}
 
 //interface StructuredPropertyRangeRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
@@ -459,10 +459,10 @@ interface ScalarPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
 //	target: @NamedInstance
 //}
 
-interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
-	property: @ScalarProperty
-	value: Literal_Union
-}
+//interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
+//	property: @ScalarProperty
+//	value: Literal
+//}
 
 interface UnaryPredicate extends Predicate {
 	variable: string
@@ -485,7 +485,7 @@ interface RelationEntityPredicate extends BinaryPredicate {
 
 interface FeaturePredicate extends BinaryPredicate {
 	feature: @Feature
-	literal2?: Literal_Union
+	literal2?: Literal
 }
 
 interface SameAsPredicate extends BinaryPredicate {
@@ -512,13 +512,14 @@ interface BooleanLiteral extends Literal {
 }
 */
 
-interface QuotedLiteral extends Literal {
-	value: string
-	langTag?: string
-	^type?: @Scalar
-}
+//interface QuotedLiteral extends Literal {
+//	value: string
+//	langTag?: string
+//	^type?: @Scalar
+//}
 
 //includes end
+
 entry Ontology infers Ontology_Union:
     VocabularyBox | DescriptionBox 
 ;
@@ -871,24 +872,19 @@ KeyAxiom returns KeyAxiom:
     'key' properties+=[Feature:Ref] (',' properties+=[Feature:Ref])*;
 
 ConceptTypeAssertion returns ConceptTypeAssertion:
-    ^type=[Concept:Ref ] 
-;
+    ^type=[Concept:Ref];
 
 RelationTypeAssertion returns RelationTypeAssertion:
-    ^type=[RelationEntity:Ref ] 
-;
+    ^type=[RelationEntity:Ref];
 
-PropertyValueAssertion infers PropertyValueAssertion_Union:
-    ScalarPropertyValueAssertion | StructuredPropertyValueAssertion 
-;
+PropertyValueAssertion returns PropertyValueAssertion:
+    ScalarPropertyValueAssertion | StructuredPropertyValueAssertion;
 
-ScalarPropertyValueAssertion returns ScalarPropertyValueAssertion:
-    property=[ScalarProperty:Ref ] value=Literal   
-;
+ScalarPropertyValueAssertion:
+    property=[ScalarProperty:Ref] value=Literal;
 
-StructuredPropertyValueAssertion returns StructuredPropertyValueAssertion:
-    property=[StructuredProperty:Ref ] value=StructureInstance   
-;
+StructuredPropertyValueAssertion:
+    property=[StructuredProperty:Ref] value=StructureInstance;
 
 LinkAssertion returns LinkAssertion:
     relation=[Relation:Ref ] target=[NamedInstance:Ref ]  
@@ -915,44 +911,37 @@ RelationEntityPredicate returns RelationEntityPredicate:
 ;
 
 FeaturePredicate returns FeaturePredicate:
-    feature=[Feature:Ref ] '(' variable1=ID  ',' (variable2=ID  | literal2=Literal  | instance2=[NamedInstance:CrossRef ] )')'  
+    feature=[Feature:Ref ] '(' variable1=ID  ',' (variable2=ID | literal2=Literal | instance2=[NamedInstance:CrossRef] )')'  
 ;
 
 SameAsPredicate returns SameAsPredicate:
-    'sameAs' '(' variable1=ID  ',' (variable2=ID  | instance2=[NamedInstance:CrossRef ] )')'  
+    'sameAs' '(' variable1=ID ',' (variable2=ID | instance2=[NamedInstance:CrossRef] )')'  
 ;
 
 DifferentFromPredicate returns DifferentFromPredicate:
-    'differentFrom' '(' variable1=ID  ',' (variable2=ID  | instance2=[NamedInstance:CrossRef ] )')'  
+    'differentFrom' '(' variable1=ID ',' (variable2=ID | instance2=[NamedInstance:CrossRef] )')'  
 ;
 
-Literal infers Literal_Union:
-    IntegerLiteral | DecimalLiteral | DoubleLiteral | BooleanLiteral | QuotedLiteral 
-;
+Literal:
+    IntegerLiteral | DecimalLiteral | DoubleLiteral | BooleanLiteral | QuotedLiteral;
 
 IntegerLiteral:
-    value=INTEGER_STR  
-;
+    value=SIGNED_INTEGER_STR | value=UNSIGNED_INTEGER_STR;
 
 DecimalLiteral:
-    value=DECIMAL_STR  
-;
+    value=DECIMAL_STR;
 
 DoubleLiteral:
-    value=DOUBLE_STR  
-;
+    value=DOUBLE_STR;
 
 BooleanLiteral:
-    value=BOOLEAN_STR  
-;
+    value=BOOLEAN_STR;
 
 UnsignedInteger:
-    value=UNSIGNED_INTEGER_STR
-;
+    value=UNSIGNED_INTEGER_STR;
 
-QuotedLiteral returns QuotedLiteral:
-    value=STRING  (('^^' ^type=[Scalar:Ref ] ) | ('$' langTag=ID  ) )? 
-;
+QuotedLiteral:
+    value=STRING (('^^' ^type=[Scalar:Ref]) | ('$' langTag=ID))?;
 
 //RangeRestrictionKind returns string:
 //    RangeRestrictionKind_all | RangeRestrictionKind_some
@@ -1008,8 +997,8 @@ hidden terminal WS returns string:/\s+/;
 terminal BOOLEAN_STR returns string: /false|true/ ;
 terminal DOUBLE_STR: /[+-]?((\d+\.\d*)|(\.\d+))[eE][+-]?\d+/;
 terminal DECIMAL_STR returns number: /[+-]?(\d+\.\d*)|(\.\d+)/;
-terminal INTEGER_STR returns number: /[+-]?\d+/;
-terminal UNSIGNED_INTEGER_STR returns number: /\d+/; // PROBLEM: this also matches INTEGER_STR, ambiguity
+terminal UNSIGNED_INTEGER_STR returns number: /\d+/;
+terminal SIGNED_INTEGER_STR returns number: /[+-]\d+/;
 terminal NAMESPACE: /<[^>\s#]+[#\/]>/;
 terminal FULL_IRI: /<[^>\s#]+>/;
 terminal fragment IDFRAG: /[a-zA-z_][\w\-\.$]*/;

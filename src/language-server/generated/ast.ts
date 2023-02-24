@@ -90,12 +90,12 @@ export function isFeature_Union(item: unknown): item is Feature_Union {
     return reflection.isInstance(item, Feature_Union);
 }
 
-export type Literal_Union = BooleanLiteral | DecimalLiteral | DoubleLiteral | IntegerLiteral | QuotedLiteral;
+export type Literal = BooleanLiteral | DecimalLiteral | DoubleLiteral | IntegerLiteral | QuotedLiteral;
 
-export const Literal_Union = 'Literal_Union';
+export const Literal = 'Literal';
 
-export function isLiteral_Union(item: unknown): item is Literal_Union {
-    return reflection.isInstance(item, Literal_Union);
+export function isLiteral(item: unknown): item is Literal {
+    return reflection.isInstance(item, Literal);
 }
 
 export type NamedInstance_Union = ConceptInstance | RelationInstance;
@@ -136,14 +136,6 @@ export const Property_Union = 'Property_Union';
 
 export function isProperty_Union(item: unknown): item is Property_Union {
     return reflection.isInstance(item, Property_Union);
-}
-
-export type PropertyValueAssertion_Union = ScalarPropertyValueAssertion | StructuredPropertyValueAssertion;
-
-export const PropertyValueAssertion_Union = 'PropertyValueAssertion_Union';
-
-export function isPropertyValueAssertion_Union(item: unknown): item is PropertyValueAssertion_Union {
-    return reflection.isInstance(item, PropertyValueAssertion_Union);
 }
 
 export type RangeRestrictionKind = 'all' | 'some';
@@ -257,7 +249,7 @@ export interface Annotation extends AstNode {
     owningReference?: Reference<OmlReference>
     property: Reference<AnnotationProperty>
     referenceValue?: Reference<Member>
-    value?: Literal_Union
+    value?: Literal
 }
 
 export const Annotation = 'Annotation';
@@ -340,7 +332,7 @@ export function isForwardRelation(item: unknown): item is ForwardRelation {
 export interface Instance extends AstNode {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstance' | 'Instance' | 'NamedInstance' | 'RelationInstance' | 'StructureInstance';
-    ownedPropertyValues: Array<PropertyValueAssertion_Union>
+    ownedPropertyValues: Array<PropertyValueAssertion>
 }
 
 export const Instance = 'Instance';
@@ -359,17 +351,6 @@ export const IntegerLiteral = 'IntegerLiteral';
 
 export function isIntegerLiteral(item: unknown): item is IntegerLiteral {
     return reflection.isInstance(item, IntegerLiteral);
-}
-
-export interface Literal extends AstNode {
-    readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
-    readonly $type: 'Literal' | 'QuotedLiteral';
-}
-
-export const Literal = 'Literal';
-
-export function isLiteral(item: unknown): item is Literal {
-    return reflection.isInstance(item, Literal);
 }
 
 export interface OmlReference extends AstNode {
@@ -395,6 +376,20 @@ export const Predicate = 'Predicate';
 
 export function isPredicate(item: unknown): item is Predicate {
     return reflection.isInstance(item, Predicate);
+}
+
+export interface QuotedLiteral extends AstNode {
+    readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
+    readonly $type: 'QuotedLiteral';
+    langTag?: string
+    type?: Reference<Scalar>
+    value: string
+}
+
+export const QuotedLiteral = 'QuotedLiteral';
+
+export function isQuotedLiteral(item: unknown): item is QuotedLiteral {
+    return reflection.isInstance(item, QuotedLiteral);
 }
 
 export interface ReverseRelation extends AstNode {
@@ -560,25 +555,11 @@ export function isStructureInstance(item: unknown): item is StructureInstance {
     return reflection.isInstance(item, StructureInstance);
 }
 
-export interface QuotedLiteral extends Literal {
-    readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
-    readonly $type: 'QuotedLiteral';
-    langTag?: string
-    type?: Reference<Scalar>
-    value: string
-}
-
-export const QuotedLiteral = 'QuotedLiteral';
-
-export function isQuotedLiteral(item: unknown): item is QuotedLiteral {
-    return reflection.isInstance(item, QuotedLiteral);
-}
-
 export interface NamedInstanceReference extends OmlReference {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstanceReference' | 'NamedInstanceReference' | 'RelationInstanceReference';
     ownedLinks: Array<LinkAssertion>
-    ownedPropertyValues: Array<PropertyValueAssertion_Union>
+    ownedPropertyValues: Array<PropertyValueAssertion>
 }
 
 export const NamedInstanceReference = 'NamedInstanceReference';
@@ -744,7 +725,7 @@ export interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
     readonly $container: ConceptInstance | ConceptInstanceReference | Instance | NamedInstance | NamedInstanceReference | RelationInstance | RelationInstanceReference;
     readonly $type: 'ScalarPropertyValueAssertion';
     property: Reference<ScalarProperty>
-    value: Literal_Union
+    value: Literal
 }
 
 export const ScalarPropertyValueAssertion = 'ScalarPropertyValueAssertion';
@@ -960,7 +941,7 @@ export interface FeaturePredicate extends BinaryPredicate {
     readonly $container: Rule;
     readonly $type: 'FeaturePredicate';
     feature: Reference<Feature>
-    literal2?: Literal_Union
+    literal2?: Literal
 }
 
 export const FeaturePredicate = 'FeaturePredicate';
@@ -1347,7 +1328,7 @@ export interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestr
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
     readonly $type: 'ScalarPropertyValueRestrictionAxiom';
     property: Reference<ScalarProperty>
-    value: Literal_Union
+    value: Literal
 }
 
 export const ScalarPropertyValueRestrictionAxiom = 'ScalarPropertyValueRestrictionAxiom';
@@ -1556,7 +1537,7 @@ export function isStructure(item: unknown): item is Structure {
 export interface EnumeratedScalar extends Scalar {
     readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'EnumeratedScalar';
-    literals: Array<Literal_Union>
+    literals: Array<Literal>
 }
 
 export const EnumeratedScalar = 'EnumeratedScalar';
@@ -1570,11 +1551,11 @@ export interface FacetedScalar extends Scalar {
     readonly $type: 'FacetedScalar';
     language?: string
     length?: UnsignedInteger
-    maxExclusive?: Literal_Union
-    maxInclusive?: Literal_Union
+    maxExclusive?: Literal
+    maxInclusive?: Literal
     maxLength?: UnsignedInteger
-    minExclusive?: Literal_Union
-    minInclusive?: Literal_Union
+    minExclusive?: Literal
+    minInclusive?: Literal
     minLength?: UnsignedInteger
     pattern?: string
 }
@@ -1688,7 +1669,6 @@ export interface OmlAstType {
     KeyAxiom: KeyAxiom
     LinkAssertion: LinkAssertion
     Literal: Literal
-    Literal_Union: Literal_Union
     Member: Member
     NamedInstance: NamedInstance
     NamedInstanceReference: NamedInstanceReference
@@ -1702,7 +1682,6 @@ export interface OmlAstType {
     Property: Property
     PropertyRestrictionAxiom: PropertyRestrictionAxiom
     PropertyValueAssertion: PropertyValueAssertion
-    PropertyValueAssertion_Union: PropertyValueAssertion_Union
     Property_Union: Property_Union
     QuotedLiteral: QuotedLiteral
     Relation: Relation
@@ -1776,7 +1755,7 @@ export interface OmlAstType {
 export class OmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'ClassifierReference_Union', 'Classifier_Union', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBox_Union', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleImport_Union', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionImport_Union', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EntityReference_Union', 'Entity_Union', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'Feature_Union', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Literal_Union', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'NamedInstance_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'PropertyValueAssertion_Union', 'Property_Union', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'Scalar_Union', 'SemanticProperty', 'SemanticProperty_Union', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializableTermReference_Union', 'SpecializableTerm_Union', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'Type_Union', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBox_Union', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleImport_Union', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyImport_Union', 'VocabularyStatement', 'VocabularyStatement_Union', 'VocabularyUsage'];
+        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'ClassifierReference_Union', 'Classifier_Union', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBox_Union', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleImport_Union', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionImport_Union', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EntityReference_Union', 'Entity_Union', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'Feature_Union', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'NamedInstance_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'Property_Union', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'Scalar_Union', 'SemanticProperty', 'SemanticProperty_Union', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializableTermReference_Union', 'SpecializableTerm_Union', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'Type_Union', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBox_Union', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleImport_Union', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyImport_Union', 'VocabularyStatement', 'VocabularyStatement_Union', 'VocabularyUsage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -1812,8 +1791,9 @@ export class OmlAstReflection extends AbstractAstReflection {
             case BooleanLiteral:
             case DecimalLiteral:
             case DoubleLiteral:
-            case IntegerLiteral: {
-                return this.isSubtype(Literal_Union, supertype);
+            case IntegerLiteral:
+            case QuotedLiteral: {
+                return this.isSubtype(Literal, supertype);
             }
             case Classifier:
             case Scalar: {
@@ -1941,9 +1921,6 @@ export class OmlAstReflection extends AbstractAstReflection {
             case RelationRestrictionAxiom: {
                 return this.isSubtype(RestrictionAxiom, supertype);
             }
-            case QuotedLiteral: {
-                return this.isSubtype(Literal, supertype) || this.isSubtype(Literal_Union, supertype);
-            }
             case RelationCardinalityRestrictionAxiom:
             case RelationRangeRestrictionAxiom:
             case RelationTargetRestrictionAxiom: {
@@ -1971,7 +1948,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case ScalarPropertyValueAssertion:
             case StructuredPropertyValueAssertion: {
-                return this.isSubtype(PropertyValueAssertion, supertype) || this.isSubtype(PropertyValueAssertion_Union, supertype);
+                return this.isSubtype(PropertyValueAssertion, supertype);
             }
             case SemanticProperty: {
                 return this.isSubtype(Property, supertype);
