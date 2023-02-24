@@ -173,8 +173,8 @@ interface RelationRestrictionAxiom extends RestrictionAxiom {
 	owningReference?: @EntityReference
 }
 
-interface Relation extends Feature {
-}
+//interface Relation extends Feature {
+//}
 
 interface EntityReference extends ClassifierReference {
 	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
@@ -254,11 +254,11 @@ interface RelationEntity extends Entity {
 	transitive: boolean
 }
 
-interface ForwardRelation extends Relation {
-}
+//interface ForwardRelation extends Relation {
+//}
 
-interface ReverseRelation extends Relation {
-}
+//interface ReverseRelation extends Relation {
+//}
 
 interface Structure extends Classifier {
 }
@@ -568,12 +568,10 @@ Entity infers Entity_Union:
 ;
 
 Aspect returns Aspect:
-    ownedAnnotations+=Annotation * 'aspect' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*']' )?  
-;
+    ownedAnnotations+=Annotation* 'aspect' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']' )?;
 
 Concept returns Concept:
-    ownedAnnotations+=Annotation * 'concept' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*('enumerates' enumeratedInstances+=[ConceptInstance:Ref ] (',' enumeratedInstances+=[ConceptInstance:Ref ] )* )? ']' )?  
-;
+    ownedAnnotations+=Annotation* 'concept' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ('enumerates' enumeratedInstances+=[ConceptInstance:Ref ] (',' enumeratedInstances+=[ConceptInstance:Ref ] )* )? ']' )?;
 
 RelationEntity returns RelationEntity:
     ownedAnnotations+=Annotation * 'relation' 'entity' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? '[' 'from' source=[Entity:Ref ] 'to' target=[Entity:Ref ] 
@@ -582,7 +580,7 @@ RelationEntity returns RelationEntity:
     //     &(reverseRelation=ReverseRelation )? 
     // )
     (
-        (forwardRelation=ForwardRelation) |
+        (forwardRelation=ForwardRelation) | // TODO: This would allow multiple ForwardRelations to be defined
         (reverseRelation=ReverseRelation)
     )*
     // (
@@ -602,10 +600,9 @@ RelationEntity returns RelationEntity:
         (reflexive?='reflexive' ) |
         (irreflexive?='irreflexive' ) |
         (transitive?='transitive' )
-    )*
+    )* // TODO: This would allow multiple declarations of functional, symmetric, etc.
     
-    (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*']'  
-;
+    (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']';
 
 Structure returns Structure:
     ownedAnnotations+=Annotation * 'structure' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom * ']' )?  
@@ -671,17 +668,15 @@ EnumeratedScalar returns EnumeratedScalar:
     ownedAnnotations+=Annotation * 'enumerated' 'scalar' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (literals+=Literal  (',' literals+=Literal  )* )? ']' )?  
 ;
 
-Relation infers Relation_Union:
+Relation:
     ForwardRelation | ReverseRelation 
 ;
 
-ForwardRelation returns ForwardRelation:
-    ownedAnnotations+=Annotation * 'forward' name=ID   
-;
+ForwardRelation:
+    ownedAnnotations+=Annotation* 'forward' name=ID;
 
-ReverseRelation returns ReverseRelation:
-    ownedAnnotations+=Annotation * 'reverse' name=ID   
-;
+ReverseRelation:
+    ownedAnnotations+=Annotation* 'reverse' name=ID;
 
 Rule returns Rule:
     ownedAnnotations+=Annotation * 'rule' name=ID  '[' antecedent+=Predicate  ('^' antecedent+=Predicate  )* '->' consequent+=Predicate  ('^' consequent+=Predicate  )* ']'  
@@ -988,8 +983,7 @@ QuotedLiteral returns QuotedLiteral:
 //RangeRestrictionKind_some returns string: 'some' ;
 
 RangeRestrictionKind returns string:
-    'all' | 'some'
-;
+    'all' | 'some';
 
 //CardinalityRestrictionKind returns string:
 //    CardinalityRestrictionKind_exactly | CardinalityRestrictionKind_min | CardinalityRestrictionKind_max
@@ -1002,16 +996,13 @@ RangeRestrictionKind returns string:
 //;
 
 CardinalityRestrictionKind returns string:
-    'exactly' | 'min' | 'max'
-;
+    'exactly' | 'min' | 'max';
 
 Ref returns string:
-    ID | ABBREVIATED_IRI | FULL_IRI 
-;
+    ID | ABBREVIATED_IRI | FULL_IRI;
 
 CrossRef returns string:
-    ABBREVIATED_IRI | FULL_IRI
-;
+    ABBREVIATED_IRI | FULL_IRI;
 
 /*
 Boolean returns boolean:

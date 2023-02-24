@@ -158,12 +158,12 @@ export type RangeRestrictionKind = 'all' | 'some';
 
 export type Ref = string;
 
-export type Relation_Union = ForwardRelation | ReverseRelation;
+export type Relation = ForwardRelation | ReverseRelation;
 
-export const Relation_Union = 'Relation_Union';
+export const Relation = 'Relation';
 
-export function isRelation_Union(item: unknown): item is Relation_Union {
-    return reflection.isInstance(item, Relation_Union);
+export function isRelation(item: unknown): item is Relation {
+    return reflection.isInstance(item, Relation);
 }
 
 export type RelationRestrictionAxiom_Union = RelationCardinalityRestrictionAxiom | RelationRangeRestrictionAxiom | RelationTargetRestrictionAxiom;
@@ -271,7 +271,7 @@ export function isVocabularyStatement_Union(item: unknown): item is VocabularySt
 }
 
 export interface AnnotatedElement extends AstNode {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotatedElement' | 'ConceptInstance' | 'Description' | 'DescriptionBox' | 'DescriptionBundle' | 'DescriptionBundleExtension' | 'DescriptionBundleImport' | 'DescriptionBundleInclusion' | 'DescriptionBundleUsage' | 'DescriptionExtension' | 'DescriptionImport' | 'DescriptionUsage' | 'IdentifiedElement' | 'Import' | 'Member' | 'NamedInstance' | 'Ontology' | 'RelationInstance' | 'Rule' | 'Vocabulary' | 'VocabularyBox' | 'VocabularyBundle' | 'VocabularyBundleExtension' | 'VocabularyBundleImport' | 'VocabularyBundleInclusion' | 'VocabularyExtension' | 'VocabularyImport' | 'VocabularyUsage' | 'AnnotationProperty' | 'ConceptInstance' | 'Feature' | 'ForwardRelation' | 'Member' | 'NamedInstance' | 'Property' | 'Relation' | 'RelationInstance' | 'ReverseRelation' | 'Rule' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
     ownedAnnotations: Array<Annotation>
 }
@@ -283,7 +283,7 @@ export function isAnnotatedElement(item: unknown): item is AnnotatedElement {
 }
 
 export interface Annotation extends AstNode {
-    readonly $container: AnnotatedElement | OmlReference;
+    readonly $container: AnnotatedElement | ForwardRelation | OmlReference | ReverseRelation;
     readonly $type: 'Annotation';
     owningElement?: Reference<AnnotatedElement>
     owningReference?: Reference<OmlReference>
@@ -335,7 +335,7 @@ export function isBooleanLiteral(item: unknown): item is BooleanLiteral {
 export interface DecimalLiteral extends AstNode {
     readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
     readonly $type: 'DecimalLiteral';
-    value: string
+    value: number
 }
 
 export const DecimalLiteral = 'DecimalLiteral';
@@ -356,8 +356,21 @@ export function isDoubleLiteral(item: unknown): item is DoubleLiteral {
     return reflection.isInstance(item, DoubleLiteral);
 }
 
+export interface ForwardRelation extends AstNode {
+    readonly $container: RelationEntity;
+    readonly $type: 'ForwardRelation';
+    name: string
+    ownedAnnotations: Array<Annotation>
+}
+
+export const ForwardRelation = 'ForwardRelation';
+
+export function isForwardRelation(item: unknown): item is ForwardRelation {
+    return reflection.isInstance(item, ForwardRelation);
+}
+
 export interface Instance extends AstNode {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstance' | 'Instance' | 'NamedInstance' | 'RelationInstance' | 'StructureInstance';
     ownedPropertyValues: Array<PropertyValueAssertion_Union>
 }
@@ -371,7 +384,7 @@ export function isInstance(item: unknown): item is Instance {
 export interface IntegerLiteral extends AstNode {
     readonly $container: Annotation | EnumeratedScalar | FacetedScalar | FeaturePredicate | ScalarPropertyValueAssertion | ScalarPropertyValueRestrictionAxiom;
     readonly $type: 'IntegerLiteral';
-    value: string
+    value: number
 }
 
 export const IntegerLiteral = 'IntegerLiteral';
@@ -392,7 +405,7 @@ export function isLiteral(item: unknown): item is Literal {
 }
 
 export interface OmlReference extends AstNode {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationPropertyReference' | 'ConceptInstanceReference' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'NamedInstanceReference' | 'OmlReference' | 'RelationInstanceReference' | 'RelationReference' | 'RuleReference' | 'ScalarPropertyReference' | 'SpecializableTermReference' | 'StructuredPropertyReference'| 'AnnotationPropertyReference' | 'ClassifierReference' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'ScalarPropertyReference' | 'SpecializableTermReference' | 'StructureReference' | 'StructuredPropertyReference' | 'AspectReference' | 'ClassifierReference' | 'ConceptReference' | 'EntityReference' | 'RelationEntityReference' | 'StructureReference';
     ownedAnnotations: Array<Annotation>
 }
@@ -443,6 +456,19 @@ export const RelationRangeRestrictionAxiom = 'RelationRangeRestrictionAxiom';
 
 export function isRelationRangeRestrictionAxiom(item: unknown): item is RelationRangeRestrictionAxiom {
     return reflection.isInstance(item, RelationRangeRestrictionAxiom);
+}
+
+export interface ReverseRelation extends AstNode {
+    readonly $container: RelationEntity;
+    readonly $type: 'ReverseRelation';
+    name: string
+    ownedAnnotations: Array<Annotation>
+}
+
+export const ReverseRelation = 'ReverseRelation';
+
+export function isReverseRelation(item: unknown): item is ReverseRelation {
+    return reflection.isInstance(item, ReverseRelation);
 }
 
 export interface ScalarPropertyCardinalityRestrictionAxiom extends AstNode {
@@ -516,7 +542,7 @@ export function isStructuredPropertyRangeRestrictionAxiom(item: unknown): item i
 export interface UnsignedInteger extends AstNode {
     readonly $container: FacetedScalar | RelationCardinalityRestrictionAxiom | ScalarPropertyCardinalityRestrictionAxiom | StructuredPropertyCardinalityRestrictionAxiom;
     readonly $type: 'UnsignedInteger';
-    value: string
+    value: number
 }
 
 export const UnsignedInteger = 'UnsignedInteger';
@@ -526,7 +552,7 @@ export function isUnsignedInteger(item: unknown): item is UnsignedInteger {
 }
 
 export interface IdentifiedElement extends AnnotatedElement {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstance' | 'Description' | 'DescriptionBox' | 'DescriptionBundle' | 'IdentifiedElement' | 'Member' | 'NamedInstance' | 'Ontology' | 'RelationInstance' | 'Rule' | 'Vocabulary' | 'VocabularyBox' | 'VocabularyBundle' | 'AnnotationProperty' | 'ConceptInstance' | 'Feature' | 'ForwardRelation' | 'Member' | 'NamedInstance' | 'Property' | 'Relation' | 'RelationInstance' | 'ReverseRelation' | 'Rule' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type'  | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
 }
 
@@ -537,7 +563,7 @@ export function isIdentifiedElement(item: unknown): item is IdentifiedElement {
 }
 
 export interface Import extends AnnotatedElement {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundleExtension' | 'DescriptionBundleImport' | 'DescriptionBundleInclusion' | 'DescriptionBundleUsage' | 'DescriptionExtension' | 'DescriptionImport' | 'DescriptionUsage' | 'Import' | 'VocabularyBundleExtension' | 'VocabularyBundleImport' | 'VocabularyBundleInclusion' | 'VocabularyExtension' | 'VocabularyImport' | 'VocabularyUsage';
     namespace: string
     prefix?: string
@@ -628,7 +654,7 @@ export function isSpecializationAxiom(item: unknown): item is SpecializationAxio
 }
 
 export interface NamedInstance extends Instance, Member {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstance' | 'NamedInstance' | 'RelationInstance';
     ownedLinks: Array<LinkAssertion>
 }
@@ -640,7 +666,7 @@ export function isNamedInstance(item: unknown): item is NamedInstance {
 }
 
 export interface StructureInstance extends Instance {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'StructureInstance';
     owningAssertion?: Reference<StructuredPropertyValueAssertion>
     owningAxiom?: Reference<StructuredPropertyValueRestrictionAxiom>
@@ -668,7 +694,7 @@ export function isQuotedLiteral(item: unknown): item is QuotedLiteral {
 }
 
 export interface NamedInstanceReference extends OmlReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstanceReference' | 'NamedInstanceReference' | 'RelationInstanceReference';
     ownedLinks: Array<LinkAssertion>
     ownedPropertyValues: Array<PropertyValueAssertion_Union>
@@ -681,7 +707,7 @@ export function isNamedInstanceReference(item: unknown): item is NamedInstanceRe
 }
 
 export interface RelationReference extends OmlReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationReference';
     relation: Reference<Relation>
 }
@@ -693,7 +719,7 @@ export function isRelationReference(item: unknown): item is RelationReference {
 }
 
 export interface RuleReference extends OmlReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RuleReference';
     rule: Reference<Rule>
 }
@@ -705,7 +731,7 @@ export function isRuleReference(item: unknown): item is RuleReference {
 }
 
 export interface SpecializableTermReference extends OmlReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationPropertyReference' | 'ClassifierReference' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'ScalarPropertyReference' | 'SpecializableTermReference' | 'StructureReference' | 'StructuredPropertyReference' | 'AspectReference' | 'ClassifierReference' | 'ConceptReference' | 'EntityReference' | 'RelationEntityReference' | 'StructureReference';
     ownedSpecializations: Array<SpecializationAxiom>
 }
@@ -765,7 +791,7 @@ export function isVocabularyStatement(item: unknown): item is VocabularyStatemen
 }
 
 export interface Member extends IdentifiedElement {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'ConceptInstance' | 'Feature' | 'ForwardRelation' | 'Member' | 'NamedInstance' | 'Property' | 'Relation' | 'RelationInstance' | 'ReverseRelation' | 'Rule' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
     name: string
 }
@@ -777,7 +803,7 @@ export function isMember(item: unknown): item is Member {
 }
 
 export interface Ontology extends IdentifiedElement {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Description' | 'DescriptionBox' | 'DescriptionBundle' | 'Ontology' | 'Vocabulary' | 'VocabularyBox' | 'VocabularyBundle';
     namespace: string
     prefix: string
@@ -790,7 +816,7 @@ export function isOntology(item: unknown): item is Ontology {
 }
 
 export interface DescriptionBundleImport extends Import {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundleExtension' | 'DescriptionBundleImport' | 'DescriptionBundleInclusion' | 'DescriptionBundleUsage';
 }
 
@@ -801,7 +827,7 @@ export function isDescriptionBundleImport(item: unknown): item is DescriptionBun
 }
 
 export interface DescriptionImport extends Import {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionExtension' | 'DescriptionImport' | 'DescriptionUsage';
 }
 
@@ -812,7 +838,7 @@ export function isDescriptionImport(item: unknown): item is DescriptionImport {
 }
 
 export interface VocabularyBundleImport extends Import {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyBundleExtension' | 'VocabularyBundleImport' | 'VocabularyBundleInclusion';
 }
 
@@ -823,7 +849,7 @@ export function isVocabularyBundleImport(item: unknown): item is VocabularyBundl
 }
 
 export interface VocabularyImport extends Import {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyExtension' | 'VocabularyImport' | 'VocabularyUsage';
 }
 
@@ -915,7 +941,7 @@ export function isRelationRestrictionAxiom(item: unknown): item is RelationRestr
 }
 
 export interface ConceptInstance extends NamedInstance {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstance';
     ownedTypes: Array<ConceptTypeAssertion>
 }
@@ -927,7 +953,7 @@ export function isConceptInstance(item: unknown): item is ConceptInstance {
 }
 
 export interface RelationInstance extends NamedInstance {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationInstance';
     ownedTypes: Array<RelationTypeAssertion>
     sources: Array<Reference<NamedInstance>>
@@ -941,7 +967,7 @@ export function isRelationInstance(item: unknown): item is RelationInstance {
 }
 
 export interface ConceptInstanceReference extends NamedInstanceReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptInstanceReference';
     instance: Reference<ConceptInstance>
     ownedTypes: Array<ConceptTypeAssertion>
@@ -954,7 +980,7 @@ export function isConceptInstanceReference(item: unknown): item is ConceptInstan
 }
 
 export interface RelationInstanceReference extends NamedInstanceReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationInstanceReference';
     instance: Reference<RelationInstance>
     ownedTypes: Array<RelationTypeAssertion>
@@ -967,7 +993,7 @@ export function isRelationInstanceReference(item: unknown): item is RelationInst
 }
 
 export interface AnnotationPropertyReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationPropertyReference';
     property: Reference<AnnotationProperty>
 }
@@ -979,7 +1005,7 @@ export function isAnnotationPropertyReference(item: unknown): item is Annotation
 }
 
 export interface ClassifierReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AspectReference' | 'ClassifierReference' | 'ConceptReference' | 'EntityReference' | 'RelationEntityReference' | 'StructureReference';
     ownedPropertyRestrictions: Array<PropertyRestrictionAxiom_Union>
 }
@@ -991,7 +1017,7 @@ export function isClassifierReference(item: unknown): item is ClassifierReferenc
 }
 
 export interface EnumeratedScalarReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'EnumeratedScalarReference';
     scalar: Reference<EnumeratedScalar>
 }
@@ -1003,7 +1029,7 @@ export function isEnumeratedScalarReference(item: unknown): item is EnumeratedSc
 }
 
 export interface FacetedScalarReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'FacetedScalarReference';
     scalar: Reference<FacetedScalar>
 }
@@ -1015,7 +1041,7 @@ export function isFacetedScalarReference(item: unknown): item is FacetedScalarRe
 }
 
 export interface ScalarPropertyReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ScalarPropertyReference';
     property: Reference<ScalarProperty>
 }
@@ -1027,7 +1053,7 @@ export function isScalarPropertyReference(item: unknown): item is ScalarProperty
 }
 
 export interface StructuredPropertyReference extends SpecializableTermReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'StructuredPropertyReference';
     property: Reference<StructuredProperty>
 }
@@ -1099,7 +1125,7 @@ export function isTypePredicate(item: unknown): item is TypePredicate {
 }
 
 export interface Rule extends Member {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Rule';
     antecedent: Array<Predicate_Union>
     consequent: Array<Predicate_Union>
@@ -1112,7 +1138,7 @@ export function isRule(item: unknown): item is Rule {
 }
 
 export interface Term extends Member {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'Feature' | 'ForwardRelation' | 'Property' | 'Relation' | 'ReverseRelation' | 'ScalarProperty' | 'SpecializableTerm' | 'StructuredProperty' | 'Term' | 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
 }
 
@@ -1123,7 +1149,7 @@ export function isTerm(item: unknown): item is Term {
 }
 
 export interface DescriptionBox extends Ontology {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Description' | 'DescriptionBox' | 'DescriptionBundle';
 }
 
@@ -1134,7 +1160,7 @@ export function isDescriptionBox(item: unknown): item is DescriptionBox {
 }
 
 export interface VocabularyBox extends Ontology {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Vocabulary' | 'VocabularyBox' | 'VocabularyBundle';
 }
 
@@ -1145,7 +1171,7 @@ export function isVocabularyBox(item: unknown): item is VocabularyBox {
 }
 
 export interface DescriptionBundleExtension extends DescriptionBundleImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundleExtension';
 }
 
@@ -1156,7 +1182,7 @@ export function isDescriptionBundleExtension(item: unknown): item is Description
 }
 
 export interface DescriptionBundleInclusion extends DescriptionBundleImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundleInclusion';
 }
 
@@ -1167,7 +1193,7 @@ export function isDescriptionBundleInclusion(item: unknown): item is Description
 }
 
 export interface DescriptionBundleUsage extends DescriptionBundleImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundleUsage';
 }
 
@@ -1178,7 +1204,7 @@ export function isDescriptionBundleUsage(item: unknown): item is DescriptionBund
 }
 
 export interface DescriptionExtension extends DescriptionImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionExtension';
 }
 
@@ -1189,7 +1215,7 @@ export function isDescriptionExtension(item: unknown): item is DescriptionExtens
 }
 
 export interface DescriptionUsage extends DescriptionImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionUsage';
 }
 
@@ -1200,7 +1226,7 @@ export function isDescriptionUsage(item: unknown): item is DescriptionUsage {
 }
 
 export interface VocabularyBundleExtension extends VocabularyBundleImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyBundleExtension';
 }
 
@@ -1211,7 +1237,7 @@ export function isVocabularyBundleExtension(item: unknown): item is VocabularyBu
 }
 
 export interface VocabularyBundleInclusion extends VocabularyBundleImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyBundleInclusion';
 }
 
@@ -1222,7 +1248,7 @@ export function isVocabularyBundleInclusion(item: unknown): item is VocabularyBu
 }
 
 export interface VocabularyExtension extends VocabularyImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyExtension';
 }
 
@@ -1233,7 +1259,7 @@ export function isVocabularyExtension(item: unknown): item is VocabularyExtensio
 }
 
 export interface VocabularyUsage extends VocabularyImport {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyUsage';
 }
 
@@ -1257,7 +1283,7 @@ export function isScalarPropertyRestrictionAxiom(item: unknown): item is ScalarP
 
 export interface StructuredPropertyRestrictionAxiom extends PropertyRestrictionAxiom {
     readonly $container: Classifier | ClassifierReference | Entity | EntityReference | SpecializableTerm | SpecializableTermReference;
-    readonly $type: 'StructuredPropertyCardinalityRestrictionAxiom' | 'StructuredPropertyRangeRestrictionAxiom' | 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
+    readonly $type: 'StructuredPropertyRestrictionAxiom' | 'StructuredPropertyValueRestrictionAxiom';
     property: Reference<StructuredProperty>
 }
 
@@ -1280,7 +1306,7 @@ export function isRelationTargetRestrictionAxiom(item: unknown): item is Relatio
 }
 
 export interface EntityReference extends ClassifierReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AspectReference' | 'ConceptReference' | 'EntityReference' | 'RelationEntityReference';
     ownedKeys: Array<KeyAxiom>
     ownedRelationRestrictions: Array<RelationRestrictionAxiom_Union>
@@ -1293,7 +1319,7 @@ export function isEntityReference(item: unknown): item is EntityReference {
 }
 
 export interface StructureReference extends ClassifierReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'StructureReference';
     structure: Reference<Structure>
 }
@@ -1305,7 +1331,7 @@ export function isStructureReference(item: unknown): item is StructureReference 
 }
 
 export interface Feature extends Term {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'Feature' | 'ForwardRelation' | 'Property' | 'Relation' | 'ReverseRelation' | 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
 }
 
@@ -1316,7 +1342,7 @@ export function isFeature(item: unknown): item is Feature {
 }
 
 export interface SpecializableTerm extends Term {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
     ownedSpecializations: Array<SpecializationAxiom>
 }
@@ -1328,7 +1354,7 @@ export function isSpecializableTerm(item: unknown): item is SpecializableTerm {
 }
 
 export interface Description extends DescriptionBox {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Description';
     ownedImports: Array<DescriptionImport_Union>
     ownedStatements: Array<DescriptionStatement_Union>
@@ -1341,7 +1367,7 @@ export function isDescription(item: unknown): item is Description {
 }
 
 export interface DescriptionBundle extends DescriptionBox {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionBundle';
     ownedImports: Array<DescriptionBundleImport_Union>
 }
@@ -1353,7 +1379,7 @@ export function isDescriptionBundle(item: unknown): item is DescriptionBundle {
 }
 
 export interface Vocabulary extends VocabularyBox {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Vocabulary';
     ownedImports: Array<VocabularyImport_Union>
     ownedStatements: Array<VocabularyStatement_Union>
@@ -1366,7 +1392,7 @@ export function isVocabulary(item: unknown): item is Vocabulary {
 }
 
 export interface VocabularyBundle extends VocabularyBox {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'VocabularyBundle';
     ownedImports: Array<VocabularyBundleImport_Union>
 }
@@ -1402,7 +1428,7 @@ export function isStructuredPropertyValueRestrictionAxiom(item: unknown): item i
 }
 
 export interface AspectReference extends EntityReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AspectReference';
     aspect: Reference<Aspect>
 }
@@ -1414,7 +1440,7 @@ export function isAspectReference(item: unknown): item is AspectReference {
 }
 
 export interface ConceptReference extends EntityReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ConceptReference';
     concept: Reference<Concept>
 }
@@ -1426,7 +1452,7 @@ export function isConceptReference(item: unknown): item is ConceptReference {
 }
 
 export interface RelationEntityReference extends EntityReference {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationEntityReference';
     entity: Reference<RelationEntity>
 }
@@ -1438,7 +1464,7 @@ export function isRelationEntityReference(item: unknown): item is RelationEntity
 }
 
 export interface Property extends Feature {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
 }
 
@@ -1448,19 +1474,8 @@ export function isProperty(item: unknown): item is Property {
     return reflection.isInstance(item, Property);
 }
 
-export interface Relation extends Feature {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ForwardRelation' | 'Relation' | 'ReverseRelation';
-}
-
-export const Relation = 'Relation';
-
-export function isRelation(item: unknown): item is Relation {
-    return reflection.isInstance(item, Relation);
-}
-
 export interface AnnotationProperty extends Property, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty';
 }
 
@@ -1471,7 +1486,7 @@ export function isAnnotationProperty(item: unknown): item is AnnotationProperty 
 }
 
 export interface ScalarProperty extends SemanticProperty, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ScalarProperty';
     domain: Reference<Classifier>
     functional: boolean
@@ -1485,7 +1500,7 @@ export function isScalarProperty(item: unknown): item is ScalarProperty {
 }
 
 export interface StructuredProperty extends SemanticProperty, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'StructuredProperty';
     domain: Reference<Classifier>
     functional: boolean
@@ -1499,7 +1514,7 @@ export function isStructuredProperty(item: unknown): item is StructuredProperty 
 }
 
 export interface Type extends SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type' | 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
 }
 
@@ -1510,7 +1525,7 @@ export function isType(item: unknown): item is Type {
 }
 
 export interface SemanticProperty extends Property {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
 }
 
@@ -1520,30 +1535,8 @@ export function isSemanticProperty(item: unknown): item is SemanticProperty {
     return reflection.isInstance(item, SemanticProperty);
 }
 
-export interface ForwardRelation extends Relation {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ForwardRelation';
-}
-
-export const ForwardRelation = 'ForwardRelation';
-
-export function isForwardRelation(item: unknown): item is ForwardRelation {
-    return reflection.isInstance(item, ForwardRelation);
-}
-
-export interface ReverseRelation extends Relation {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ReverseRelation';
-}
-
-export const ReverseRelation = 'ReverseRelation';
-
-export function isReverseRelation(item: unknown): item is ReverseRelation {
-    return reflection.isInstance(item, ReverseRelation);
-}
-
 export interface Classifier extends Type {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
     ownedPropertyRestrictions: Array<PropertyRestrictionAxiom_Union>
 }
@@ -1555,7 +1548,7 @@ export function isClassifier(item: unknown): item is Classifier {
 }
 
 export interface Scalar extends Type {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar';
 }
 
@@ -1566,7 +1559,7 @@ export function isScalar(item: unknown): item is Scalar {
 }
 
 export interface Entity extends Classifier {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Aspect' | 'Concept' | 'Entity' | 'RelationEntity';
     ownedKeys: Array<KeyAxiom>
     ownedRelationRestrictions: Array<RelationRestrictionAxiom_Union>
@@ -1579,7 +1572,7 @@ export function isEntity(item: unknown): item is Entity {
 }
 
 export interface Structure extends Classifier {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Structure';
 }
 
@@ -1590,7 +1583,7 @@ export function isStructure(item: unknown): item is Structure {
 }
 
 export interface EnumeratedScalar extends Scalar {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'EnumeratedScalar';
     literals: Array<Literal_Union>
 }
@@ -1602,7 +1595,7 @@ export function isEnumeratedScalar(item: unknown): item is EnumeratedScalar {
 }
 
 export interface FacetedScalar extends Scalar {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'FacetedScalar';
     language?: string
     length?: UnsignedInteger
@@ -1622,7 +1615,7 @@ export function isFacetedScalar(item: unknown): item is FacetedScalar {
 }
 
 export interface Aspect extends Entity {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Aspect';
 }
 
@@ -1633,7 +1626,7 @@ export function isAspect(item: unknown): item is Aspect {
 }
 
 export interface Concept extends Entity {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Concept';
     enumeratedInstances: Array<Reference<ConceptInstance>>
 }
@@ -1645,7 +1638,7 @@ export function isConcept(item: unknown): item is Concept {
 }
 
 export interface RelationEntity extends Entity {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $container: Description | DescriptionBundle | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationEntity';
     asymmetric: boolean
     forwardRelation?: ForwardRelation
@@ -1755,7 +1748,6 @@ export interface OmlAstType {
     RelationRestrictionAxiom_Union: RelationRestrictionAxiom_Union
     RelationTargetRestrictionAxiom: RelationTargetRestrictionAxiom
     RelationTypeAssertion: RelationTypeAssertion
-    Relation_Union: Relation_Union
     RestrictionAxiom: RestrictionAxiom
     ReverseRelation: ReverseRelation
     Rule: Rule
@@ -1941,7 +1933,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case ForwardRelation:
             case ReverseRelation: {
-                return this.isSubtype(Relation, supertype) || this.isSubtype(Relation_Union, supertype);
+                return this.isSubtype(Relation, supertype);
             }
             case IdentifiedElement:
             case Import: {
@@ -1972,8 +1964,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             case SpecializableTermReference: {
                 return this.isSubtype(OmlReference, supertype);
             }
-            case Property:
-            case Relation: {
+            case Property: {
                 return this.isSubtype(Feature, supertype);
             }
             case Property_Union: {
@@ -2279,6 +2270,14 @@ export class OmlAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
+            case 'ForwardRelation': {
+                return {
+                    name: 'ForwardRelation',
+                    mandatory: [
+                        { name: 'ownedAnnotations', type: 'array' }
+                    ]
+                };
+            }
             case 'Instance': {
                 return {
                     name: 'Instance',
@@ -2290,6 +2289,14 @@ export class OmlAstReflection extends AbstractAstReflection {
             case 'OmlReference': {
                 return {
                     name: 'OmlReference',
+                    mandatory: [
+                        { name: 'ownedAnnotations', type: 'array' }
+                    ]
+                };
+            }
+            case 'ReverseRelation': {
+                return {
+                    name: 'ReverseRelation',
                     mandatory: [
                         { name: 'ownedAnnotations', type: 'array' }
                     ]
