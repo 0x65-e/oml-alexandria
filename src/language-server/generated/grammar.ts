@@ -737,7 +737,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@75/inferredType"
+                "$ref": "#/interfaces@35"
               }
             }
           },
@@ -776,7 +776,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               }
             }
           },
@@ -829,7 +829,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@75/inferredType"
+                "$ref": "#/interfaces@35"
               }
             }
           },
@@ -1120,7 +1120,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               }
             }
           },
@@ -2262,7 +2262,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               }
             }
           },
@@ -2443,31 +2443,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "attributes": [
         {
           "$type": "TypeAttribute",
-          "name": "target",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@41"
-              }
-            }
-          },
-          "isOptional": false
-        }
-      ],
-      "name": "RelationTargetRestrictionAxiom",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@35"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
           "name": "property",
           "type": {
             "$type": "ReferenceType",
@@ -2540,7 +2515,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "TypePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@91"
+          "$ref": "#/interfaces@90"
         }
       ]
     },
@@ -2617,7 +2592,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationEntityPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@93"
+          "$ref": "#/interfaces@92"
         }
       ]
     },
@@ -2653,7 +2628,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "FeaturePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@93"
+          "$ref": "#/interfaces@92"
         }
       ]
     },
@@ -2662,7 +2637,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "SameAsPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@93"
+          "$ref": "#/interfaces@92"
         }
       ],
       "attributes": []
@@ -2672,7 +2647,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DifferentFromPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@93"
+          "$ref": "#/interfaces@92"
         }
       ],
       "attributes": []
@@ -3295,14 +3270,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@18"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@20"
+              "$ref": "#/rules@19"
             },
             "arguments": []
           },
@@ -3310,6 +3278,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@21"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@22"
             },
             "arguments": []
           }
@@ -3342,7 +3317,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@22"
+              "$ref": "#/rules@23"
             },
             "arguments": []
           }
@@ -3375,7 +3350,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@15"
+              "$ref": "#/rules@16"
             },
             "arguments": []
           }
@@ -3401,13 +3376,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@12"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@13"
             },
             "arguments": []
@@ -3418,12 +3386,72 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "$ref": "#/rules@14"
             },
             "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@15"
+            },
+            "arguments": []
           }
         ]
       },
       "definesHiddenTokens": false,
       "entry": false,
       "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "Specialization",
+      "fragment": true,
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Keyword",
+            "value": ":>"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "ownedSpecializations",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@65"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedSpecializations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@65"
+                  },
+                  "arguments": []
+                }
+              }
+            ],
+            "cardinality": "*"
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
       "hiddenTokens": [],
       "parameters": [],
       "wildcard": false
@@ -4207,7 +4235,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "definition": {
         "$type": "RuleCall",
         "rule": {
-          "$ref": "#/rules@17"
+          "$ref": "#/rules@18"
         },
         "arguments": []
       },
@@ -4231,14 +4259,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@18"
+              "$ref": "#/rules@19"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@19"
+              "$ref": "#/rules@20"
             },
             "arguments": []
           }
@@ -4359,14 +4387,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@20"
+              "$ref": "#/rules@21"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@21"
+              "$ref": "#/rules@22"
             },
             "arguments": []
           }
@@ -4722,14 +4750,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@23"
+              "$ref": "#/rules@24"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@24"
+              "$ref": "#/rules@25"
             },
             "arguments": []
           }
@@ -5181,35 +5209,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               }
             ],
             "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Relation",
-      "definition": {
-        "$type": "Alternatives",
-        "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@26"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@27"
-            },
-            "arguments": []
           }
         ]
       },
@@ -7198,7 +7197,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9069,9 +9068,8 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "RelationRestrictionAxiom",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "RelationRestrictionAxiom_Union"
+      "returnType": {
+        "$ref": "#/interfaces@35"
       },
       "definition": {
         "$type": "Alternatives",
@@ -9109,9 +9107,19 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "RelationRangeRestrictionAxiom",
+      "returnType": {
+        "$ref": "#/interfaces@35"
+      },
       "definition": {
         "$type": "Group",
         "elements": [
+          {
+            "$type": "Action",
+            "inferredType": {
+              "$type": "InferredType",
+              "name": "RelationRangeRestrictionAxiom"
+            }
+          },
           {
             "$type": "Keyword",
             "value": "restricts"
@@ -9139,7 +9147,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9186,9 +9194,19 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "RelationCardinalityRestrictionAxiom",
+      "returnType": {
+        "$ref": "#/interfaces@35"
+      },
       "definition": {
         "$type": "Group",
         "elements": [
+          {
+            "$type": "Action",
+            "inferredType": {
+              "$type": "InferredType",
+              "name": "RelationCardinalityRestrictionAxiom"
+            }
+          },
           {
             "$type": "Keyword",
             "value": "restricts"
@@ -9204,7 +9222,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9277,11 +9295,18 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationTargetRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@89"
+        "$ref": "#/interfaces@35"
       },
       "definition": {
         "$type": "Group",
         "elements": [
+          {
+            "$type": "Action",
+            "inferredType": {
+              "$type": "InferredType",
+              "name": "RelationTargetRestrictionAxiom"
+            }
+          },
           {
             "$type": "Keyword",
             "value": "restricts"
@@ -9297,7 +9322,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9512,7 +9537,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ScalarPropertyValueAssertion",
       "returnType": {
-        "$ref": "#/interfaces@90"
+        "$ref": "#/interfaces@89"
       },
       "definition": {
         "$type": "Group",
@@ -9622,7 +9647,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@25"
+                "$ref": "#/types@0"
               },
               "terminal": {
                 "$type": "RuleCall",
@@ -9720,7 +9745,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "TypePredicate",
       "returnType": {
-        "$ref": "#/interfaces@92"
+        "$ref": "#/interfaces@91"
       },
       "definition": {
         "$type": "Group",
@@ -9824,7 +9849,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationEntityPredicate",
       "returnType": {
-        "$ref": "#/interfaces@94"
+        "$ref": "#/interfaces@93"
       },
       "definition": {
         "$type": "Group",
@@ -9937,7 +9962,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "FeaturePredicate",
       "returnType": {
-        "$ref": "#/interfaces@95"
+        "$ref": "#/interfaces@94"
       },
       "definition": {
         "$type": "Group",
@@ -10046,7 +10071,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "SameAsPredicate",
       "returnType": {
-        "$ref": "#/interfaces@96"
+        "$ref": "#/interfaces@95"
       },
       "definition": {
         "$type": "Group",
@@ -10128,7 +10153,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DifferentFromPredicate",
       "returnType": {
-        "$ref": "#/interfaces@97"
+        "$ref": "#/interfaces@96"
       },
       "definition": {
         "$type": "Group",
@@ -10374,7 +10399,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "QuotedLiteral",
       "returnType": {
-        "$ref": "#/interfaces@98"
+        "$ref": "#/interfaces@97"
       },
       "definition": {
         "$type": "Group",
@@ -10940,9 +10965,31 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "fragment": false
     }
   ],
+  "types": [
+    {
+      "$type": "Type",
+      "name": "Relation",
+      "type": {
+        "$type": "UnionType",
+        "types": [
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/rules@26"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/rules@27"
+            }
+          }
+        ]
+      }
+    }
+  ],
   "definesHiddenTokens": false,
   "hiddenTokens": [],
   "imports": [],
-  "types": [],
   "usedGrammars": []
 }`));

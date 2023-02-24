@@ -163,7 +163,7 @@ interface ClassifierReference extends SpecializableTermReference {
 }
 
 interface Entity extends Classifier {
-	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
+	ownedRelationRestrictions: RelationRestrictionAxiom[]
 	ownedKeys: KeyAxiom[]
 }
 
@@ -177,7 +177,7 @@ interface RelationRestrictionAxiom extends RestrictionAxiom {
 //}
 
 interface EntityReference extends ClassifierReference {
-	ownedRelationRestrictions: RelationRestrictionAxiom_Union[]
+	ownedRelationRestrictions: RelationRestrictionAxiom[]
 	ownedKeys: KeyAxiom[]
 }
 
@@ -455,9 +455,9 @@ interface ScalarPropertyValueRestrictionAxiom extends ScalarPropertyRestrictionA
 //	range?: @Entity
 //}
 
-interface RelationTargetRestrictionAxiom extends RelationRestrictionAxiom {
-	target: @NamedInstance
-}
+//interface RelationTargetRestrictionAxiom extends RelationRestrictionAxiom {
+//	target: @NamedInstance
+//}
 
 interface ScalarPropertyValueAssertion extends PropertyValueAssertion {
 	property: @ScalarProperty
@@ -567,8 +567,11 @@ Entity infers Entity_Union:
     Aspect | Concept | RelationEntity 
 ;
 
+fragment Specialization:
+    ':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*;
+
 Aspect returns Aspect:
-    ownedAnnotations+=Annotation* 'aspect' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']' )?;
+    ownedAnnotations+=Annotation* 'aspect' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']' )?;
 
 Concept returns Concept:
     ownedAnnotations+=Annotation* 'concept' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ('enumerates' enumeratedInstances+=[ConceptInstance:Ref ] (',' enumeratedInstances+=[ConceptInstance:Ref ] )* )? ']' )?;
@@ -668,9 +671,7 @@ EnumeratedScalar returns EnumeratedScalar:
     ownedAnnotations+=Annotation * 'enumerated' 'scalar' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (literals+=Literal  (',' literals+=Literal  )* )? ']' )?  
 ;
 
-Relation:
-    ForwardRelation | ReverseRelation 
-;
+type Relation = ForwardRelation | ReverseRelation;
 
 ForwardRelation:
     ownedAnnotations+=Annotation* 'forward' name=ID;
@@ -679,16 +680,13 @@ ReverseRelation:
     ownedAnnotations+=Annotation* 'reverse' name=ID;
 
 Rule returns Rule:
-    ownedAnnotations+=Annotation * 'rule' name=ID  '[' antecedent+=Predicate  ('^' antecedent+=Predicate  )* '->' consequent+=Predicate  ('^' consequent+=Predicate  )* ']'  
-;
+    ownedAnnotations+=Annotation* 'rule' name=ID '[' antecedent+=Predicate ('^' antecedent+=Predicate)* '->' consequent+=Predicate ('^' consequent+=Predicate  )* ']';
 
 StructureInstance returns StructureInstance:
-    ^type=[Structure:Ref ] '[' ownedPropertyValues+=PropertyValueAssertion * ']'  
-;
+    ^type=[Structure:Ref] '[' ownedPropertyValues+=PropertyValueAssertion* ']';
 
 NamedInstance infers NamedInstance_Union:
-    ConceptInstance | RelationInstance 
-;
+    ConceptInstance | RelationInstance;
 
 ConceptInstance returns ConceptInstance:
     ownedAnnotations+=Annotation * 'ci' name=ID  (':' ownedTypes+=ConceptTypeAssertion  (',' ownedTypes+=ConceptTypeAssertion  )* )? ('[' (ownedPropertyValues+=PropertyValueAssertion  | ownedLinks+=LinkAssertion  )*']' )?  
@@ -711,15 +709,15 @@ EntityReference infers EntityReference_Union:
 ;
 
 AspectReference returns AspectReference:
-    ownedAnnotations+=Annotation * 'ref' 'aspect' aspect=[Aspect:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*']' )?  
+    ownedAnnotations+=Annotation * 'ref' 'aspect' aspect=[Aspect:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom)*']' )?  
 ;
 
 ConceptReference returns ConceptReference:
-    ownedAnnotations+=Annotation * 'ref' 'concept' concept=[Concept:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*']' )?  
+    ownedAnnotations+=Annotation * 'ref' 'concept' concept=[Concept:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom)*']' )?  
 ;
 
 RelationEntityReference returns RelationEntityReference:
-    ownedAnnotations+=Annotation * 'ref' 'relation' 'entity' entity=[RelationEntity:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom  | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom  )*']' )?  
+    ownedAnnotations+=Annotation * 'ref' 'relation' 'entity' entity=[RelationEntity:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom)*']' )?  
 ;
 
 StructureReference returns StructureReference:
@@ -870,27 +868,20 @@ StructuredPropertyValueRestrictionAxiom returns StructuredPropertyValueRestricti
     'restricts' 'structured' 'property' property=[StructuredProperty:Ref ] 'to' value=StructureInstance   
 ;
 
-RelationRestrictionAxiom infers RelationRestrictionAxiom_Union:
-    RelationRangeRestrictionAxiom | RelationCardinalityRestrictionAxiom | RelationTargetRestrictionAxiom 
-;
+RelationRestrictionAxiom returns RelationRestrictionAxiom:
+   RelationRangeRestrictionAxiom | RelationCardinalityRestrictionAxiom | RelationTargetRestrictionAxiom;
 
-//RelationRangeRestrictionAxiom returns RelationRangeRestrictionAxiom:
-RelationRangeRestrictionAxiom:
-    'restricts' kind=RangeRestrictionKind  'relation' relation=[Relation:Ref ] 'to' range=[Entity:Ref ]  
-;
+RelationRangeRestrictionAxiom returns RelationRestrictionAxiom:
+    {infer RelationRangeRestrictionAxiom} 'restricts' kind=RangeRestrictionKind 'relation' relation=[Relation:Ref] 'to' range=[Entity:Ref];
 
-//RelationCardinalityRestrictionAxiom returns RelationCardinalityRestrictionAxiom:
-RelationCardinalityRestrictionAxiom:
-    'restricts' 'relation' relation=[Relation:Ref ] 'to' kind=CardinalityRestrictionKind  cardinality=UnsignedInteger  (range=[Entity:Ref ])?  
-;
+RelationCardinalityRestrictionAxiom returns RelationRestrictionAxiom:
+    {infer RelationCardinalityRestrictionAxiom} 'restricts' 'relation' relation=[Relation:Ref] 'to' kind=CardinalityRestrictionKind cardinality=UnsignedInteger (range=[Entity:Ref])?;
 
-RelationTargetRestrictionAxiom returns RelationTargetRestrictionAxiom:
-    'restricts' 'relation' relation=[Relation:Ref ] 'to' target=[NamedInstance:Ref ]  
-;
+RelationTargetRestrictionAxiom returns RelationRestrictionAxiom:
+    {infer RelationTargetRestrictionAxiom} 'restricts' 'relation' relation=[Relation:Ref] 'to' target=[NamedInstance:Ref];
 
 KeyAxiom returns KeyAxiom:
-    'key' properties+=[Feature:Ref ] (',' properties+=[Feature:Ref ] )*  
-;
+    'key' properties+=[Feature:Ref] (',' properties+=[Feature:Ref])*;
 
 ConceptTypeAssertion returns ConceptTypeAssertion:
     ^type=[Concept:Ref ] 
