@@ -16,13 +16,6 @@ vocabulary <example.com/dungeons#> as dnd {
         reverse isContainedBy
     ]
 
-    relation entity Lairs :> Contains [
-        from Dungeon
-        to Monster
-        functional
-        inverse functional
-    ]
-
     /* Specifications of monsters and their habitats */
 
     concept Dragon :> Monster
@@ -33,6 +26,7 @@ vocabulary <example.com/dungeons#> as dnd {
 
     concept Kobold :> Monster
 
+    /*
     aspect DragonLair :> Dungeon [
         restricts some relation contains to Dragon
     ]
@@ -40,4 +34,5 @@ vocabulary <example.com/dungeons#> as dnd {
     concept WhiteDragonLair :> DragonLair [
         restricts some relation contains to WhiteDragon
     ]
+    */
 }
