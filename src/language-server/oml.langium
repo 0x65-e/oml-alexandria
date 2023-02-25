@@ -173,8 +173,8 @@ interface RelationRestrictionAxiom extends RestrictionAxiom {
 	owningReference?: @EntityReference
 }
 
-//interface Relation extends Feature {
-//}
+interface Relation extends Feature {
+}
 
 interface EntityReference extends ClassifierReference {
 	ownedRelationRestrictions: RelationRestrictionAxiom[]
@@ -256,11 +256,11 @@ interface RelationEntity extends Entity {
 	transitive: boolean
 }
 
-//interface ForwardRelation extends Relation {
-//}
+interface ForwardRelation extends Relation {
+}
 
-//interface ReverseRelation extends Relation {
-//}
+interface ReverseRelation extends Relation {
+}
 
 interface Structure extends Classifier {
 }
@@ -576,8 +576,8 @@ Entity infers Entity_Union:
     Aspect | Concept | RelationEntity 
 ;
 
-fragment Specialization:
-    ':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*;
+//fragment Specialization:
+//    ':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*;
 
 Aspect returns Aspect:
     ownedAnnotations+=Annotation* 'aspect' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']' )?;
@@ -620,29 +620,27 @@ Structure returns Structure:
     ownedAnnotations+=Annotation * 'structure' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom * ']' )?  
 ;
 
-Feature infers Feature_Union:
-    Property 
-;
+//Feature infers Feature_Union:
+//      Property
+//    | Relation
+//;
 
-Property infers Property_Union:
-    AnnotationProperty | SemanticProperty 
-;
+//Property infers Property_Union:
+//    AnnotationProperty | SemanticProperty 
+//;
 
 AnnotationProperty returns AnnotationProperty:
-    ownedAnnotations+=Annotation * 'annotation' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )?  
-;
+   ownedAnnotations+=Annotation * 'annotation' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )?;
 
-SemanticProperty infers SemanticProperty_Union:
-    ScalarProperty | StructuredProperty 
-;
+//SemanticProperty returns SemanticProperty:
+//      {ScalarProperty} ownedAnnotations+=Annotation * 'scalar' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' 'domain' domain=[Classifier:Ref ] 'range' range=[Scalar:Ref ] (functional?='functional' )? ']' )?
+//    | {StructuredProperty} ownedAnnotations+=Annotation * 'structured' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' 'domain' domain=[Classifier:Ref ] 'range' range=[Structure:Ref ] (functional?='functional' )? ']' )?;
 
 ScalarProperty returns ScalarProperty:
-    ownedAnnotations+=Annotation * 'scalar' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' 'domain' domain=[Classifier:Ref ] 'range' range=[Scalar:Ref ] (functional?='functional' )? ']' )?  
-;
+    ownedAnnotations+=Annotation* 'scalar' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' 'domain' domain=[Classifier:Ref] 'range' range=[Scalar:Ref] (functional?='functional')? ']')?;
 
 StructuredProperty returns StructuredProperty:
-    ownedAnnotations+=Annotation * 'structured' 'property' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' 'domain' domain=[Classifier:Ref ] 'range' range=[Structure:Ref ] (functional?='functional' )? ']' )?  
-;
+    ownedAnnotations+=Annotation* 'structured' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' 'domain' domain=[Classifier:Ref] 'range' range=[Structure:Ref] (functional?='functional')? ']')?;
 
 Scalar infers Scalar_Union:
     FacetedScalar | EnumeratedScalar 
@@ -680,12 +678,13 @@ EnumeratedScalar returns EnumeratedScalar:
     ownedAnnotations+=Annotation * 'enumerated' 'scalar' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (literals+=Literal  (',' literals+=Literal  )* )? ']' )?  
 ;
 
-type Relation = ForwardRelation | ReverseRelation;
+//Relation:
+//    ForwardRelation | ReverseRelation;
 
-ForwardRelation:
+ForwardRelation returns ForwardRelation:
     ownedAnnotations+=Annotation* 'forward' name=ID;
 
-ReverseRelation:
+ReverseRelation returns ReverseRelation:
     ownedAnnotations+=Annotation* 'reverse' name=ID;
 
 Rule returns Rule:
