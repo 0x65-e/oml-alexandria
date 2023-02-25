@@ -124,10 +124,10 @@ interface VocabularyBundleImport extends Import {
 interface DescriptionBox extends Ontology {
 }
 
-//interface Description extends DescriptionBox {
-//	ownedImports: DescriptionImport[]
-//	ownedStatements: DescriptionStatement[]
-//}
+interface Description extends DescriptionBox {
+	ownedImports: DescriptionImport[]
+	ownedStatements: DescriptionStatement_Union[]
+}
 
 interface DescriptionImport extends Import {
 	// owningDescription: @Description
@@ -137,9 +137,9 @@ interface DescriptionStatement extends Statement {
 	owningDescription: @Description
 }
 
-//interface DescriptionBundle extends DescriptionBox {
-//	ownedImports: DescriptionBundleImport[]
-//}
+interface DescriptionBundle extends DescriptionBox {
+	ownedImports: DescriptionBundleImport[]
+}
 
 interface DescriptionBundleImport extends Import {
 	// owningDescriptionBundle: @DescriptionBundle
@@ -351,21 +351,21 @@ interface RelationInstanceReference extends NamedInstanceReference {
 	ownedTypes: RelationTypeAssertion[]
 }
 
-//interface AspectReference extends EntityReference {
-//	aspect: @Aspect
-//}
+interface AspectReference extends EntityReference {
+	aspect: @Aspect
+}
 
-//interface ConceptReference extends EntityReference {
-//	concept: @Concept
-//}
+interface ConceptReference extends EntityReference {
+	concept: @Concept
+}
 
-//interface RelationEntityReference extends EntityReference {
-//	entity: @RelationEntity
-//}
+interface RelationEntityReference extends EntityReference {
+	entity: @RelationEntity
+}
 
-//interface StructureReference extends ClassifierReference {
-//	structure: @Structure
-//}
+interface StructureReference extends ClassifierReference {
+	structure: @Structure
+}
 
 /*
 interface AnnotationPropertyReference extends SpecializableTermReference {
@@ -551,8 +551,8 @@ VocabularyBundle returns VocabularyBundle:
 */
 
 DescriptionBox returns DescriptionBox:
-      {infer Description} ownedAnnotations+=Annotation* 'description' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionImport* ownedStatements+=DescriptionStatement* '}' 
-    | {infer DescriptionBundle} ownedAnnotations+=Annotation* 'description' 'bundle' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionBundleImport* '}';
+      {Description} ownedAnnotations+=Annotation* 'description' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionImport* ownedStatements+=DescriptionStatement* '}' 
+    | {DescriptionBundle} ownedAnnotations+=Annotation* 'description' 'bundle' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionBundleImport* '}';
 
 /*
 Description returns Description:
@@ -760,15 +760,15 @@ SpecializableTermReference returns SpecializableTermReference:
 
 ClassifierReference returns ClassifierReference:
       {EntityReference} EntityReference
-    | {infer StructureReference} ownedAnnotations+=Annotation* 'ref' 'structure' structure=[Structure:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom* ']')?;
+    | {StructureReference} ownedAnnotations+=Annotation* 'ref' 'structure' structure=[Structure:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom* ']')?;
 
 //EntityReference returns EntityReference:
 //    {EntityReference} AspectReference | {EntityReference} ConceptReference | {EntityReference} RelationEntityReference;
 
 EntityReference returns EntityReference:
-      {infer AspectReference} ownedAnnotations+=Annotation* 'ref' 'aspect' aspect=[Aspect:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?
-    | {infer ConceptReference} ownedAnnotations+=Annotation* 'ref' 'concept' concept=[Concept:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?
-    | {infer RelationEntityReference} ownedAnnotations+=Annotation* 'ref' 'relation' 'entity' entity=[RelationEntity:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?;
+      {AspectReference} ownedAnnotations+=Annotation* 'ref' 'aspect' aspect=[Aspect:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?
+    | {ConceptReference} ownedAnnotations+=Annotation* 'ref' 'concept' concept=[Concept:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?
+    | {RelationEntityReference} ownedAnnotations+=Annotation* 'ref' 'relation' 'entity' entity=[RelationEntity:Ref] (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?;
 
 //AspectReference returns EntityReference:
 //    {infer AspectReference} ownedAnnotations+=Annotation* 'ref' 'aspect' aspect=[Aspect:Ref ] (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom  | ownedRelationRestrictions+=RelationRestrictionAxiom)*']' )?;
@@ -833,17 +833,14 @@ VocabularyStatement returns VocabularyStatement:
     | {RuleReference} ownedAnnotations+=Annotation* 'ref' 'rule' rule=[Rule:Ref]
     | {SpecializableTerm} SpecializableTerm
     | {SpecializableTermReference} SpecializableTermReference
-    | {RelationReference} ownedAnnotations+=Annotation* 'ref' 'relation' relation=[Relation:Ref]
-;
+    | {RelationReference} ownedAnnotations+=Annotation* 'ref' 'relation' relation=[Relation:Ref];
 
 DescriptionStatement infers DescriptionStatement_Union:
-    NamedInstance | NamedInstanceReference 
-;
+    NamedInstance | NamedInstanceReference;
 
 VocabularyImport returns VocabularyImport:
-      {VocabularyExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?  
-    | {VocabularyUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?  
-;
+      {VocabularyExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
+    | {VocabularyUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?;
 
 /*
 VocabularyExtension returns VocabularyExtension:
@@ -857,8 +854,7 @@ VocabularyUsage returns VocabularyUsage:
 
 VocabularyBundleImport returns VocabularyBundleImport:
       {VocabularyBundleExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
-    | {VocabularyBundleInclusion} ownedAnnotations+=Annotation* 'includes' namespace=NAMESPACE ('as' prefix=ID)? 
-;
+    | {VocabularyBundleInclusion} ownedAnnotations+=Annotation* 'includes' namespace=NAMESPACE ('as' prefix=ID)?;
 
 /*
 VocabularyBundleInclusion returns VocabularyBundleInclusion:
@@ -872,8 +868,7 @@ VocabularyBundleExtension returns VocabularyBundleExtension:
 
 DescriptionImport returns DescriptionImport:
       {DescriptionExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
-    | {DescriptionUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?
-;
+    | {DescriptionUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?;
 
 /*
 DescriptionUsage returns DescriptionUsage:
@@ -927,14 +922,14 @@ ScalarPropertyValueRestrictionAxiom:
 StructuredPropertyRestrictionAxiom returns StructuredPropertyRestrictionAxiom:
     StructuredPropertyRangeRestrictionAxiom | StructuredPropertyCardinalityRestrictionAxiom | StructuredPropertyValueRestrictionAxiom;
 
-StructuredPropertyRangeRestrictionAxiom:
-    'restricts' kind=RangeRestrictionKind 'structured' 'property' property=[StructuredProperty:Ref] 'to' range=[Structure:Ref];
+StructuredPropertyRangeRestrictionAxiom returns StructuredPropertyRestrictionAxiom:
+    {infer StructuredPropertyRangeRestrictionAxiom} 'restricts' kind=RangeRestrictionKind 'structured' 'property' property=[StructuredProperty:Ref] 'to' range=[Structure:Ref];
 
-StructuredPropertyCardinalityRestrictionAxiom:
-    'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' kind=CardinalityRestrictionKind cardinality=UnsignedInteger (range=[Structure:Ref])?;
+StructuredPropertyCardinalityRestrictionAxiom returns StructuredPropertyRestrictionAxiom:
+    {infer StructuredPropertyCardinalityRestrictionAxiom} 'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' kind=CardinalityRestrictionKind cardinality=UnsignedInteger (range=[Structure:Ref])?;
 
-StructuredPropertyValueRestrictionAxiom:
-    'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' value=StructureInstance;
+StructuredPropertyValueRestrictionAxiom returns StructuredPropertyRestrictionAxiom:
+    {infer StructuredPropertyValueRestrictionAxiom} 'restricts' 'structured' 'property' property=[StructuredProperty:Ref] 'to' value=StructureInstance;
 
 RelationRestrictionAxiom returns RelationRestrictionAxiom:
    RelationRangeRestrictionAxiom | RelationCardinalityRestrictionAxiom | RelationTargetRestrictionAxiom;
