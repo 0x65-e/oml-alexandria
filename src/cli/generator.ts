@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { CompositeGeneratorNode, NL, toString } from 'langium';
+import { AstNode, CompositeGeneratorNode, NL, toString } from 'langium';
 import path from 'path';
-import { isMember, isRelationEntity, isSpecializableTerm, isVocabulary, Ontology, RelationEntity, Vocabulary, VocabularyStatement } from '../language-server/generated/ast';
+import { isMember, isRelationEntity, isSpecializableTerm, isVocabulary, Ontology, Vocabulary } from '../language-server/generated/ast';
 import { extractDestinationAndName } from './cli-util';
 
 export function generateJavaScript(model: Ontology, filePath: string, destination: string | undefined): string {
@@ -27,7 +27,7 @@ export function dumpTree(ontology: Ontology, filePath: string, destination: stri
     fileNode.append(ontology.$type).appendNewLine();
     if (isVocabulary(ontology)) {
         let vocabulary: Vocabulary = ontology;
-        dumpStatements(vocabulary.ownedStatements, 1, fileNode);
+        if (vocabulary.ownedStatements) vocabulary.ownedStatements.forEach(stmt => dumpNodes(stmt, 1, fileNode));
     } else {
         fileNode.append("NOT VOCABULARY");
     }
@@ -39,27 +39,17 @@ export function dumpTree(ontology: Ontology, filePath: string, destination: stri
     return generatedFilePath;
 }
 
-function dumpStatements(stmts: VocabularyStatement[], level: number, printer: CompositeGeneratorNode): void {
-    for (let smt of stmts) {
-        printer.append('\t'.repeat(level) + `${smt.$type}`);
-        if (isMember(smt)) {
-            printer.append(` (INFO: name: ${smt.name})`);
-        }
-        printer.appendNewLine();
-        if (isRelationEntity(smt)) {
-            dumpRelationEntity(smt, level+1, printer)
-        }
-        if (isSpecializableTerm(smt)) {
-            if (smt.ownedSpecializations) smt.ownedSpecializations.forEach(spec => printer.append('\t'.repeat(level+1) + `(INFO: specializes: ${spec.specializedTerm.$refText})`).appendNewLine());
-        }
+function dumpNodes(smt: AstNode, level: number, printer: CompositeGeneratorNode): void {
+    printer.append('\t'.repeat(level) + `${smt.$type}`);
+    if (isMember(smt)) {
+        printer.append(` (INFO: name: ${smt.name})`);
     }
-}
-
-function dumpRelationEntity(entity: RelationEntity, level: number, printer: CompositeGeneratorNode): void {
-    if (entity.forwardRelation) {
-        printer.append('\t'.repeat(level) + `Forward Relation (INFO: name: ${entity.forwardRelation.name})`).appendNewLine();
+    printer.appendNewLine();
+    if (isRelationEntity(smt)) {
+        if (smt.forwardRelation) dumpNodes(smt.forwardRelation, level+1, printer);
+        if (smt.reverseRelation) dumpNodes(smt.reverseRelation, level+1, printer);
     }
-    if (entity.reverseRelation) {
-        printer.append('\t'.repeat(level) + `Reverse Relation (INFO: name: ${entity.reverseRelation.name})`).appendNewLine();
+    if (isSpecializableTerm(smt)) {
+        if (smt.ownedSpecializations) smt.ownedSpecializations.forEach(spec => printer.append('\t'.repeat(level+1) + `(INFO: specializes: ${spec.specializedTerm.$refText})`).appendNewLine());
     }
 }
