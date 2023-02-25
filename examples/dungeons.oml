@@ -1,0 +1,43 @@
+vocabulary <example.com/dungeons#> as dnd {
+    // This is a comment
+
+    /* Basic Aspects of Dungeons and Dragons */
+
+    aspect Dungeon
+
+    aspect Monster
+
+    /* Relations between dungeons and monsters */
+
+    relation entity Contains [
+        from Dungeon
+        to Monster
+        forward contains
+        reverse isContainedBy
+    ]
+
+    relation entity Lairs :> Contains [
+        from Dungeon
+        to Monster
+        functional
+        inverse functional
+    ]
+
+    /* Specifications of monsters and their habitats */
+
+    concept Dragon :> Monster
+
+    concept WhiteDragon :> Dragon
+
+    concept BlueDragon :> Dragon
+
+    concept Kobold :> Monster
+
+    aspect DragonLair :> Dungeon [
+        restricts some relation contains to Dragon
+    ]
+
+    concept WhiteDragonLair :> DragonLair [
+        restricts some relation contains to WhiteDragon
+    ]
+}
