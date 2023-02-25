@@ -75,8 +75,8 @@ interface Statement {
 }
 
 //interface Vocabulary extends VocabularyBox {
-//	ownedImports: VocabularyImport_Union[]
-//	ownedStatements: VocabularyStatement_Union[]
+//	ownedImports: VocabularyImport[]
+//	ownedStatements: VocabularyStatement[]
 //}
 
 interface VocabularyBox extends Ontology {
@@ -114,7 +114,7 @@ interface SpecializableTermReference extends OmlReference, VocabularyStatement {
 //}
 
 //interface VocabularyBundle extends VocabularyBox {
-//	ownedImports: VocabularyBundleImport_Union[]
+//	ownedImports: VocabularyBundleImport[]
 //}
 
 interface VocabularyBundleImport extends Import {
@@ -125,8 +125,8 @@ interface DescriptionBox extends Ontology {
 }
 
 //interface Description extends DescriptionBox {
-//	ownedImports: DescriptionImport_Union[]
-//	ownedStatements: DescriptionStatement_Union[]
+//	ownedImports: DescriptionImport[]
+//	ownedStatements: DescriptionStatement[]
 //}
 
 interface DescriptionImport extends Import {
@@ -138,7 +138,7 @@ interface DescriptionStatement extends Statement {
 }
 
 //interface DescriptionBundle extends DescriptionBox {
-//	ownedImports: DescriptionBundleImport_Union[]
+//	ownedImports: DescriptionBundleImport[]
 //}
 
 interface DescriptionBundleImport extends Import {
@@ -304,8 +304,8 @@ interface EnumeratedScalar extends Scalar {
 */
 
 interface Rule extends Member, VocabularyStatement {
-	antecedent: Predicate_Union[]
-	consequent: Predicate_Union[]
+	antecedent: Predicate[]
+	consequent: Predicate[]
 }
 
 interface Predicate {
@@ -970,22 +970,26 @@ LinkAssertion returns LinkAssertion:
     relation=[Relation:Ref ] target=[NamedInstance:Ref ]  
 ;
 
-Predicate infers Predicate_Union:
-    UnaryPredicate | BinaryPredicate 
-;
+Predicate returns Predicate:
+      {TypePredicate} ^type=[Type:Ref] => '(' variable=ID ')'
+    | {BinaryPredicate} BinaryPredicate;
 
-UnaryPredicate infers UnaryPredicate_Union:
-    TypePredicate 
-;
+/*
+UnaryPredicate returns UnaryPredicate:
+    {TypePredicate} ^type=[Type:Ref] => '(' variable=ID ')';
 
 TypePredicate returns TypePredicate:
     ^type=[Type:Ref ] => '(' variable=ID  ')'  
 ;
+*/
 
-BinaryPredicate infers BinaryPredicate_Union:
-    RelationEntityPredicate | FeaturePredicate | SameAsPredicate | DifferentFromPredicate 
-;
+BinaryPredicate returns BinaryPredicate:
+      {RelationEntityPredicate} entity=[RelationEntity:Ref] '(' variable1=ID ',' entityVariable=ID ',' (variable2=ID  | instance2=[NamedInstance:CrossRef]) ')'
+    | {FeaturePredicate} feature=[Feature:Ref ] '(' variable1=ID ',' (variable2=ID | literal2=Literal | instance2=[NamedInstance:CrossRef]) ')'
+    | {SameAsPredicate} 'sameAs' '(' variable1=ID ',' (variable2=ID | instance2=[NamedInstance:CrossRef]) ')'
+    | {DifferentFromPredicate} 'differentFrom' '(' variable1=ID ',' (variable2=ID | instance2=[NamedInstance:CrossRef]) ')';
 
+/*
 RelationEntityPredicate returns RelationEntityPredicate:
     entity=[RelationEntity:Ref ] '(' variable1=ID  ',' entityVariable=ID  ',' (variable2=ID  | instance2=[NamedInstance:CrossRef ] )')'  
 ;
@@ -1001,6 +1005,7 @@ SameAsPredicate returns SameAsPredicate:
 DifferentFromPredicate returns DifferentFromPredicate:
     'differentFrom' '(' variable1=ID ',' (variable2=ID | instance2=[NamedInstance:CrossRef] )')'  
 ;
+*/
 
 Literal:
     IntegerLiteral | DecimalLiteral | DoubleLiteral | BooleanLiteral | QuotedLiteral;

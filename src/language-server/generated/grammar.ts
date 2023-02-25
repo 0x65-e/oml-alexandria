@@ -95,7 +95,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@51"
+              "$ref": "#/rules@45"
             }
           }
         },
@@ -1407,7 +1407,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@43/inferredType"
+                "$ref": "#/interfaces@54"
               }
             }
           },
@@ -1421,7 +1421,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@43/inferredType"
+                "$ref": "#/interfaces@54"
               }
             }
           },
@@ -1960,7 +1960,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@51"
+              "$ref": "#/rules@45"
             }
           }
         }
@@ -2058,7 +2058,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -2075,7 +2075,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@51"
+                    "$ref": "#/rules@45"
                   },
                   "arguments": []
                 }
@@ -2092,7 +2092,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -2154,7 +2154,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -2170,7 +2170,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2249,7 +2249,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -2265,7 +2265,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2345,7 +2345,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -2361,7 +2361,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2440,7 +2440,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -2456,7 +2456,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2575,7 +2575,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2663,7 +2663,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2735,7 +2735,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -2758,7 +2758,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -2821,7 +2821,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -2893,7 +2893,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -2916,7 +2916,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -3011,7 +3011,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -3140,7 +3140,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -3280,7 +3280,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -3397,7 +3397,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                           "terminal": {
                             "$type": "RuleCall",
                             "rule": {
-                              "$ref": "#/rules@60"
+                              "$ref": "#/rules@54"
                             },
                             "arguments": []
                           },
@@ -3423,7 +3423,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                               "terminal": {
                                 "$type": "RuleCall",
                                 "rule": {
-                                  "$ref": "#/rules@60"
+                                  "$ref": "#/rules@54"
                                 },
                                 "arguments": []
                               },
@@ -3482,7 +3482,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -3551,7 +3551,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -3574,7 +3574,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -3789,7 +3789,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -3862,7 +3862,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@56"
+                                "$ref": "#/rules@50"
                               },
                               "arguments": []
                             }
@@ -3883,7 +3883,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@56"
+                                "$ref": "#/rules@50"
                               },
                               "arguments": []
                             }
@@ -3904,7 +3904,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@56"
+                                "$ref": "#/rules@50"
                               },
                               "arguments": []
                             }
@@ -3925,7 +3925,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@73"
+                                "$ref": "#/rules@67"
                               },
                               "arguments": []
                             }
@@ -3946,7 +3946,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@72"
+                                "$ref": "#/rules@66"
                               },
                               "arguments": []
                             }
@@ -3967,7 +3967,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@51"
+                                "$ref": "#/rules@45"
                               },
                               "arguments": []
                             }
@@ -3988,7 +3988,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@51"
+                                "$ref": "#/rules@45"
                               },
                               "arguments": []
                             }
@@ -4009,7 +4009,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@51"
+                                "$ref": "#/rules@45"
                               },
                               "arguments": []
                             }
@@ -4030,7 +4030,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@51"
+                                "$ref": "#/rules@45"
                               },
                               "arguments": []
                             }
@@ -4087,7 +4087,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -4153,7 +4153,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@51"
+                            "$ref": "#/rules@45"
                           },
                           "arguments": []
                         }
@@ -4172,7 +4172,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                             "terminal": {
                               "$type": "RuleCall",
                               "rule": {
-                                "$ref": "#/rules@51"
+                                "$ref": "#/rules@45"
                               },
                               "arguments": []
                             }
@@ -4234,7 +4234,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@72"
+                "$ref": "#/rules@66"
               },
               "arguments": []
             }
@@ -4281,7 +4281,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@72"
+                "$ref": "#/rules@66"
               },
               "arguments": []
             }
@@ -4316,7 +4316,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -4396,7 +4396,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -4525,7 +4525,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -4594,7 +4594,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -4620,7 +4620,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -4646,7 +4646,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -4672,7 +4672,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -4801,7 +4801,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -4897,7 +4897,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -4997,7 +4997,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5097,7 +5097,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5197,7 +5197,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5329,7 +5329,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5470,7 +5470,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5622,7 +5622,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5778,7 +5778,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -5947,7 +5947,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -6082,7 +6082,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -6226,7 +6226,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@72"
+                    "$ref": "#/rules@66"
                   },
                   "arguments": []
                 }
@@ -6355,7 +6355,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -6442,7 +6442,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -6535,7 +6535,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6554,7 +6554,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6597,7 +6597,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6616,7 +6616,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6677,7 +6677,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6696,7 +6696,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6739,7 +6739,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6758,7 +6758,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6819,7 +6819,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6838,7 +6838,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6881,7 +6881,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6900,7 +6900,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -6961,7 +6961,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -6980,7 +6980,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -7023,7 +7023,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -7042,7 +7042,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -7085,7 +7085,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@68"
+                    "$ref": "#/rules@62"
                   },
                   "arguments": []
                 }
@@ -7104,7 +7104,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -7141,7 +7141,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@54"
             },
             "arguments": []
           },
@@ -7243,7 +7243,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@58"
+                "$ref": "#/rules@52"
               },
               "arguments": []
             }
@@ -7268,7 +7268,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7291,7 +7291,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7337,7 +7337,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7355,7 +7355,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@59"
+                "$ref": "#/rules@53"
               },
               "arguments": []
             }
@@ -7367,7 +7367,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@56"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -7384,7 +7384,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7431,7 +7431,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7449,7 +7449,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@51"
+                "$ref": "#/rules@45"
               },
               "arguments": []
             }
@@ -7519,7 +7519,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@58"
+                "$ref": "#/rules@52"
               },
               "arguments": []
             }
@@ -7544,7 +7544,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7567,7 +7567,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7613,7 +7613,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7631,7 +7631,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@59"
+                "$ref": "#/rules@53"
               },
               "arguments": []
             }
@@ -7643,7 +7643,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@56"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -7660,7 +7660,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7707,7 +7707,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7805,7 +7805,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@58"
+                "$ref": "#/rules@52"
               },
               "arguments": []
             }
@@ -7826,7 +7826,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7849,7 +7849,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7901,7 +7901,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -7919,7 +7919,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@59"
+                "$ref": "#/rules@53"
               },
               "arguments": []
             }
@@ -7931,7 +7931,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@56"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -7948,7 +7948,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8001,7 +8001,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8024,7 +8024,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8065,7 +8065,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8091,7 +8091,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@60"
+                      "$ref": "#/rules@54"
                     },
                     "arguments": []
                   },
@@ -8128,7 +8128,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@54"
             },
             "arguments": []
           },
@@ -8160,7 +8160,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@60"
+              "$ref": "#/rules@54"
             },
             "arguments": []
           },
@@ -8224,7 +8224,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8238,7 +8238,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@51"
+                "$ref": "#/rules@45"
               },
               "arguments": []
             }
@@ -8270,7 +8270,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8319,7 +8319,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8338,7 +8338,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@54"
                 },
                 "arguments": []
               },
@@ -8357,104 +8357,79 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "Predicate",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Predicate_Union"
+      "returnType": {
+        "$ref": "#/interfaces@54"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@44"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@72"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "type",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@24"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "("
+              },
+              {
+                "$type": "Assignment",
+                "feature": "variable",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ")"
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@46"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "UnaryPredicate",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "UnaryPredicate_Union"
-      },
-      "definition": {
-        "$type": "RuleCall",
-        "rule": {
-          "$ref": "#/rules@45"
-        },
-        "arguments": []
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "TypePredicate",
-      "returnType": {
-        "$ref": "#/interfaces@72"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "type",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@24"
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@73"
+                }
               },
-              "terminal": {
+              {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@60"
+                  "$ref": "#/rules@44"
                 },
                 "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "("
-          },
-          {
-            "$type": "Assignment",
-            "feature": "variable",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ")"
+              }
+            ]
           }
         ]
       },
@@ -8468,13 +8443,392 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "BinaryPredicate",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "BinaryPredicate_Union"
+      "returnType": {
+        "$ref": "#/interfaces@73"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@74"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "entity",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@45"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "("
+              },
+              {
+                "$type": "Assignment",
+                "feature": "variable1",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Assignment",
+                "feature": "entityVariable",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "variable2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@66"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "instance2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@36"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@55"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Keyword",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@75"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "feature",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@6"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "("
+              },
+              {
+                "$type": "Assignment",
+                "feature": "variable1",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "variable2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@66"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "literal2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@45"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "instance2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@36"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@55"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Keyword",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@76"
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "sameAs"
+              },
+              {
+                "$type": "Keyword",
+                "value": "("
+              },
+              {
+                "$type": "Assignment",
+                "feature": "variable1",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "variable2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@66"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "instance2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@36"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@55"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Keyword",
+                "value": ")"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@77"
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "differentFrom"
+              },
+              {
+                "$type": "Keyword",
+                "value": "("
+              },
+              {
+                "$type": "Assignment",
+                "feature": "variable1",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@66"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": ","
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "variable2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@66"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "instance2",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@36"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@55"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  }
+                ]
+              },
+              {
+                "$type": "Keyword",
+                "value": ")"
+              }
+            ]
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "Literal",
+      "definition": {
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@46"
+            },
+            "arguments": []
+          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -8499,443 +8853,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@50"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "RelationEntityPredicate",
-      "returnType": {
-        "$ref": "#/interfaces@74"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "entity",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@45"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@60"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "("
-          },
-          {
-            "$type": "Assignment",
-            "feature": "variable1",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ","
-          },
-          {
-            "$type": "Assignment",
-            "feature": "entityVariable",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ","
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "variable2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@72"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "instance2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@36"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@61"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ]
-          },
-          {
-            "$type": "Keyword",
-            "value": ")"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "FeaturePredicate",
-      "returnType": {
-        "$ref": "#/interfaces@75"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "feature",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@6"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@60"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "("
-          },
-          {
-            "$type": "Assignment",
-            "feature": "variable1",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ","
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "variable2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@72"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "literal2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@51"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "instance2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@36"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@61"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ]
-          },
-          {
-            "$type": "Keyword",
-            "value": ")"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "SameAsPredicate",
-      "returnType": {
-        "$ref": "#/interfaces@76"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Keyword",
-            "value": "sameAs"
-          },
-          {
-            "$type": "Keyword",
-            "value": "("
-          },
-          {
-            "$type": "Assignment",
-            "feature": "variable1",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ","
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "variable2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@72"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "instance2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@36"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@61"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ]
-          },
-          {
-            "$type": "Keyword",
-            "value": ")"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "DifferentFromPredicate",
-      "returnType": {
-        "$ref": "#/interfaces@77"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Keyword",
-            "value": "differentFrom"
-          },
-          {
-            "$type": "Keyword",
-            "value": "("
-          },
-          {
-            "$type": "Assignment",
-            "feature": "variable1",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@72"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": ","
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "variable2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@72"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "instance2",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@36"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@61"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ]
-          },
-          {
-            "$type": "Keyword",
-            "value": ")"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Literal",
-      "definition": {
-        "$type": "Alternatives",
-        "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@52"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@53"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@54"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@55"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@57"
+              "$ref": "#/rules@51"
             },
             "arguments": []
           }
@@ -8961,7 +8879,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@67"
+                "$ref": "#/rules@61"
               },
               "arguments": []
             }
@@ -8973,7 +8891,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@66"
+                "$ref": "#/rules@60"
               },
               "arguments": []
             }
@@ -8997,7 +8915,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@65"
+            "$ref": "#/rules@59"
           },
           "arguments": []
         }
@@ -9019,7 +8937,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@64"
+            "$ref": "#/rules@58"
           },
           "arguments": []
         }
@@ -9041,7 +8959,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@63"
+            "$ref": "#/rules@57"
           },
           "arguments": []
         }
@@ -9063,7 +8981,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@66"
+            "$ref": "#/rules@60"
           },
           "arguments": []
         }
@@ -9088,7 +9006,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@73"
+                "$ref": "#/rules@67"
               },
               "arguments": []
             }
@@ -9115,7 +9033,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@60"
+                          "$ref": "#/rules@54"
                         },
                         "arguments": []
                       },
@@ -9138,7 +9056,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@72"
+                        "$ref": "#/rules@66"
                       },
                       "arguments": []
                     }
@@ -9219,21 +9137,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@72"
+              "$ref": "#/rules@66"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@71"
+              "$ref": "#/rules@65"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@69"
+              "$ref": "#/rules@63"
             },
             "arguments": []
           }
@@ -9256,14 +9174,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@71"
+              "$ref": "#/rules@65"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@69"
+              "$ref": "#/rules@63"
             },
             "arguments": []
           }
@@ -9395,7 +9313,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@70"
+              "$ref": "#/rules@64"
             }
           },
           {
@@ -9408,7 +9326,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@70"
+              "$ref": "#/rules@64"
             }
           }
         ]
@@ -9422,7 +9340,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "definition": {
         "$type": "TerminalRuleCall",
         "rule": {
-          "$ref": "#/rules@70"
+          "$ref": "#/rules@64"
         }
       },
       "fragment": false,
