@@ -95,7 +95,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@75"
+              "$ref": "#/rules@65"
             }
           }
         },
@@ -812,7 +812,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "referenceType": {
                 "$type": "SimpleType",
                 "typeRef": {
-                  "$ref": "#/rules@22/definition/elements@0/elements@0"
+                  "$ref": "#/rules@12/definition/elements@0/elements@0"
                 }
               }
             }
@@ -1053,7 +1053,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@22/definition/elements@0/elements@0"
+                "$ref": "#/rules@12/definition/elements@0/elements@0"
               }
             }
           }
@@ -1101,7 +1101,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@22/definition/elements@0/elements@0"
+                "$ref": "#/rules@12/definition/elements@0/elements@0"
               }
             }
           },
@@ -1410,144 +1410,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "attributes": [
         {
           "$type": "TypeAttribute",
-          "name": "length",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@80"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "minLength",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@80"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "maxLength",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@80"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "pattern",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "primitiveType": "string"
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "language",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "primitiveType": "string"
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "minInclusive",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@75"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "minExclusive",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@75"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "maxInclusive",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@75"
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "maxExclusive",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/rules@75"
-            }
-          }
-        }
-      ],
-      "name": "FacetedScalar",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@51"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "literals",
-          "type": {
-            "$type": "ArrayType",
-            "elementType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/rules@75"
-              }
-            }
-          },
-          "isOptional": false
-        }
-      ],
-      "name": "EnumeratedScalar",
-      "superTypes": [
-        {
-          "$ref": "#/interfaces@51"
-        }
-      ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
           "name": "antecedent",
           "type": {
             "$type": "ArrayType",
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@67/inferredType"
+                "$ref": "#/rules@57/inferredType"
               }
             }
           },
@@ -1561,7 +1430,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@67/inferredType"
+                "$ref": "#/rules@57/inferredType"
               }
             }
           },
@@ -1587,7 +1456,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@53"
               }
             }
           }
@@ -1601,7 +1470,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@53"
               }
             }
           }
@@ -1636,7 +1505,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@55"
+                "$ref": "#/rules@45"
               }
             }
           }
@@ -1650,7 +1519,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@65"
+                "$ref": "#/rules@55"
               }
             }
           }
@@ -1714,7 +1583,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@22/definition/elements@1/elements@0"
+                "$ref": "#/rules@12/definition/elements@1/elements@0"
               }
             }
           }
@@ -1728,7 +1597,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@60"
+                "$ref": "#/interfaces@58"
               }
             }
           }
@@ -1752,7 +1621,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/rules@22/definition/elements@1/elements@0"
+                "$ref": "#/rules@12/definition/elements@1/elements@0"
               }
             }
           },
@@ -1766,7 +1635,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@59"
+                "$ref": "#/interfaces@57"
               }
             }
           },
@@ -1816,7 +1685,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@53"
               }
             }
           },
@@ -1961,7 +1830,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "UnaryPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@56"
+          "$ref": "#/interfaces@54"
         }
       ]
     },
@@ -1986,7 +1855,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "TypePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@73"
+          "$ref": "#/interfaces@71"
         }
       ]
     },
@@ -2029,7 +1898,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "BinaryPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@56"
+          "$ref": "#/interfaces@54"
         }
       ]
     },
@@ -2063,7 +1932,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "RelationEntityPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@75"
+          "$ref": "#/interfaces@73"
         }
       ]
     },
@@ -2091,7 +1960,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/rules@75"
+              "$ref": "#/rules@65"
             }
           }
         }
@@ -2099,7 +1968,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "FeaturePredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@75"
+          "$ref": "#/interfaces@73"
         }
       ]
     },
@@ -2108,7 +1977,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "SameAsPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@75"
+          "$ref": "#/interfaces@73"
         }
       ],
       "attributes": []
@@ -2118,7 +1987,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "DifferentFromPredicate",
       "superTypes": [
         {
-          "$ref": "#/interfaces@75"
+          "$ref": "#/interfaces@73"
         }
       ],
       "attributes": []
@@ -2189,7 +2058,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -2206,7 +2075,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@75"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -2223,7 +2092,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -2285,7 +2154,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@92"
+                    "$ref": "#/rules@82"
                   },
                   "arguments": []
                 }
@@ -2301,7 +2170,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -2317,7 +2186,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@33"
+                    "$ref": "#/rules@23"
                   },
                   "arguments": []
                 },
@@ -2330,7 +2199,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@31"
+                    "$ref": "#/rules@21"
                   },
                   "arguments": []
                 },
@@ -2380,7 +2249,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@92"
+                    "$ref": "#/rules@82"
                   },
                   "arguments": []
                 }
@@ -2396,7 +2265,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -2412,7 +2281,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@36"
+                    "$ref": "#/rules@26"
                   },
                   "arguments": []
                 },
@@ -2476,7 +2345,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@92"
+                    "$ref": "#/rules@82"
                   },
                   "arguments": []
                 }
@@ -2492,7 +2361,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -2508,7 +2377,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@39"
+                    "$ref": "#/rules@29"
                   },
                   "arguments": []
                 },
@@ -2521,7 +2390,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@32"
+                    "$ref": "#/rules@22"
                   },
                   "arguments": []
                 },
@@ -2571,7 +2440,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@92"
+                    "$ref": "#/rules@82"
                   },
                   "arguments": []
                 }
@@ -2587,7 +2456,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -2603,7 +2472,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@42"
+                    "$ref": "#/rules@32"
                   },
                   "arguments": []
                 },
@@ -2627,73 +2496,451 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "SpecializableTerm",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "SpecializableTerm_Union"
+      "returnType": {
+        "$ref": "#/interfaces@9"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@5"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@25"
+                }
+              },
+              {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@5"
+                },
+                "arguments": []
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@12"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@51"
+                }
+              },
+              {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@7"
+                },
+                "arguments": []
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@13"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@4"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "annotation"
+              },
+              {
+                "$type": "Keyword",
+                "value": "property"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@14"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Type",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Type_Union"
-      },
-      "definition": {
-        "$type": "Alternatives",
-        "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@6"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@50"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "scalar"
+              },
+              {
+                "$type": "Keyword",
+                "value": "property"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "domain"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "domain",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@25"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@74"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "range"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "range",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@51"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@74"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "functional",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "functional"
+                    },
+                    "cardinality": "?"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@15"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@52"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "structured"
+              },
+              {
+                "$type": "Keyword",
+                "value": "property"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "domain"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "domain",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@25"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@74"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "range"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "range",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "CrossReference",
+                      "type": {
+                        "$ref": "#/interfaces@48"
+                      },
+                      "terminal": {
+                        "$type": "RuleCall",
+                        "rule": {
+                          "$ref": "#/rules@74"
+                        },
+                        "arguments": []
+                      },
+                      "deprecatedSyntax": false
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "functional",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "functional"
+                    },
+                    "cardinality": "?"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
           }
         ]
       },
@@ -2707,26 +2954,140 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "Classifier",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Classifier_Union"
+      "returnType": {
+        "$ref": "#/interfaces@25"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@7"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@29"
+                }
+              },
+              {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@6"
+                },
+                "arguments": []
+              }
+            ]
           },
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@11"
-            },
-            "arguments": []
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@48"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "structure"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedPropertyRestrictions",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@37"
+                      },
+                      "arguments": []
+                    },
+                    "cardinality": "*"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
           }
         ]
       },
@@ -2740,96 +3101,46 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "Entity",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Entity_Union"
+      "returnType": {
+        "$ref": "#/interfaces@29"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@8"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@9"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@10"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Aspect",
-      "returnType": {
-        "$ref": "#/interfaces@34"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "aspect"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
             "$type": "Group",
             "elements": [
               {
-                "$type": "Keyword",
-                "value": ":>"
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@34"
+                }
               },
               {
                 "$type": "Assignment",
-                "feature": "ownedSpecializations",
+                "feature": "ownedAnnotations",
                 "operator": "+=",
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@46"
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "aspect"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -2839,7 +3150,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "elements": [
                   {
                     "$type": "Keyword",
-                    "value": ","
+                    "value": ":>"
                   },
                   {
                     "$type": "Assignment",
@@ -2848,237 +3159,9 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Alternatives",
-                "elements": [
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedKeys",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@60"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedPropertyRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@47"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedRelationRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@56"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Concept",
-      "returnType": {
-        "$ref": "#/interfaces@35"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "concept"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Alternatives",
-                "elements": [
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedKeys",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@60"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedPropertyRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@47"
-                      },
-                      "arguments": []
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedRelationRestrictions",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@56"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": "enumerates"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "enumeratedInstances",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/rules@22/definition/elements@0/elements@0"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@84"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
                     }
                   },
                   {
@@ -3090,21 +3173,356 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       },
                       {
                         "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Alternatives",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedKeys",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@50"
+                          },
+                          "arguments": []
+                        }
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedPropertyRestrictions",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@37"
+                          },
+                          "arguments": []
+                        }
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedRelationRestrictions",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@46"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@35"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "concept"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Alternatives",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedKeys",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@50"
+                          },
+                          "arguments": []
+                        }
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedPropertyRestrictions",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@37"
+                          },
+                          "arguments": []
+                        }
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedRelationRestrictions",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@46"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": "enumerates"
+                      },
+                      {
+                        "$type": "Assignment",
                         "feature": "enumeratedInstances",
                         "operator": "+=",
                         "terminal": {
                           "$type": "CrossReference",
                           "type": {
-                            "$ref": "#/rules@22/definition/elements@0/elements@0"
+                            "$ref": "#/rules@12/definition/elements@0/elements@0"
                           },
                           "terminal": {
                             "$type": "RuleCall",
                             "rule": {
-                              "$ref": "#/rules@84"
+                              "$ref": "#/rules@74"
                             },
                             "arguments": []
                           },
                           "deprecatedSyntax": false
+                        }
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": ","
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "enumeratedInstances",
+                            "operator": "+=",
+                            "terminal": {
+                              "$type": "CrossReference",
+                              "type": {
+                                "$ref": "#/rules@12/definition/elements@0/elements@0"
+                              },
+                              "terminal": {
+                                "$type": "RuleCall",
+                                "rule": {
+                                  "$ref": "#/rules@74"
+                                },
+                                "arguments": []
+                              },
+                              "deprecatedSyntax": false
+                            }
+                          }
+                        ],
+                        "cardinality": "*"
+                      }
+                    ],
+                    "cardinality": "?"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "type": {
+                  "$ref": "#/interfaces@45"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "relation"
+              },
+              {
+                "$type": "Keyword",
+                "value": "entity"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
                         }
                       }
                     ],
@@ -3115,386 +3533,192 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               },
               {
                 "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "RelationEntity",
-      "returnType": {
-        "$ref": "#/interfaces@45"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
+                "value": "["
               },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "relation"
-          },
-          {
-            "$type": "Keyword",
-            "value": "entity"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
               {
                 "$type": "Keyword",
-                "value": ":>"
+                "value": "from"
               },
               {
                 "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
+                "feature": "source",
+                "operator": "=",
                 "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@29"
                   },
-                  "arguments": []
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@74"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
                 }
               },
               {
-                "$type": "Group",
+                "$type": "Keyword",
+                "value": "to"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "target",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@29"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@74"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Alternatives",
                 "elements": [
                   {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
                     "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
+                    "feature": "forwardRelation",
+                    "operator": "=",
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@8"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "reverseRelation",
+                    "operator": "=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@9"
                       },
                       "arguments": []
                     }
                   }
                 ],
                 "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "["
-          },
-          {
-            "$type": "Keyword",
-            "value": "from"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "source",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@29"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@84"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "to"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "target",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@29"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@84"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "forwardRelation",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@18"
-                  },
-                  "arguments": []
-                }
               },
               {
-                "$type": "Assignment",
-                "feature": "reverseRelation",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@19"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "*"
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "functional",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "functional"
-                }
-              },
-              {
-                "$type": "Group",
+                "$type": "Alternatives",
                 "elements": [
                   {
                     "$type": "Assignment",
-                    "feature": "inverseFunctional",
+                    "feature": "functional",
                     "operator": "?=",
                     "terminal": {
                       "$type": "Keyword",
-                      "value": "inverse"
+                      "value": "functional"
                     }
                   },
                   {
-                    "$type": "Keyword",
-                    "value": "functional"
-                  }
-                ]
-              },
-              {
-                "$type": "Assignment",
-                "feature": "symmetric",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "symmetric"
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "asymmetric",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "asymmetric"
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "reflexive",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "reflexive"
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "irreflexive",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "irreflexive"
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "transitive",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "transitive"
-                }
-              }
-            ],
-            "cardinality": "*"
-          },
-          {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "ownedKeys",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@60"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedPropertyRestrictions",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@47"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedRelationRestrictions",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@56"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "]"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Structure",
-      "returnType": {
-        "$ref": "#/interfaces@48"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "structure"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "inverseFunctional",
+                        "operator": "?=",
+                        "terminal": {
+                          "$type": "Keyword",
+                          "value": "inverse"
+                        }
+                      },
+                      {
+                        "$type": "Keyword",
+                        "value": "functional"
+                      }
+                    ]
                   },
                   {
                     "$type": "Assignment",
-                    "feature": "ownedSpecializations",
+                    "feature": "symmetric",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "symmetric"
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "asymmetric",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "asymmetric"
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "reflexive",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "reflexive"
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "irreflexive",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "irreflexive"
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "transitive",
+                    "operator": "?=",
+                    "terminal": {
+                      "$type": "Keyword",
+                      "value": "transitive"
+                    }
+                  }
+                ],
+                "cardinality": "*"
+              },
+              {
+                "$type": "Alternatives",
+                "elements": [
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedKeys",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@50"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedPropertyRestrictions",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@37"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedRelationRestrictions",
                     "operator": "+=",
                     "terminal": {
                       "$type": "RuleCall",
@@ -3505,462 +3729,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     }
                   }
                 ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedPropertyRestrictions",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@47"
-                  },
-                  "arguments": []
-                },
                 "cardinality": "*"
               },
               {
                 "$type": "Keyword",
                 "value": "]"
               }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "AnnotationProperty",
-      "returnType": {
-        "$ref": "#/interfaces@4"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "annotation"
-          },
-          {
-            "$type": "Keyword",
-            "value": "property"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "ScalarProperty",
-      "returnType": {
-        "$ref": "#/interfaces@50"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "scalar"
-          },
-          {
-            "$type": "Keyword",
-            "value": "property"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Keyword",
-                "value": "domain"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "domain",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@25"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@84"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "range"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "range",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@51"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@84"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "functional",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "functional"
-                },
-                "cardinality": "?"
-              },
-              {
-                "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "StructuredProperty",
-      "returnType": {
-        "$ref": "#/interfaces@52"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "structured"
-          },
-          {
-            "$type": "Keyword",
-            "value": "property"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Keyword",
-                "value": "domain"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "domain",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@25"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@84"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "range"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "range",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@48"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@84"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              },
-              {
-                "$type": "Assignment",
-                "feature": "functional",
-                "operator": "?=",
-                "terminal": {
-                  "$type": "Keyword",
-                  "value": "functional"
-                },
-                "cardinality": "?"
-              },
-              {
-                "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
+            ]
           }
         ]
       },
@@ -3974,89 +3749,47 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "Scalar",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "Scalar_Union"
+      "returnType": {
+        "$ref": "#/interfaces@51"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
           {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@16"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@17"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "FacetedScalar",
-      "returnType": {
-        "$ref": "#/interfaces@53"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "scalar"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
             "$type": "Group",
             "elements": [
               {
-                "$type": "Keyword",
-                "value": ":>"
+                "$type": "Action",
+                "inferredType": {
+                  "$type": "InferredType",
+                  "name": "FacetedScalar"
+                }
               },
               {
                 "$type": "Assignment",
-                "feature": "ownedSpecializations",
+                "feature": "ownedAnnotations",
                 "operator": "+=",
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@46"
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "scalar"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -4066,7 +3799,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "elements": [
                   {
                     "$type": "Keyword",
-                    "value": ","
+                    "value": ":>"
                   },
                   {
                     "$type": "Assignment",
@@ -4075,339 +3808,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Alternatives",
-                "elements": [
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "length"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "length",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@80"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "minLength"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "minLength",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@80"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "maxLength"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "maxLength",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@80"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "pattern"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "pattern",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@97"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "language"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "language",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@96"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "minInclusive"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "minInclusive",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@75"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "minExclusive"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "minExclusive",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@75"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "maxInclusive"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "maxInclusive",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@75"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "$type": "Group",
-                    "elements": [
-                      {
-                        "$type": "Keyword",
-                        "value": "maxExclusive"
-                      },
-                      {
-                        "$type": "Assignment",
-                        "feature": "maxExclusive",
-                        "operator": "=",
-                        "terminal": {
-                          "$type": "RuleCall",
-                          "rule": {
-                            "$ref": "#/rules@75"
-                          },
-                          "arguments": []
-                        }
-                      }
-                    ]
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "]"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "EnumeratedScalar",
-      "returnType": {
-        "$ref": "#/interfaces@54"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "enumerated"
-          },
-          {
-            "$type": "Keyword",
-            "value": "scalar"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "name",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@96"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": ":>"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "ownedSpecializations",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@46"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "ownedSpecializations",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@46"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "["
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Assignment",
-                    "feature": "literals",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@75"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -4421,12 +3822,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       },
                       {
                         "$type": "Assignment",
-                        "feature": "literals",
+                        "feature": "ownedSpecializations",
                         "operator": "+=",
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@75"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -4438,11 +3839,358 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "cardinality": "?"
               },
               {
-                "$type": "Keyword",
-                "value": "]"
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Alternatives",
+                    "elements": [
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "length"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "length",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@70"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "minLength"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "minLength",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@70"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "maxLength"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "maxLength",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@70"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "pattern"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "pattern",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@87"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "language"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "language",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@86"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "minInclusive"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "minInclusive",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@65"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "minExclusive"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "minExclusive",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@65"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "maxInclusive"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "maxInclusive",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@65"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": "maxExclusive"
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "maxExclusive",
+                            "operator": "=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@65"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cardinality": "*"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
               }
-            ],
-            "cardinality": "?"
+            ]
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Action",
+                "inferredType": {
+                  "$type": "InferredType",
+                  "name": "EnumeratedScalar"
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "ownedAnnotations",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@1"
+                  },
+                  "arguments": []
+                },
+                "cardinality": "*"
+              },
+              {
+                "$type": "Keyword",
+                "value": "enumerated"
+              },
+              {
+                "$type": "Keyword",
+                "value": "scalar"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "name",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ":>"
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "ownedSpecializations",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@36"
+                      },
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Keyword",
+                        "value": ","
+                      },
+                      {
+                        "$type": "Assignment",
+                        "feature": "ownedSpecializations",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@36"
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ],
+                    "cardinality": "*"
+                  }
+                ],
+                "cardinality": "?"
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": "["
+                  },
+                  {
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "literals",
+                        "operator": "+=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@65"
+                          },
+                          "arguments": []
+                        }
+                      },
+                      {
+                        "$type": "Group",
+                        "elements": [
+                          {
+                            "$type": "Keyword",
+                            "value": ","
+                          },
+                          {
+                            "$type": "Assignment",
+                            "feature": "literals",
+                            "operator": "+=",
+                            "terminal": {
+                              "$type": "RuleCall",
+                              "rule": {
+                                "$ref": "#/rules@65"
+                              },
+                              "arguments": []
+                            }
+                          }
+                        ],
+                        "cardinality": "*"
+                      }
+                    ],
+                    "cardinality": "?"
+                  },
+                  {
+                    "$type": "Keyword",
+                    "value": "]"
+                  }
+                ],
+                "cardinality": "?"
+              }
+            ]
           }
         ]
       },
@@ -4486,7 +4234,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -4533,7 +4281,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -4551,7 +4299,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "Rule",
       "returnType": {
-        "$ref": "#/interfaces@55"
+        "$ref": "#/interfaces@53"
       },
       "definition": {
         "$type": "Group",
@@ -4580,7 +4328,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -4596,7 +4344,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@67"
+                "$ref": "#/rules@57"
               },
               "arguments": []
             }
@@ -4615,7 +4363,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@67"
+                    "$ref": "#/rules@57"
                   },
                   "arguments": []
                 }
@@ -4634,7 +4382,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@67"
+                "$ref": "#/rules@57"
               },
               "arguments": []
             }
@@ -4653,7 +4401,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@67"
+                    "$ref": "#/rules@57"
                   },
                   "arguments": []
                 }
@@ -4678,7 +4426,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructureInstance",
       "returnType": {
-        "$ref": "#/interfaces@57"
+        "$ref": "#/interfaces@55"
       },
       "definition": {
         "$type": "Group",
@@ -4695,7 +4443,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -4713,7 +4461,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@63"
+                "$ref": "#/rules@53"
               },
               "arguments": []
             },
@@ -4775,7 +4523,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -4794,7 +4542,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@61"
+                        "$ref": "#/rules@51"
                       },
                       "arguments": []
                     }
@@ -4813,7 +4561,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@61"
+                            "$ref": "#/rules@51"
                           },
                           "arguments": []
                         }
@@ -4841,7 +4589,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@63"
+                            "$ref": "#/rules@53"
                           },
                           "arguments": []
                         }
@@ -4853,7 +4601,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@66"
+                            "$ref": "#/rules@56"
                           },
                           "arguments": []
                         }
@@ -4904,7 +4652,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -4923,7 +4671,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@62"
+                        "$ref": "#/rules@52"
                       },
                       "arguments": []
                     }
@@ -4942,7 +4690,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@62"
+                            "$ref": "#/rules@52"
                           },
                           "arguments": []
                         }
@@ -4973,7 +4721,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -4999,7 +4747,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@84"
+                          "$ref": "#/rules@74"
                         },
                         "arguments": []
                       },
@@ -5025,7 +4773,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5051,7 +4799,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@84"
+                          "$ref": "#/rules@74"
                         },
                         "arguments": []
                       },
@@ -5071,7 +4819,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@63"
+                        "$ref": "#/rules@53"
                       },
                       "arguments": []
                     }
@@ -5083,7 +4831,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@66"
+                        "$ref": "#/rules@56"
                       },
                       "arguments": []
                     }
@@ -5127,7 +4875,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@24"
+                  "$ref": "#/rules@14"
                 },
                 "arguments": []
               }
@@ -5175,12 +4923,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@54"
+                    "$ref": "#/rules@7/definition/elements@1/elements@0"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5201,7 +4949,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5220,7 +4968,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5271,12 +5019,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "CrossReference",
                   "type": {
-                    "$ref": "#/interfaces@53"
+                    "$ref": "#/rules@7/definition/elements@0/elements@0"
                   },
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5297,7 +5045,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5316,7 +5064,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5376,7 +5124,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5397,7 +5145,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5416,7 +5164,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5476,7 +5224,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5497,7 +5245,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5516,7 +5264,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5576,7 +5324,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5597,7 +5345,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5616,7 +5364,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5659,7 +5407,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@25"
+                  "$ref": "#/rules@15"
                 },
                 "arguments": []
               }
@@ -5708,7 +5456,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5729,7 +5477,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5748,7 +5496,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5773,7 +5521,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@47"
+                        "$ref": "#/rules@37"
                       },
                       "arguments": []
                     },
@@ -5849,7 +5597,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -5870,7 +5618,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -5889,7 +5637,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -5917,7 +5665,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@60"
+                            "$ref": "#/rules@50"
                           },
                           "arguments": []
                         }
@@ -5929,7 +5677,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@47"
+                            "$ref": "#/rules@37"
                           },
                           "arguments": []
                         }
@@ -5941,7 +5689,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@56"
+                            "$ref": "#/rules@46"
                           },
                           "arguments": []
                         }
@@ -6001,7 +5749,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -6022,7 +5770,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -6041,7 +5789,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -6069,7 +5817,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@60"
+                            "$ref": "#/rules@50"
                           },
                           "arguments": []
                         }
@@ -6081,7 +5829,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@47"
+                            "$ref": "#/rules@37"
                           },
                           "arguments": []
                         }
@@ -6093,7 +5841,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@56"
+                            "$ref": "#/rules@46"
                           },
                           "arguments": []
                         }
@@ -6157,7 +5905,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -6178,7 +5926,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@46"
+                        "$ref": "#/rules@36"
                       },
                       "arguments": []
                     }
@@ -6197,7 +5945,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@46"
+                            "$ref": "#/rules@36"
                           },
                           "arguments": []
                         }
@@ -6225,7 +5973,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@60"
+                            "$ref": "#/rules@50"
                           },
                           "arguments": []
                         }
@@ -6237,7 +5985,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@47"
+                            "$ref": "#/rules@37"
                           },
                           "arguments": []
                         }
@@ -6249,7 +5997,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                         "terminal": {
                           "$type": "RuleCall",
                           "rule": {
-                            "$ref": "#/rules@56"
+                            "$ref": "#/rules@46"
                           },
                           "arguments": []
                         }
@@ -6279,7 +6027,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationReference",
       "returnType": {
-        "$ref": "#/interfaces@61"
+        "$ref": "#/interfaces@59"
       },
       "definition": {
         "$type": "Group",
@@ -6317,7 +6065,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -6337,7 +6085,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RuleReference",
       "returnType": {
-        "$ref": "#/interfaces@62"
+        "$ref": "#/interfaces@60"
       },
       "definition": {
         "$type": "Group",
@@ -6370,12 +6118,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/interfaces@55"
+                "$ref": "#/interfaces@53"
               },
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -6404,14 +6152,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@29"
+              "$ref": "#/rules@19"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@30"
+              "$ref": "#/rules@20"
             },
             "arguments": []
           }
@@ -6461,12 +6209,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@22/definition/elements@0/elements@0"
+                "$ref": "#/rules@12/definition/elements@0/elements@0"
               },
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -6487,7 +6235,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@61"
+                    "$ref": "#/rules@51"
                   },
                   "arguments": []
                 }
@@ -6506,7 +6254,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@61"
+                        "$ref": "#/rules@51"
                       },
                       "arguments": []
                     }
@@ -6531,7 +6279,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@63"
+                    "$ref": "#/rules@53"
                   },
                   "arguments": []
                 },
@@ -6544,7 +6292,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@66"
+                    "$ref": "#/rules@56"
                   },
                   "arguments": []
                 },
@@ -6570,7 +6318,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationInstanceReference",
       "returnType": {
-        "$ref": "#/interfaces@60"
+        "$ref": "#/interfaces@58"
       },
       "definition": {
         "$type": "Group",
@@ -6603,12 +6351,12 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "CrossReference",
               "type": {
-                "$ref": "#/rules@22/definition/elements@1/elements@0"
+                "$ref": "#/rules@12/definition/elements@1/elements@0"
               },
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -6629,7 +6377,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@62"
+                    "$ref": "#/rules@52"
                   },
                   "arguments": []
                 }
@@ -6648,7 +6396,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@62"
+                        "$ref": "#/rules@52"
                       },
                       "arguments": []
                     }
@@ -6673,7 +6421,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@63"
+                    "$ref": "#/rules@53"
                   },
                   "arguments": []
                 },
@@ -6686,7 +6434,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@66"
+                    "$ref": "#/rules@56"
                   },
                   "arguments": []
                 },
@@ -6721,14 +6469,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@20"
+              "$ref": "#/rules@10"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@27"
+              "$ref": "#/rules@17"
             },
             "arguments": []
           },
@@ -6742,14 +6490,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@23"
+              "$ref": "#/rules@13"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@26"
+              "$ref": "#/rules@16"
             },
             "arguments": []
           }
@@ -6775,14 +6523,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@22"
+              "$ref": "#/rules@12"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@28"
+              "$ref": "#/rules@18"
             },
             "arguments": []
           }
@@ -6808,14 +6556,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@34"
+              "$ref": "#/rules@24"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@35"
+              "$ref": "#/rules@25"
             },
             "arguments": []
           }
@@ -6832,7 +6580,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyExtension",
       "returnType": {
-        "$ref": "#/interfaces@63"
+        "$ref": "#/interfaces@61"
       },
       "definition": {
         "$type": "Group",
@@ -6861,7 +6609,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -6880,7 +6628,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -6901,7 +6649,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyUsage",
       "returnType": {
-        "$ref": "#/interfaces@64"
+        "$ref": "#/interfaces@62"
       },
       "definition": {
         "$type": "Group",
@@ -6930,7 +6678,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -6949,7 +6697,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -6979,14 +6727,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@38"
+              "$ref": "#/rules@28"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@37"
+              "$ref": "#/rules@27"
             },
             "arguments": []
           }
@@ -7003,7 +6751,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "VocabularyBundleInclusion",
       "returnType": {
-        "$ref": "#/interfaces@65"
+        "$ref": "#/interfaces@63"
       },
       "definition": {
         "$type": "Group",
@@ -7032,7 +6780,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -7051,7 +6799,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -7071,6 +6819,177 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     {
       "$type": "ParserRule",
       "name": "VocabularyBundleExtension",
+      "returnType": {
+        "$ref": "#/interfaces@64"
+      },
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Assignment",
+            "feature": "ownedAnnotations",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "Keyword",
+            "value": "extends"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "namespace",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@82"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": "as"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "prefix",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              }
+            ],
+            "cardinality": "?"
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "DescriptionImport",
+      "inferredType": {
+        "$type": "InferredType",
+        "name": "DescriptionImport_Union"
+      },
+      "definition": {
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@31"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@30"
+            },
+            "arguments": []
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "DescriptionUsage",
+      "returnType": {
+        "$ref": "#/interfaces@65"
+      },
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Assignment",
+            "feature": "ownedAnnotations",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
+              },
+              "arguments": []
+            },
+            "cardinality": "*"
+          },
+          {
+            "$type": "Keyword",
+            "value": "uses"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "namespace",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@82"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": "as"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "prefix",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@86"
+                  },
+                  "arguments": []
+                }
+              }
+            ],
+            "cardinality": "?"
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "DescriptionExtension",
       "returnType": {
         "$ref": "#/interfaces@66"
       },
@@ -7101,7 +7020,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -7120,7 +7039,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -7139,10 +7058,10 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "DescriptionImport",
+      "name": "DescriptionBundleImport",
       "inferredType": {
         "$type": "InferredType",
-        "name": "DescriptionImport_Union"
+        "name": "DescriptionBundleImport_Union"
       },
       "definition": {
         "$type": "Alternatives",
@@ -7150,14 +7069,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@41"
+              "$ref": "#/rules@34"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@40"
+              "$ref": "#/rules@33"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@35"
             },
             "arguments": []
           }
@@ -7172,7 +7098,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "DescriptionUsage",
+      "name": "DescriptionBundleInclusion",
       "returnType": {
         "$ref": "#/interfaces@67"
       },
@@ -7194,7 +7120,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           },
           {
             "$type": "Keyword",
-            "value": "uses"
+            "value": "includes"
           },
           {
             "$type": "Assignment",
@@ -7203,7 +7129,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -7222,7 +7148,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -7241,7 +7167,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "ParserRule",
-      "name": "DescriptionExtension",
+      "name": "DescriptionBundleExtension",
       "returnType": {
         "$ref": "#/interfaces@68"
       },
@@ -7272,7 +7198,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -7291,185 +7217,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "DescriptionBundleImport",
-      "inferredType": {
-        "$type": "InferredType",
-        "name": "DescriptionBundleImport_Union"
-      },
-      "definition": {
-        "$type": "Alternatives",
-        "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@44"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@43"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@45"
-            },
-            "arguments": []
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "DescriptionBundleInclusion",
-      "returnType": {
-        "$ref": "#/interfaces@69"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "includes"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "namespace",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@92"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "as"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "prefix",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@96"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "DescriptionBundleExtension",
-      "returnType": {
-        "$ref": "#/interfaces@70"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Assignment",
-            "feature": "ownedAnnotations",
-            "operator": "+=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@1"
-              },
-              "arguments": []
-            },
-            "cardinality": "*"
-          },
-          {
-            "$type": "Keyword",
-            "value": "extends"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "namespace",
-            "operator": "=",
-            "terminal": {
-              "$type": "RuleCall",
-              "rule": {
-                "$ref": "#/rules@92"
-              },
-              "arguments": []
-            }
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "as"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "prefix",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -7490,7 +7238,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DescriptionBundleUsage",
       "returnType": {
-        "$ref": "#/interfaces@71"
+        "$ref": "#/interfaces@69"
       },
       "definition": {
         "$type": "Group",
@@ -7519,7 +7267,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@92"
+                "$ref": "#/rules@82"
               },
               "arguments": []
             }
@@ -7538,7 +7286,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -7573,7 +7321,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@84"
+              "$ref": "#/rules@74"
             },
             "arguments": []
           },
@@ -7599,14 +7347,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@48"
+              "$ref": "#/rules@38"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@52"
+              "$ref": "#/rules@42"
             },
             "arguments": []
           }
@@ -7623,7 +7371,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "ScalarPropertyRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@72"
+        "$ref": "#/interfaces@70"
       },
       "definition": {
         "$type": "Alternatives",
@@ -7631,21 +7379,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@49"
+              "$ref": "#/rules@39"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@50"
+              "$ref": "#/rules@40"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@51"
+              "$ref": "#/rules@41"
             },
             "arguments": []
           }
@@ -7675,7 +7423,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@82"
+                "$ref": "#/rules@72"
               },
               "arguments": []
             }
@@ -7700,7 +7448,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7723,7 +7471,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7769,7 +7517,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7787,7 +7535,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@83"
+                "$ref": "#/rules@73"
               },
               "arguments": []
             }
@@ -7799,7 +7547,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@80"
+                "$ref": "#/rules@70"
               },
               "arguments": []
             }
@@ -7816,7 +7564,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7863,7 +7611,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7881,7 +7629,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@75"
+                "$ref": "#/rules@65"
               },
               "arguments": []
             }
@@ -7899,7 +7647,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "StructuredPropertyRestrictionAxiom",
       "returnType": {
-        "$ref": "#/interfaces@58"
+        "$ref": "#/interfaces@56"
       },
       "definition": {
         "$type": "Alternatives",
@@ -7907,21 +7655,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@53"
+              "$ref": "#/rules@43"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@54"
+              "$ref": "#/rules@44"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@55"
+              "$ref": "#/rules@45"
             },
             "arguments": []
           }
@@ -7951,7 +7699,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@82"
+                "$ref": "#/rules@72"
               },
               "arguments": []
             }
@@ -7976,7 +7724,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -7999,7 +7747,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8045,7 +7793,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8063,7 +7811,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@83"
+                "$ref": "#/rules@73"
               },
               "arguments": []
             }
@@ -8075,7 +7823,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@80"
+                "$ref": "#/rules@70"
               },
               "arguments": []
             }
@@ -8092,7 +7840,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8139,7 +7887,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8157,7 +7905,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@21"
+                "$ref": "#/rules@11"
               },
               "arguments": []
             }
@@ -8183,21 +7931,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@57"
+              "$ref": "#/rules@47"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@58"
+              "$ref": "#/rules@48"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@59"
+              "$ref": "#/rules@49"
             },
             "arguments": []
           }
@@ -8237,7 +7985,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@82"
+                "$ref": "#/rules@72"
               },
               "arguments": []
             }
@@ -8258,7 +8006,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8281,7 +8029,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8333,7 +8081,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8351,7 +8099,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@83"
+                "$ref": "#/rules@73"
               },
               "arguments": []
             }
@@ -8363,7 +8111,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@80"
+                "$ref": "#/rules@70"
               },
               "arguments": []
             }
@@ -8380,7 +8128,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8433,7 +8181,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8456,7 +8204,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8497,7 +8245,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8523,7 +8271,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@84"
+                      "$ref": "#/rules@74"
                     },
                     "arguments": []
                   },
@@ -8560,7 +8308,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@84"
+              "$ref": "#/rules@74"
             },
             "arguments": []
           },
@@ -8578,7 +8326,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationTypeAssertion",
       "returnType": {
-        "$ref": "#/interfaces@59"
+        "$ref": "#/interfaces@57"
       },
       "definition": {
         "$type": "Assignment",
@@ -8592,7 +8340,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           "terminal": {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@84"
+              "$ref": "#/rules@74"
             },
             "arguments": []
           },
@@ -8618,14 +8366,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@64"
+              "$ref": "#/rules@54"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@65"
+              "$ref": "#/rules@55"
             },
             "arguments": []
           }
@@ -8656,7 +8404,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8670,7 +8418,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@75"
+                "$ref": "#/rules@65"
               },
               "arguments": []
             }
@@ -8702,7 +8450,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8716,7 +8464,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@21"
+                "$ref": "#/rules@11"
               },
               "arguments": []
             }
@@ -8751,7 +8499,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8770,7 +8518,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8799,14 +8547,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@68"
+              "$ref": "#/rules@58"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@70"
+              "$ref": "#/rules@60"
             },
             "arguments": []
           }
@@ -8829,7 +8577,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "definition": {
         "$type": "RuleCall",
         "rule": {
-          "$ref": "#/rules@69"
+          "$ref": "#/rules@59"
         },
         "arguments": []
       },
@@ -8844,7 +8592,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "TypePredicate",
       "returnType": {
-        "$ref": "#/interfaces@74"
+        "$ref": "#/interfaces@72"
       },
       "definition": {
         "$type": "Group",
@@ -8861,7 +8609,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8879,7 +8627,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -8910,28 +8658,28 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@71"
+              "$ref": "#/rules@61"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@72"
+              "$ref": "#/rules@62"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@73"
+              "$ref": "#/rules@63"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@74"
+              "$ref": "#/rules@64"
             },
             "arguments": []
           }
@@ -8948,7 +8696,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "RelationEntityPredicate",
       "returnType": {
-        "$ref": "#/interfaces@76"
+        "$ref": "#/interfaces@74"
       },
       "definition": {
         "$type": "Group",
@@ -8965,7 +8713,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -8983,7 +8731,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -8999,7 +8747,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -9018,7 +8766,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -9035,7 +8783,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@85"
+                      "$ref": "#/rules@75"
                     },
                     "arguments": []
                   },
@@ -9061,7 +8809,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "FeaturePredicate",
       "returnType": {
-        "$ref": "#/interfaces@77"
+        "$ref": "#/interfaces@75"
       },
       "definition": {
         "$type": "Group",
@@ -9078,7 +8826,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@84"
+                  "$ref": "#/rules@74"
                 },
                 "arguments": []
               },
@@ -9096,7 +8844,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -9115,7 +8863,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -9127,7 +8875,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@75"
+                    "$ref": "#/rules@65"
                   },
                   "arguments": []
                 }
@@ -9144,7 +8892,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@85"
+                      "$ref": "#/rules@75"
                     },
                     "arguments": []
                   },
@@ -9170,7 +8918,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "SameAsPredicate",
       "returnType": {
-        "$ref": "#/interfaces@78"
+        "$ref": "#/interfaces@76"
       },
       "definition": {
         "$type": "Group",
@@ -9190,7 +8938,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -9209,7 +8957,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -9226,7 +8974,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@85"
+                      "$ref": "#/rules@75"
                     },
                     "arguments": []
                   },
@@ -9252,7 +9000,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "$type": "ParserRule",
       "name": "DifferentFromPredicate",
       "returnType": {
-        "$ref": "#/interfaces@79"
+        "$ref": "#/interfaces@77"
       },
       "definition": {
         "$type": "Group",
@@ -9272,7 +9020,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@96"
+                "$ref": "#/rules@86"
               },
               "arguments": []
             }
@@ -9291,7 +9039,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@96"
+                    "$ref": "#/rules@86"
                   },
                   "arguments": []
                 }
@@ -9308,7 +9056,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                   "terminal": {
                     "$type": "RuleCall",
                     "rule": {
-                      "$ref": "#/rules@85"
+                      "$ref": "#/rules@75"
                     },
                     "arguments": []
                   },
@@ -9339,35 +9087,35 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@76"
+              "$ref": "#/rules@66"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@77"
+              "$ref": "#/rules@67"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@78"
+              "$ref": "#/rules@68"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@79"
+              "$ref": "#/rules@69"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@81"
+              "$ref": "#/rules@71"
             },
             "arguments": []
           }
@@ -9393,7 +9141,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@91"
+                "$ref": "#/rules@81"
               },
               "arguments": []
             }
@@ -9405,7 +9153,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@90"
+                "$ref": "#/rules@80"
               },
               "arguments": []
             }
@@ -9429,7 +9177,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@89"
+            "$ref": "#/rules@79"
           },
           "arguments": []
         }
@@ -9451,7 +9199,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@88"
+            "$ref": "#/rules@78"
           },
           "arguments": []
         }
@@ -9473,7 +9221,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@87"
+            "$ref": "#/rules@77"
           },
           "arguments": []
         }
@@ -9495,7 +9243,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
         "terminal": {
           "$type": "RuleCall",
           "rule": {
-            "$ref": "#/rules@90"
+            "$ref": "#/rules@80"
           },
           "arguments": []
         }
@@ -9520,7 +9268,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@97"
+                "$ref": "#/rules@87"
               },
               "arguments": []
             }
@@ -9547,7 +9295,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                       "terminal": {
                         "$type": "RuleCall",
                         "rule": {
-                          "$ref": "#/rules@84"
+                          "$ref": "#/rules@74"
                         },
                         "arguments": []
                       },
@@ -9570,7 +9318,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@96"
+                        "$ref": "#/rules@86"
                       },
                       "arguments": []
                     }
@@ -9651,21 +9399,21 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@96"
+              "$ref": "#/rules@86"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@95"
+              "$ref": "#/rules@85"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@93"
+              "$ref": "#/rules@83"
             },
             "arguments": []
           }
@@ -9688,14 +9436,14 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@95"
+              "$ref": "#/rules@85"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@93"
+              "$ref": "#/rules@83"
             },
             "arguments": []
           }
@@ -9827,7 +9575,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@94"
+              "$ref": "#/rules@84"
             }
           },
           {
@@ -9840,7 +9588,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
           {
             "$type": "TerminalRuleCall",
             "rule": {
-              "$ref": "#/rules@94"
+              "$ref": "#/rules@84"
             }
           }
         ]
@@ -9854,7 +9602,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "definition": {
         "$type": "TerminalRuleCall",
         "rule": {
-          "$ref": "#/rules@94"
+          "$ref": "#/rules@84"
         }
       },
       "fragment": false,
