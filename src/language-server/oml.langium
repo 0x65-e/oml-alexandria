@@ -814,10 +814,11 @@ RuleReference returns RuleReference:
 ;
 */
 
-NamedInstanceReference infers NamedInstanceReference_Union:
-    ConceptInstanceReference | RelationInstanceReference 
-;
+NamedInstanceReference returns NamedInstanceReference:
+      {ConceptInstanceReference} ownedAnnotations+=Annotation* 'ref' 'ci' instance=[ConceptInstance:Ref] (':' ownedTypes+=ConceptTypeAssertion (',' ownedTypes+=ConceptTypeAssertion)*)? ('[' ownedPropertyValues+=PropertyValueAssertion* ownedLinks+=LinkAssertion* ']')?
+    | {RelationInstanceReference} ownedAnnotations+=Annotation* 'ref' 'ri' instance=[RelationInstance:Ref] (':' ownedTypes+=RelationTypeAssertion (',' ownedTypes+=RelationTypeAssertion)*)? ('[' ownedPropertyValues+=PropertyValueAssertion* ownedLinks+=LinkAssertion* ']')?;
 
+/*
 ConceptInstanceReference returns ConceptInstanceReference:
     ownedAnnotations+=Annotation * 'ref' 'ci' instance=[ConceptInstance:Ref ] (':' ownedTypes+=ConceptTypeAssertion  (',' ownedTypes+=ConceptTypeAssertion  )* )? ('[' ownedPropertyValues+=PropertyValueAssertion * ownedLinks+=LinkAssertion * ']' )?  
 ;
@@ -825,6 +826,7 @@ ConceptInstanceReference returns ConceptInstanceReference:
 RelationInstanceReference returns RelationInstanceReference:
     ownedAnnotations+=Annotation * 'ref' 'ri' instance=[RelationInstance:Ref ] (':' ownedTypes+=RelationTypeAssertion  (',' ownedTypes+=RelationTypeAssertion  )* )? ('[' ownedPropertyValues+=PropertyValueAssertion * ownedLinks+=LinkAssertion * ']' )?  
 ;
+*/
 
 VocabularyStatement returns VocabularyStatement:
       {Rule} ownedAnnotations+=Annotation* 'rule' name=ID '[' antecedent+=Predicate ('^' antecedent+=Predicate)* '->' consequent+=Predicate ('^' consequent+=Predicate)* ']'

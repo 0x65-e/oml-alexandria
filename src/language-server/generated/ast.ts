@@ -18,7 +18,7 @@ export type CardinalityRestrictionKind = 'exactly' | 'max' | 'min';
 
 export type CrossRef = string;
 
-export type DescriptionStatement_Union = NamedInstance | NamedInstanceReference_Union;
+export type DescriptionStatement_Union = NamedInstance | NamedInstanceReference;
 
 export const DescriptionStatement_Union = 'DescriptionStatement_Union';
 
@@ -32,14 +32,6 @@ export const Literal = 'Literal';
 
 export function isLiteral(item: unknown): item is Literal {
     return reflection.isInstance(item, Literal);
-}
-
-export type NamedInstanceReference_Union = ConceptInstanceReference | RelationInstanceReference;
-
-export const NamedInstanceReference_Union = 'NamedInstanceReference_Union';
-
-export function isNamedInstanceReference_Union(item: unknown): item is NamedInstanceReference_Union {
-    return reflection.isInstance(item, NamedInstanceReference_Union);
 }
 
 export type Ontology_Union = DescriptionBox | VocabularyBox;
@@ -1567,7 +1559,6 @@ export interface OmlAstType {
     Member: Member
     NamedInstance: NamedInstance
     NamedInstanceReference: NamedInstanceReference
-    NamedInstanceReference_Union: NamedInstanceReference_Union
     OmlReference: OmlReference
     Ontology: Ontology
     Ontology_Union: Ontology_Union
@@ -1639,7 +1630,7 @@ export interface OmlAstType {
 export class OmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'SemanticProperty', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyStatement', 'VocabularyUsage'];
+        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Member', 'NamedInstance', 'NamedInstanceReference', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'SemanticProperty', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyStatement', 'VocabularyUsage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -1690,7 +1681,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case ConceptInstanceReference:
             case RelationInstanceReference: {
-                return this.isSubtype(NamedInstanceReference, supertype) || this.isSubtype(NamedInstanceReference_Union, supertype);
+                return this.isSubtype(NamedInstanceReference, supertype);
             }
             case ConceptTypeAssertion:
             case RelationTypeAssertion: {
@@ -1770,10 +1761,7 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(DescriptionStatement_Union, supertype) || this.isSubtype(Instance, supertype) || this.isSubtype(Member, supertype);
             }
             case NamedInstanceReference: {
-                return this.isSubtype(OmlReference, supertype);
-            }
-            case NamedInstanceReference_Union: {
-                return this.isSubtype(DescriptionStatement_Union, supertype);
+                return this.isSubtype(DescriptionStatement_Union, supertype) || this.isSubtype(OmlReference, supertype);
             }
             case Property:
             case Relation: {
