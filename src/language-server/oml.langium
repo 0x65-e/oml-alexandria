@@ -63,12 +63,12 @@ interface Member extends IdentifiedElement {
 	name: string
 }
 
-interface SpecializableTerm extends Term {
+interface SpecializableTerm extends Term, VocabularyStatement {
 	ownedSpecializations: SpecializationAxiom[]
 }
 
 interface VocabularyStatement extends Statement {
-	owningVocabulary: @Vocabulary
+	//owningVocabulary: @Vocabulary
 }
 
 interface Statement {
@@ -100,13 +100,15 @@ interface SpecializationAxiom extends Axiom {
 interface Axiom {
 }
 
-interface SpecializableTermReference extends OmlReference {
-	ownedSpecializations: SpecializationAxiom[]
-}
-
 interface OmlReference {
 	ownedAnnotations: Annotation[]
 }
+
+interface SpecializableTermReference extends OmlReference, VocabularyStatement {
+	ownedSpecializations: SpecializationAxiom[]
+}
+
+
 
 //interface Literal {
 //}
@@ -301,7 +303,7 @@ interface EnumeratedScalar extends Scalar {
 }
 */
 
-interface Rule extends Member {
+interface Rule extends Member, VocabularyStatement {
 	antecedent: Predicate_Union[]
 	consequent: Predicate_Union[]
 }
@@ -387,11 +389,11 @@ interface EnumeratedScalarReference extends SpecializableTermReference {
 }
 */
 
-interface RelationReference extends OmlReference {
+interface RelationReference extends OmlReference, VocabularyStatement {
 	relation: @Relation
 }
 
-interface RuleReference extends OmlReference {
+interface RuleReference extends OmlReference, VocabularyStatement {
 	rule: @Rule
 }
 
@@ -726,8 +728,10 @@ ForwardRelation returns ForwardRelation:
 ReverseRelation returns ReverseRelation:
     ownedAnnotations+=Annotation* 'reverse' name=ID;
 
+/*
 Rule returns Rule:
     ownedAnnotations+=Annotation* 'rule' name=ID '[' antecedent+=Predicate ('^' antecedent+=Predicate)* '->' consequent+=Predicate ('^' consequent+=Predicate  )* ']';
+*/
 
 StructureInstance returns StructureInstance:
     ^type=[Structure:Ref] '[' ownedPropertyValues+=PropertyValueAssertion* ']';
@@ -800,13 +804,15 @@ EnumeratedScalarReference returns EnumeratedScalarReference:
 ;
 */
 
+/*
 RelationReference returns RelationReference:
     ownedAnnotations+=Annotation * 'ref' 'relation' relation=[Relation:Ref ]  
 ;
 
 RuleReference returns RuleReference:
-    ownedAnnotations+=Annotation * 'ref' 'rule' rule=[Rule:Ref ]  
+    ownedAnnotations+=Annotation * 'ref' 'rule' rule=[Rule:Ref]  
 ;
+*/
 
 NamedInstanceReference infers NamedInstanceReference_Union:
     ConceptInstanceReference | RelationInstanceReference 
@@ -820,18 +826,24 @@ RelationInstanceReference returns RelationInstanceReference:
     ownedAnnotations+=Annotation * 'ref' 'ri' instance=[RelationInstance:Ref ] (':' ownedTypes+=RelationTypeAssertion  (',' ownedTypes+=RelationTypeAssertion  )* )? ('[' ownedPropertyValues+=PropertyValueAssertion * ownedLinks+=LinkAssertion * ']' )?  
 ;
 
-VocabularyStatement infers VocabularyStatement_Union:
-    Rule | RuleReference | SpecializableTerm | SpecializableTermReference | RelationReference 
+VocabularyStatement returns VocabularyStatement:
+      {Rule} ownedAnnotations+=Annotation* 'rule' name=ID '[' antecedent+=Predicate ('^' antecedent+=Predicate)* '->' consequent+=Predicate ('^' consequent+=Predicate)* ']'
+    | {RuleReference} ownedAnnotations+=Annotation* 'ref' 'rule' rule=[Rule:Ref]
+    | {SpecializableTerm} SpecializableTerm
+    | {SpecializableTermReference} SpecializableTermReference
+    | {RelationReference} ownedAnnotations+=Annotation* 'ref' 'relation' relation=[Relation:Ref]
 ;
 
 DescriptionStatement infers DescriptionStatement_Union:
     NamedInstance | NamedInstanceReference 
 ;
 
-VocabularyImport infers VocabularyImport_Union:
-    VocabularyExtension | VocabularyUsage 
+VocabularyImport returns VocabularyImport:
+      {VocabularyExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?  
+    | {VocabularyUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?  
 ;
 
+/*
 VocabularyExtension returns VocabularyExtension:
     ownedAnnotations+=Annotation * 'extends' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
@@ -839,11 +851,14 @@ VocabularyExtension returns VocabularyExtension:
 VocabularyUsage returns VocabularyUsage:
     ownedAnnotations+=Annotation * 'uses' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
+*/
 
-VocabularyBundleImport infers VocabularyBundleImport_Union:
-    VocabularyBundleExtension | VocabularyBundleInclusion 
+VocabularyBundleImport returns VocabularyBundleImport:
+      {VocabularyBundleExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
+    | {VocabularyBundleInclusion} ownedAnnotations+=Annotation* 'includes' namespace=NAMESPACE ('as' prefix=ID)? 
 ;
 
+/*
 VocabularyBundleInclusion returns VocabularyBundleInclusion:
     ownedAnnotations+=Annotation * 'includes' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
@@ -851,11 +866,14 @@ VocabularyBundleInclusion returns VocabularyBundleInclusion:
 VocabularyBundleExtension returns VocabularyBundleExtension:
     ownedAnnotations+=Annotation * 'extends' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
+*/
 
-DescriptionImport infers DescriptionImport_Union:
-    DescriptionExtension | DescriptionUsage 
+DescriptionImport returns DescriptionImport:
+      {DescriptionExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
+    | {DescriptionUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?
 ;
 
+/*
 DescriptionUsage returns DescriptionUsage:
     ownedAnnotations+=Annotation * 'uses' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
@@ -863,11 +881,15 @@ DescriptionUsage returns DescriptionUsage:
 DescriptionExtension returns DescriptionExtension:
     ownedAnnotations+=Annotation * 'extends' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
+*/
 
-DescriptionBundleImport infers DescriptionBundleImport_Union:
-    DescriptionBundleExtension | DescriptionBundleInclusion | DescriptionBundleUsage 
+DescriptionBundleImport returns DescriptionBundleImport:
+      {DescriptionBundleExtension} ownedAnnotations+=Annotation* 'extends' namespace=NAMESPACE ('as' prefix=ID)?
+    | {DescriptionBundleInclusion} ownedAnnotations+=Annotation* 'includes' namespace=NAMESPACE ('as' prefix=ID)?
+    | {DescriptionBundleUsage} ownedAnnotations+=Annotation* 'uses' namespace=NAMESPACE ('as' prefix=ID)?
 ;
 
+/*
 DescriptionBundleInclusion returns DescriptionBundleInclusion:
     ownedAnnotations+=Annotation * 'includes' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
@@ -879,6 +901,7 @@ DescriptionBundleExtension returns DescriptionBundleExtension:
 DescriptionBundleUsage returns DescriptionBundleUsage:
     ownedAnnotations+=Annotation * 'uses' namespace=NAMESPACE  ('as' prefix=ID  )?  
 ;
+*/
 
 SpecializationAxiom returns SpecializationAxiom:
     specializedTerm=[SpecializableTerm:Ref ] 

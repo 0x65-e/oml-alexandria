@@ -18,22 +18,6 @@ export type CardinalityRestrictionKind = 'exactly' | 'max' | 'min';
 
 export type CrossRef = string;
 
-export type DescriptionBundleImport_Union = DescriptionBundleExtension | DescriptionBundleInclusion | DescriptionBundleUsage;
-
-export const DescriptionBundleImport_Union = 'DescriptionBundleImport_Union';
-
-export function isDescriptionBundleImport_Union(item: unknown): item is DescriptionBundleImport_Union {
-    return reflection.isInstance(item, DescriptionBundleImport_Union);
-}
-
-export type DescriptionImport_Union = DescriptionExtension | DescriptionUsage;
-
-export const DescriptionImport_Union = 'DescriptionImport_Union';
-
-export function isDescriptionImport_Union(item: unknown): item is DescriptionImport_Union {
-    return reflection.isInstance(item, DescriptionImport_Union);
-}
-
 export type DescriptionStatement_Union = NamedInstance | NamedInstanceReference_Union;
 
 export const DescriptionStatement_Union = 'DescriptionStatement_Union';
@@ -84,30 +68,6 @@ export const UnaryPredicate_Union = 'UnaryPredicate_Union';
 
 export function isUnaryPredicate_Union(item: unknown): item is UnaryPredicate_Union {
     return reflection.isInstance(item, UnaryPredicate_Union);
-}
-
-export type VocabularyBundleImport_Union = VocabularyBundleExtension | VocabularyBundleInclusion;
-
-export const VocabularyBundleImport_Union = 'VocabularyBundleImport_Union';
-
-export function isVocabularyBundleImport_Union(item: unknown): item is VocabularyBundleImport_Union {
-    return reflection.isInstance(item, VocabularyBundleImport_Union);
-}
-
-export type VocabularyImport_Union = VocabularyExtension | VocabularyUsage;
-
-export const VocabularyImport_Union = 'VocabularyImport_Union';
-
-export function isVocabularyImport_Union(item: unknown): item is VocabularyImport_Union {
-    return reflection.isInstance(item, VocabularyImport_Union);
-}
-
-export type VocabularyStatement_Union = RelationReference | Rule | RuleReference | SpecializableTerm | SpecializableTermReference;
-
-export const VocabularyStatement_Union = 'VocabularyStatement_Union';
-
-export function isVocabularyStatement_Union(item: unknown): item is VocabularyStatement_Union {
-    return reflection.isInstance(item, VocabularyStatement_Union);
 }
 
 export interface AnnotatedElement extends AstNode {
@@ -260,7 +220,8 @@ export function isQuotedLiteral(item: unknown): item is QuotedLiteral {
 }
 
 export interface Statement extends AstNode {
-    readonly $type: 'DescriptionStatement' | 'Statement' | 'VocabularyStatement';
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'AnnotationPropertyReference' | 'DescriptionStatement' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'RelationReference' | 'Rule' | 'RuleReference' | 'ScalarPropertyReference' | 'SpecializableTermReference' | 'Statement' | 'StructuredPropertyReference' | 'VocabularyStatement';
 }
 
 export const Statement = 'Statement';
@@ -422,7 +383,7 @@ export function isNamedInstanceReference(item: unknown): item is NamedInstanceRe
     return reflection.isInstance(item, NamedInstanceReference);
 }
 
-export interface RelationReference extends OmlReference {
+export interface RelationReference extends OmlReference, VocabularyStatement {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RelationReference';
     relation: Reference<Relation>
@@ -434,7 +395,7 @@ export function isRelationReference(item: unknown): item is RelationReference {
     return reflection.isInstance(item, RelationReference);
 }
 
-export interface RuleReference extends OmlReference {
+export interface RuleReference extends OmlReference, VocabularyStatement {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'RuleReference';
     rule: Reference<Rule>
@@ -446,7 +407,7 @@ export function isRuleReference(item: unknown): item is RuleReference {
     return reflection.isInstance(item, RuleReference);
 }
 
-export interface SpecializableTermReference extends OmlReference {
+export interface SpecializableTermReference extends OmlReference, VocabularyStatement {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationPropertyReference' | 'ClassifierReference' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'ScalarPropertyReference' | 'SpecializableTermReference' | 'StructureReference' | 'StructuredPropertyReference';
     ownedSpecializations: Array<SpecializationAxiom>
@@ -485,6 +446,7 @@ export function isUnaryPredicate(item: unknown): item is UnaryPredicate {
 }
 
 export interface DescriptionStatement extends Statement {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'DescriptionStatement';
     owningDescription: Reference<Description>
 }
@@ -496,8 +458,8 @@ export function isDescriptionStatement(item: unknown): item is DescriptionStatem
 }
 
 export interface VocabularyStatement extends Statement {
-    readonly $type: 'VocabularyStatement';
-    owningVocabulary: Reference<Vocabulary>
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'AnnotationProperty' | 'AnnotationPropertyReference' | 'EnumeratedScalarReference' | 'FacetedScalarReference' | 'RelationReference' | 'Rule' | 'RuleReference' | 'ScalarProperty' | 'ScalarPropertyReference' | 'SpecializableTerm' | 'SpecializableTermReference' | 'StructuredProperty' | 'StructuredPropertyReference' | 'VocabularyStatement';
 }
 
 export const VocabularyStatement = 'VocabularyStatement';
@@ -858,7 +820,7 @@ export function isTypePredicate(item: unknown): item is TypePredicate {
     return reflection.isInstance(item, TypePredicate);
 }
 
-export interface Rule extends Member {
+export interface Rule extends Member, VocabularyStatement {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Rule';
     antecedent: Array<Predicate_Union>
@@ -869,6 +831,18 @@ export const Rule = 'Rule';
 
 export function isRule(item: unknown): item is Rule {
     return reflection.isInstance(item, Rule);
+}
+
+export interface SpecializableTerm extends Term, VocabularyStatement {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type';
+    ownedSpecializations: Array<SpecializationAxiom>
+}
+
+export const SpecializableTerm = 'SpecializableTerm';
+
+export function isSpecializableTerm(item: unknown): item is SpecializableTerm {
+    return reflection.isInstance(item, SpecializableTerm);
 }
 
 export interface Term extends Member {
@@ -1097,6 +1071,56 @@ export function isStructureReference(item: unknown): item is StructureReference 
     return reflection.isInstance(item, StructureReference);
 }
 
+export interface AnnotationProperty extends Property, SpecializableTerm {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'AnnotationProperty';
+}
+
+export const AnnotationProperty = 'AnnotationProperty';
+
+export function isAnnotationProperty(item: unknown): item is AnnotationProperty {
+    return reflection.isInstance(item, AnnotationProperty);
+}
+
+export interface ScalarProperty extends SemanticProperty, SpecializableTerm {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'ScalarProperty';
+    domain: Reference<Classifier>
+    functional: boolean
+    range: Reference<Scalar>
+}
+
+export const ScalarProperty = 'ScalarProperty';
+
+export function isScalarProperty(item: unknown): item is ScalarProperty {
+    return reflection.isInstance(item, ScalarProperty);
+}
+
+export interface StructuredProperty extends SemanticProperty, SpecializableTerm {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'StructuredProperty';
+    domain: Reference<Classifier>
+    functional: boolean
+    range: Reference<Structure>
+}
+
+export const StructuredProperty = 'StructuredProperty';
+
+export function isStructuredProperty(item: unknown): item is StructuredProperty {
+    return reflection.isInstance(item, StructuredProperty);
+}
+
+export interface Type extends SpecializableTerm {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type';
+}
+
+export const Type = 'Type';
+
+export function isType(item: unknown): item is Type {
+    return reflection.isInstance(item, Type);
+}
+
 export interface Feature extends Term {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'AnnotationProperty' | 'Feature' | 'ForwardRelation' | 'Property' | 'Relation' | 'ReverseRelation';
@@ -1108,24 +1132,12 @@ export function isFeature(item: unknown): item is Feature {
     return reflection.isInstance(item, Feature);
 }
 
-export interface SpecializableTerm extends Term {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'ScalarProperty' | 'SpecializableTerm' | 'Structure' | 'StructuredProperty' | 'Type';
-    ownedSpecializations: Array<SpecializationAxiom>
-}
-
-export const SpecializableTerm = 'SpecializableTerm';
-
-export function isSpecializableTerm(item: unknown): item is SpecializableTerm {
-    return reflection.isInstance(item, SpecializableTerm);
-}
-
 export interface Description extends DescriptionBox {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Description';
     namespace: string
     ownedAnnotations: Array<Annotation>
-    ownedImports: Array<DescriptionImport_Union>
+    ownedImports: Array<DescriptionImport>
     ownedStatements: Array<DescriptionStatement_Union>
     prefix: string
 }
@@ -1141,7 +1153,7 @@ export interface DescriptionBundle extends DescriptionBox {
     readonly $type: 'DescriptionBundle';
     namespace: string
     ownedAnnotations: Array<Annotation>
-    ownedImports: Array<DescriptionBundleImport_Union>
+    ownedImports: Array<DescriptionBundleImport>
     prefix: string
 }
 
@@ -1156,8 +1168,8 @@ export interface Vocabulary extends VocabularyBox {
     readonly $type: 'Vocabulary';
     namespace: string
     ownedAnnotations: Array<Annotation>
-    ownedImports: Array<VocabularyImport_Union>
-    ownedStatements: Array<VocabularyStatement_Union>
+    ownedImports: Array<VocabularyImport>
+    ownedStatements: Array<VocabularyStatement>
     prefix: string
 }
 
@@ -1172,7 +1184,7 @@ export interface VocabularyBundle extends VocabularyBox {
     readonly $type: 'VocabularyBundle';
     namespace: string
     ownedAnnotations: Array<Annotation>
-    ownedImports: Array<VocabularyBundleImport_Union>
+    ownedImports: Array<VocabularyBundleImport>
     prefix: string
 }
 
@@ -1317,111 +1329,6 @@ export function isRelationEntityReference(item: unknown): item is RelationEntity
     return reflection.isInstance(item, RelationEntityReference);
 }
 
-export interface Property extends Feature {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
-}
-
-export const Property = 'Property';
-
-export function isProperty(item: unknown): item is Property {
-    return reflection.isInstance(item, Property);
-}
-
-export interface Relation extends Feature {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ForwardRelation' | 'Relation' | 'ReverseRelation';
-}
-
-export const Relation = 'Relation';
-
-export function isRelation(item: unknown): item is Relation {
-    return reflection.isInstance(item, Relation);
-}
-
-export interface AnnotationProperty extends Property, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'AnnotationProperty';
-}
-
-export const AnnotationProperty = 'AnnotationProperty';
-
-export function isAnnotationProperty(item: unknown): item is AnnotationProperty {
-    return reflection.isInstance(item, AnnotationProperty);
-}
-
-export interface ScalarProperty extends SemanticProperty, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ScalarProperty';
-    domain: Reference<Classifier>
-    functional: boolean
-    range: Reference<Scalar>
-}
-
-export const ScalarProperty = 'ScalarProperty';
-
-export function isScalarProperty(item: unknown): item is ScalarProperty {
-    return reflection.isInstance(item, ScalarProperty);
-}
-
-export interface StructuredProperty extends SemanticProperty, SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'StructuredProperty';
-    domain: Reference<Classifier>
-    functional: boolean
-    range: Reference<Structure>
-}
-
-export const StructuredProperty = 'StructuredProperty';
-
-export function isStructuredProperty(item: unknown): item is StructuredProperty {
-    return reflection.isInstance(item, StructuredProperty);
-}
-
-export interface Type extends SpecializableTerm {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'Classifier' | 'EnumeratedScalar' | 'FacetedScalar' | 'Scalar' | 'Structure' | 'Type';
-}
-
-export const Type = 'Type';
-
-export function isType(item: unknown): item is Type {
-    return reflection.isInstance(item, Type);
-}
-
-export interface SemanticProperty extends Property {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
-}
-
-export const SemanticProperty = 'SemanticProperty';
-
-export function isSemanticProperty(item: unknown): item is SemanticProperty {
-    return reflection.isInstance(item, SemanticProperty);
-}
-
-export interface ForwardRelation extends Relation {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ForwardRelation';
-}
-
-export const ForwardRelation = 'ForwardRelation';
-
-export function isForwardRelation(item: unknown): item is ForwardRelation {
-    return reflection.isInstance(item, ForwardRelation);
-}
-
-export interface ReverseRelation extends Relation {
-    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
-    readonly $type: 'ReverseRelation';
-}
-
-export const ReverseRelation = 'ReverseRelation';
-
-export function isReverseRelation(item: unknown): item is ReverseRelation {
-    return reflection.isInstance(item, ReverseRelation);
-}
-
 export interface Classifier extends Type {
     readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
     readonly $type: 'Aspect' | 'Classifier' | 'Concept' | 'Entity' | 'RelationEntity' | 'Structure';
@@ -1443,6 +1350,28 @@ export const Scalar = 'Scalar';
 
 export function isScalar(item: unknown): item is Scalar {
     return reflection.isInstance(item, Scalar);
+}
+
+export interface Property extends Feature {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'AnnotationProperty' | 'Property' | 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
+}
+
+export const Property = 'Property';
+
+export function isProperty(item: unknown): item is Property {
+    return reflection.isInstance(item, Property);
+}
+
+export interface Relation extends Feature {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'ForwardRelation' | 'Relation' | 'ReverseRelation';
+}
+
+export const Relation = 'Relation';
+
+export function isRelation(item: unknown): item is Relation {
+    return reflection.isInstance(item, Relation);
 }
 
 export interface Entity extends Classifier {
@@ -1505,6 +1434,39 @@ export const FacetedScalar = 'FacetedScalar';
 
 export function isFacetedScalar(item: unknown): item is FacetedScalar {
     return reflection.isInstance(item, FacetedScalar);
+}
+
+export interface SemanticProperty extends Property {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'ScalarProperty' | 'SemanticProperty' | 'StructuredProperty';
+}
+
+export const SemanticProperty = 'SemanticProperty';
+
+export function isSemanticProperty(item: unknown): item is SemanticProperty {
+    return reflection.isInstance(item, SemanticProperty);
+}
+
+export interface ForwardRelation extends Relation {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'ForwardRelation';
+}
+
+export const ForwardRelation = 'ForwardRelation';
+
+export function isForwardRelation(item: unknown): item is ForwardRelation {
+    return reflection.isInstance(item, ForwardRelation);
+}
+
+export interface ReverseRelation extends Relation {
+    readonly $container: Description | DescriptionBundle | RelationEntity | StructuredPropertyValueAssertion | StructuredPropertyValueRestrictionAxiom | Vocabulary | VocabularyBundle;
+    readonly $type: 'ReverseRelation';
+}
+
+export const ReverseRelation = 'ReverseRelation';
+
+export function isReverseRelation(item: unknown): item is ReverseRelation {
+    return reflection.isInstance(item, ReverseRelation);
 }
 
 export interface Aspect extends Entity {
@@ -1577,12 +1539,10 @@ export interface OmlAstType {
     DescriptionBundle: DescriptionBundle
     DescriptionBundleExtension: DescriptionBundleExtension
     DescriptionBundleImport: DescriptionBundleImport
-    DescriptionBundleImport_Union: DescriptionBundleImport_Union
     DescriptionBundleInclusion: DescriptionBundleInclusion
     DescriptionBundleUsage: DescriptionBundleUsage
     DescriptionExtension: DescriptionExtension
     DescriptionImport: DescriptionImport
-    DescriptionImport_Union: DescriptionImport_Union
     DescriptionStatement: DescriptionStatement
     DescriptionStatement_Union: DescriptionStatement_Union
     DescriptionUsage: DescriptionUsage
@@ -1669,20 +1629,17 @@ export interface OmlAstType {
     VocabularyBundle: VocabularyBundle
     VocabularyBundleExtension: VocabularyBundleExtension
     VocabularyBundleImport: VocabularyBundleImport
-    VocabularyBundleImport_Union: VocabularyBundleImport_Union
     VocabularyBundleInclusion: VocabularyBundleInclusion
     VocabularyExtension: VocabularyExtension
     VocabularyImport: VocabularyImport
-    VocabularyImport_Union: VocabularyImport_Union
     VocabularyStatement: VocabularyStatement
-    VocabularyStatement_Union: VocabularyStatement_Union
     VocabularyUsage: VocabularyUsage
 }
 
 export class OmlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleImport_Union', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionImport_Union', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'SemanticProperty', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleImport_Union', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyImport_Union', 'VocabularyStatement', 'VocabularyStatement_Union', 'VocabularyUsage'];
+        return ['AnnotatedElement', 'Annotation', 'AnnotationProperty', 'AnnotationPropertyReference', 'Aspect', 'AspectReference', 'Assertion', 'Axiom', 'BinaryPredicate', 'BinaryPredicate_Union', 'BooleanLiteral', 'Classifier', 'ClassifierReference', 'Concept', 'ConceptInstance', 'ConceptInstanceReference', 'ConceptReference', 'ConceptTypeAssertion', 'DecimalLiteral', 'Description', 'DescriptionBox', 'DescriptionBundle', 'DescriptionBundleExtension', 'DescriptionBundleImport', 'DescriptionBundleInclusion', 'DescriptionBundleUsage', 'DescriptionExtension', 'DescriptionImport', 'DescriptionStatement', 'DescriptionStatement_Union', 'DescriptionUsage', 'DifferentFromPredicate', 'DoubleLiteral', 'Entity', 'EntityReference', 'EnumeratedScalar', 'EnumeratedScalarReference', 'FacetedScalar', 'FacetedScalarReference', 'Feature', 'FeaturePredicate', 'ForwardRelation', 'IdentifiedElement', 'Import', 'Instance', 'IntegerLiteral', 'KeyAxiom', 'LinkAssertion', 'Literal', 'Member', 'NamedInstance', 'NamedInstanceReference', 'NamedInstanceReference_Union', 'OmlReference', 'Ontology', 'Ontology_Union', 'Predicate', 'Predicate_Union', 'Property', 'PropertyRestrictionAxiom', 'PropertyValueAssertion', 'QuotedLiteral', 'Relation', 'RelationCardinalityRestrictionAxiom', 'RelationEntity', 'RelationEntityPredicate', 'RelationEntityReference', 'RelationInstance', 'RelationInstanceReference', 'RelationRangeRestrictionAxiom', 'RelationReference', 'RelationRestrictionAxiom', 'RelationTargetRestrictionAxiom', 'RelationTypeAssertion', 'RestrictionAxiom', 'ReverseRelation', 'Rule', 'RuleReference', 'SameAsPredicate', 'Scalar', 'ScalarProperty', 'ScalarPropertyCardinalityRestrictionAxiom', 'ScalarPropertyRangeRestrictionAxiom', 'ScalarPropertyReference', 'ScalarPropertyRestrictionAxiom', 'ScalarPropertyValueAssertion', 'ScalarPropertyValueRestrictionAxiom', 'SemanticProperty', 'SpecializableTerm', 'SpecializableTermReference', 'SpecializationAxiom', 'Statement', 'Structure', 'StructureInstance', 'StructureReference', 'StructuredProperty', 'StructuredPropertyCardinalityRestrictionAxiom', 'StructuredPropertyRangeRestrictionAxiom', 'StructuredPropertyReference', 'StructuredPropertyRestrictionAxiom', 'StructuredPropertyValueAssertion', 'StructuredPropertyValueRestrictionAxiom', 'Term', 'Type', 'TypeAssertion', 'TypePredicate', 'UnaryPredicate', 'UnaryPredicate_Union', 'UnsignedInteger', 'Vocabulary', 'VocabularyBox', 'VocabularyBundle', 'VocabularyBundleExtension', 'VocabularyBundleImport', 'VocabularyBundleInclusion', 'VocabularyExtension', 'VocabularyImport', 'VocabularyStatement', 'VocabularyUsage'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -1750,7 +1707,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             case DescriptionBundleExtension:
             case DescriptionBundleInclusion:
             case DescriptionBundleUsage: {
-                return this.isSubtype(DescriptionBundleImport, supertype) || this.isSubtype(DescriptionBundleImport_Union, supertype);
+                return this.isSubtype(DescriptionBundleImport, supertype);
             }
             case DescriptionBundleImport:
             case DescriptionImport:
@@ -1760,7 +1717,7 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case DescriptionExtension:
             case DescriptionUsage: {
-                return this.isSubtype(DescriptionImport, supertype) || this.isSubtype(DescriptionImport_Union, supertype);
+                return this.isSubtype(DescriptionImport, supertype);
             }
             case DescriptionStatement:
             case VocabularyStatement: {
@@ -1834,10 +1791,10 @@ export class OmlAstReflection extends AbstractAstReflection {
             case RelationReference:
             case RuleReference:
             case SpecializableTermReference: {
-                return this.isSubtype(OmlReference, supertype) || this.isSubtype(VocabularyStatement_Union, supertype);
+                return this.isSubtype(OmlReference, supertype) || this.isSubtype(VocabularyStatement, supertype);
             }
             case Rule: {
-                return this.isSubtype(Member, supertype) || this.isSubtype(VocabularyStatement_Union, supertype);
+                return this.isSubtype(Member, supertype) || this.isSubtype(VocabularyStatement, supertype);
             }
             case ScalarProperty:
             case StructuredProperty: {
@@ -1860,7 +1817,7 @@ export class OmlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(Property, supertype);
             }
             case SpecializableTerm: {
-                return this.isSubtype(Term, supertype) || this.isSubtype(VocabularyStatement_Union, supertype);
+                return this.isSubtype(Term, supertype) || this.isSubtype(VocabularyStatement, supertype);
             }
             case StructuredPropertyCardinalityRestrictionAxiom:
             case StructuredPropertyRangeRestrictionAxiom:
@@ -1885,11 +1842,11 @@ export class OmlAstReflection extends AbstractAstReflection {
             }
             case VocabularyBundleExtension:
             case VocabularyBundleInclusion: {
-                return this.isSubtype(VocabularyBundleImport, supertype) || this.isSubtype(VocabularyBundleImport_Union, supertype);
+                return this.isSubtype(VocabularyBundleImport, supertype);
             }
             case VocabularyExtension:
             case VocabularyUsage: {
-                return this.isSubtype(VocabularyImport, supertype) || this.isSubtype(VocabularyImport_Union, supertype);
+                return this.isSubtype(VocabularyImport, supertype);
             }
             default: {
                 return false;
@@ -2099,9 +2056,6 @@ export class OmlAstReflection extends AbstractAstReflection {
             case 'TypePredicate:type': {
                 return Type;
             }
-            case 'VocabularyStatement:owningVocabulary': {
-                return Vocabulary;
-            }
             default: {
                 throw new Error(`${referenceId} is not a valid reference id.`);
             }
@@ -2269,6 +2223,14 @@ export class OmlAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
+            case 'SpecializableTerm': {
+                return {
+                    name: 'SpecializableTerm',
+                    mandatory: [
+                        { name: 'ownedSpecializations', type: 'array' }
+                    ]
+                };
+            }
             case 'EntityReference': {
                 return {
                     name: 'EntityReference',
@@ -2288,11 +2250,19 @@ export class OmlAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
-            case 'SpecializableTerm': {
+            case 'ScalarProperty': {
                 return {
-                    name: 'SpecializableTerm',
+                    name: 'ScalarProperty',
                     mandatory: [
-                        { name: 'ownedSpecializations', type: 'array' }
+                        { name: 'functional', type: 'boolean' }
+                    ]
+                };
+            }
+            case 'StructuredProperty': {
+                return {
+                    name: 'StructuredProperty',
+                    mandatory: [
+                        { name: 'functional', type: 'boolean' }
                     ]
                 };
             }
@@ -2367,22 +2337,6 @@ export class OmlAstReflection extends AbstractAstReflection {
                         { name: 'ownedPropertyRestrictions', type: 'array' },
                         { name: 'ownedRelationRestrictions', type: 'array' },
                         { name: 'ownedSpecializations', type: 'array' }
-                    ]
-                };
-            }
-            case 'ScalarProperty': {
-                return {
-                    name: 'ScalarProperty',
-                    mandatory: [
-                        { name: 'functional', type: 'boolean' }
-                    ]
-                };
-            }
-            case 'StructuredProperty': {
-                return {
-                    name: 'StructuredProperty',
-                    mandatory: [
-                        { name: 'functional', type: 'boolean' }
                     ]
                 };
             }
