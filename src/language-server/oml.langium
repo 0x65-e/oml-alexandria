@@ -74,10 +74,10 @@ interface VocabularyStatement extends Statement {
 interface Statement {
 }
 
-interface Vocabulary extends VocabularyBox {
-	ownedImports: VocabularyImport_Union[]
-	ownedStatements: VocabularyStatement_Union[]
-}
+//interface Vocabulary extends VocabularyBox {
+//	ownedImports: VocabularyImport_Union[]
+//	ownedStatements: VocabularyStatement_Union[]
+//}
 
 interface VocabularyBox extends Ontology {
 }
@@ -111,9 +111,9 @@ interface OmlReference {
 //interface Literal {
 //}
 
-interface VocabularyBundle extends VocabularyBox {
-	ownedImports: VocabularyBundleImport_Union[]
-}
+//interface VocabularyBundle extends VocabularyBox {
+//	ownedImports: VocabularyBundleImport_Union[]
+//}
 
 interface VocabularyBundleImport extends Import {
 	// owningVocabularyBundle: @VocabularyBundle
@@ -122,10 +122,10 @@ interface VocabularyBundleImport extends Import {
 interface DescriptionBox extends Ontology {
 }
 
-interface Description extends DescriptionBox {
-	ownedImports: DescriptionImport_Union[]
-	ownedStatements: DescriptionStatement_Union[]
-}
+//interface Description extends DescriptionBox {
+//	ownedImports: DescriptionImport_Union[]
+//	ownedStatements: DescriptionStatement_Union[]
+//}
 
 interface DescriptionImport extends Import {
 	// owningDescription: @Description
@@ -135,9 +135,9 @@ interface DescriptionStatement extends Statement {
 	owningDescription: @Description
 }
 
-interface DescriptionBundle extends DescriptionBox {
-	ownedImports: DescriptionBundleImport_Union[]
-}
+//interface DescriptionBundle extends DescriptionBox {
+//	ownedImports: DescriptionBundleImport_Union[]
+//}
 
 interface DescriptionBundleImport extends Import {
 	// owningDescriptionBundle: @DescriptionBundle
@@ -527,17 +527,16 @@ interface BooleanLiteral extends Literal {
 //includes end
 
 entry Ontology infers Ontology_Union:
-    VocabularyBox | DescriptionBox 
-;
+    VocabularyBox | DescriptionBox;
 
 Annotation returns Annotation:
-    '@' {Annotation} property=[AnnotationProperty:Ref ] (value=Literal  | referenceValue=[Member:Ref ] )? 
-;
+    '@' {Annotation} property=[AnnotationProperty:Ref] (value=Literal | referenceValue=[Member:Ref])?;
 
-VocabularyBox infers VocabularyBox_Union:
-    Vocabulary | VocabularyBundle 
-;
+VocabularyBox returns VocabularyBox:
+      {infer Vocabulary} ownedAnnotations+=Annotation* 'vocabulary' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=VocabularyImport* ownedStatements+=VocabularyStatement* '}'
+    | {infer VocabularyBundle} ownedAnnotations+=Annotation* 'vocabulary' 'bundle' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=VocabularyBundleImport* '}';
 
+/*
 Vocabulary returns Vocabulary:
     ownedAnnotations+=Annotation * 'vocabulary' namespace=NAMESPACE  'as' prefix=ID  '{' ownedImports+=VocabularyImport * ownedStatements+=VocabularyStatement * '}'  
 ;
@@ -545,11 +544,13 @@ Vocabulary returns Vocabulary:
 VocabularyBundle returns VocabularyBundle:
     ownedAnnotations+=Annotation * 'vocabulary' 'bundle' namespace=NAMESPACE  'as' prefix=ID  '{' ownedImports+=VocabularyBundleImport * '}'  
 ;
+*/
 
-DescriptionBox infers DescriptionBox_Union:
-    Description | DescriptionBundle 
-;
+DescriptionBox returns DescriptionBox:
+      {infer Description} ownedAnnotations+=Annotation* 'description' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionImport* ownedStatements+=DescriptionStatement* '}' 
+    | {infer DescriptionBundle} ownedAnnotations+=Annotation* 'description' 'bundle' namespace=NAMESPACE 'as' prefix=ID '{' ownedImports+=DescriptionBundleImport* '}';
 
+/*
 Description returns Description:
     ownedAnnotations+=Annotation * 'description' namespace=NAMESPACE  'as' prefix=ID  '{' ownedImports+=DescriptionImport * ownedStatements+=DescriptionStatement * '}'  
 ;
@@ -557,6 +558,7 @@ Description returns Description:
 DescriptionBundle returns DescriptionBundle:
     ownedAnnotations+=Annotation * 'description' 'bundle' namespace=NAMESPACE  'as' prefix=ID  '{' ownedImports+=DescriptionBundleImport * '}'  
 ;
+*/
 
 SpecializableTerm infers SpecializableTerm_Union:
     Type | AnnotationProperty | ScalarProperty | StructuredProperty 
