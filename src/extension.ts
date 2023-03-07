@@ -1,9 +1,20 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import {
-    LanguageClient, LanguageClientOptions, ServerOptions, TransportKind
-} from 'vscode-languageclient/node';
+    LanguageClient, LanguageClientOptions, ServerOptions, TransportKind ,
 
+} from 'sprotty-vscode/node_modules/vscode-languageclient';
+
+import {
+    LspLabelEditActionHandler,
+    SprottyLspEditVscodeExtension,
+    WorkspaceEditActionHandler,
+  } from "sprotty-vscode/lib/lsp/editing";
+  import {
+    SprottyDiagramIdentifier,
+    SprottyLspWebview,
+  } from "sprotty-vscode/lib/lsp";
+import { SprottyWebview } from "sprotty-vscode/lib/sprotty-webview";
 let client: LanguageClient;
 
 // This function is called when the extension is activated.
@@ -19,6 +30,54 @@ export function deactivate(): Thenable<void> | undefined {
     return undefined;
 }
 
+
+export class OmlLspVscodeExtension extends SprottyLspEditVscodeExtension {
+    constructor(context: vscode.ExtensionContext) {
+      super("oml", context);
+    }
+  
+    protected getDiagramType(commandArgs: any[]): string | undefined {
+      if (
+        commandArgs.length === 0 ||
+        (commandArgs[0] instanceof vscode.Uri &&
+          commandArgs[0].path.endsWith(".oml"))
+      ) {
+        return "oml-diagram";
+      }
+      return undefined;
+    }
+  
+    createWebView(identifier: SprottyDiagramIdentifier): SprottyWebview {
+      const webview = new SprottyLspWebview({
+        extension: this,
+        identifier,
+        localResourceRoots: [this.getExtensionFileUri("pack")],
+        scriptUri: this.getExtensionFileUri("pack", "webview.js"),
+        singleton: false, // Change this to `true` to enable a singleton view
+      });
+      webview.addActionHandler(WorkspaceEditActionHandler);
+      webview.addActionHandler(LspLabelEditActionHandler);
+      return webview;
+    }
+  
+    protected activateLanguageClient(
+      context: vscode.ExtensionContext
+    ): LanguageClient {
+        const client= startLanguageClient(context);
+        return client;
+    }
+    
+  
+
+  
+
+    protected activateLanguageClientViaExecutable(
+      context: vscode.ExtensionContext,
+      clientOptions: LanguageClientOptions,
+   
+    ): LanguageClient {return startLanguageClient(context)
+    }
+  }
 function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
     const serverModule = context.asAbsolutePath(path.join('out', 'language-server', 'main'));
     // The debug options for the server
@@ -47,8 +106,8 @@ function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
 
     // Create the language client and start the client.
     const client = new LanguageClient(
-        'oml',
-        'Oml',
+        "oml",
+        "Oml",
         serverOptions,
         clientOptions
     );
