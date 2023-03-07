@@ -4,7 +4,7 @@ import { Ontology } from '../language-server/generated/ast';
 import { OmlLanguageMetaData } from '../language-server/generated/module';
 import { createOmlServices } from '../language-server/oml-module';
 import { extractAstNode, extractDocument } from './cli-util';
-import { generateJavaScript } from './generator';
+import { dumpTree, generateJavaScript } from './generator';
 import { NodeFileSystem } from 'langium/node';
 
 export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
@@ -12,6 +12,13 @@ export const generateAction = async (fileName: string, opts: GenerateOptions): P
     const model = await extractAstNode<Ontology>(fileName, services);
     const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
     console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
+};
+
+export const dumpAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
+    const services = createOmlServices(NodeFileSystem).Oml;
+    const model = await extractAstNode<Ontology>(fileName, services);
+    const generatedFilePath = dumpTree(model, fileName, opts.destination);
+    console.log(chalk.green(`Tree dumped successfully: ${generatedFilePath}`));
 };
 
 export const parseAndValidate = async (fileName: string): Promise<void> => {
@@ -50,11 +57,18 @@ export default function(): void {
         .option('-d, --destination <dir>', 'destination directory of generating')
         .description('generates JavaScript code that prints "Hello, {name}!" for each greeting in a source file')
         .action(generateAction);
-
+    program
+        .command('dumpTree')
+        .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
+        .option('-d, --destination <dir>', 'destination directory of generating')
+        .description('dumpts the AST produced by the source file')
+        .action(dumpAction);
     program
         .command('parseAndValidate')
         .argument('<file>', 'Source file to parse & validate (ending in ${fileExtensions})')
         .description('Indicates where a program parses & validates successfully, but produces no output code')
-        .action(parseAndValidate) // we'll need to implement this function
+        .action(parseAndValidate)
     program.parse(process.argv);
+
+    
 }
