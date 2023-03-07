@@ -1,9 +1,9 @@
 import {
     AstNode, AstNodeDescription, DefaultScopeComputation, LangiumDocument,
-    PrecomputedScopes, MultiMap
+    PrecomputedScopes, MultiMap, streamAllContents
 } from 'langium';
 
-import { isRelationEntity, isMember, Ontology, isVocabulary, isDescription, RelationEntity} from './generated/ast';
+import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity} from './generated/ast';
 
 
 export class OmlScopeComputation extends DefaultScopeComputation {
@@ -54,27 +54,33 @@ export class OmlScopeComputation extends DefaultScopeComputation {
         return localDescriptions;
     }
 
-    // private createQualifiedDescription(
-    //     container: Namespace, 
-    //     description: AstNodeDescription, 
-    //     document: LangiumDocument
-    // ): AstNodeDescription {
-    //     // `getQualifiedName` has been implemented in the previous section
-    //     const name = this.getQualifiedName(container.name, description.name);
-    //     return this.descriptions.createDescription(description.node!, name, document);
-    // }
+    /**
+     * Export all functions using their fully qualified name
+     */
+     override async computeExports(document: LangiumDocument): Promise<AstNodeDescription[]> {
+        const exportedDescriptions: AstNodeDescription[] = [];
+        for (const modelNode of streamAllContents(document.parseResult.value)) {
+            if (isMember(modelNode)) {
+                const fullyQualifiedName = this.getQualifiedName(modelNode, modelNode.name);
+                // `descriptions` is our `AstNodeDescriptionProvider` defined in `DefaultScopeComputation`
+                // It allows us to easily create descriptions that point to elements using a name.
+                exportedDescriptions.push(this.descriptions.createDescription(modelNode, fullyQualifiedName, document));
+            }
+        }
+        return exportedDescriptions;
+    }
 
     /**
      * Build a qualified name for a model node
      */
-    //  private getQualifiedName(node: AstNode, name: string): string {
-    //     let parent: AstNode | undefined = node.$container;
-    //     while (isOntology(parent)) {
-    //         // Iteratively prepend the name of the parent namespace
-    //         // This allows us to work with nested namespaces
-    //         name = `${parent.namespace}:${name}`;
-    //         parent = parent.$container;
-    //     }
-    //     return name;
-    // }
+     private getQualifiedName(node: AstNode, name: string): string {
+        let parent: AstNode | undefined = node.$container;
+        while (isOntology(parent)) {
+            // Iteratively prepend the name of the parent namespace
+            // This allows us to work with nested namespaces
+            name = `${parent.namespace}:${name}`;
+            parent = parent.$container;
+        }
+        return name;
+    }
 }
