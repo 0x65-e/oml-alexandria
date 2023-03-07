@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { AstNode, CompositeGeneratorNode, NL, toString } from 'langium';
 import path from 'path';
-import { isImport, isMember, isOntology, isRelationEntity, isSpecializableTerm, isVocabulary, Ontology } from '../language-server/generated/ast';
+import { isAnnotationPropertyReference, isAspectReference, isConceptReference, isEnumeratedScalarReference, isFacetedScalarReference, isImport, isMember, isOntology, isRelationEntity, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, isVocabulary, Ontology } from '../language-server/generated/ast';
 import { extractDestinationAndName } from './cli-util';
 
 export function generateJavaScript(model: Ontology, filePath: string, destination: string | undefined): string {
@@ -68,6 +68,23 @@ function dumpNodes(smt: AstNode, level: number, printer: CompositeGeneratorNode)
                 if (smt.transitive) diag.push(`transitive: true`);
             }
         }
+    }
+    // A `SpecializableTermReference` is a reference to a `SpecializableTerm`
+    if (isSpecializableTermReference(smt)) {
+        if (isFacetedScalarReference(smt) || isEnumeratedScalarReference(smt)) {
+            if (smt.scalar.ref) diag.push(`name: ${smt.scalar.ref.name}`)
+        } else if (isScalarPropertyReference(smt) || isStructuredPropertyReference(smt) || isAnnotationPropertyReference(smt)) {
+            if (smt.property.ref) diag.push(`name: ${smt.property.ref.name}`)
+        } else if (isConceptReference(smt)) {
+            if (smt.concept.ref) diag.push(`name: ${smt.concept.ref.name}`)
+        } else if (isAspectReference(smt)) {
+            if (smt.aspect.ref) diag.push(`name: ${smt.aspect.ref.name}`)
+        } else if (isStructureReference(smt)) {
+            if (smt.structure.ref) diag.push(`name: ${smt.structure.ref.name}`)
+        } else if (isRelationEntityReference(smt)) {
+            if (smt.entity.ref) diag.push(`name: ${smt.entity.ref.name}`)
+        }
+        if (smt.ownedSpecializations) smt.ownedSpecializations.forEach(spec => diag.push(`specializes: ${spec.specializedTerm.$refText}`));
     }
 
     if (diag.length > 0) {
