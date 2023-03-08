@@ -214,6 +214,7 @@ export class OmlValidator {
             }
         }
     }
+
     checkRelationEntityLogicalConsistency(relationEntity: RelationEntity, accept: ValidationAcceptor): void {
         if (!isRelationEntity(relationEntity)) {
             throw new Error('Expected a RelationEntity in validation but got the wrong type');
