@@ -1,5 +1,5 @@
 import { ValidationAcceptor, ValidationChecks } from 'langium';
-import { isAnnotationPropertyReference, isAspect, isAspectReference, isConceptReference, isEntity, isEnumeratedScalarReference, isFacetedScalarReference, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, OmlAstType, SpecializableTerm, SpecializableTermReference } from './generated/ast';
+import { isAnnotationPropertyReference, isAspect, isAspectReference, isConceptReference, isEntity, isEnumeratedScalarReference, isFacetedScalarReference, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, OmlAstType, SpecializableTerm, SpecializableTermReference, isRelationEntity, RelationEntity } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
 /**
@@ -10,7 +10,8 @@ export function registerValidationChecks(services: OmlServices) {
     const validator = services.validation.OmlValidator;
     const checks: ValidationChecks<OmlAstType> = {
         SpecializableTerm: validator.checkSpecializationTypesMatch,
-        SpecializableTermReference: validator.checkReferenceSpecializationTypeMatch
+        SpecializableTermReference: validator.checkReferenceSpecializationTypeMatch,
+        RelationEntity: validator.checkRelationEntityLogicalConsistency
     };
     registry.register(checks, validator);
 }
@@ -72,4 +73,19 @@ export class OmlValidator {
         }
     }
 
+    checkRelationEntityLogicalConsistency(relationEntity: RelationEntity, accept: ValidationAcceptor): void {
+        if (!isRelationEntity(relationEntity)) {
+            throw new Error('Expected a RelationEntity in validation but got the wrong type');
+        }
+        
+        if (relationEntity.symmetric && relationEntity.asymmetric) {
+            accept('error', `${relationEntity.name} cannot be both symmetric and asymmetric`, {node: relationEntity, keyword: "symmetric"});
+            accept('error', `${relationEntity.name} cannot be both symmetric and asymmetric`, {node: relationEntity, keyword: "asymmetric"});
+        }
+
+        if (relationEntity.reflexive && relationEntity.irreflexive) {
+            accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "reflexive"});
+            accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "irreflexive"});
+        }
+    }
 }
