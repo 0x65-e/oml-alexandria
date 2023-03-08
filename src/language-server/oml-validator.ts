@@ -23,7 +23,9 @@ import {
     isBooleanLiteral,
     isIntegerLiteral,
     isDecimalLiteral,
-    isDoubleLiteral
+    isDoubleLiteral,
+    EnumeratedScalar,
+    isEnumeratedScalar
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -36,7 +38,8 @@ export function registerValidationChecks(services: OmlServices) {
     const checks: ValidationChecks<OmlAstType> = {
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
-        FacetedScalar: [validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
+        FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
+        EnumeratedScalar: validator.checkEnumeratedScalarSpecialization,
         RelationEntity: validator.checkRelationEntityLogicalConsistency
     };
     registry.register(checks, validator);
@@ -277,6 +280,36 @@ export class OmlValidator {
         if (relationEntity.reflexive && relationEntity.irreflexive) {
             accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "reflexive"});
             accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "irreflexive"});
+        }
+    }
+
+    checkFacetedScalarSpecialization(facetScalar: FacetedScalar, accept: ValidationAcceptor): void {
+        if (!isFacetedScalar(facetScalar)) {
+            throw new Error('Expected a FacetedScalar in validation but got the wrong type');
+        }
+
+        // Warn for any FacetedScalar with no specializations (that isn't one of the standard types)
+        if (facetScalar.ownedSpecializations == undefined || facetScalar.ownedSpecializations.length == 0) {
+            accept('warning', `Only the standard scalars should have no specializations`, {node: facetScalar, property: 'name'});
+        }
+
+        // Error for a FacetedScalar with any facets to have more than one specialization
+        if ((facetScalar.length != undefined || facetScalar.minLength != undefined || facetScalar.maxLength != undefined ||
+            facetScalar.pattern != undefined || facetScalar.language != undefined || facetScalar.minInclusive != undefined ||
+            facetScalar.minExclusive != undefined || facetScalar.maxInclusive != undefined || facetScalar.maxExclusive != undefined) &&
+            facetScalar.ownedSpecializations && facetScalar.ownedSpecializations.length > 1) {
+                accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations'});
+            }
+    }
+
+    checkEnumeratedScalarSpecialization(enumScalar: EnumeratedScalar, accept: ValidationAcceptor): void {
+        if (!isEnumeratedScalar(enumScalar)) {
+            throw new Error('Expected an EnumeratedScalar in validation but got the wrong type');
+        }
+
+        if (enumScalar.ownedSpecializations && enumScalar.ownedSpecializations.length > 0 && enumScalar.literals && enumScalar.literals.length > 0) {
+            accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
+            accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
         }
     }
 }
