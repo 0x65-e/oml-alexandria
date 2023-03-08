@@ -111,9 +111,9 @@ export class OmlValidator {
 
         // Check consistent minInclusive and maxInclusive
         if (facetScalar.minInclusive != undefined && facetScalar.maxInclusive != undefined) {
-            if ((facetScalar.minInclusive.$type == "IntegerLiteral" && facetScalar.maxInclusive.$type == "IntegerLiteral") ||
-                    (facetScalar.minInclusive.$type == "DecimalLiteral" && facetScalar.maxInclusive.$type == "DecimalLiteral") ||
-                    (facetScalar.minInclusive.$type == "DoubleLiteral" && facetScalar.maxInclusive.$type == "DoubleLiteral")) {
+            if ((isIntegerLiteral(facetScalar.minInclusive) && isIntegerLiteral(facetScalar.maxInclusive)) ||
+                    (isDecimalLiteral(facetScalar.minInclusive) && isDecimalLiteral(facetScalar.maxInclusive)) ||
+                    (isDoubleLiteral(facetScalar.minInclusive) && isDoubleLiteral(facetScalar.maxInclusive))) {
                 if (facetScalar.maxInclusive.value < facetScalar.minInclusive.value) {
                     accept('error', `${facetScalar.name} has a minInclusive value that is greater than its maxInclusive value`, {node: facetScalar, property: 'minInclusive'});
                     accept('error', `${facetScalar.name} has a maxInclusive value that is less than its minInclusive value`, {node: facetScalar, property: 'maxInclusive'});    
