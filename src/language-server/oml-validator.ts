@@ -16,6 +16,8 @@ import {
     OmlAstType,
     SpecializableTerm,
     SpecializableTermReference,
+    isRelationEntity,
+    RelationEntity,
     isFacetedScalar,
     FacetedScalar,
     isBooleanLiteral,
@@ -34,7 +36,8 @@ export function registerValidationChecks(services: OmlServices) {
     const checks: ValidationChecks<OmlAstType> = {
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
-        FacetedScalar: [validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes]
+        FacetedScalar: [validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
+        RelationEntity: validator.checkRelationEntityLogicalConsistency
     };
     registry.register(checks, validator);
 }
@@ -258,6 +261,22 @@ export class OmlValidator {
             (facetScalar.minExclusive != undefined && facetScalar.maxExclusive.$type != facetScalar.minExclusive.$type)) {
                 accept('error', `maxExclusive must have a type consistent with all other inclusive/exclusive types`, {node: facetScalar, property: 'maxExclusive'});
             }
+        }
+    }
+
+    checkRelationEntityLogicalConsistency(relationEntity: RelationEntity, accept: ValidationAcceptor): void {
+        if (!isRelationEntity(relationEntity)) {
+            throw new Error('Expected a RelationEntity in validation but got the wrong type');
+        }
+        
+        if (relationEntity.symmetric && relationEntity.asymmetric) {
+            accept('error', `${relationEntity.name} cannot be both symmetric and asymmetric`, {node: relationEntity, keyword: "symmetric"});
+            accept('error', `${relationEntity.name} cannot be both symmetric and asymmetric`, {node: relationEntity, keyword: "asymmetric"});
+        }
+
+        if (relationEntity.reflexive && relationEntity.irreflexive) {
+            accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "reflexive"});
+            accept('error', `${relationEntity.name} cannot be both reflexive and irreflexive`, {node: relationEntity, keyword: "irreflexive"});
         }
     }
 }
