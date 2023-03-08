@@ -1,5 +1,5 @@
 import { ValidationAcceptor, ValidationChecks } from 'langium';
-import { isAspect, isEntity, isSpecializableTerm, OmlAstType, SpecializableTerm, isFacetedScalar, FacetedScalar } from './generated/ast';
+import { isAnnotationPropertyReference, isAspect, isAspectReference, isConceptReference, isEntity, isEnumeratedScalarReference, isFacetedScalarReference, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, OmlAstType, SpecializableTerm, SpecializableTermReference, isFacetedScalar, FacetedScalar } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
 /**
@@ -10,6 +10,7 @@ export function registerValidationChecks(services: OmlServices) {
     const validator = services.validation.OmlValidator;
     const checks: ValidationChecks<OmlAstType> = {
         SpecializableTerm: validator.checkSpecializationTypesMatch,
+        SpecializableTermReference: validator.checkReferenceSpecializationTypeMatch,
         FacetedScalar: [validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes]
     };
     registry.register(checks, validator);
@@ -31,6 +32,41 @@ export class OmlValidator {
                     // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
                     if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
                         accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specTerm, property: 'ownedSpecializations'});
+                    }
+                }
+            })
+        }
+    }
+
+    checkReferenceSpecializationTypeMatch(specRef: SpecializableTermReference, accept: ValidationAcceptor): void {
+        if (!isSpecializableTermReference(specRef)) {
+            throw new Error('Expected a SpecializableTermReference in validation but got the wrong type');
+        }
+
+        // Extract the SpecializableTerm from the reference
+        let specTerm: SpecializableTerm | null = null;
+        if (isFacetedScalarReference(specRef) || isEnumeratedScalarReference(specRef)) {
+            if (specRef.scalar.ref) specTerm = specRef.scalar.ref;
+        } else if (isScalarPropertyReference(specRef) || isStructuredPropertyReference(specRef) || isAnnotationPropertyReference(specRef)) {
+            if (specRef.property.ref) specTerm = specRef.property.ref;
+        } else if (isConceptReference(specRef)) {
+            if (specRef.concept.ref) specTerm = specRef.concept.ref;
+        } else if (isAspectReference(specRef)) {
+            if (specRef.aspect.ref) specTerm = specRef.aspect.ref;
+        } else if (isStructureReference(specRef)) {
+            if (specRef.structure.ref) specTerm = specRef.structure.ref;
+        } else if (isRelationEntityReference(specRef)) {
+            if (specRef.entity.ref) specTerm = specRef.entity.ref;
+        } else {
+            throw new Error('Unknown subtype of SpecializableTermReference');
+        }
+
+        if (specRef.ownedSpecializations) {
+            specRef.ownedSpecializations.forEach(spec => {
+                if (spec.specializedTerm.ref && specTerm) {
+                    // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
+                    if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
+                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specRef, property: 'ownedSpecializations'});
                     }
                 }
             })
