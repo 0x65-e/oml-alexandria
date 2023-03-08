@@ -2,6 +2,7 @@
     "name": "oml-alexandria",
     "displayName": "oml-alexandria",
     "description": "Please enter a brief description here",
+    "publisher": "alexandria-team",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.67.0"
@@ -155,13 +156,13 @@
     ],
     "files": [
         "bin",
-        "out",
+        "pack",
         "src"
     ],
     "bin": {
         "oml-cli": "./bin/cli"
     },
-    "main": "./out/extension.js",
+    "main": "./pack/extension.js",
     "scripts": {
         "vscode:prepublish": "npm run build && npm run lint",
         "build": "tsc -b tsconfig.json",
