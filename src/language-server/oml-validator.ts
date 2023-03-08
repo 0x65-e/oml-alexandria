@@ -23,7 +23,9 @@ import {
     isBooleanLiteral,
     isIntegerLiteral,
     isDecimalLiteral,
-    isDoubleLiteral
+    isDoubleLiteral,
+    EnumeratedScalar,
+    isEnumeratedScalar
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -37,6 +39,7 @@ export function registerValidationChecks(services: OmlServices) {
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
+        EnumeratedScalar: validator.checkEnumeratedScalarSpecialization,
         RelationEntity: validator.checkRelationEntityLogicalConsistency
     };
     registry.register(checks, validator);
@@ -297,5 +300,16 @@ export class OmlValidator {
             facetScalar.ownedSpecializations && facetScalar.ownedSpecializations.length > 1) {
                 accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations'});
             }
+    }
+
+    checkEnumeratedScalarSpecialization(enumScalar: EnumeratedScalar, accept: ValidationAcceptor): void {
+        if (!isEnumeratedScalar(enumScalar)) {
+            throw new Error('Expected an EnumeratedScalar in validation but got the wrong type');
+        }
+
+        if (enumScalar.ownedSpecializations && enumScalar.ownedSpecializations.length > 0 && enumScalar.literals && enumScalar.literals.length > 0) {
+            accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
+            accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
+        }
     }
 }
