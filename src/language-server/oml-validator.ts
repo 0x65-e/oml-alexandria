@@ -1,5 +1,28 @@
 import { ValidationAcceptor, ValidationChecks } from 'langium';
-import { isAnnotationPropertyReference, isAspect, isAspectReference, isConceptReference, isEntity, isEnumeratedScalarReference, isFacetedScalarReference, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, OmlAstType, SpecializableTerm, SpecializableTermReference, isFacetedScalar, FacetedScalar } from './generated/ast';
+import {
+    isAnnotationPropertyReference,
+    isAspect,
+    isAspectReference,
+    isConceptReference,
+    isEntity,
+    isEnumeratedScalarReference,
+    isFacetedScalarReference,
+    isRelationEntityReference,
+    isScalarPropertyReference,
+    isSpecializableTerm,
+    isSpecializableTermReference,
+    isStructuredPropertyReference,
+    isStructureReference,
+    OmlAstType,
+    SpecializableTerm,
+    SpecializableTermReference,
+    isFacetedScalar,
+    FacetedScalar,
+    isBooleanLiteral,
+    isIntegerLiteral,
+    isDecimalLiteral,
+    isDoubleLiteral
+} from './generated/ast';
 import type { OmlServices } from './oml-module';
 
 /**
@@ -92,20 +115,20 @@ export class OmlValidator {
                     (facetScalar.minInclusive.$type == "DecimalLiteral" && facetScalar.maxInclusive.$type == "DecimalLiteral") ||
                     (facetScalar.minInclusive.$type == "DoubleLiteral" && facetScalar.maxInclusive.$type == "DoubleLiteral")) {
                 if (facetScalar.maxInclusive.value < facetScalar.minInclusive.value) {
-                    accept('error', `${facetScalar.name} has a minInclusive that is greater than its maxInclusive value`, {node: facetScalar, property: 'minInclusive'});
-                    accept('error', `${facetScalar.name} has a maxInclusive that is less than its minInclusive value`, {node: facetScalar, property: 'maxInclusive'});    
+                    accept('error', `${facetScalar.name} has a minInclusive value that is greater than its maxInclusive value`, {node: facetScalar, property: 'minInclusive'});
+                    accept('error', `${facetScalar.name} has a maxInclusive value that is less than its minInclusive value`, {node: facetScalar, property: 'maxInclusive'});    
                 }
             }
         }
 
         // Check consistent minExclusive and maxExclusive
         if (facetScalar.minExclusive != undefined && facetScalar.maxExclusive != undefined) {
-            if ((facetScalar.minExclusive.$type == "IntegerLiteral" && facetScalar.maxExclusive.$type == "IntegerLiteral") ||
-                    (facetScalar.minExclusive.$type == "DecimalLiteral" && facetScalar.maxExclusive.$type == "DecimalLiteral") ||
-                    (facetScalar.minExclusive.$type == "DoubleLiteral" && facetScalar.maxExclusive.$type == "DoubleLiteral")) {
+            if ((isIntegerLiteral(facetScalar.minExclusive) && isIntegerLiteral(facetScalar.maxExclusive)) ||
+                    (isDecimalLiteral(facetScalar.minExclusive) && isDecimalLiteral(facetScalar.maxExclusive)) ||
+                    (isDoubleLiteral(facetScalar.minExclusive) && isDoubleLiteral(facetScalar.maxExclusive))) {
                 if (facetScalar.maxExclusive.value < facetScalar.minExclusive.value) {
-                    accept('error', `${facetScalar.name} has a minExclusive that is greater than its maxExclusive value`, {node: facetScalar, property: 'minExclusive'});
-                    accept('error', `${facetScalar.name} has a maxExclusive that is less than its minExclusive value`, {node: facetScalar, property: 'maxExclusive'});    
+                    accept('error', `${facetScalar.name} has a minExclusive value that is greater than its maxExclusive value`, {node: facetScalar, property: 'minExclusive'});
+                    accept('error', `${facetScalar.name} has a maxExclusive value that is less than its minExclusive value`, {node: facetScalar, property: 'maxExclusive'});    
                 }
             }
         }
@@ -118,12 +141,16 @@ export class OmlValidator {
         
         if (facetScalar.minInclusive != undefined || facetScalar.maxInclusive != undefined ||
                 facetScalar.minExclusive != undefined || facetScalar.maxExclusive != undefined) {
-            if (facetScalar.minLength != undefined) {
-                accept('error', `minLength cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, property: 'minLength'});
-            }
-            if (facetScalar.maxLength != undefined) {
-                accept('error', `maxLength cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, property: 'maxLength'});
-            }
+            if (facetScalar.minLength != undefined)
+                accept('error', `minLength cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, keyword: 'minLength'});
+            if (facetScalar.maxLength != undefined)
+                accept('error', `maxLength cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, keyword: 'maxLength'});
+            if (facetScalar.length != undefined)
+                accept('error', `length cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, keyword: 'length'});
+            if (facetScalar.pattern != undefined)
+                accept('error', `pattern cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, keyword: 'pattern'});
+            if (facetScalar.language != undefined)
+                accept('error', `language cannot be defined in ${facetScalar.name} if any inclusive/exclusive properties are defined`, {node: facetScalar, keyword: 'language'});
         }
     }
 
@@ -134,7 +161,7 @@ export class OmlValidator {
 
         // Check correct minInclusive type
         if (facetScalar.minInclusive != undefined) {
-            if (facetScalar.minInclusive.$type == "BooleanLiteral") {
+            if (isBooleanLiteral(facetScalar.minInclusive)) {
                 accept('error', `minInclusive cannot be of type BooleanLiteral`, {node: facetScalar, property: 'minInclusive'});
             }
 
@@ -147,7 +174,7 @@ export class OmlValidator {
 
         // Check correct maxInclusive type
         if (facetScalar.maxInclusive != undefined) {
-            if (facetScalar.maxInclusive.$type == "BooleanLiteral") {
+            if (isBooleanLiteral(facetScalar.maxInclusive)) {
                 accept('error', `maxInclusive cannot be of type BooleanLiteral`, {node: facetScalar, property: 'maxInclusive'});
             }
 
@@ -160,7 +187,7 @@ export class OmlValidator {
 
         // Check correct minExclusive type
         if (facetScalar.minExclusive != undefined) {
-            if (facetScalar.minExclusive.$type == "BooleanLiteral") {
+            if (isBooleanLiteral(facetScalar.minExclusive)) {
                 accept('error', `minExclusive cannot be of type BooleanLiteral`, {node: facetScalar, property: 'minExclusive'});
             }
 
@@ -173,7 +200,7 @@ export class OmlValidator {
 
         // Check correct maxExclusive type
         if (facetScalar.maxExclusive != undefined) {
-            if (facetScalar.maxExclusive.$type == "BooleanLiteral") {
+            if (isBooleanLiteral(facetScalar.maxExclusive)) {
                 accept('error', `maxExclusive cannot be of type BooleanLiteral`, {node: facetScalar, property: 'maxExclusive'});
             }
 
