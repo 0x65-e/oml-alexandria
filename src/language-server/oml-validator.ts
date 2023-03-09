@@ -325,7 +325,9 @@ export class OmlValidator {
             for (let i = 0; i < enumScalar.ownedSpecializations.length; i++) {
                 accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations', index: i});
             }
-            accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
+            for (let i = 0; i < enumScalar.literals.length; i++) {
+                accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals', index: i});
+            }
         }
     }
 
