@@ -17,8 +17,15 @@
       "include": "#comments"
     },
     {
+      "match": "\\b(aspect|concept|ci)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "captures": {
+        "1": {"name": "storage.type.oml"},
+        "2": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
       "name": "keyword.control.oml",
-      "match": "\\b(all|annotation|as|aspect|asymmetric|bundle|ci|concept|description|differentFrom|domain|entity|enumerated|enumerates|exactly|extends|forward|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|reverse|ri|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses|vocabulary)\\b"
+      "match": "\\b(all|annotation|as|asymmetric|bundle|description|differentFrom|domain|entity|enumerated|enumerates|exactly|extends|forward|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|reverse|ri|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses|vocabulary)\\b"
     },
     {
       "name": "string.quoted.double.oml",
