@@ -68,11 +68,11 @@ export class OmlValidator {
         }
 
         if (specTerm.ownedSpecializations) {
-            specTerm.ownedSpecializations.forEach(spec => {
+            specTerm.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref) {
                     // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
                     if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
-                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                 }
             })
@@ -86,13 +86,13 @@ export class OmlValidator {
 
         if (specTerm.ownedSpecializations) {
             const reported = new Set();
-            specTerm.ownedSpecializations.forEach(spec => {
+            specTerm.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref) {
                     if (spec.specializedTerm.ref.name == specTerm.name) {
-                        accept('warning', `${specTerm.name} specializes itself`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes itself`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                     if (reported.has(spec.specializedTerm.ref.name)) {
-                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                     reported.add(spec.specializedTerm.ref.name);
                 }
@@ -129,11 +129,11 @@ export class OmlValidator {
         const specTerm = this.extractSpecializableTermFromReference(specRef);
 
         if (specRef.ownedSpecializations) {
-            specRef.ownedSpecializations.forEach(spec => {
+            specRef.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref && specTerm) {
                     // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
                     if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
-                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                 }
             })
@@ -149,13 +149,13 @@ export class OmlValidator {
 
         if (specRef.ownedSpecializations) {
             const reported = new Set();
-            specRef.ownedSpecializations.forEach(spec => {
+            specRef.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref && specTerm) {
                     if (spec.specializedTerm.ref.name == specTerm.name) {
-                        accept('warning', `${specTerm.name} specializes itself`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes itself`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                     if (reported.has(spec.specializedTerm.ref.name)) {
-                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                     reported.add(spec.specializedTerm.ref.name);
                 }
@@ -310,7 +310,9 @@ export class OmlValidator {
             facetScalar.pattern != undefined || facetScalar.language != undefined || facetScalar.minInclusive != undefined ||
             facetScalar.minExclusive != undefined || facetScalar.maxInclusive != undefined || facetScalar.maxExclusive != undefined) &&
             facetScalar.ownedSpecializations && facetScalar.ownedSpecializations.length > 1) {
-                accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations'});
+                for (let i = 1; i < facetScalar.ownedSpecializations.length; i++) {
+                    accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations', index: i});
+                }
             }
     }
 
@@ -320,7 +322,9 @@ export class OmlValidator {
         }
 
         if (enumScalar.ownedSpecializations && enumScalar.ownedSpecializations.length > 0 && enumScalar.literals && enumScalar.literals.length > 0) {
-            accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
+            for (let i = 0; i < enumScalar.ownedSpecializations.length; i++) {
+                accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations', index: i});
+            }
             accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
         }
     }
