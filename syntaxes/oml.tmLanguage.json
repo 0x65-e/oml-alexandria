@@ -19,7 +19,7 @@
     {
       "name": "string.quoted.double.oml",
       "begin": "\"",
-      "end": "\"\"\"",
+      "end": "\"",
       "patterns": [
         {
           "include": "#string-character-escape"
