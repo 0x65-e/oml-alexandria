@@ -17,7 +17,14 @@
       "include": "#comments"
     },
     {
-      "match": "\\b(aspect|concept|ci|relation entity|ri)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "captures": {
+        "1": {"name": "storage.type.oml"},
+        "2": {"name": "variable.object.property.oml"}
+      }
+    },
+    {
+      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*)\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
         "2": {"name": "entity.name.type.oml"}
@@ -28,6 +35,69 @@
       "captures": {
         "1": {"name": "storage.type.oml"},
         "2": {"name": "entity.name.function.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"},
+        "5": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*)?\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "keyword.control.oml"},
+        "7": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*)?\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"}
       }
     },
     {

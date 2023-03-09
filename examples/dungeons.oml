@@ -7,6 +7,29 @@ vocabulary <https://example.com/dungeons#> as dnd {
 
     aspect Monster
 
+    /* Properties of monsters */
+
+    scalar Health [
+        minInclusive 1
+    ]
+
+    scalar ChallengeRating [
+        minInclusive 0
+        maxInclusive 30
+    ]
+
+    scalar property hasHealth [
+        domain Monster
+        range Health
+        functional
+    ]
+
+    scalar property hasCR [
+        domain Monster
+        range ChallengeRating
+        functional
+    ]
+
     /* Relations between dungeons and monsters */
 
     relation entity Contains [
@@ -14,17 +37,66 @@ vocabulary <https://example.com/dungeons#> as dnd {
         to Monster
         forward contains
         reverse isContainedBy
+        functional
+        inverse functional
     ]
 
-    /* Specifications of monsters and their habitats */
+    /* Specifications of draconic monsters and their habitats */
 
-    concept Dragon :> Monster
+    aspect Dragon :> Monster
 
-    concept WhiteDragon :> Dragon
+    enumerated scalar Age [
+        "Wyrmling",
+        "Young",
+        "Adult",
+        "Ancient",
+        "Greatwyrm"
+    ]
 
-    concept BlueDragon :> Dragon
+    scalar property hasAge [
+        domain Dragon
+        range Age
+        functional
+    ]
 
-    concept Kobold :> Monster
+    aspect ChromaticDragon :> Dragon
+
+    enumerated scalar Color [
+        "Black",
+        "Blue",
+        "Green",
+        "Red",
+        "White"
+    ]
+
+    scalar property hasColor [
+        domain Dragon
+        range Color
+        functional
+    ]
+
+    aspect AdultDragon :> Dragon [
+        restricts scalar property hasHealth to exactly 1
+        restricts scalar property hasCR to exactly 1
+        restricts scalar property hasAge to "Adult"
+    ]
+
+    concept AdultWhiteDragon :> AdultDragon, ChromaticDragon [
+        restricts scalar property hasHealth to 200
+        restricts scalar property hasCR to 13
+        restricts scalar property hasColor to "White"
+    ]
+
+    concept AdultBlueDragon :> AdultDragon, ChromaticDragon [
+        restricts scalar property hasHealth to 225
+        restricts scalar property hasCR to 16
+        restricts scalar property hasColor to "Blue"
+    ]
+
+    concept Kobold :> Monster [
+        restricts scalar property hasHealth to 5
+        restricts scalar property hasCR to 0.125
+    ]
 
     /*
     aspect DragonLair :> Dungeon [
