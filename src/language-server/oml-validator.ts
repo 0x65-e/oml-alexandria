@@ -320,14 +320,26 @@ export class OmlValidator {
             throw new Error('Expected an Entity in validation but got the wrong type');
         }
 
-        
+        // Create a map of keys and number of occurences for the entity
+        let keyCount = new Map();
+        entity.ownedKeys.forEach(keyAxiom => {
+            keyAxiom.properties.forEach(key => {
+                if (key.ref != undefined) {
+                    if (keyCount.has(key.ref.name))
+                        keyCount.set(key.ref.name, keyCount.get(key.ref.name)+1);
+                    else
+                        keyCount.set(key.ref.name, 1);
+                }
+            });
+        });
 
-        entity.ownedKeys.forEach((key1, ind1) => {
-            for (let ind2 = 0; ind2 < entity.ownedKeys.length; ind2++) {
-                let key2 = entity.ownedKeys[ind2];
-                if (key1.$type == key2.$type && key1.properties[0].ref?.name == key2.properties[0] && ind1 != ind2) {
-                    accept('error', `${key1.properties[0].ref?.name} cannot contain duplicate keys`, {node: entity, property: 'ownedKeys', index: 0});
-                    break;  
+        // Check for keys that appear multiple times
+        entity.ownedKeys.forEach((keyAxiom, ind) => {
+            for (let ii = 0; ii < keyAxiom.properties.length; ii++) {
+                let key = keyAxiom.properties[ii];
+                if (key.ref != undefined && 1 < keyCount.get(key.ref.name)) {
+                    accept('error', `${entity.name} cannot contain duplicate keys`, {node: entity, property: 'ownedKeys', index: ind});
+                    break;
                 }
             }
         });
