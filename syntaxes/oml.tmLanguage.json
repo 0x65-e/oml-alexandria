@@ -10,6 +10,10 @@
       "match": "<[^>\\s#]+[#\/]>"
     },
     {
+      "name": "constant.language.oml",
+      "match": "\\b(true|false)\\b"
+    },
+    {
       "include": "#comments"
     },
     {
