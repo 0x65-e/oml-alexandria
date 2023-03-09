@@ -29,6 +29,16 @@
           "include": "#string-character-escape"
         }
       ]
+    },
+    {
+      "name": "string.quoted.single.oml",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
     }
   ],
   "repository": {
@@ -50,14 +60,14 @@
           }
         },
         {
+          "name": "comment.line.oml",
           "begin": "//",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.oml"
             }
           },
-          "end": "(?=$)",
-          "name": "comment.line.oml"
+          "end": "(?=$)"
         }
       ]
     },
