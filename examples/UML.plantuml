@@ -1,0 +1,15 @@
+@startuml FileSystem 
+class Folder { 
+    -id: Integer 
+    +name: String
+}
+class File { 
+    +name: String
+}
+class Content { 
+    +blob: String
+}
+Folder "folder" *-- "file" File 
+File "file" *-- "content" Content
+
+@enduml

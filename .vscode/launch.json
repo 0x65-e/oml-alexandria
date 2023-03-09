@@ -27,5 +27,8 @@
                 "${workspaceFolder}/node_modules/langium"
             ]
         }
+        {
+            "args": []
+        }
     ]
 }
