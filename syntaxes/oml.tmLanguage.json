@@ -24,10 +24,6 @@
       }
     },
     {
-      "name": "storage.type.oml",
-      "match": "\\b(aspect|concept|ci|relation|entity|ri)\\b"
-    },
-    {
       "match": "\\b(forward|reverse)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
@@ -36,11 +32,15 @@
     },
     {
       "name": "storage.type.oml",
-      "match": "\\b(forward|reverse)\\b"
+      "match": "\\b(aspect|concept|ci|relation|entity|ri|forward|reverse|vocabulary|description)\\b"
+    },
+    {
+      "name": "storage.modifier.oml",
+      "match": "\\b(bundle)\\b"
     },
     {
       "name": "keyword.control.oml",
-      "match": "\\b(all|annotation|as|asymmetric|bundle|description|differentFrom|domain|entity|enumerated|enumerates|exactly|extends|forward|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|reverse|ri|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses|vocabulary)\\b"
+      "match": "\\b(all|annotation|as|asymmetric|differentFrom|domain|enumerated|enumerates|exactly|extends|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses)\\b"
     },
     {
       "name": "string.quoted.double.oml",
