@@ -5,6 +5,7 @@ import {
     isAspectReference,
     isConceptReference,
     isEntity,
+    Entity,
     isEnumeratedScalarReference,
     isFacetedScalarReference,
     isRelationEntityReference,
@@ -52,7 +53,8 @@ export function registerValidationChecks(services: OmlServices) {
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
         EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
-        RelationEntity: validator.checkRelationEntityLogicalConsistency
+        RelationEntity: validator.checkRelationEntityLogicalConsistency,
+        Entity: validator.checkEntityHasConsistentKeys
     };
     registry.register(checks, validator);
 }
@@ -426,5 +428,39 @@ export class OmlValidator {
                 }
             })
         }
+    }
+
+    checkEntityHasConsistentKeys(entity: Entity, accept: ValidationAcceptor): void {
+        if (!isEntity(entity)) {
+            throw new Error('Expected an Entity in validation but got the wrong type');
+        }
+
+        // Do not check if the entity has no owned keys
+        if (entity.ownedKeys == undefined)
+            return;
+
+        // Create a map of keys and number of occurences for the entity
+        let keyCount = new Map();
+        entity.ownedKeys.forEach(keyAxiom => {
+            keyAxiom.properties.forEach(key => {
+                if (key.ref != undefined) {
+                    if (keyCount.has(key.ref.name))
+                        keyCount.set(key.ref.name, keyCount.get(key.ref.name)+1);
+                    else
+                        keyCount.set(key.ref.name, 1);
+                }
+            });
+        });
+
+        // Check for keys that appear multiple times
+        entity.ownedKeys.forEach((keyAxiom, ind) => {
+            for (let ii = 0; ii < keyAxiom.properties.length; ii++) {
+                let key = keyAxiom.properties[ii];
+                if (key.ref != undefined && 1 < keyCount.get(key.ref.name)) {
+                    accept('warning', `${entity.name} should not contain duplicate keys`, {node: entity, property: 'ownedKeys', index: ind});
+                    break;
+                }
+            }
+        });
     }
 }
