@@ -6,6 +6,10 @@
   ],
   "patterns": [
     {
+      "name": "entity.section.oml",
+      "match": "<[^>\\s#]+[#\/]>"
+    },
+    {
       "include": "#comments"
     },
     {
