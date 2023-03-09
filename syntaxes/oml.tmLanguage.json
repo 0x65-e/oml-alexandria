@@ -17,11 +17,15 @@
       "include": "#comments"
     },
     {
-      "match": "\\b(aspect|concept|ci)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b(aspect|concept|ci|relation entity|ri)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
         "2": {"name": "entity.name.type.oml"}
       }
+    },
+    {
+      "name": "storage.type.oml",
+      "match": "\\b(aspect|concept|ci|relation|entity|ri)\\b"
     },
     {
       "name": "keyword.control.oml",
