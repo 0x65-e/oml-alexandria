@@ -1,0 +1,3 @@
+[submodule "vscode-plantuml"]
+	path = vscode-plantuml
+	url = https://github.com/qjebbs/vscode-plantuml
