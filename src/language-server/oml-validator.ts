@@ -5,6 +5,7 @@ import {
     isAspectReference,
     isConceptReference,
     isEntity,
+    Entity,
     isEnumeratedScalarReference,
     isFacetedScalarReference,
     isRelationEntityReference,
@@ -40,7 +41,8 @@ export function registerValidationChecks(services: OmlServices) {
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
         EnumeratedScalar: validator.checkEnumeratedScalarSpecialization,
-        RelationEntity: validator.checkRelationEntityLogicalConsistency
+        RelationEntity: validator.checkRelationEntityLogicalConsistency,
+        Entity: validator.checkEntityHasConsistentKeys
     };
     registry.register(checks, validator);
 }
@@ -311,5 +313,23 @@ export class OmlValidator {
             accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
             accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
         }
+    }
+
+    checkEntityHasConsistentKeys(entity: Entity, accept: ValidationAcceptor): void {
+        if (!isEntity(entity)) {
+            throw new Error('Expected an Entity in validation but got the wrong type');
+        }
+
+        
+
+        entity.ownedKeys.forEach((key1, ind1) => {
+            for (let ind2 = 0; ind2 < entity.ownedKeys.length; ind2++) {
+                let key2 = entity.ownedKeys[ind2];
+                if (key1.$type == key2.$type && key1.properties[0].ref?.name == key2.properties[0] && ind1 != ind2) {
+                    accept('error', `${key1.properties[0].ref?.name} cannot contain duplicate keys`, {node: entity, property: 'ownedKeys', index: 0});
+                    break;  
+                }
+            }
+        });
     }
 }
