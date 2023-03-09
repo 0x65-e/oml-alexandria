@@ -39,7 +39,7 @@ export function registerValidationChecks(services: OmlServices) {
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
-        EnumeratedScalar: validator.checkEnumeratedScalarSpecialization,
+        EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
         RelationEntity: validator.checkRelationEntityLogicalConsistency
     };
     registry.register(checks, validator);
@@ -311,5 +311,21 @@ export class OmlValidator {
             accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
             accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
         }
+    }
+
+    checkEnumeratedScalarNoDuplications(enumScalar: EnumeratedScalar, accept: ValidationAcceptor): void {
+        if (!isEnumeratedScalar(enumScalar)) {
+            throw new Error('Expected an EnumeratedScalar in validation but got the wrong type');
+        }
+
+        enumScalar.literals.forEach((val1, ind1) => {
+            for (let ind2 = 0; ind2 < enumScalar.literals.length; ind2++) {
+                let val2 = enumScalar.literals[ind2];
+                if (val1.$type == val2.$type && val1.value == val2.value && ind1 != ind2) {
+                    accept('error', `Cannot declare duplicate literals within an enumerated scalar`, {node: enumScalar, property: 'literals', index: ind1});
+                    break;
+                }
+            }
+        });
     }
 }
