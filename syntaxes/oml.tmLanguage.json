@@ -32,7 +32,7 @@
     },
     {
       "name": "storage.type.oml",
-      "match": "\\b(aspect|concept|ci|relation|entity|ri|forward|reverse|vocabulary|description)\\b"
+      "match": "\\b(aspect|concept|ci|relation|entity|ri|structure|forward|reverse|vocabulary|description|enumerated|scalar|property|annotation|structured)\\b"
     },
     {
       "name": "storage.modifier.oml",
@@ -40,7 +40,7 @@
     },
     {
       "name": "keyword.control.oml",
-      "match": "\\b(all|annotation|as|asymmetric|differentFrom|domain|enumerated|enumerates|exactly|extends|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses)\\b"
+      "match": "\\b(all|as|asymmetric|differentFrom|domain|enumerates|exactly|extends|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|range|ref|reflexive|relation|restricts|rule|sameAs|some|symmetric|to|transitive|uses)\\b"
     },
     {
       "name": "string.quoted.double.oml",
