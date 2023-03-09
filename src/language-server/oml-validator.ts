@@ -457,7 +457,7 @@ export class OmlValidator {
             for (let ii = 0; ii < keyAxiom.properties.length; ii++) {
                 let key = keyAxiom.properties[ii];
                 if (key.ref != undefined && 1 < keyCount.get(key.ref.name)) {
-                    accept('error', `${entity.name} cannot contain duplicate keys`, {node: entity, property: 'ownedKeys', index: ind});
+                    accept('warning', `${entity.name} should not contain duplicate keys`, {node: entity, property: 'ownedKeys', index: ind});
                     break;
                 }
             }
