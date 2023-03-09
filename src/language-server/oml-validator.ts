@@ -435,6 +435,10 @@ export class OmlValidator {
             throw new Error('Expected an Entity in validation but got the wrong type');
         }
 
+        // Do not check if the entity has no owned keys
+        if (entity.ownedKeys == undefined)
+            return;
+
         // Create a map of keys and number of occurences for the entity
         let keyCount = new Map();
         entity.ownedKeys.forEach(keyAxiom => {
