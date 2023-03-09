@@ -25,7 +25,15 @@ import {
     isDecimalLiteral,
     isDoubleLiteral,
     EnumeratedScalar,
-    isEnumeratedScalar
+    isEnumeratedScalar,
+    isVocabulary,
+    Vocabulary,
+    isMember,
+    Description,
+    isDescription,
+    VocabularyBundle,
+    isVocabularyBundle,
+    DescriptionBundle
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -36,6 +44,10 @@ export function registerValidationChecks(services: OmlServices) {
     const registry = services.validation.ValidationRegistry;
     const validator = services.validation.OmlValidator;
     const checks: ValidationChecks<OmlAstType> = {
+        Vocabulary: validator.checkVocabularyNamesUnique,
+        VocabularyBundle: validator.checkVocabularyBundleNamesUnique,
+        Description: validator.checkDescriptionNamesUnique,
+        DescriptionBundle: validator.checkDescriptionBundleNamesUnique,
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
@@ -88,7 +100,7 @@ export class OmlValidator {
         }
     }
 
-    extractSpecializableTermFromReference(specRef: SpecializableTermReference) : SpecializableTerm | null {
+    private extractSpecializableTermFromReference(specRef: SpecializableTermReference) : SpecializableTerm | null {
         // Extract the SpecializableTerm from the reference
         let specTerm: SpecializableTerm | null = null;
         if (isFacetedScalarReference(specRef) || isEnumeratedScalarReference(specRef)) {
@@ -327,5 +339,92 @@ export class OmlValidator {
                 }
             }
         });
+    }
+
+    checkVocabularyNamesUnique(vocab: Vocabulary, accept: ValidationAcceptor): void {
+        if (!isVocabulary(vocab)) {
+            throw new Error('Expected a Vocabulary in validation but got the wrong type');
+        }
+
+        this.checkOntNamesUniqueImpl(vocab, accept);
+    }
+
+    checkDescriptionNamesUnique(desc: Description, accept: ValidationAcceptor): void {
+        if (!isDescription(desc)) {
+            throw new Error('Expected a Description in validation but got the wrong type');
+        }
+
+        this.checkOntNamesUniqueImpl(desc, accept);
+    }
+
+    private checkOntNamesUniqueImpl(ont: Vocabulary | Description, accept: ValidationAcceptor): void {
+        const reported = new Set();
+        reported.add(ont.prefix);
+        if (ont.ownedImports) {
+            ont.ownedImports.forEach(imp => {
+                if (imp.prefix) {
+                    if (reported.has(imp.prefix)) {
+                        accept('error', `${imp.prefix} has duplicate ID`, {node: imp, property: 'prefix'});
+                    }
+                    reported.add(imp.prefix);
+                }
+            })
+        }
+        if (ont.ownedStatements) {
+            ont.ownedStatements.forEach(stmt => {
+                if (isMember(stmt)) {
+                    if (reported.has(stmt.name)) {
+                        accept('error', `${stmt.name} has duplicate ID`, {node: stmt, property: 'name'});
+                    }
+                    reported.add(stmt.name);
+                }
+                // Special case for RelationEntities that can define a ForwardRelation or ReverseRelation
+                if (isRelationEntity(stmt)) {
+                    if (stmt.forwardRelation) {
+                        if (reported.has(stmt.forwardRelation.name)) {
+                            accept('error', `${stmt.forwardRelation.name} has duplicate ID`, {node: stmt.forwardRelation, property: 'name'});
+                        }
+                        reported.add(stmt.forwardRelation.name);
+                    }
+                    if (stmt.reverseRelation) {
+                        if (reported.has(stmt.reverseRelation.name)) {
+                            accept('error', `${stmt.reverseRelation.name} has duplicate ID`, {node: stmt.reverseRelation, property: 'name'});
+                        }
+                        reported.add(stmt.reverseRelation.name);
+                    }
+                }
+            })
+        }
+    }
+
+    checkVocabularyBundleNamesUnique(vocabBundle: VocabularyBundle, accept: ValidationAcceptor): void {
+        if (!isVocabularyBundle(vocabBundle)) {
+            throw new Error('Expected a VocabularyBundle in validation but got the wrong type');
+        }
+
+        this.checkBundleNamesUnique(vocabBundle, accept)
+    }
+
+    checkDescriptionBundleNamesUnique(descBundle: DescriptionBundle, accept: ValidationAcceptor): void {
+        if (!isVocabularyBundle(descBundle)) {
+            throw new Error('Expected a VocabularyBundle in validation but got the wrong type');
+        }
+
+        this.checkBundleNamesUnique(descBundle, accept)
+    }
+
+    private checkBundleNamesUnique(bundle: VocabularyBundle | DescriptionBundle, accept: ValidationAcceptor): void {
+        const reported = new Set();
+        reported.add(bundle.prefix);
+        if (bundle.ownedImports) {
+            bundle.ownedImports.forEach(imp => {
+                if (imp.prefix) {
+                    if (reported.has(imp.prefix)) {
+                        accept('error', `${imp.prefix} has duplicate ID`, {node: imp, property: 'prefix'});
+                    }
+                    reported.add(imp.prefix);
+                }
+            })
+        }
     }
 }
