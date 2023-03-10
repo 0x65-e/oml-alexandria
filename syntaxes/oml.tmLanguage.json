@@ -124,6 +124,19 @@
       }
     },
     {
+      "match": "\\b(key)\\s+([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
+      "captures": {
+        "1": {"name": "variable.object.property.oml"},
+        "2": {"name": "variable.object.property.oml"},
+        "3": {"name": "variable.object.property.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "variable.object.property.oml"},
+        "6": {"name": "variable.object.property.oml"},
+        "7": {"name": "variable.object.property.oml"},
+        "8": {"name": "variable.object.property.oml"}
+      }
+    },
+    {
       "name": "storage.type.oml",
       "match": "\\b(annotation|aspect|ci|concept|description|entity|enumerated|forward|property|ref|relation|reverse|ri|rule|scalar|structure|structured|vocabulary)\\b"
     },
@@ -133,7 +146,7 @@
     },
     {
       "name": "variable.object.property.oml",
-      "match": "\\b(asymmetric|domain|from|functional|inverse|irreflexive|key|language|length|maxExclusive|maxInclusive|maxLength|minExclusive|minInclusive|minLength|pattern|range|reflexive|symmetric|transitive)\\b"
+      "match": "\\b(asymmetric|domain|from|functional|inverse|irreflexive|language|length|maxExclusive|maxInclusive|maxLength|minExclusive|minInclusive|minLength|pattern|range|reflexive|symmetric|transitive)\\b"
     },
     {
       "name": "keyword.control.oml",
