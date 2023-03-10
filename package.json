@@ -2,6 +2,7 @@
     "name": "oml-alexandria",
     "displayName": "oml-alexandria",
     "description": "Please enter a brief description here",
+    "publisher": "alexandria-team",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.67.0"
@@ -29,20 +30,139 @@
                 "scopeName": "source.oml",
                 "path": "./syntaxes/oml.tmLanguage.json"
             }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "oml-container",
+                    "title": "OML",
+                    "icon": "$(symbol-structure)"
+                }
+            ]
+        },
+        "views": {
+            "oml-container": [
+                {
+                    "id": "oml",
+                    "type": "webview",
+                    "name": "OML"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "oml.diagram.open",
+                "title": "Open in Diagram",
+                "icon": "$(symbol-structure)",
+                "category": "OML Diagram"
+            },
+            {
+                "command": "oml.diagram.fit",
+                "title": "Fit to Screen",
+                "category": "OML Diagram"
+            },
+            {
+                "command": "oml.diagram.center",
+                "title": "Center selection",
+                "category": "OML Diagram"
+            },
+            {
+                "command": "oml.diagram.delete",
+                "title": "Delete selected element",
+                "category": "OML Diagram"
+            },
+            {
+                "command": "oml.diagram.export",
+                "title": "Export diagram to SVG",
+                "category": "OML Diagram"
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "oml.diagram.open",
+                    "when": "editorLangId == 'oml'"
+                },
+                {
+                    "command": "oml.diagram.fit",
+                    "when": "oml-diagram-focused"
+                },
+                {
+                    "command": "oml.diagram.center",
+                    "when": "oml-diagram-focused"
+                },
+                {
+                    "command": "oml.diagram.delete",
+                    "when": "oml-diagram-focused"
+                },
+                {
+                    "command": "oml.diagram.export",
+                    "when": "oml-diagram-focused"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "oml.diagram.open",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
+                }
+            ],
+            "editor/title": [
+                {
+                    "command": "oml.diagram.open",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "oml.diagram.open",
+                    "when": "resourceExtname == '.sm'",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "key": "alt+f",
+                "mac": "alt+f",
+                "command": "oml.diagram.fit",
+                "when": "oml-diagram-focused"
+            },
+            {
+                "key": "alt+c",
+                "mac": "alt+c",
+                "command": "oml.diagram.center",
+                "when": "oml-diagram-focused"
+            },
+            {
+                "key": "alt+e",
+                "mac": "alt+e",
+                "command": "oml.diagram.export",
+                "when": "oml-diagram-focused"
+            },
+            {
+                "key": "delete",
+                "mac": "delete",
+                "command": "oml.diagram.delete",
+                "when": "oml-diagram-focused"
+            }
         ]
+
     },
     "activationEvents": [
-        "onLanguage:oml"
+        "onWebviewPanel:oml",
+        "onCustomEditor:oml"
     ],
     "files": [
         "bin",
-        "out",
+        "pack",
         "src"
     ],
     "bin": {
         "oml-cli": "./bin/cli"
     },
-    "main": "./out/extension.js",
+    "main": "./pack/extension.js",
     "scripts": {
         "vscode:prepublish": "npm run build && npm run lint",
         "build": "tsc -b tsconfig.json",
@@ -56,6 +176,7 @@
         "chevrotain": "~10.4.2",
         "commander": "~10.0.0",
         "langium": "~1.1.0",
+        "sprotty-vscode": "^0.5.0",
         "vscode-languageclient": "~8.0.2",
         "vscode-languageserver": "~8.0.2",
         "vscode-uri": "~3.0.7"

@@ -13,14 +13,7 @@
                 "--extensionDevelopmentPath=${workspaceFolder}",
             ]
         },
-        {
-            "name": "Run PlantUML Extension",
-            "type": "extensionHost",
-            "request": "launch",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}/vscode-plantuml",
-            ]
-        },
+
         {
             "name": "Attach to Language Server",
             "type": "node",
