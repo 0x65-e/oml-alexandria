@@ -4,6 +4,8 @@ import {
 } from 'langium';
 import { OmlGeneratedModule, OmlGeneratedSharedModule } from './generated/module';
 import { OmlValidator, registerValidationChecks } from './oml-validator';
+import { OmlScopeComputation } from './oml-scope';
+import { OmlLinker } from './oml-linker';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -28,7 +30,11 @@ export type OmlServices = LangiumServices & OmlAddedServices
 export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedServices> = {
     validation: {
         OmlValidator: () => new OmlValidator()
-    }
+    },
+    references: {
+        ScopeComputation: (services) => new OmlScopeComputation(services),
+        Linker: (services) => new OmlLinker(services),
+    },
 };
 
 /**
