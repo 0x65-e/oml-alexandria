@@ -51,7 +51,7 @@ export function registerValidationChecks(services: OmlServices) {
         DescriptionBundle: validator.checkDescriptionBundleNamesUnique,
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
-        FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
+        FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes, validator.checkValidFacetedScalarRegularExpression],
         EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
         RelationEntity: validator.checkRelationEntityLogicalConsistency,
         Entity: validator.checkEntityHasConsistentKeys
@@ -162,6 +162,21 @@ export class OmlValidator {
                     reported.add(spec.specializedTerm.ref.name);
                 }
             })
+        }
+    }
+
+    checkValidFacetedScalarRegularExpression(facetScalar: FacetedScalar, accept: ValidationAcceptor): void {
+        if (!isFacetedScalar(facetScalar)) {
+            throw new Error('Expected a FacetedScalar in validation but got the wrong type');
+        }
+
+        if (facetScalar.pattern == undefined)
+            return;
+
+        try {
+            new RegExp(facetScalar.pattern);
+        } catch(e) {
+            accept('warning', `'${facetScalar.pattern}' is not a valid regular expression`, {node: facetScalar, property: 'pattern'});
         }
     }
 
