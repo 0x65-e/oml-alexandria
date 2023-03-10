@@ -1,5 +1,6 @@
 vocabulary <example.com/dungeons#> as dnd {
     // This is a comment
+    extends <http://www.w3.org/2000/01/rdf-schema/> as rdfs
 
     /* Basic Aspects of Dungeons and Dragons */
 
@@ -8,7 +9,7 @@ vocabulary <example.com/dungeons#> as dnd {
     aspect Monster
 
     /* Relations between dungeons and monsters */
-
+    @rdfs:comment "The class of jalapeno pepper toppings"
     relation entity Contains [
         from Dungeon
         to Monster

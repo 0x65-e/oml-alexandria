@@ -3,13 +3,16 @@ import {
     PrecomputedScopes, MultiMap, streamAllContents
 } from 'langium';
 
-import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity, isImport, Member} from './generated/ast';
+import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity, Member} from './generated/ast';
+import { OmlIRIProvider } from './oml-iri';
 
 
 // import * as vscode from 'vscode';
 
 export class OmlScopeComputation extends DefaultScopeComputation {
 
+    omlIRI : OmlIRIProvider = new OmlIRIProvider()
+    
     override async computeLocalScopes(document: LangiumDocument): Promise<PrecomputedScopes> {
         const model = document.parseResult.value as Ontology;
         // This map stores a list of descriptions for each node in our document
@@ -62,20 +65,7 @@ export class OmlScopeComputation extends DefaultScopeComputation {
      */
     override async computeExports(document: LangiumDocument): Promise<AstNodeDescription[]> {
         const exportedDescriptions: AstNodeDescription[] = [];
-        //Process all imports, get map of ID to FULL_IRI
-        const idToIRI : Record<string, string> = {};
-        const IRIToid : Record<string, string> = {};
 
-        const model = document.parseResult.value as Ontology;
-        idToIRI[model.prefix] = this.getIRI(model.namespace) //if using abbreviatedIRI within Ontology
-        IRIToid[this.getIRI(model.namespace)] = model.prefix
-
-        for (const modelNode of streamAllContents(document.parseResult.value)) {
-            if (isImport(modelNode) && modelNode.prefix != undefined) { 
-                idToIRI[modelNode.prefix] = this.getIRI(modelNode.namespace)
-                IRIToid[this.getIRI(modelNode.namespace)] = modelNode.prefix
-            }            
-        }
         for (const modelNode of streamAllContents(document.parseResult.value)) {
             if (isMember(modelNode)) { 
                 const fullyQualifiedName = this.getQualifiedName(modelNode, modelNode.name);
@@ -95,7 +85,7 @@ export class OmlScopeComputation extends DefaultScopeComputation {
         let parent: AstNode | undefined = node.$container;
         while(isOntology(parent) || isMember(parent)) {
             if(isOntology(parent)) {
-                name = `<${this.getIRI(parent.namespace)}#${name}>`;
+                name = `<${this.omlIRI.getIRI(parent.namespace)}#${name}>`;
                 return name
             } else {
                 // Directly bring ForwardRelation and ReverseRelation into Ontology space
@@ -104,17 +94,6 @@ export class OmlScopeComputation extends DefaultScopeComputation {
             }
         }
         return name
-    }
-
-    //Strip of <>, # or / at the end
-    private getIRI(namespace : string): string {
-        if(namespace.startsWith('<'))
-            namespace = namespace.substring(1)
-        if(namespace.endsWith('>'))
-            namespace = namespace.substring(0, namespace.length-1)
-        if(namespace.endsWith('/') || namespace.endsWith('#'))
-            namespace = namespace.substring(0, namespace.length-1)
-        return namespace
     }
 
 }
