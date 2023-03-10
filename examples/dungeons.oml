@@ -34,6 +34,7 @@ vocabulary <https://example.com/dungeons#> as dnd {
     ]
 
     /* Relations between dungeons and monsters */
+    
     @rdfs:comment "A dungeon can contain monsters"
     relation entity Contains [
         from Dungeon
@@ -73,7 +74,7 @@ vocabulary <https://example.com/dungeons#> as dnd {
     ]
 
     scalar property hasColor [
-        domain Dragon
+        domain ChromaticDragon
         range Color
         functional
     ]

@@ -21,6 +21,16 @@
       "include": "#comments"
     },
     {
+      "name": "comment.block.documentation.oml",
+        "begin": "@",
+        "beginCaptures": {
+          "1": {
+            "name": "meta.annotation.property.oml"
+          }
+        },
+        "end": "(?=$)"
+    },
+    {
       "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
