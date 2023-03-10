@@ -37,10 +37,11 @@ import {
     DescriptionBundle,
     Rule,
     isRule,
-    // Predicate,
-    // isPredicate,
-    // SameAsPredicate,
-    isSameAsPredicate
+    isTypePredicate,
+    isRelationEntityPredicate,
+    isFeaturePredicate,
+    isSameAsPredicate,
+    isDifferentFromPredicate
 } from './generated/ast';
 
 // interface UnaryPredicate extends Predicate {
@@ -529,10 +530,45 @@ export class OmlValidator {
         }
 
         rule.antecedent.forEach((pred, ind) => {
-            if (isSameAsPredicate(pred)) {
+            if (isTypePredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isTypePredicate(ant) && pred.variable == ant.variable && ind != ii) {
+                        accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
+                        break;
+                    }
+                }
+            } else if (isRelationEntityPredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isRelationEntityPredicate(ant) && pred.variable1 == ant.variable1 &&
+                            pred.variable2 == ant.variable2 && pred.entityVariable == ant.entityVariable && pred. ind != ii) {
+                        accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
+                        break;
+                    }
+                }
+            } else if (isFeaturePredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isFeaturePredicate(ant) && pred.variable1 == ant.variable1 &&
+                            pred.variable2 == ant.variable2 && ind != ii) {
+                        accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
+                        break;
+                    }
+                }
+            } else if (isSameAsPredicate(pred)) {
                 for (let ii = 0; ii < rule.antecedent.length; ii++) {
                     let ant = rule.antecedent[ii];
                     if (isSameAsPredicate(ant) && pred.variable1 == ant.variable1 &&
+                            pred.variable2 == ant.variable2 && ind != ii) {
+                        accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
+                        break;
+                    }
+                }
+            } else if (isDifferentFromPredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isDifferentFromPredicate(ant) && pred.variable1 == ant.variable1 &&
                             pred.variable2 == ant.variable2 && ind != ii) {
                         accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
                         break;
