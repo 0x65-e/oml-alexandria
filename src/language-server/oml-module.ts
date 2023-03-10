@@ -5,6 +5,7 @@ import {
 import { OmlGeneratedModule, OmlGeneratedSharedModule } from './generated/module';
 import { OmlValidator, registerValidationChecks } from './oml-validator';
 import { OmlScopeComputation } from './oml-scope';
+import { OmlLinker } from './oml-linker';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -32,7 +33,8 @@ export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedSer
     },
     references: {
         ScopeComputation: (services) => new OmlScopeComputation(services),
-    } 
+        Linker: (services) => new OmlLinker(services),
+    },
 };
 
 /**

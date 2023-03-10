@@ -3,8 +3,10 @@ import {
     PrecomputedScopes, MultiMap, streamAllContents
 } from 'langium';
 
-import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity} from './generated/ast';
+import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity, isImport, Member} from './generated/ast';
 
+
+// import * as vscode from 'vscode';
 
 export class OmlScopeComputation extends DefaultScopeComputation {
 
@@ -23,7 +25,7 @@ export class OmlScopeComputation extends DefaultScopeComputation {
     ): AstNodeDescription[] {
         const localDescriptions: AstNodeDescription[] = [];
 
-        if (isVocabulary(container) || isDescription(container)){
+        if (isVocabulary(container) || isDescription(container)) {
             for (const element of container.ownedStatements) {
                 if (isMember(element)) {
                     // Create a simple local name for the member
@@ -31,6 +33,7 @@ export class OmlScopeComputation extends DefaultScopeComputation {
                     localDescriptions.push(description);
                 }
                 if (isRelationEntity(element)) {
+                    // Make local descriptions for relations in relationentity
                     const nestedDescriptions = this.processContainer(element, scopes, document);
                     for (const description of nestedDescriptions) {
                         localDescriptions.push(description);
@@ -55,32 +58,63 @@ export class OmlScopeComputation extends DefaultScopeComputation {
     }
 
     /**
-     * Export all functions using their fully qualified name
+     * Export all members using their fully qualified name
      */
-     override async computeExports(document: LangiumDocument): Promise<AstNodeDescription[]> {
+    override async computeExports(document: LangiumDocument): Promise<AstNodeDescription[]> {
         const exportedDescriptions: AstNodeDescription[] = [];
+        //Process all imports, get map of ID to FULL_IRI
+        const idToIRI : Record<string, string> = {};
+        const IRIToid : Record<string, string> = {};
+
+        const model = document.parseResult.value as Ontology;
+        idToIRI[model.prefix] = this.getIRI(model.namespace) //if using abbreviatedIRI within Ontology
+        IRIToid[this.getIRI(model.namespace)] = model.prefix
+
         for (const modelNode of streamAllContents(document.parseResult.value)) {
-            if (isMember(modelNode)) {
+            if (isImport(modelNode) && modelNode.prefix != undefined) { 
+                idToIRI[modelNode.prefix] = this.getIRI(modelNode.namespace)
+                IRIToid[this.getIRI(modelNode.namespace)] = modelNode.prefix
+            }            
+        }
+        for (const modelNode of streamAllContents(document.parseResult.value)) {
+            if (isMember(modelNode)) { 
                 const fullyQualifiedName = this.getQualifiedName(modelNode, modelNode.name);
-                // `descriptions` is our `AstNodeDescriptionProvider` defined in `DefaultScopeComputation`
-                // It allows us to easily create descriptions that point to elements using a name.
+                // export Members of the Ontology to global namespace
                 exportedDescriptions.push(this.descriptions.createDescription(modelNode, fullyQualifiedName, document));
             }
         }
+
         return exportedDescriptions;
     }
 
     /**
-     * Build a qualified name for a model node
+     * Build a qualified name (FULL_IRI) for a node, given the Ontology + ID/abbreviated_IRI
      */
-     private getQualifiedName(node: AstNode, name: string): string {
+    private getQualifiedName(node: Member, name: string): string { //pass in mapping of ID to FULL_IRI
+       //export full IRI of member
         let parent: AstNode | undefined = node.$container;
-        while (isOntology(parent)) {
-            // Iteratively prepend the name of the parent namespace
-            // This allows us to work with nested namespaces
-            name = `${parent.namespace}:${name}`;
-            parent = parent.$container;
+        while(isOntology(parent) || isMember(parent)) {
+            if(isOntology(parent)) {
+                name = `<${this.getIRI(parent.namespace)}#${name}>`;
+                return name
+            } else {
+                // Directly bring ForwardRelation and ReverseRelation into Ontology space
+                // name = `${parent.name}:${name}`; 
+                parent = parent.$container
+            }
         }
-        return name;
+        return name
     }
+
+    //Strip of <>, # or / at the end
+    private getIRI(namespace : string): string {
+        if(namespace.startsWith('<'))
+            namespace = namespace.substring(1)
+        if(namespace.endsWith('>'))
+            namespace = namespace.substring(0, namespace.length-1)
+        if(namespace.endsWith('/') || namespace.endsWith('#'))
+            namespace = namespace.substring(0, namespace.length-1)
+        return namespace
+    }
+
 }
