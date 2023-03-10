@@ -124,6 +124,26 @@
       "match": "\\b(all|as|differentFrom|enumerates|exactly|extends|includes|max|min|restricts|sameAs|some|to|uses)\\b"
     },
     {
+      "name": "string.quoted.triple.oml",
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.triple.oml",
+      "begin": "'''",
+      "end": "'''",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
       "name": "string.quoted.double.oml",
       "begin": "\"",
       "end": "\"",
