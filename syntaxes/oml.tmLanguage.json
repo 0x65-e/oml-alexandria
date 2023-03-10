@@ -6,7 +6,7 @@
   ],
   "patterns": [
     {
-      "match": "(<[^>\\s#]+[#\/]>)\\s*(as)\\s+([a-zA-z_][\\w\\-\\.$]*)",
+      "match": "(<[^>\\s]+>)\\s*(?:(as)\\s+([a-zA-z_][\\w\\-\\.$]*))?",
       "captures": {
         "1": {"name": "entity.section.oml"},
         "2": {"name": "keyword.control.oml"},
