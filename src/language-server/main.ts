@@ -2,6 +2,7 @@ import { startLanguageServer } from 'langium';
 import { NodeFileSystem } from 'langium/node';
 import { createConnection, ProposedFeatures } from 'vscode-languageserver/node';
 import { createOmlServices } from './oml-module';
+import { addDiagramHandler } from 'langium-sprotty';
 
 // Create a connection to the client
 const connection = createConnection(ProposedFeatures.all);
@@ -11,3 +12,4 @@ const { shared } = createOmlServices({ connection, ...NodeFileSystem });
 
 // Start the language server with the shared services
 startLanguageServer(shared);
+addDiagramHandler(connection, shared);

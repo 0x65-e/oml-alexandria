@@ -148,7 +148,6 @@
                 "when": "oml-diagram-focused"
             }
         ]
-
     },
     "activationEvents": [
         "onWebviewPanel:oml",
@@ -175,7 +174,10 @@
         "chalk": "~4.1.2",
         "chevrotain": "~10.4.2",
         "commander": "~10.0.0",
+        "elkjs": "^0.8.2",
         "langium": "~1.1.0",
+        "langium-sprotty": "^1.1.0",
+        "sprotty-elk": "^0.13.1",
         "sprotty-vscode": "^0.5.0",
         "vscode-languageclient": "~8.0.2",
         "vscode-languageserver": "~8.0.2",
