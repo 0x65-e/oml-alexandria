@@ -34,8 +34,45 @@ import {
     isDescription,
     VocabularyBundle,
     isVocabularyBundle,
-    DescriptionBundle
+    DescriptionBundle,
+    Rule,
+    isRule,
+    // Predicate,
+    // isPredicate,
+    // SameAsPredicate,
+    isSameAsPredicate
 } from './generated/ast';
+
+// interface UnaryPredicate extends Predicate {
+// 	variable: string
+// }
+
+// interface TypePredicate extends UnaryPredicate {
+// 	^type: @Type
+// }
+
+// interface BinaryPredicate extends Predicate {
+// 	variable1: string
+// 	variable2?: string
+// 	instance2?: @NamedInstance
+// }
+
+// interface RelationEntityPredicate extends BinaryPredicate {
+// 	entity: @RelationEntity
+// 	entityVariable: string
+// }
+
+// interface FeaturePredicate extends BinaryPredicate {
+// 	feature: @Feature
+// 	literal2?: Literal
+// }
+
+// interface SameAsPredicate extends BinaryPredicate {
+// }
+
+// interface DifferentFromPredicate extends BinaryPredicate {
+// }
+
 import type { OmlServices } from './oml-module';
 
 /**
@@ -54,7 +91,8 @@ export function registerValidationChecks(services: OmlServices) {
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes, validator.checkValidFacetedScalarRegularExpression],
         EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
         RelationEntity: validator.checkRelationEntityLogicalConsistency,
-        Entity: validator.checkEntityHasConsistentKeys
+        Entity: validator.checkEntityHasConsistentKeys,
+        Rule: [validator.checkDuplicateRuleAntededent, validator.checkDuplicateRuleConsequent, validator.checkTrivialRuleConsequent]
     };
     registry.register(checks, validator);
 }
@@ -483,5 +521,70 @@ export class OmlValidator {
                 }
             }
         });
+    }
+
+    checkDuplicateRuleAntededent(rule: Rule, accept: ValidationAcceptor): void {
+        if (!isRule(rule)) {
+            throw new Error('Expected an Rule in validation but got the wrong type');
+        }
+
+        rule.antecedent.forEach((pred, ind) => {
+            if (isSameAsPredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isSameAsPredicate(ant) && pred.variable1 == ant.variable1 &&
+                            pred.variable2 == ant.variable2 && ind != ii) {
+                        accept('warning', `Redundant antededent`, {node: rule, property: 'antecedent', index: ind});
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    checkDuplicateRuleConsequent(rule: Rule, accept: ValidationAcceptor): void {
+        if (!isRule(rule)) {
+            throw new Error('Expected an Rule in validation but got the wrong type');
+        }
+        
+        rule.consequent.forEach((pred, ind) => {
+            if (isSameAsPredicate(pred)) {
+                for (let ii = 0; ii < rule.consequent.length; ii++) {
+                    let cons = rule.consequent[ii];
+                    if (isSameAsPredicate(cons) && pred.variable1 == cons.variable1 &&
+                            pred.variable2 == cons.variable2 && ind != ii) {
+                        accept('warning', `Redundant consequent`, {node: rule, property: 'consequent', index: ind});
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    checkTrivialRuleConsequent(rule: Rule, accept: ValidationAcceptor): void {
+        if (!isRule(rule)) {
+            throw new Error('Expected an Rule in validation but got the wrong type');
+        }
+
+        rule.consequent.forEach((pred, ind) => {
+            if (isSameAsPredicate(pred)) {
+                for (let ii = 0; ii < rule.antecedent.length; ii++) {
+                    let ant = rule.antecedent[ii];
+                    if (isSameAsPredicate(ant) && pred.variable1 == ant.variable1 &&
+                            pred.variable2 == ant.variable2 && ind != ii) {
+                        accept('warning', `Trivial implication`, {node: rule, property: 'consequent', index: ind});
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    checkRuleContradictions(rule: Rule, accept: ValidationAcceptor): void {
+        if (!isRule(rule)) {
+            throw new Error('Expected an Rule in validation but got the wrong type');
+        }
+
+        
     }
 }
