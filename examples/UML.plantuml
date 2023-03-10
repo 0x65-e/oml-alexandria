@@ -1,16 +1,20 @@
-@startuml FileSystem 
-class Folder { 
-    -id: Integer 
-    +name: String
+@startuml 
+
+package dnd
+{
+    abstract class Dungeon
+    abstract class Monster
+
+    Dragon --|> Monster
+    WhiteDragon --|> Dragon
+    BlueDragon --|> Dragon
+    Kobold --|> Monster
+
+    DragonLair --|> Dungeon
+    WhiteDragonLair --|> DragonLair
+
+    Dungeon o-- Monster
 }
-class File { 
-    +name: String
-}
-class Content { 
-    +blob: String
-}
-Folder "folder" *-- "file" File 
-File "file" *-- "content" Content
 
 @enduml
 

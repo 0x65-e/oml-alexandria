@@ -16,6 +16,15 @@ vocabulary <example.com/dungeons#> as dnd {
         reverse isContainedBy
     ]
 
+    concept Attack
+
+    relation entity Performs [
+        from Monster
+        to Attack
+        forward performs
+        reverse isPerformedBy
+    ]
+
     /* Specifications of monsters and their habitats */
 
     concept Dragon :> Monster
@@ -26,7 +35,7 @@ vocabulary <example.com/dungeons#> as dnd {
 
     concept Kobold :> Monster
 
-    /*
+
     aspect DragonLair :> Dungeon [
         restricts some relation contains to Dragon
     ]
@@ -34,5 +43,4 @@ vocabulary <example.com/dungeons#> as dnd {
     concept WhiteDragonLair :> DragonLair [
         restricts some relation contains to WhiteDragon
     ]
-    */
 }
