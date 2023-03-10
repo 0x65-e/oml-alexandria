@@ -26,6 +26,48 @@
                 "${workspaceFolder}/out/**/*.js",
                 "${workspaceFolder}/node_modules/langium"
             ]
-        }
+        },
+        {
+            "name": "oml-alexandria with Panel Manager (Langium)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "env": {
+                "DIAGRAM_MODE": "panel"
+            },
+            "args": [
+                "${workspaceFolder}/examples/",
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "name": "oml-alexandria with Editor (Langium)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "env": {
+                "DIAGRAM_MODE": "editor"
+            },
+            "args": [
+                "${workspaceFolder}/examples/",
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "name": "oml-alexandria with View (Langium)",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "env": {
+                "DIAGRAM_MODE": "view"
+            },
+            "args": [
+                "${workspaceFolder}/examples/",
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "sourceMaps": true
+        },
     ]
 }

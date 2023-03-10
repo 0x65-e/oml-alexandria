@@ -1,26 +1,83 @@
-import * as vscode from 'vscode';
+/********************************************************************************
+ * Copyright (c) 2018-2022 TypeFox and others.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
+
 import * as path from 'path';
-import {
-    LanguageClient, LanguageClientOptions, ServerOptions, TransportKind
-} from 'vscode-languageclient/node';
+import { registerDefaultCommands, registerTextEditorSync } from 'sprotty-vscode';
+import { LspSprottyEditorProvider, LspSprottyViewProvider, LspWebviewPanelManager } from 'sprotty-vscode/lib/lsp';
+import * as vscode from 'vscode';
+import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 
-let client: LanguageClient;
+let languageClient: LanguageClient;
 
-// This function is called when the extension is activated.
-export function activate(context: vscode.ExtensionContext): void {
-    client = startLanguageClient(context);
-}
-
-// This function is called when the extension is deactivated.
-export function deactivate(): Thenable<void> | undefined {
-    if (client) {
-        return client.stop();
+export function activate(context: vscode.ExtensionContext) {
+    const diagramMode = process.env.DIAGRAM_MODE || 'panel';
+    if (!['panel', 'editor', 'view'].includes(diagramMode)) {
+        throw new Error("The environment variable 'DIAGRAM_MODE' must be set to 'panel', 'editor' or 'view'.");
     }
-    return undefined;
+
+    languageClient = createLanguageClient(context);
+
+    if (diagramMode === 'panel') {
+        // Set up webview panel manager for freestyle webviews
+        const webviewPanelManager = new LspWebviewPanelManager({
+            extensionUri: context.extensionUri,
+            defaultDiagramType: 'oml',
+            languageClient,
+            supportedFileExtensions: ['.oml']
+        });
+        registerDefaultCommands(webviewPanelManager, context, { extensionPrefix: 'oml' });
+    }
+
+    if (diagramMode === 'editor') {
+        // Set up webview editor associated with file type
+        const webviewEditorProvider = new LspSprottyEditorProvider({
+            extensionUri: context.extensionUri,
+            viewType: 'oml',
+            languageClient,
+            supportedFileExtensions: ['.oml']
+        });
+        context.subscriptions.push(
+            vscode.window.registerCustomEditorProvider('oml', webviewEditorProvider, {
+                webviewOptions: { retainContextWhenHidden: true }
+            })
+        );
+        registerDefaultCommands(webviewEditorProvider, context, { extensionPrefix: 'oml' });
+    }
+
+    if (diagramMode === 'view') {
+        // Set up webview view shown in the side panel
+        const webviewViewProvider = new LspSprottyViewProvider({
+            extensionUri: context.extensionUri,
+            viewType: 'oml',
+            languageClient,
+            supportedFileExtensions: ['.oml'],
+            openActiveEditor: true
+        });
+        context.subscriptions.push(
+            vscode.window.registerWebviewViewProvider('oml', webviewViewProvider, {
+                webviewOptions: { retainContextWhenHidden: true }
+            })
+        );
+        registerDefaultCommands(webviewViewProvider, context, { extensionPrefix: 'oml' });
+        registerTextEditorSync(webviewViewProvider, context);
+    }
 }
 
-function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
-    const serverModule = context.asAbsolutePath(path.join('out', 'language-server', 'main'));
+function createLanguageClient(context: vscode.ExtensionContext): LanguageClient {
+    const serverModule = context.asAbsolutePath(path.join('pack', 'language-server'));
     // The debug options for the server
     // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging.
     // By setting `process.env.DEBUG_BREAK` to a truthy value, the language server will wait until a debugger is attached.
@@ -46,7 +103,7 @@ function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
     };
 
     // Create the language client and start the client.
-    const client = new LanguageClient(
+    const languageClient = new LanguageClient(
         'oml',
         'Oml',
         serverOptions,
@@ -54,6 +111,12 @@ function startLanguageClient(context: vscode.ExtensionContext): LanguageClient {
     );
 
     // Start the client. This will also launch the server
-    client.start();
-    return client;
+    languageClient.start();
+    return languageClient;
+}
+
+export async function deactivate(): Promise<void> {
+    if (languageClient) {
+        await languageClient.stop();
+    }
 }
