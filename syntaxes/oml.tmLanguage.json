@@ -6,8 +6,12 @@
   ],
   "patterns": [
     {
-      "name": "entity.section.oml",
-      "match": "<[^>\\s#]+[#\/]>"
+      "match": "(<[^>\\s#]+[#\/]>)\\s*(as)\\s+([a-zA-z_][\\w\\-\\.$]*)",
+      "captures": {
+        "1": {"name": "entity.section.oml"},
+        "2": {"name": "keyword.control.oml"},
+        "3": {"name": "support.class.oml"}
+      }
     },
     {
       "name": "constant.language.oml",
