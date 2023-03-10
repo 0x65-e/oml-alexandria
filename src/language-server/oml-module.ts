@@ -6,6 +6,8 @@ import { OmlGeneratedModule, OmlGeneratedSharedModule } from './generated/module
 import { OmlValidator, registerValidationChecks } from './oml-validator';
 import { OmlScopeComputation } from './oml-scope';
 import { OmlLinker } from './oml-linker';
+import { OmlRenameProvider } from './oml-rename-refactoring';
+import { OmlIRIProvider } from './oml-iri';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -13,6 +15,9 @@ import { OmlLinker } from './oml-linker';
 export type OmlAddedServices = {
     validation: {
         OmlValidator: OmlValidator
+    },
+    references: {
+        OmlIRI: OmlIRIProvider
     }
 }
 
@@ -34,7 +39,11 @@ export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedSer
     references: {
         ScopeComputation: (services) => new OmlScopeComputation(services),
         Linker: (services) => new OmlLinker(services),
+        OmlIRI: () => new OmlIRIProvider(),
     },
+    lsp: {
+        RenameProvider: (services) => new OmlRenameProvider(services)
+    }
 };
 
 /**

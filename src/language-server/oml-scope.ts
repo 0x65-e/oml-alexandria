@@ -5,13 +5,19 @@ import {
 
 import { isRelationEntity, isMember, isOntology, Ontology, isVocabulary, isDescription, RelationEntity, Member} from './generated/ast';
 import { OmlIRIProvider } from './oml-iri';
+import { OmlServices } from './oml-module';
 
 
 // import * as vscode from 'vscode';
 
 export class OmlScopeComputation extends DefaultScopeComputation {
 
-    omlIRI : OmlIRIProvider = new OmlIRIProvider()
+    omlIRI : OmlIRIProvider
+
+    constructor(services: OmlServices) {
+        super(services);
+        this.omlIRI = services.references.OmlIRI;
+    }
     
     override async computeLocalScopes(document: LangiumDocument): Promise<PrecomputedScopes> {
         const model = document.parseResult.value as Ontology;
