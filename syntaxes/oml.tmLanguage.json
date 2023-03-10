@@ -21,7 +21,7 @@
       "include": "#comments"
     },
     {
-      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
+      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
         "2": {"name": "variable.object.property.oml"},
@@ -34,7 +34,7 @@
       }
     },
     {
-      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
+      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
         "2": {"name": "entity.name.type.oml"},
@@ -54,7 +54,7 @@
       }
     },
     {
-      "match": "\\b(restricts\\s+(?:all|some))\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -65,7 +65,7 @@
       }
     },
     {
-      "match": "\\b(restricts\\s+(?:all|some))\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -75,7 +75,7 @@
       }
     },
     {
-      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*)?\\b",
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)?\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -87,7 +87,7 @@
       }
     },
     {
-      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*)?\\b",
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)?\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -98,7 +98,7 @@
       }
     },
     {
-      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\b",
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -108,7 +108,7 @@
       }
     },
     {
-      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*)\\s+(to)\\b",
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\b",
       "captures": {
         "1": {"name": "keyword.control.oml"},
         "2": {"name": "storage.type.oml"},
@@ -117,14 +117,14 @@
       }
     },
     {
-      "match": "\\b(domain|range|from|to)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b(domain|range|from|to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
       "captures": {
         "1": {"name": "variable.object.property.oml"},
         "2": {"name": "entity.name.type.oml"}
       }
     },
     {
-      "match": "\\b(key)\\s+([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
+      "match": "\\b(key)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "variable.object.property.oml"},
         "2": {"name": "variable.object.property.oml"},

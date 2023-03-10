@@ -1,6 +1,8 @@
 vocabulary <https://example.com/dungeons#> as dnd {
-    // This is a comment
+    // Imports
     extends <http://www.w3.org/2000/01/rdf-schema/> as rdfs
+
+    extends <http://www.w3.org/2001/XMLSchema#> as xsd
 
     /* Basic Aspects of Dungeons and Dragons */
 
@@ -10,11 +12,11 @@ vocabulary <https://example.com/dungeons#> as dnd {
 
     /* Properties of monsters */
 
-    scalar Health [
+    scalar Health :> xsd:positiveInteger [
         minInclusive 1
     ]
 
-    scalar ChallengeRating [
+    scalar ChallengeRating :> xsd:positiveInteger [
         minInclusive 0
         maxInclusive 30
     ]
@@ -32,7 +34,7 @@ vocabulary <https://example.com/dungeons#> as dnd {
     ]
 
     /* Relations between dungeons and monsters */
-    @rdfs:comment "The class of jalapeno pepper toppings"
+    @rdfs:comment "A dungeon can contain monsters"
     relation entity Contains [
         from Dungeon
         to Monster
@@ -99,13 +101,11 @@ vocabulary <https://example.com/dungeons#> as dnd {
         restricts scalar property hasCR to 0.125
     ]
 
-    /*
     aspect DragonLair :> Dungeon [
         restricts some relation contains to Dragon
     ]
 
     concept WhiteDragonLair :> DragonLair [
-        restricts some relation contains to WhiteDragon
+        restricts some relation contains to AdultWhiteDragon
     ]
-    */
 }
