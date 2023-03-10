@@ -17,17 +17,29 @@
       "include": "#comments"
     },
     {
-      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
-        "2": {"name": "variable.object.property.oml"}
+        "2": {"name": "variable.object.property.oml"},
+        "3": {"name": "keyword.control.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "variable.object.property.oml"},
+        "6": {"name": "variable.object.property.oml"},
+        "7": {"name": "variable.object.property.oml"},
+        "8": {"name": "variable.object.property.oml"}
       }
     },
     {
-      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*))?)?)?)?)?\\b",
       "captures": {
         "1": {"name": "storage.type.oml"},
-        "2": {"name": "entity.name.type.oml"}
+        "2": {"name": "entity.name.type.oml"},
+        "3": {"name": "keyword.control.oml"},
+        "4": {"name": "entity.name.type.oml"},
+        "5": {"name": "entity.name.type.oml"},
+        "6": {"name": "entity.name.type.oml"},
+        "7": {"name": "entity.name.type.oml"},
+        "8": {"name": "entity.name.type.oml"}
       }
     },
     {
