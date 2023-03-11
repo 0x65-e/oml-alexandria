@@ -9,6 +9,9 @@
     "categories": [
         "Programming Languages"
     ],
+    "workspaces": [
+        "oml-sprotty"
+    ],
     "contributes": {
         "languages": [
             {
@@ -45,8 +48,10 @@
     "main": "./pack/extension.js",
     "scripts": {
         "vscode:prepublish": "npm run build && npm run lint",
-        "build": "tsc -b tsconfig.json",
-        "watch": "tsc -b tsconfig.json --watch",
+        "build:sprotty": "cd oml-sprotty && rm -f yarn.lock && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack",
+        "build:extension": "tsc -b tsconfig.json",
+        "build": "yarn build:sprotty && yarn build:extension",
+        "watch": "yarn build:sprotty && tsc -b tsconfig.json --watch",
         "lint": "eslint src --ext ts",
         "langium:generate": "langium generate",
         "langium:watch": "langium generate --watch"
