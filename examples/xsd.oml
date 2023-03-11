@@ -1,0 +1,47 @@
+vocabulary <http://www.w3.org/2001/XMLSchema#> as xsd {
+  extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+  extends <http://www.w3.org/2002/07/owl#> as owl
+
+  // Decimal Numbers and Integers
+  scalar decimal :> owl:rational
+  scalar integer :> decimal
+  scalar long :> integer
+  scalar int :> long
+  scalar short :> int
+  scalar byte :> short
+  scalar nonNegativeInteger :> integer
+  scalar positiveInteger :> nonNegativeInteger
+  scalar unsignedLong :> nonNegativeInteger
+  scalar unsignedInt :> unsignedLong
+  scalar unsignedShort :> unsignedInt
+  scalar unsignedByte :> unsignedShort
+  scalar nonPositiveInteger :> integer
+  scalar negativeInteger :> nonPositiveInteger
+	
+  // Floating-Point Numbers
+  scalar double :> rdfs:Literal
+  scalar float :> rdfs:Literal
+	
+  // Strings
+  scalar string :> rdfs:Literal
+  scalar normalizedString :> string
+  scalar token :> normalizedString
+  scalar ^language :> token
+  scalar Name :> token
+  scalar NCName :> Name
+  scalar NMTOKEN :> token
+
+  // Boolean
+  scalar boolean :> rdfs:Literal
+
+  // Binary Data
+  scalar hexBinary :> rdfs:Literal
+  scalar base64Binary :> rdfs:Literal
+	
+  // IRI
+  scalar anyURI :> rdfs:Literal
+	
+  // Time Instants
+  scalar dateTime :> rdfs:Literal
+  scalar dateTimeStamp :> dateTime
+}

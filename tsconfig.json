@@ -6,7 +6,7 @@
     "sourceMap": true,
     "outDir": "pack",
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "moduleResolution": "node",

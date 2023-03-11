@@ -1970,6 +1970,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"langium-sprotty@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "langium-sprotty@npm:1.1.0"
+  dependencies:
+    langium: ~1.1.0
+    sprotty-protocol: ~0.13.0
+  checksum: 83a0bab71fd99d772129f28e10fe6b541385b80342ab824413dd8fbdabf14f4792d1e4c465183efb644972415287b8e138a99f4b9a469a6e3e14f75490ab2919
+  languageName: node
+  linkType: hard
+
 "langium@npm:~1.1.0":
   version: 1.1.0
   resolution: "langium@npm:1.1.0"
@@ -2201,6 +2211,7 @@ __metadata:
     eslint: ~8.33.0
     langium: ~1.1.0
     langium-cli: ~1.1.0
+    langium-sprotty: ^1.1.0
     typescript: ~4.9.5
     vscode-languageclient: ~8.0.2
     vscode-languageserver: ~8.0.2
