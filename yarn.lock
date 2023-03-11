@@ -1150,6 +1150,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"elkjs@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "elkjs@npm:0.8.2"
+  checksum: ed615c485fa4ac1e858af509df24fdc9f61f2c6576df5f79f6a31c733fda69f235f53cd36af037aa9d2b8a935cb4f823fbd89d784b67f6e51be5100306ea1b39
+  languageName: node
+  linkType: hard
+
 "emojis-list@npm:^3.0.0":
   version: 3.0.0
   resolution: "emojis-list@npm:3.0.0"
@@ -1773,6 +1780,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inherits@npm:2.0.3":
+  version: 2.0.3
+  resolution: "inherits@npm:2.0.3"
+  checksum: 78cb8d7d850d20a5e9a7f3620db31483aa00ad5f722ce03a55b110e5a723539b3716a3b463e2b96ce3fe286f33afc7c131fa2f91407528ba80cea98a7545d4c0
+  languageName: node
+  linkType: hard
+
 "interpret@npm:^2.2.0":
   version: 2.2.0
   resolution: "interpret@npm:2.2.0"
@@ -2118,6 +2132,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^5.1.0":
+  version: 5.1.6
+  resolution: "minimatch@npm:5.1.6"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: 7564208ef81d7065a370f788d337cd80a689e981042cb9a1d0e6580b6c6a8c9279eba80010516e258835a988363f99f54a6f711a315089b8b42694f5da9d0d77
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^7.4.1":
   version: 7.4.2
   resolution: "minimatch@npm:7.4.2"
@@ -2207,13 +2230,16 @@ __metadata:
     chalk: ~4.1.2
     chevrotain: ~10.4.2
     commander: ~10.0.0
+    elkjs: ^0.8.2
     esbuild: ^0.17.10
     eslint: ~8.33.0
     langium: ~1.1.0
     langium-cli: ~1.1.0
     langium-sprotty: ^1.1.0
+    sprotty-elk: ^0.13.1
+    sprotty-vscode: ^0.5.0
     typescript: ~4.9.5
-    vscode-languageclient: ~8.0.2
+    vscode-languageclient: ^8.0.2
     vscode-languageserver: ~8.0.2
     vscode-uri: ~3.0.7
   bin:
@@ -2361,6 +2387,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path@npm:^0.12.7":
+  version: 0.12.7
+  resolution: "path@npm:0.12.7"
+  dependencies:
+    process: ^0.11.1
+    util: ^0.10.3
+  checksum: 5dedb71e78fc008fcba797defc0b4e1cf06c1f18e0a631e03ba5bb505136f587ff017afc14f9a3d481cbe77aeedff7dc0c1d2ce4d820c1ebf3c4281ca49423a1
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -2460,6 +2496,13 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"process@npm:^0.11.1":
+  version: 0.11.10
+  resolution: "process@npm:0.11.10"
+  checksum: bfcce49814f7d172a6e6a14d5fa3ac92cc3d0c3b9feb1279774708a719e19acd673995226351a082a9ae99978254e320ccda4240ddc474ba31a76c79491ca7c3
   languageName: node
   linkType: hard
 
@@ -2648,7 +2691,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.3.8":
+"semver@npm:^7.3.4, semver@npm:^7.3.7, semver@npm:^7.3.8":
   version: 7.3.8
   resolution: "semver@npm:7.3.8"
   dependencies:
@@ -2751,6 +2794,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sprotty-elk@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "sprotty-elk@npm:0.13.1"
+  dependencies:
+    elkjs: ^0.8.2
+    inversify: ^5.1.1
+    sprotty-protocol: ^0.13.0
+  dependenciesMeta:
+    inversify:
+      optional: true
+  checksum: 97901444e318085e55f76a780ee2e88bff1c2e089669c8781ab52f55ae183a8cb68a59e9527cec6a08cb7ff9e3677fd6466e923cb406a5c42f5260fe2c75ecbc
+  languageName: node
+  linkType: hard
+
 "sprotty-protocol@npm:^0.13.0, sprotty-protocol@npm:~0.13.0":
   version: 0.13.0
   resolution: "sprotty-protocol@npm:0.13.0"
@@ -2778,6 +2835,18 @@ __metadata:
     vscode-messenger-webview: ^0.4.3
     vscode-uri: ^3.0.6
   checksum: 3fda7fb1f54597ef0ebb33274b9e3664ff0e8f29fc5bf0b621c1417af599cda996525da02027ab11d369f6f1b4e9433898e5d79de2be239180c9ce53ebf9b7fc
+  languageName: node
+  linkType: hard
+
+"sprotty-vscode@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "sprotty-vscode@npm:0.5.0"
+  dependencies:
+    path: ^0.12.7
+    sprotty-vscode-protocol: ^0.5.0
+    vscode-languageclient: ^8.0.2
+    vscode-messenger: ^0.4.4
+  checksum: 5a27db2759c40db033edfa1c11e4d5c0e842ee55d04fce84fbdcb35eb098bca545e8fb88272a65e68c323b1ce209ed00a9a63135b0345f5ce0435a5f78bbf1fc
   languageName: node
   linkType: hard
 
@@ -3085,6 +3154,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"util@npm:^0.10.3":
+  version: 0.10.4
+  resolution: "util@npm:0.10.4"
+  dependencies:
+    inherits: 2.0.3
+  checksum: 913f9a90d05a60e91f91af01b8bd37e06bca4cc02d7b49e01089f9d5b78be2fffd61fb1a41b517de7238c5fc7337fa939c62d1fb4eb82e014894c7bee6637aaf
+  languageName: node
+  linkType: hard
+
 "vscode-jsonrpc@npm:8.0.2":
   version: 8.0.2
   resolution: "vscode-jsonrpc@npm:8.0.2"
@@ -3099,14 +3177,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-languageclient@npm:~8.0.2":
-  version: 8.0.2
-  resolution: "vscode-languageclient@npm:8.0.2"
+"vscode-languageclient@npm:^8.0.2":
+  version: 8.1.0
+  resolution: "vscode-languageclient@npm:8.1.0"
   dependencies:
-    minimatch: ^3.0.4
-    semver: ^7.3.5
-    vscode-languageserver-protocol: 3.17.2
-  checksum: 3a145605a3cdb2855a2a771d6b8e75e72a1ca5aa32e091933c2f0e6f7b8fc1a45a9ea79b434001ad8af6b8cdb4ef88ff92fbb128b37988ebb21cac1b60cd44c3
+    minimatch: ^5.1.0
+    semver: ^7.3.7
+    vscode-languageserver-protocol: 3.17.3
+  checksum: b9d46aa256188dae19dcc5adb502be7193564b3313cbf20f99f83730ffbbf88cec40a08c4cafdc005b65c6385544c9f316de9b152067ab263221383326f00f95
   languageName: node
   linkType: hard
 
@@ -3120,7 +3198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-languageserver-protocol@npm:^3.17.2":
+"vscode-languageserver-protocol@npm:3.17.3, vscode-languageserver-protocol@npm:^3.17.2":
   version: 3.17.3
   resolution: "vscode-languageserver-protocol@npm:3.17.3"
   dependencies:
@@ -3175,6 +3253,15 @@ __metadata:
   dependencies:
     vscode-messenger-common: ^0.4.3
   checksum: 5d265b85f56d88cc0a53b938bfbbdc33b7572858e5761e0693eafc3d53c715e665fd2f1231902a716de095663bf1b8ac91c31524a2880ec605164a89d4a7a861
+  languageName: node
+  linkType: hard
+
+"vscode-messenger@npm:^0.4.4":
+  version: 0.4.4
+  resolution: "vscode-messenger@npm:0.4.4"
+  dependencies:
+    vscode-messenger-common: ^0.4.3
+  checksum: 7d66f3d36580f02e4acee1c2af1114f11bc6fd6a60bfa08e516b698f62e0176c39a9baea7bf4192cd381e560985e1d37be53c8fb7fd62379e86f6a431468a5eb
   languageName: node
   linkType: hard
 
