@@ -4,3 +4,7 @@ out/
 pack/
 vscode-test/
 generated/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
