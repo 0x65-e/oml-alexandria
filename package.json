@@ -36,13 +36,13 @@
     ],
     "files": [
         "bin",
-        "out",
+        "pack",
         "src"
     ],
     "bin": {
         "oml-cli": "./bin/cli"
     },
-    "main": "./out/extension.js",
+    "main": "./pack/extension.js",
     "scripts": {
         "vscode:prepublish": "npm run build && npm run lint",
         "build": "tsc -b tsconfig.json",
