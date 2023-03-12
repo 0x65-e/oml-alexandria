@@ -5,7 +5,7 @@ import { Interpreter } from './OMLInterpreter';
 
 export class OMLtoUMLInterpreter{
 
-    file_path = join(__dirname, '..', 'examples', 'pizza.oml');
+    file_path = join(__dirname, '..', 'examples', 'dungeons.oml');
     file_name = this.file_path.split("/").pop()
     oml_file = readFileSync(this.file_path, 'utf8')
     

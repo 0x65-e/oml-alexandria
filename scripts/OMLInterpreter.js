@@ -43,7 +43,6 @@ var Interpreter = /** @class */ (function () {
     Interpreter.prototype.process_line = function () {
         var _this = this;
         var line = this.tokenized_program[this.ip];
-        //console.log(line)
         switch (line[0]) {
             case "concept":
                 if (line.indexOf("[") > 0) {
@@ -145,7 +144,6 @@ var Interpreter = /** @class */ (function () {
     Interpreter.prototype.restrict_property = function (class_name) {
         var property_ip = this.ip + 1;
         var class_index = -1;
-        console.log(class_name + ": ");
         for (var i = 0; i < this.uml_program.length; i++) {
             if (this.uml_program[i].indexOf("class") >= 0 && this.uml_program[i].indexOf(class_name) > 0) {
                 class_index = i;
@@ -154,6 +152,7 @@ var Interpreter = /** @class */ (function () {
         while (this.tokenized_program[property_ip].indexOf("restricts") == 0) {
             var property = this.tokenized_program[property_ip][3];
             var value = this.tokenized_program[property_ip].at(-1);
+            value = this.find_cardinality(value, this.tokenized_program[property_ip]);
             if (this.uml_program[class_index].indexOf("{") > 0 && value) {
                 this.uml_program.splice(class_index + 1, 0, ["", "", "", property + ":", value]);
             }
@@ -164,6 +163,18 @@ var Interpreter = /** @class */ (function () {
             }
             property_ip++;
         }
+    };
+    Interpreter.prototype.find_cardinality = function (value, line) {
+        if (line.indexOf("exactly") >= 0) {
+            value = "[" + value + "]";
+        }
+        if (line.indexOf("min") >= 0) {
+            value = "[" + value + ":]";
+        }
+        if (line.indexOf("max") >= 0) {
+            value = "[:" + value + "]";
+        }
+        return value;
     };
     return Interpreter;
 }());

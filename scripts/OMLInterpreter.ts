@@ -154,6 +154,7 @@ export class Interpreter{
         while (this.tokenized_program[property_ip].indexOf("restricts") == 0){
             let property = this.tokenized_program[property_ip][3]
             let value = this.tokenized_program[property_ip].at(-1)
+            value = this.find_cardinality(value, this.tokenized_program[property_ip])
             if (this.uml_program[class_index].indexOf("{") > 0 && value){
                 this.uml_program.splice(class_index+1, 0, ["","","",property + ":", value])
             }
@@ -164,6 +165,19 @@ export class Interpreter{
             }
             property_ip++
         }
+    }
+
+    public find_cardinality(value, line){
+        if (line.indexOf("exactly") >= 0){
+            value = "[" + value + "]"
+        }
+        if (line.indexOf("min") >= 0){
+            value = "[" + value + ":]"
+        }
+        if (line.indexOf("max") >= 0){
+            value = "[:" + value + "]"
+        }
+        return value
     }
         
 }

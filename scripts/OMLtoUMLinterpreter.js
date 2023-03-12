@@ -7,7 +7,7 @@ var OMLWriter_1 = require("./OMLWriter");
 var OMLInterpreter_1 = require("./OMLInterpreter");
 var OMLtoUMLInterpreter = /** @class */ (function () {
     function OMLtoUMLInterpreter() {
-        this.file_path = (0, path_1.join)(__dirname, '..', 'examples', 'pizza.oml');
+        this.file_path = (0, path_1.join)(__dirname, '..', 'examples', 'dungeons.oml');
         this.file_name = this.file_path.split("/").pop();
         this.oml_file = (0, fs_1.readFileSync)(this.file_path, 'utf8');
         this.tokenized_program = this.tokenize_program();

@@ -13,8 +13,8 @@ package dnd {
       } 
    abstract class AdultDragon { 
          hasAge: "Adult" 
-         hasCR: 1 
-         hasHealth: 1 
+         hasCR: [1] 
+         hasHealth: [1] 
       } 
    class AdultWhiteDragon { 
          hasColor: "White" 
