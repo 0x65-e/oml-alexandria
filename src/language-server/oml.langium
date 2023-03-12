@@ -716,7 +716,7 @@ terminal DECIMAL_STR returns number: /[+-]?(\d+\.\d*)|(\.\d+)/;
 terminal UNSIGNED_INTEGER_STR returns number: /\d+/;
 terminal SIGNED_INTEGER_STR returns number: /[+-]\d+/;
 terminal NAMESPACE: /<[^>\s#]+[#\/]>/;
-terminal FULL_IRI: /<[^>\s#]+>/;
+terminal FULL_IRI: /<[^>\s]+>/;
 terminal fragment IDFRAG: /[a-zA-z_][\w\-\.$]*/;
 terminal ABBREVIATED_IRI: IDFRAG ':' IDFRAG;
 terminal ID: IDFRAG;
