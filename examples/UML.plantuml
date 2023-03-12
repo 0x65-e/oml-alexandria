@@ -1,20 +1,22 @@
 @startuml 
-
-package dnd
-{
-    abstract class Dungeon
-    abstract class Monster
-
-    Dragon --|> Monster
-    WhiteDragon --|> Dragon
-    BlueDragon --|> Dragon
-    Kobold --|> Monster
-
-    DragonLair --|> Dungeon
-    WhiteDragonLair --|> DragonLair
-
-    Dungeon o-- Monster
-}
-
-@enduml
-
+package dnd { 
+   abstract class Dungeon 
+   abstract class Monster { 
+         Attack 
+         hasHealth: Health
+      } 
+   Dungeon o-- Monster 
+   class Dragon 
+   Dragon --|> Monster 
+   class WhiteDragon 
+   WhiteDragon --|> Dragon 
+   class BlueDragon 
+   BlueDragon --|> Dragon 
+   class Kobold 
+   Kobold --|> Monster 
+   abstract class DragonLair 
+   DragonLair --|> Dungeon 
+   class WhiteDragonLair 
+   WhiteDragonLair --|> DragonLair 
+   } 
+@enduml 
