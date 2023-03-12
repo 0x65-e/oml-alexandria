@@ -58,8 +58,8 @@ import {
     isFeaturePredicate,
     SameAsPredicate,
     isSameAsPredicate,
-    // DifferentFromPredicate,
-    // isDifferentFromPredicate
+    DifferentFromPredicate,
+    isDifferentFromPredicate
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -89,7 +89,8 @@ export function registerValidationChecks(services: OmlServices) {
         TypePredicate: validator.checkDuplicateTypePredicate,
         RelationEntityPredicate: validator.checkDuplicateRelationEntityPredicate,
         FeaturePredicate: validator.checkDuplicateFeaturePredicate,
-        SameAsPredicate: validator.checkDuplicateSameAsPredicate
+        SameAsPredicate: validator.checkDuplicateSameAsPredicate,
+        DifferentFromPredicate: validator.checkDuplicateDifferentFromPredicate
     };
     registry.register(checks, validator);
 }
@@ -979,6 +980,55 @@ export class OmlValidator {
                 if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
                     continue;
                 } else if (isSameAsPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkDuplicateDifferentFromPredicate(predicate: DifferentFromPredicate, accept: ValidationAcceptor): void {
+        if (!isDifferentFromPredicate(predicate)) {
+            throw new Error('Expected an DifferentFromPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isDifferentFromPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isDifferentFromPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
                         ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
                         (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
                     accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
