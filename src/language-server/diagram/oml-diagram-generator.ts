@@ -34,8 +34,10 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
         semantic2diagram.set(ontology, frame);
 
         const scope: OmlOntologyDiagramScope = new OmlOntologyDiagramScopeComputation(ontology).analyze();
-        // TODO: For-each on the elements of the scope and call doSwitch
-        // TODO: For-each on the entity Axioms of the scope and call doSwitch
+        scope.scope().forEach((e) => this.doSwitch(e, semantic2diagram, view, graph, frame, scope));
+        scope.entityAxioms.forEach((axs, e) => {
+            //axs.forEach(ax -> showAxiom(e, ax));
+        });
 
         return graph;
     }
