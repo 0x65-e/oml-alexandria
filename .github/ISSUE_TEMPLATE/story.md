@@ -11,7 +11,7 @@ assignees: ''
 As a **[Role]**, I would like **[Requirement]** so that **[Reason]**.
 
 ## Detailed Description
-Provide additional details and context.
+Provide additional details and context. Include tasks (if relevant).
 
 ## Acceptance Criteria
 - [ ] Given **[Condition]**, then **[Expected Result]**
