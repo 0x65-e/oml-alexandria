@@ -34,7 +34,20 @@ import {
     isDescription,
     VocabularyBundle,
     isVocabularyBundle,
-    DescriptionBundle
+    DescriptionBundle,
+    isClassifier,
+    ScalarPropertyRangeRestrictionAxiom,
+    isScalarPropertyRangeRestrictionAxiom,
+    StructuredPropertyRangeRestrictionAxiom,
+    isStructuredPropertyRangeRestrictionAxiom,
+    ScalarPropertyCardinalityRestrictionAxiom,
+    isScalarPropertyCardinalityRestrictionAxiom,
+    StructuredPropertyCardinalityRestrictionAxiom,
+    isStructuredPropertyCardinalityRestrictionAxiom,
+    ScalarPropertyValueRestrictionAxiom,
+    isScalarPropertyValueRestrictionAxiom,
+    StructuredPropertyValueRestrictionAxiom,
+    isStructuredPropertyValueRestrictionAxiom
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -54,7 +67,13 @@ export function registerValidationChecks(services: OmlServices) {
         FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes, validator.checkValidFacetedScalarRegularExpression],
         EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
         RelationEntity: validator.checkRelationEntityLogicalConsistency,
-        Entity: validator.checkEntityHasConsistentKeys
+        Entity: validator.checkEntityHasConsistentKeys,
+        ScalarPropertyRangeRestrictionAxiom: validator.checkConsistentScalarPropertyRangeRestrictionAxiom,
+        StructuredPropertyRangeRestrictionAxiom: validator.checkConsistentStructuredPropertyRangeRestrictionAxiom,
+        ScalarPropertyCardinalityRestrictionAxiom: validator.checkConsistentScalarPropertyCardinalityRestrictionAxiom,
+        StructuredPropertyCardinalityRestrictionAxiom: validator.checkConsistentStructuredPropertyCardinalityRestrictionAxiom,
+        ScalarPropertyValueRestrictionAxiom: validator.checkConsistentScalarPropertyValueRestrictionAxiom,
+        StructuredPropertyValueRestrictionAxiom: validator.checkConsistentStructuredPropertyValueRestrictionAxiom
     };
     registry.register(checks, validator);
 }
@@ -483,5 +502,257 @@ export class OmlValidator {
                 }
             }
         });
+    }
+
+    checkConsistentScalarPropertyRangeRestrictionAxiom(axiom: ScalarPropertyRangeRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyRangeRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyRangeRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyRangeRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyRangeRestrictionAxiom:
+             * restricts [axiom.kind] scalar property [axiom.property] to [axiom.range]
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && axiom.range.$refText == axiom2.range.$refText) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "some" when we already have "all"
+                if (axiom.kind == "some" && axiom2.kind == "all") {
+                    accept('warning', `There is already a restriction axiom that restricts all ${axiom.property.$refText} to ${axiom.range.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyRangeRestrictionAxiom(axiom: StructuredPropertyRangeRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyRangeRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyRangeRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyRangeRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyRangeRestrictionAxiom:
+             * restricts [axiom.kind] structured property [axiom.property] to [axiom.range]
+             */
+            
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && axiom.range.$refText == axiom2.range.$refText) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "some" when we already have "all"
+                if (axiom.kind == "some" && axiom2.kind == "all") {
+                    accept('warning', `There is already a restriction axiom that restricts all ${axiom.property.$refText} to ${axiom.range.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentScalarPropertyCardinalityRestrictionAxiom(axiom: ScalarPropertyCardinalityRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyCardinalityRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyCardinalityRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyCardinalityRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyCardinalityRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.kind] [axiom.cardinality] [axiom.range]?
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && ((axiom.range == undefined && axiom2.range == undefined) ||
+                    (axiom.range && axiom2.range && axiom.range.$refText == axiom2.range.$refText))) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind && axiom.cardinality.value == axiom2.cardinality.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "min" or "max" when we already have an "exactly"
+                if ((axiom.kind == "min" || axiom.kind == "max") && axiom2.kind == "exactly") {
+                    accept('warning', `There is already a restriction axiom that restricts ${axiom.property.$refText} to exactly ${axiom2.cardinality.value}${axiom.range ? ` ${axiom.range.$refText}` : ''}`, {node: axiom});
+                }
+
+                // Check if max < min
+                else if (axiom.kind == "max" && axiom2.kind == "min" && axiom.cardinality.value < axiom2.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a minimum value of ${axiom2.cardinality.value}, which is greater than the maximum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+
+                // check if min > max
+                else if (axiom.kind == "min" && axiom2.kind == "max" && axiom2.cardinality.value < axiom.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a maximum value of ${axiom2.cardinality.value}, which is less than the minimum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyCardinalityRestrictionAxiom(axiom: StructuredPropertyCardinalityRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyCardinalityRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyCardinalityRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyCardinalityRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyCardinalityRestrictionAxiom:
+             * restricts structured property [axiom.property] to [axiom.kind] [axiom.cardinality] [axiom.range]?
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && ((axiom.range == undefined && axiom2.range == undefined) ||
+                    (axiom.range && axiom2.range && axiom.range.$refText == axiom2.range.$refText))) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind && axiom.cardinality.value == axiom2.cardinality.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "min" or "max" when we already have an "exactly"
+                if ((axiom.kind == "min" || axiom.kind == "max") && axiom2.kind == "exactly") {
+                    accept('warning', `There is already a restriction axiom that restricts ${axiom.property.$refText} to exactly ${axiom2.cardinality.value}${axiom.range ? ` ${axiom.range.$refText}` : ''}`, {node: axiom});
+                }
+
+                // Check if max < min
+                else if (axiom.kind == "max" && axiom2.kind == "min" && axiom.cardinality.value < axiom2.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a minimum value of ${axiom2.cardinality.value}, which is greater than the maximum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+
+                // check if min > max
+                else if (axiom.kind == "min" && axiom2.kind == "max" && axiom2.cardinality.value < axiom.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a maximum value of ${axiom2.cardinality.value}, which is less than the minimum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentScalarPropertyValueRestrictionAxiom(axiom: ScalarPropertyValueRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyValueRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyValueRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyValueRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyValueRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.value]
+             */
+
+            // Check for multiple axioms
+            if (axiom.property.$refText == axiom2.property.$refText ) {
+                // Duplicate axioms
+                if (axiom.value.value == axiom2.value.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate value restriction axiom`, {node: axiom});
+                    }
+                // Different value restriction axioms
+                } else {
+                    accept('error', `Multiple value restriction axioms for ${axiom.property.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyValueRestrictionAxiom(axiom: StructuredPropertyValueRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyValueRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyValueRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyValueRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyValueRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.value]
+             */
+
+            // Check for duplicate axioms
+            if (axiom.property.$refText == axiom2.property.$refText) {
+                // We will find the axiom at least once
+                if (!foundAxiom) {
+                    foundAxiom = true;
+                // We've found the axiom more than once
+                } else {
+                    accept('error', `Multiple value restriction axioms for ${axiom.property.$refText}`, {node: axiom});
+                }
+            }
+        }
     }
 }
