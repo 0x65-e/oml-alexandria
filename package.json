@@ -1,10 +1,19 @@
 {
     "name": "oml-alexandria",
-    "displayName": "oml-alexandria",
-    "description": "Please enter a brief description here",
+    "displayName": "OML Alexandria",
+    "description": "Severless VSCode-compatible extension for OML",
     "version": "0.0.1",
+    "publisher": "Pteam Ptolemy",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/0x65-e/oml-alexandria.git"
+    },
     "engines": {
         "vscode": "^1.67.0"
+    },
+    "config": {
+        "oml_version": "1.4.1"
     },
     "categories": [
         "Programming Languages"
@@ -47,7 +56,7 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "vscode:prepublish": "npm run build && npm run lint",
+        "vscode:prepublish": "yarn build && yarn lint",
         "build:sprotty": "cd oml-sprotty && rm -f yarn.lock && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack",
         "build:extension": "tsc -b tsconfig.json",
         "build": "yarn build:sprotty && yarn build:extension",
