@@ -89,7 +89,7 @@ export function registerValidationChecks(services: OmlServices) {
         TypePredicate: validator.checkDuplicateTypePredicate,
         RelationEntityPredicate: validator.checkDuplicateRelationEntityPredicate,
         FeaturePredicate: validator.checkDuplicateFeaturePredicate,
-        SameAsPredicate: validator.checkDuplicateSameAsPredicate,
+        SameAsPredicate: [validator.checkDuplicateSameAsPredicate, validator.checkSameAsPredicateContradictions],
         DifferentFromPredicate: validator.checkDuplicateDifferentFromPredicate
     };
     registry.register(checks, validator);
@@ -1033,6 +1033,41 @@ export class OmlValidator {
                         (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
                     accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
                     break;
+                }
+            }
+        }
+    }
+
+    checkSameAsPredicateContradictions(predicate: SameAsPredicate, accept: ValidationAcceptor): void {
+        if (!isSameAsPredicate(predicate)) {
+            throw new Error('Expected an SameAsPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        // Check if sameAs(a, b) contradicts a predicate differentFrom(a, b) in antecedent
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                if (isDifferentFromPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
+                }
+            }
+        }
+
+        // Check if sameAs(a, b) contradicts a predicate differentFrom(a, b) in consequent
+        if (predicate.$container.consequent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                if (isDifferentFromPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
                 }
             }
         }
