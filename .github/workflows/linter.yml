@@ -15,4 +15,5 @@ jobs:
           submodules: recursive
       - run: yarn install
       - run: yarn build
-      - run: npm run lint
+      - run: yarn run lint
+      - run: yard vitest run
