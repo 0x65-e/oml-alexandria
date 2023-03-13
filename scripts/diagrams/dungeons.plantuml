@@ -1,0 +1,50 @@
+@startuml 
+package dnd { 
+   abstract class Dungeon 
+   abstract class Monster { 
+         hasCR: ChallengeRating 
+         hasHealth: Health 
+      } 
+   abstract class Dragon { 
+         hasColor: Color 
+         hasAge: Age 
+      } 
+   abstract class ChromaticDragon 
+   abstract class AdultDragon { 
+         hasAge: "Adult" 
+         hasCR: [1] 
+         hasHealth: [1] 
+      } 
+   class AdultWhiteDragon { 
+         hasColor: "White" 
+         hasCR: 13 
+         hasHealth: 200 
+      } 
+   class AdultBlueDragon { 
+         hasColor: "Blue" 
+         hasCR: 16 
+         hasHealth: 225 
+      } 
+   class Kobold { 
+         hasCR: 0.125 
+         hasHealth: 5 
+      } 
+   abstract class DragonLair { 
+         contains: Dragon 
+      } 
+   class WhiteDragonLair { 
+         contains: WhiteDragon 
+      } 
+   Dungeon o-- Monster 
+   Dragon --|> Monster 
+   ChromaticDragon --|> Dragon 
+   AdultDragon --|> Dragon 
+   AdultWhiteDragon --|> AdultDragon 
+   AdultWhiteDragon --|> ChromaticDragon 
+   AdultBlueDragon --|> AdultDragon 
+   AdultBlueDragon --|> ChromaticDragon 
+   Kobold --|> Monster 
+   DragonLair --|> Dungeon 
+   WhiteDragonLair --|> DragonLair 
+   } 
+@enduml 

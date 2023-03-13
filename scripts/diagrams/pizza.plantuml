@@ -1,0 +1,108 @@
+@startuml 
+package pizza { 
+   abstract class IdentifiedThing { 
+         hasId: xsd:string 
+      } 
+   class Food { 
+         hasSpiceness: Spiciness 
+      } 
+   class Pizza { 
+         hasBase: PizzaBase 
+      } 
+   class PizzaBase 
+   class PizzaTopping 
+   class CheesyPizza { 
+         hasTopping: CheeseTopping 
+      } 
+   class MeatyPizza { 
+         hasTopping: MeatTopping 
+      } 
+   class VegetarianPizza { 
+         hasTopping: VegetarianTopping 
+      } 
+   class American { 
+         hasTopping: TomatoTopping 
+         hasTopping: SausageTopping 
+         hasTopping: MozzarellaTopping 
+      } 
+   class Veneziana { 
+         hasTopping: SultanaTopping 
+         hasTopping: TomatoTopping 
+         hasTopping: MozzarellaTopping 
+      } 
+   class Margherita { 
+         hasTopping: TomatoTopping 
+         hasTopping: MozzarellaTopping 
+      } 
+   class DeepPanBase 
+   class ThinAndCrispyBase 
+   class MeatTopping 
+   class VegetarianTopping 
+   class HotTopping { 
+         hasSpiceness: "Hot" 
+      } 
+   class MediumTopping { 
+         hasSpiceness: "Medium" 
+      } 
+   class MildTopping { 
+         hasSpiceness: "Mild" 
+      } 
+   class SausageTopping 
+   class SpicedBeefTopping 
+   class SauceTopping 
+   class CheeseTopping 
+   class FruitTopping 
+   class VegetableTopping 
+   class TobascoTopping 
+   class ParmesanTopping 
+   class MozzarellaTopping 
+   class SultanaTopping 
+   class PepperTopping 
+   class TomatoTopping 
+   class JalapenoPepperTopping 
+   class SweetPepperTopping 
+   Food --|> IdentifiedThing 
+   Pizza --|> Food 
+   PizzaBase --|> Food 
+   PizzaTopping --|> Food 
+   CheesyPizza --|> Pizza 
+   MeatyPizza --|> Pizza 
+   VegetarianPizza --|> Pizza 
+   American --|> CheesyPizza 
+   American --|> MeatyPizza 
+   Veneziana --|> CheesyPizza 
+   Veneziana --|> MeatyPizza 
+   Margherita --|> CheesyPizza 
+   Margherita --|> VegetarianPizza 
+   DeepPanBase --|> PizzaBase 
+   ThinAndCrispyBase --|> PizzaBase 
+   MeatTopping --|> PizzaTopping 
+   VegetarianTopping --|> PizzaTopping 
+   HotTopping --|> PizzaTopping 
+   MediumTopping --|> PizzaTopping 
+   MildTopping --|> PizzaTopping 
+   SausageTopping --|> MeatTopping 
+   SausageTopping --|> MildTopping 
+   SpicedBeefTopping --|> MeatTopping 
+   SpicedBeefTopping --|> HotTopping 
+   SauceTopping --|> VegetarianTopping 
+   CheeseTopping --|> VegetarianTopping 
+   FruitTopping --|> VegetarianTopping 
+   VegetableTopping --|> VegetarianTopping 
+   TobascoTopping --|> SauceTopping 
+   TobascoTopping --|> HotTopping 
+   ParmesanTopping --|> CheeseTopping 
+   ParmesanTopping --|> MildTopping 
+   MozzarellaTopping --|> CheeseTopping 
+   MozzarellaTopping --|> MildTopping 
+   SultanaTopping --|> FruitTopping 
+   SultanaTopping --|> MediumTopping 
+   PepperTopping --|> VegetableTopping 
+   TomatoTopping --|> VegetableTopping 
+   TomatoTopping --|> MildTopping 
+   JalapenoPepperTopping --|> PepperTopping 
+   JalapenoPepperTopping --|> HotTopping 
+   SweetPepperTopping --|> PepperTopping 
+   SweetPepperTopping --|> MildTopping 
+   } 
+@enduml 
