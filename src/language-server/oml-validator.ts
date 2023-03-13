@@ -5,6 +5,7 @@ import {
     isAspectReference,
     isConceptReference,
     isEntity,
+    Entity,
     isEnumeratedScalarReference,
     isFacetedScalarReference,
     isRelationEntityReference,
@@ -25,7 +26,40 @@ import {
     isDecimalLiteral,
     isDoubleLiteral,
     EnumeratedScalar,
-    isEnumeratedScalar
+    isEnumeratedScalar,
+    isVocabulary,
+    Vocabulary,
+    isMember,
+    Description,
+    isDescription,
+    VocabularyBundle,
+    isVocabularyBundle,
+    DescriptionBundle,
+    isClassifier,
+    ScalarPropertyRangeRestrictionAxiom,
+    isScalarPropertyRangeRestrictionAxiom,
+    StructuredPropertyRangeRestrictionAxiom,
+    isStructuredPropertyRangeRestrictionAxiom,
+    ScalarPropertyCardinalityRestrictionAxiom,
+    isScalarPropertyCardinalityRestrictionAxiom,
+    StructuredPropertyCardinalityRestrictionAxiom,
+    isStructuredPropertyCardinalityRestrictionAxiom,
+    ScalarPropertyValueRestrictionAxiom,
+    isScalarPropertyValueRestrictionAxiom,
+    StructuredPropertyValueRestrictionAxiom,
+    isStructuredPropertyValueRestrictionAxiom,
+    isRule,
+    Predicate,
+    TypePredicate,
+    isTypePredicate,
+    RelationEntityPredicate,
+    isRelationEntityPredicate,
+    FeaturePredicate,
+    isFeaturePredicate,
+    SameAsPredicate,
+    isSameAsPredicate,
+    DifferentFromPredicate,
+    isDifferentFromPredicate
 } from './generated/ast';
 import type { OmlServices } from './oml-module';
 
@@ -36,11 +70,27 @@ export function registerValidationChecks(services: OmlServices) {
     const registry = services.validation.ValidationRegistry;
     const validator = services.validation.OmlValidator;
     const checks: ValidationChecks<OmlAstType> = {
+        Vocabulary: validator.checkVocabularyNamesUnique,
+        VocabularyBundle: validator.checkVocabularyBundleNamesUnique,
+        Description: validator.checkDescriptionNamesUnique,
+        DescriptionBundle: validator.checkDescriptionBundleNamesUnique,
         SpecializableTerm: [validator.checkSpecializationTypesMatch, validator.checkDuplicateSpecializations],
         SpecializableTermReference: [validator.checkReferenceSpecializationTypeMatch, validator.checkReferenceDuplicateSpecializations],
-        FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes],
-        EnumeratedScalar: validator.checkEnumeratedScalarSpecialization,
-        RelationEntity: validator.checkRelationEntityLogicalConsistency
+        FacetedScalar: [validator.checkFacetedScalarSpecialization, validator.checkConsistentFacetedScalarRanges, validator.checkFacetedScalarCorrectDefinitions, validator.checkConsistentScalarCorrectTypes, validator.checkValidFacetedScalarRegularExpression],
+        EnumeratedScalar: [validator.checkEnumeratedScalarSpecialization, validator.checkEnumeratedScalarNoDuplications],
+        RelationEntity: validator.checkRelationEntityLogicalConsistency,
+        Entity: validator.checkEntityHasConsistentKeys,
+        ScalarPropertyRangeRestrictionAxiom: validator.checkConsistentScalarPropertyRangeRestrictionAxiom,
+        StructuredPropertyRangeRestrictionAxiom: validator.checkConsistentStructuredPropertyRangeRestrictionAxiom,
+        ScalarPropertyCardinalityRestrictionAxiom: validator.checkConsistentScalarPropertyCardinalityRestrictionAxiom,
+        StructuredPropertyCardinalityRestrictionAxiom: validator.checkConsistentStructuredPropertyCardinalityRestrictionAxiom,
+        ScalarPropertyValueRestrictionAxiom: validator.checkConsistentScalarPropertyValueRestrictionAxiom,
+        StructuredPropertyValueRestrictionAxiom: validator.checkConsistentStructuredPropertyValueRestrictionAxiom,
+        TypePredicate: validator.checkDuplicateTypePredicate,
+        RelationEntityPredicate: validator.checkDuplicateRelationEntityPredicate,
+        FeaturePredicate: validator.checkDuplicateFeaturePredicate,
+        SameAsPredicate: [validator.checkDuplicateSameAsPredicate, validator.checkSameAsPredicateContradictions],
+        DifferentFromPredicate: [validator.checkDuplicateDifferentFromPredicate, validator.checkDifferentFromPredicateContradictions]
     };
     registry.register(checks, validator);
 }
@@ -56,11 +106,11 @@ export class OmlValidator {
         }
 
         if (specTerm.ownedSpecializations) {
-            specTerm.ownedSpecializations.forEach(spec => {
+            specTerm.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref) {
                     // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
                     if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
-                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                 }
             })
@@ -74,13 +124,13 @@ export class OmlValidator {
 
         if (specTerm.ownedSpecializations) {
             const reported = new Set();
-            specTerm.ownedSpecializations.forEach(spec => {
+            specTerm.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref) {
                     if (spec.specializedTerm.ref.name == specTerm.name) {
-                        accept('warning', `${specTerm.name} specializes itself`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes itself`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                     if (reported.has(spec.specializedTerm.ref.name)) {
-                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specTerm, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specTerm, property: 'ownedSpecializations', index: i});
                     }
                     reported.add(spec.specializedTerm.ref.name);
                 }
@@ -88,7 +138,7 @@ export class OmlValidator {
         }
     }
 
-    extractSpecializableTermFromReference(specRef: SpecializableTermReference) : SpecializableTerm | null {
+    private extractSpecializableTermFromReference(specRef: SpecializableTermReference) : SpecializableTerm | null {
         // Extract the SpecializableTerm from the reference
         let specTerm: SpecializableTerm | null = null;
         if (isFacetedScalarReference(specRef) || isEnumeratedScalarReference(specRef)) {
@@ -117,11 +167,11 @@ export class OmlValidator {
         const specTerm = this.extractSpecializableTermFromReference(specRef);
 
         if (specRef.ownedSpecializations) {
-            specRef.ownedSpecializations.forEach(spec => {
+            specRef.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref && specTerm) {
                     // A SpecializableTerm can only specialize its own type, except any Entity (Aspect, Concept, or RelationEntity) can specialize an Aspect
                     if (!(spec.specializedTerm.ref.$type == specTerm.$type || (isEntity(specTerm) && isAspect(spec.specializedTerm.ref)))) {
-                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('error', `${specTerm.name} is of type ${specTerm.$type} but is trying to specialize ${spec.specializedTerm.ref.name} of type ${spec.specializedTerm.ref.$type}`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                 }
             })
@@ -137,17 +187,32 @@ export class OmlValidator {
 
         if (specRef.ownedSpecializations) {
             const reported = new Set();
-            specRef.ownedSpecializations.forEach(spec => {
+            specRef.ownedSpecializations.forEach((spec, i) => {
                 if (spec.specializedTerm.ref && specTerm) {
                     if (spec.specializedTerm.ref.name == specTerm.name) {
-                        accept('warning', `${specTerm.name} specializes itself`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes itself`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                     if (reported.has(spec.specializedTerm.ref.name)) {
-                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specRef, property: 'ownedSpecializations'});
+                        accept('warning', `${specTerm.name} specializes ${spec.specializedTerm.ref.name} twice`, {node: specRef, property: 'ownedSpecializations', index: i});
                     }
                     reported.add(spec.specializedTerm.ref.name);
                 }
             })
+        }
+    }
+
+    checkValidFacetedScalarRegularExpression(facetScalar: FacetedScalar, accept: ValidationAcceptor): void {
+        if (!isFacetedScalar(facetScalar)) {
+            throw new Error('Expected a FacetedScalar in validation but got the wrong type');
+        }
+
+        if (facetScalar.pattern == undefined)
+            return;
+
+        try {
+            new RegExp(facetScalar.pattern);
+        } catch(e) {
+            accept('warning', `'${facetScalar.pattern}' is not a valid regular expression`, {node: facetScalar, property: 'pattern'});
         }
     }
 
@@ -298,7 +363,9 @@ export class OmlValidator {
             facetScalar.pattern != undefined || facetScalar.language != undefined || facetScalar.minInclusive != undefined ||
             facetScalar.minExclusive != undefined || facetScalar.maxInclusive != undefined || facetScalar.maxExclusive != undefined) &&
             facetScalar.ownedSpecializations && facetScalar.ownedSpecializations.length > 1) {
-                accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations'});
+                for (let i = 1; i < facetScalar.ownedSpecializations.length; i++) {
+                    accept('error', `${facetScalar.name} specializes multiple supertypes but has declared facets`, {node: facetScalar, property: 'ownedSpecializations', index: i});
+                }
             }
     }
 
@@ -308,8 +375,736 @@ export class OmlValidator {
         }
 
         if (enumScalar.ownedSpecializations && enumScalar.ownedSpecializations.length > 0 && enumScalar.literals && enumScalar.literals.length > 0) {
-            accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations'});
-            accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals'});
+            for (let i = 0; i < enumScalar.ownedSpecializations.length; i++) {
+                accept('error', `${enumScalar.name} specializes a supertype but also has enumerated literals`, {node: enumScalar, property: 'ownedSpecializations', index: i});
+            }
+            for (let i = 0; i < enumScalar.literals.length; i++) {
+                accept('error', `${enumScalar.name} has enumerated literals but also specializes a supertype`, {node: enumScalar, property: 'literals', index: i});
+            }
+        }
+    }
+
+    checkEnumeratedScalarNoDuplications(enumScalar: EnumeratedScalar, accept: ValidationAcceptor): void {
+        if (!isEnumeratedScalar(enumScalar)) {
+            throw new Error('Expected an EnumeratedScalar in validation but got the wrong type');
+        }
+
+        enumScalar.literals.forEach((val1, ind1) => {
+            for (let ind2 = 0; ind2 < enumScalar.literals.length; ind2++) {
+                let val2 = enumScalar.literals[ind2];
+                if (val1.$type == val2.$type && val1.value == val2.value && ind1 != ind2) {
+                    accept('error', `Cannot declare duplicate literals within an enumerated scalar`, {node: enumScalar, property: 'literals', index: ind1});
+                    break;
+                }
+            }
+        });
+    }
+
+    checkVocabularyNamesUnique(vocab: Vocabulary, accept: ValidationAcceptor): void {
+        if (!isVocabulary(vocab)) {
+            throw new Error('Expected a Vocabulary in validation but got the wrong type');
+        }
+
+        this.checkOntNamesUniqueImpl(vocab, accept);
+    }
+
+    checkDescriptionNamesUnique(desc: Description, accept: ValidationAcceptor): void {
+        if (!isDescription(desc)) {
+            throw new Error('Expected a Description in validation but got the wrong type');
+        }
+
+        this.checkOntNamesUniqueImpl(desc, accept);
+    }
+
+    private checkOntNamesUniqueImpl(ont: Vocabulary | Description, accept: ValidationAcceptor): void {
+        const reported = new Set();
+        reported.add(ont.prefix);
+        if (ont.ownedImports) {
+            ont.ownedImports.forEach(imp => {
+                if (imp.prefix) {
+                    if (reported.has(imp.prefix)) {
+                        accept('error', `${imp.prefix} has duplicate ID`, {node: imp, property: 'prefix'});
+                    }
+                    reported.add(imp.prefix);
+                }
+            })
+        }
+        if (ont.ownedStatements) {
+            ont.ownedStatements.forEach(stmt => {
+                if (isMember(stmt)) {
+                    if (reported.has(stmt.name)) {
+                        accept('error', `${stmt.name} has duplicate ID`, {node: stmt, property: 'name'});
+                    }
+                    reported.add(stmt.name);
+                }
+                // Special case for RelationEntities that can define a ForwardRelation or ReverseRelation
+                if (isRelationEntity(stmt)) {
+                    if (stmt.forwardRelation) {
+                        if (reported.has(stmt.forwardRelation.name)) {
+                            accept('error', `${stmt.forwardRelation.name} has duplicate ID`, {node: stmt.forwardRelation, property: 'name'});
+                        }
+                        reported.add(stmt.forwardRelation.name);
+                    }
+                    if (stmt.reverseRelation) {
+                        if (reported.has(stmt.reverseRelation.name)) {
+                            accept('error', `${stmt.reverseRelation.name} has duplicate ID`, {node: stmt.reverseRelation, property: 'name'});
+                        }
+                        reported.add(stmt.reverseRelation.name);
+                    }
+                }
+            })
+        }
+    }
+
+    checkVocabularyBundleNamesUnique(vocabBundle: VocabularyBundle, accept: ValidationAcceptor): void {
+        if (!isVocabularyBundle(vocabBundle)) {
+            throw new Error('Expected a VocabularyBundle in validation but got the wrong type');
+        }
+
+        this.checkBundleNamesUnique(vocabBundle, accept)
+    }
+
+    checkDescriptionBundleNamesUnique(descBundle: DescriptionBundle, accept: ValidationAcceptor): void {
+        if (!isVocabularyBundle(descBundle)) {
+            throw new Error('Expected a VocabularyBundle in validation but got the wrong type');
+        }
+
+        this.checkBundleNamesUnique(descBundle, accept)
+    }
+
+    private checkBundleNamesUnique(bundle: VocabularyBundle | DescriptionBundle, accept: ValidationAcceptor): void {
+        const reported = new Set();
+        reported.add(bundle.prefix);
+        if (bundle.ownedImports) {
+            bundle.ownedImports.forEach(imp => {
+                if (imp.prefix) {
+                    if (reported.has(imp.prefix)) {
+                        accept('error', `${imp.prefix} has duplicate ID`, {node: imp, property: 'prefix'});
+                    }
+                    reported.add(imp.prefix);
+                }
+            })
+        }
+    }
+
+    checkEntityHasConsistentKeys(entity: Entity, accept: ValidationAcceptor): void {
+        if (!isEntity(entity)) {
+            throw new Error('Expected an Entity in validation but got the wrong type');
+        }
+
+        // Do not check if the entity has no owned keys
+        if (entity.ownedKeys == undefined)
+            return;
+
+        // Create a map of keys and number of occurences for the entity
+        let keyCount = new Map();
+        entity.ownedKeys.forEach(keyAxiom => {
+            keyAxiom.properties.forEach(key => {
+                if (key.ref != undefined) {
+                    if (keyCount.has(key.ref.name))
+                        keyCount.set(key.ref.name, keyCount.get(key.ref.name)+1);
+                    else
+                        keyCount.set(key.ref.name, 1);
+                }
+            });
+        });
+
+        // Check for keys that appear multiple times
+        entity.ownedKeys.forEach((keyAxiom, ind) => {
+            for (let ii = 0; ii < keyAxiom.properties.length; ii++) {
+                let key = keyAxiom.properties[ii];
+                if (key.ref != undefined && 1 < keyCount.get(key.ref.name)) {
+                    accept('warning', `${entity.name} should not contain duplicate keys`, {node: entity, property: 'ownedKeys', index: ind});
+                    break;
+                }
+            }
+        });
+    }
+
+    checkConsistentScalarPropertyRangeRestrictionAxiom(axiom: ScalarPropertyRangeRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyRangeRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyRangeRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyRangeRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyRangeRestrictionAxiom:
+             * restricts [axiom.kind] scalar property [axiom.property] to [axiom.range]
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && axiom.range.$refText == axiom2.range.$refText) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "some" when we already have "all"
+                if (axiom.kind == "some" && axiom2.kind == "all") {
+                    accept('warning', `There is already a restriction axiom that restricts all ${axiom.property.$refText} to ${axiom.range.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyRangeRestrictionAxiom(axiom: StructuredPropertyRangeRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyRangeRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyRangeRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyRangeRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyRangeRestrictionAxiom:
+             * restricts [axiom.kind] structured property [axiom.property] to [axiom.range]
+             */
+            
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && axiom.range.$refText == axiom2.range.$refText) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "some" when we already have "all"
+                if (axiom.kind == "some" && axiom2.kind == "all") {
+                    accept('warning', `There is already a restriction axiom that restricts all ${axiom.property.$refText} to ${axiom.range.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentScalarPropertyCardinalityRestrictionAxiom(axiom: ScalarPropertyCardinalityRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyCardinalityRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyCardinalityRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyCardinalityRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyCardinalityRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.kind] [axiom.cardinality] [axiom.range]?
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && ((axiom.range == undefined && axiom2.range == undefined) ||
+                    (axiom.range && axiom2.range && axiom.range.$refText == axiom2.range.$refText))) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind && axiom.cardinality.value == axiom2.cardinality.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "min" or "max" when we already have an "exactly"
+                if ((axiom.kind == "min" || axiom.kind == "max") && axiom2.kind == "exactly") {
+                    accept('warning', `There is already a restriction axiom that restricts ${axiom.property.$refText} to exactly ${axiom2.cardinality.value}${axiom.range ? ` ${axiom.range.$refText}` : ''}`, {node: axiom});
+                }
+
+                // Check if max < min
+                else if (axiom.kind == "max" && axiom2.kind == "min" && axiom.cardinality.value < axiom2.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a minimum value of ${axiom2.cardinality.value}, which is greater than the maximum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+
+                // check if min > max
+                else if (axiom.kind == "min" && axiom2.kind == "max" && axiom2.cardinality.value < axiom.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a maximum value of ${axiom2.cardinality.value}, which is less than the minimum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyCardinalityRestrictionAxiom(axiom: StructuredPropertyCardinalityRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyCardinalityRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyCardinalityRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyCardinalityRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyCardinalityRestrictionAxiom:
+             * restricts structured property [axiom.property] to [axiom.kind] [axiom.cardinality] [axiom.range]?
+             */
+
+            // Check for matches
+            if (axiom.property.$refText == axiom2.property.$refText && ((axiom.range == undefined && axiom2.range == undefined) ||
+                    (axiom.range && axiom2.range && axiom.range.$refText == axiom2.range.$refText))) {
+                // Check for duplicate axiom
+                if (axiom.kind == axiom2.kind && axiom.cardinality.value == axiom2.cardinality.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate restriction axiom`, {node: axiom});
+                    }
+                }
+
+                // Check if axiom is "min" or "max" when we already have an "exactly"
+                if ((axiom.kind == "min" || axiom.kind == "max") && axiom2.kind == "exactly") {
+                    accept('warning', `There is already a restriction axiom that restricts ${axiom.property.$refText} to exactly ${axiom2.cardinality.value}${axiom.range ? ` ${axiom.range.$refText}` : ''}`, {node: axiom});
+                }
+
+                // Check if max < min
+                else if (axiom.kind == "max" && axiom2.kind == "min" && axiom.cardinality.value < axiom2.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a minimum value of ${axiom2.cardinality.value}, which is greater than the maximum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+
+                // check if min > max
+                else if (axiom.kind == "min" && axiom2.kind == "max" && axiom2.cardinality.value < axiom.cardinality.value) {
+                    accept('error', `There is already a restriction axiom with a maximum value of ${axiom2.cardinality.value}, which is less than the minimum value of ${axiom.cardinality.value}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentScalarPropertyValueRestrictionAxiom(axiom: ScalarPropertyValueRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isScalarPropertyValueRestrictionAxiom(axiom)) {
+            throw new Error('Expected an ScalarPropertyValueRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isScalarPropertyValueRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * ScalarPropertyValueRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.value]
+             */
+
+            // Check for multiple axioms
+            if (axiom.property.$refText == axiom2.property.$refText ) {
+                // Duplicate axioms
+                if (axiom.value.value == axiom2.value.value) {
+                    // We will find the axiom at least once
+                    if (!foundAxiom) {
+                        foundAxiom = true;
+                    // We've found the axiom more than once
+                    } else {
+                        accept('warning', `Duplicate value restriction axiom`, {node: axiom});
+                    }
+                // Different value restriction axioms
+                } else {
+                    accept('error', `Multiple value restriction axioms for ${axiom.property.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    checkConsistentStructuredPropertyValueRestrictionAxiom(axiom: StructuredPropertyValueRestrictionAxiom, accept: ValidationAcceptor): void {
+        if (!isStructuredPropertyValueRestrictionAxiom(axiom)) {
+            throw new Error('Expected an StructuredPropertyValueRestrictionAxiom in validation but got the wrong type');
+        }
+
+        if (!isClassifier(axiom.$container) || !axiom.$container.ownedPropertyRestrictions)
+            return;
+
+        var foundAxiom = false;
+        for (let ii = 0; ii < axiom.$container.ownedPropertyRestrictions.length; ii++) {
+            let axiom2 = axiom.$container.ownedPropertyRestrictions[ii];
+            if (!isStructuredPropertyValueRestrictionAxiom(axiom2))
+                continue;
+            
+            /**
+             * StructuredPropertyValueRestrictionAxiom:
+             * restricts scalar property [axiom.property] to [axiom.value]
+             */
+
+            // Check for duplicate axioms
+            if (axiom.property.$refText == axiom2.property.$refText) {
+                // We will find the axiom at least once
+                if (!foundAxiom) {
+                    foundAxiom = true;
+                // We've found the axiom more than once
+                } else {
+                    accept('error', `Multiple value restriction axioms for ${axiom.property.$refText}`, {node: axiom});
+                }
+            }
+        }
+    }
+
+    private isPredicateInAntecedent(predicate: Predicate): boolean {
+        if (!isRule(predicate.$container) || !predicate.$cstNode || !predicate.$container.antecedent)
+            return false;
+        
+        for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+            let antecedent = predicate.$container.antecedent[ii];
+            if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    checkDuplicateTypePredicate(predicate: TypePredicate, accept: ValidationAcceptor): void {
+        if (!isTypePredicate(predicate)) {
+            throw new Error('Expected an TypePredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isTypePredicate(antecedent) && predicate.variable == antecedent.variable &&
+                        predicate.type.$refText == antecedent.type.$refText) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isTypePredicate(consequent) && predicate.variable == consequent.variable &&
+                        predicate.type.$refText == consequent.type.$refText) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkDuplicateRelationEntityPredicate(predicate: RelationEntityPredicate, accept: ValidationAcceptor): void {
+        if (!isRelationEntityPredicate(predicate)) {
+            throw new Error('Expected an RelationEntityPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isRelationEntityPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        predicate.entity.$refText == antecedent.entity.$refText &&
+                        predicate.entityVariable == antecedent.entityVariable &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isRelationEntityPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        predicate.entity.$refText == consequent.entity.$refText &&
+                        predicate.entityVariable == consequent.entityVariable &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkDuplicateFeaturePredicate(predicate: FeaturePredicate, accept: ValidationAcceptor): void {
+        if (!isFeaturePredicate(predicate)) {
+            throw new Error('Expected an FeaturePredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isFeaturePredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        predicate.feature.$refText == antecedent.feature.$refText &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText) ||
+                        (predicate.literal2 && antecedent.literal2 && predicate.literal2.value == antecedent.literal2.value))) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isFeaturePredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        predicate.feature.$refText == consequent.feature.$refText &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText) ||
+                        (predicate.literal2 && consequent.literal2 && predicate.literal2.value == consequent.literal2.value))) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkDuplicateSameAsPredicate(predicate: SameAsPredicate, accept: ValidationAcceptor): void {
+        if (!isSameAsPredicate(predicate)) {
+            throw new Error('Expected an SameAsPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isSameAsPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isSameAsPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkDuplicateDifferentFromPredicate(predicate: DifferentFromPredicate, accept: ValidationAcceptor): void {
+        if (!isDifferentFromPredicate(predicate)) {
+            throw new Error('Expected an DifferentFromPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        var predInAntecedent = this.isPredicateInAntecedent(predicate);
+
+        // If predInAntecedent, check for duplacate predicate
+        // If !predInAntecedent, check for trivial implication
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                // Skip if the nodes match
+                if (antecedent.$cstNode && predicate.$cstNode.offset == antecedent.$cstNode.offset) {
+                    continue;
+                } else if (isDifferentFromPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    if (predInAntecedent) {
+                        accept('warning', `Duplicate predicates in rule antecedent`, {node: predicate});
+                        break;
+                    } else {
+                        accept('warning', `Trivial implication`, {node: predicate});
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check for duplicates in consequent (assume predicate is in consequent)
+        if (predicate.$container.consequent && !predInAntecedent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                // Skip if the nodes match
+                if (consequent.$cstNode && predicate.$cstNode.offset == consequent.$cstNode.offset) {
+                    continue;
+                } else if (isDifferentFromPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('warning', `Duplicate predicates in rule consequent`, {node: predicate});
+                    break;
+                }
+            }
+        }
+    }
+
+    checkSameAsPredicateContradictions(predicate: SameAsPredicate, accept: ValidationAcceptor): void {
+        if (!isSameAsPredicate(predicate)) {
+            throw new Error('Expected an SameAsPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        // Check if sameAs(a, b) contradicts a predicate differentFrom(a, b) in antecedent
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                if (isDifferentFromPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
+                }
+            }
+        }
+
+        // Check if sameAs(a, b) contradicts a predicate differentFrom(a, b) in consequent
+        if (predicate.$container.consequent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                if (isDifferentFromPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
+                }
+            }
+        }
+    }
+
+    checkDifferentFromPredicateContradictions(predicate: DifferentFromPredicate, accept: ValidationAcceptor): void {
+        if (!isDifferentFromPredicate(predicate)) {
+            throw new Error('Expected an DifferentFromPredicate in validation but got the wrong type');
+        }
+        
+        if (!isRule(predicate.$container) || !predicate.$cstNode)
+            return;
+
+        // Check if differentFrom(a, b) contradicts a predicate sameAs(a, b) in antecedent
+        if (predicate.$container.antecedent) {
+            for (let ii = 0; ii < predicate.$container.antecedent.length; ii++) {
+                let antecedent = predicate.$container.antecedent[ii];
+                if (isSameAsPredicate(antecedent) && predicate.variable1 == antecedent.variable1 &&
+                        ((predicate.variable2 && antecedent.variable2 && predicate.variable2 == antecedent.variable2) ||
+                        (predicate.instance2 && antecedent.instance2 && predicate.instance2.$refText == antecedent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
+                }
+            }
+        }
+
+        // Check if differentFrom(a, b) contradicts a predicate sameAs(a, b) in consequent
+        if (predicate.$container.consequent) {
+            for (let ii = 0; ii < predicate.$container.consequent.length; ii++) {
+                let consequent = predicate.$container.consequent[ii];
+                if (isSameAsPredicate(consequent) && predicate.variable1 == consequent.variable1 &&
+                        ((predicate.variable2 && consequent.variable2 && predicate.variable2 == consequent.variable2) ||
+                        (predicate.instance2 && consequent.instance2 && predicate.instance2.$refText == consequent.instance2.$refText))) {
+                    accept('error', `Contradictory predicates`, {node: predicate});
+                    return;
+                }
+            }
         }
     }
 }

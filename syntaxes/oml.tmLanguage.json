@@ -6,21 +6,205 @@
   ],
   "patterns": [
     {
+      "match": "(<[^>\\s]+>)\\s*(?:(as)\\s+([a-zA-z_][\\w\\-\\.$]*))?",
+      "captures": {
+        "1": {"name": "entity.section.oml"},
+        "2": {"name": "keyword.control.oml"},
+        "3": {"name": "support.class.oml"}
+      }
+    },
+    {
+      "name": "constant.language.oml",
+      "match": "\\b(true|false)\\b"
+    },
+    {
       "include": "#comments"
     },
     {
-      "name": "keyword.control.oml",
-      "match": "\\b(all|annotation|as|aspect|asymmetric|bundle|ci|concept|description|differentFrom|domain|entity|enumerated|enumerates|exactly|extends|forward|from|functional|includes|inverse|irreflexive|key|language|length|max|maxExclusive|maxInclusive|maxLength|min|minExclusive|minInclusive|minLength|pattern|property|range|ref|reflexive|relation|restricts|reverse|ri|rule|sameAs|scalar|some|structure|structured|symmetric|to|transitive|uses|vocabulary)\\b"
+      "name": "comment.block.documentation.oml",
+        "begin": "@",
+        "beginCaptures": {
+          "1": {
+            "name": "meta.annotation.property.oml"
+          }
+        },
+        "end": "(?=$)"
     },
     {
-      "name": "string.quoted.double.oml",
-      "begin": "\"",
+      "match": "\\b((?:scalar|structured|annotation)\\s+property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
+      "captures": {
+        "1": {"name": "storage.type.oml"},
+        "2": {"name": "variable.object.property.oml"},
+        "3": {"name": "keyword.control.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "variable.object.property.oml"},
+        "6": {"name": "variable.object.property.oml"},
+        "7": {"name": "variable.object.property.oml"},
+        "8": {"name": "variable.object.property.oml"}
+      }
+    },
+    {
+      "match": "\\b(aspect|concept|ci|entity|ri|scalar|structure)\\s+(?!property)([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*(:>?)\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
+      "captures": {
+        "1": {"name": "storage.type.oml"},
+        "2": {"name": "entity.name.type.oml"},
+        "3": {"name": "keyword.control.oml"},
+        "4": {"name": "entity.name.type.oml"},
+        "5": {"name": "entity.name.type.oml"},
+        "6": {"name": "entity.name.type.oml"},
+        "7": {"name": "entity.name.type.oml"},
+        "8": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(forward|reverse)\\s+([a-zA-z_][\\w\\-\\.$]*)\\b",
+      "captures": {
+        "1": {"name": "storage.type.oml"},
+        "2": {"name": "entity.name.function.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts\\s+(?:all|some))\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"},
+        "5": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)?\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "keyword.control.oml"},
+        "7": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\s+(max|min|exactly)\\s+\\d+\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)?\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"},
+        "5": {"name": "keyword.control.oml"},
+        "6": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(scalar|structured)\\s+(property)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "storage.type.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "keyword.control.oml"}
+      }
+    },
+    {
+      "match": "\\b(restricts)\\s+(relation)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\s+(to)\\b",
+      "captures": {
+        "1": {"name": "keyword.control.oml"},
+        "2": {"name": "storage.type.oml"},
+        "3": {"name": "entity.name.function.oml"},
+        "4": {"name": "keyword.control.oml"}
+      }
+    },
+    {
+      "match": "\\b(domain|range|from|to)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)\\b",
+      "captures": {
+        "1": {"name": "variable.object.property.oml"},
+        "2": {"name": "entity.name.type.oml"}
+      }
+    },
+    {
+      "match": "\\b(key)\\s+([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?)(?:\\s*,\\s*([a-zA-z_][\\w\\-\\.$]*(?::[a-zA-z_][\\w\\-\\.$]*)?))?)?)?)?)?\\b",
+      "captures": {
+        "1": {"name": "variable.object.property.oml"},
+        "2": {"name": "variable.object.property.oml"},
+        "3": {"name": "variable.object.property.oml"},
+        "4": {"name": "variable.object.property.oml"},
+        "5": {"name": "variable.object.property.oml"},
+        "6": {"name": "variable.object.property.oml"},
+        "7": {"name": "variable.object.property.oml"},
+        "8": {"name": "variable.object.property.oml"}
+      }
+    },
+    {
+      "name": "storage.type.oml",
+      "match": "\\b(annotation|aspect|ci|concept|description|entity|enumerated|forward|property|ref|relation|reverse|ri|rule|scalar|structure|structured|vocabulary)\\b"
+    },
+    {
+      "name": "storage.modifier.oml",
+      "match": "\\b(bundle)\\b"
+    },
+    {
+      "name": "variable.object.property.oml",
+      "match": "\\b(asymmetric|domain|from|functional|inverse|irreflexive|language|length|maxExclusive|maxInclusive|maxLength|minExclusive|minInclusive|minLength|pattern|range|reflexive|symmetric|transitive)\\b"
+    },
+    {
+      "name": "keyword.control.oml",
+      "match": "\\b(all|as|differentFrom|enumerates|exactly|extends|includes|max|min|restricts|sameAs|some|to|uses)\\b"
+    },
+    {
+      "name": "string.quoted.triple.oml",
+      "begin": "\"\"\"",
       "end": "\"\"\"",
       "patterns": [
         {
           "include": "#string-character-escape"
         }
       ]
+    },
+    {
+      "name": "string.quoted.triple.oml",
+      "begin": "'''",
+      "end": "'''",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.double.oml",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.oml",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "constant.numeric.oml",
+      "match": "[+-]?((\\d+\\.?\\d*)|(\\.\\d+))([eE][+-]?\\d+)?"
     }
   ],
   "repository": {
@@ -42,14 +226,14 @@
           }
         },
         {
+          "name": "comment.line.oml",
           "begin": "//",
           "beginCaptures": {
             "1": {
               "name": "punctuation.whitespace.comment.leading.oml"
             }
           },
-          "end": "(?=$)",
-          "name": "comment.line.oml"
+          "end": "(?=$)"
         }
       ]
     },

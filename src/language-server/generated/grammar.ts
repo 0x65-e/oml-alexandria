@@ -9477,7 +9477,7 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
       "name": "FULL_IRI",
       "definition": {
         "$type": "RegexToken",
-        "regex": "<[^>\\\\s#]+>"
+        "regex": "<[^>\\\\s]+>"
       },
       "fragment": false,
       "hidden": false
