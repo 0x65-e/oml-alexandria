@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { AstNode, CompositeGeneratorNode, NL, toString } from 'langium';
+import { AstNode, CompositeGeneratorNode, toString } from 'langium';
 import path from 'path';
 import { isAnnotationPropertyReference, isAspectReference, isConceptReference, isEnumeratedScalarReference, isFacetedScalarReference, isImport, isMember, isOntology, isRelationEntity, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, isVocabulary, Ontology } from '../language-server/generated/ast';
 import { extractDestinationAndName } from './cli-util';

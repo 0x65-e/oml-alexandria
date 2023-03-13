@@ -5,6 +5,7 @@
     "version": "0.0.1",
     "publisher": "Pteam Ptolemy",
     "license": "Apache-2.0",
+    "icon": "images/logo.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/0x65-e/oml-alexandria.git"
@@ -13,7 +14,7 @@
         "vscode": "^1.67.0"
     },
     "config": {
-        "oml_version": "1.4.1"
+        "oml_version": "1.4.0"
     },
     "categories": [
         "Programming Languages"
@@ -56,10 +57,11 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "vscode:prepublish": "yarn build && yarn lint",
-        "build:sprotty": "cd oml-sprotty && rm -f yarn.lock && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack",
+        "vscode:prepublish": "yarn build",
+        "build:sprotty": "cd oml-sprotty && yarn build",
         "build:extension": "tsc -b tsconfig.json",
-        "build": "yarn build:sprotty && yarn build:extension",
+        "package": "cp oml-sprotty/pack/webview.js ./pack && yarn vsce package --no-yarn",
+        "build": "yarn lint && yarn build:sprotty && yarn build:extension",
         "watch": "yarn build:sprotty && tsc -b tsconfig.json --watch",
         "lint": "eslint src --ext ts",
         "langium:generate": "langium generate",
@@ -71,6 +73,7 @@
         "commander": "~10.0.0",
         "langium": "~1.1.0",
         "vitest": "^0.29.2",
+        "vsce": "^2.15.0",
         "vscode-languageclient": "~8.0.2",
         "vscode-languageserver": "~8.0.2",
         "vscode-uri": "~3.0.7"
@@ -83,7 +86,11 @@
         "esbuild": "^0.17.10",
         "eslint": "~8.33.0",
         "langium-cli": "~1.1.0",
-        "typescript": "~4.9.5"
+        "path": "^0.12.7",
+        "ts-loader": "^9.4.2",
+        "typescript": "~4.9.5",
+        "webpack": "^5.76.1",
+        "webpack-cli": "^5.0.1"
     },
     "packageManager": "yarn@3.4.1"
 }
