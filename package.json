@@ -3,7 +3,6 @@
     "displayName": "oml-alexandria",
     "publisher": "alexandria-team",
     "description": "Please enter a brief description here",
-    "publisher": "alexandria-team",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.67.0"
@@ -11,9 +10,7 @@
     "categories": [
         "Programming Languages"
     ],
-    "workspaces": [
-        "oml-sprotty"
-    ],
+    "repository": "https://github.com/0x65-e/oml-alexandria",
     "contributes": {
         "languages": [
             {
@@ -167,11 +164,17 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "vscode:prepublish": "npm run build && npm run lint",
-        "build:sprotty": "cd oml-sprotty && rm -f yarn.lock && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack",
+        "clean": "rm -rf pack out && mkdir pack",
+        "vscode:prepublish": "npm run build:prod",
+        "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
+        "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
+        "esbuild:watch": "npm run esbuild:dev --watch",
+        "test-compile": "tsc -p ./",
+        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && cp pack/webview.js ../pack",
         "build:extension": "tsc -b tsconfig.json",
-        "build": "yarn build:sprotty && yarn build:extension",
-        "watch": "yarn build:sprotty && tsc -b tsconfig.json --watch",
+        "build": "npm run build:sprotty && npm run esbuild:dev",
+        "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
+        "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
         "langium:generate": "langium generate",
         "langium:watch": "langium generate --watch"
@@ -196,10 +199,9 @@
         "@types/vscode": "~1.67.0",
         "@typescript-eslint/eslint-plugin": "~5.51.0",
         "@typescript-eslint/parser": "~5.51.0",
-        "esbuild": "^0.17.10",
+        "esbuild": "^0.17.11",
         "eslint": "~8.33.0",
         "langium-cli": "~1.1.0",
         "typescript": "~4.9.5"
-    },
-    "packageManager": "yarn@3.4.1"
+    }
 }

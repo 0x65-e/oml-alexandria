@@ -2,3 +2,5 @@
 .vscode-test/**
 .gitignore
 langium-quickstart.md
+oml-sprotty/**
+node_modules/**
