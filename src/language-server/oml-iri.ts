@@ -20,8 +20,21 @@ export class OmlIRIProvider {
         return refText
     }
 
-    private isabbrevIRI(refText : string) : boolean{
-        if(!(refText.startsWith('<') && refText.endsWith('>')) && refText.includes(':')) {
+    isabbrevIRI(refText : string) : boolean{
+        if(!(this.isFullIRI(refText)) && refText.includes(':')) {
+            return true
+        }
+        return false
+    }
+
+    isFullIRI(refText : string) : boolean {
+        if(refText.startsWith('<') && refText.endsWith('>'))
+            return true
+        return false
+    }
+
+    isId(refText : string) : boolean {
+        if(!this.isFullIRI(refText) && !this.isabbrevIRI(refText)) {
             return true
         }
         return false
