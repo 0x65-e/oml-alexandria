@@ -29,6 +29,11 @@ import {
   ILayoutConfigurator,
 } from "sprotty-elk/lib/elk-layout";
 import { OmlLayoutConfigurator } from "./diagram/layout-config";
+import { OmlIRIProvider } from "./oml-iri";
+import { OmlRenameProvider } from './oml-rename-refactoring';
+import { OmlScopeProvider } from './oml-scope-provider';
+import { OmlHoverProvider } from './oml-hover';
+
 /**
  * Declaration of custom services - add your own service classes here.
  */
@@ -40,6 +45,9 @@ export type OmlAddedServices = {
     ElkFactory: ElkFactory;
     ElementFilter: IElementFilter;
     LayoutConfigurator: ILayoutConfigurator;
+  };
+  references: {
+    OmlIRI: OmlIRIProvider;
   };
 };
 
@@ -63,7 +71,9 @@ export const OmlModule: Module<
   },
   references: {
     ScopeComputation: (services) => new OmlScopeComputation(services),
+    ScopeProvider: (services) => new OmlScopeProvider(services),
     Linker: (services) => new OmlLinker(services),
+    OmlIRI: () => new OmlIRIProvider(),
   },
   diagram: {
     DiagramGenerator: (services) => new OmlDiagramGenerator(services),
@@ -78,6 +88,10 @@ export const OmlModule: Module<
     ElkFactory: () => () => new ElkConstructor({ algorithms: ["layered"] }),
     ElementFilter: () => new DefaultElementFilter(),
     LayoutConfigurator: () => new OmlLayoutConfigurator(),
+  },
+  lsp: {
+    RenameProvider: (services) => new OmlRenameProvider(services),
+    HoverProvider: (services) => new OmlHoverProvider(services),
   },
 };
 

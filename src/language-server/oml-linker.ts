@@ -9,9 +9,15 @@ import {
 
 import { isImport, Ontology } from "./generated/ast";
 import { OmlIRIProvider } from "./oml-iri";
+import { OmlServices } from "./oml-module";
 
 export class OmlLinker extends DefaultLinker {
-    omlIRI : OmlIRIProvider = new OmlIRIProvider()
+    omlIRI : OmlIRIProvider
+
+    constructor(services: OmlServices) {
+        super(services);
+        this.omlIRI = services.references.OmlIRI;
+    }
 
     override getCandidate(refInfo: ReferenceInfo): AstNodeDescription | LinkingError {
 
@@ -25,8 +31,6 @@ export class OmlLinker extends DefaultLinker {
                 idToIRI[modelNode.prefix] = this.omlIRI.getIRI(modelNode.namespace)
             }            
         }
-        console.log(this.omlIRI.getRefFULLIRI(refInfo.reference.$refText, idToIRI))
-        console.log(refInfo.reference.$refText)
         const scope = this.scopeProvider.getScope(refInfo);
         const description = scope.getElement(this.omlIRI.getRefFULLIRI(refInfo.reference.$refText, idToIRI));
         return description ?? this.createLinkingError(refInfo);

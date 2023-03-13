@@ -10,9 +10,10 @@
             "type": "extensionHost",
             "request": "launch",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
             ]
         },
+
         {
             "name": "Attach to Language Server",
             "type": "node",
