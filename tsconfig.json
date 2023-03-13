@@ -4,7 +4,7 @@
     "module": "commonjs",
     "lib": ["ESNext"],
     "sourceMap": true,
-    "outDir": "out",
+    "outDir": "pack",
     "strict": true,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
@@ -19,6 +19,7 @@
   ],
   "exclude": [
      "out",
+     "pack",
      "node_modules"
   ]
 }
