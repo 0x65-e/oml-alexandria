@@ -6,6 +6,10 @@ import { createOmlServices } from '../language-server/oml-module';
 import { extractAstNode, extractDocument } from './cli-util';
 import { dumpTree, generateJavaScript } from './generator';
 import { NodeFileSystem } from 'langium/node';
+import { OMLtoUMLInterpreter } from "../../scripts/OMLtoUMLInterpreter";
+import { OMLWriter } from "../../scripts/OMLWriter";
+import { Interpreter } from "../../scripts/OMLInterpreter"
+import { join } from 'path';
 
 export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
     const services = createOmlServices(NodeFileSystem).Oml;
@@ -38,6 +42,20 @@ export const parseAndValidate = async (fileName: string): Promise<void> => {
     }
 };
 
+export const generateUML = async (fileName: string): Promise<void> =>{
+
+    let file_path = join( __dirname, fileName)
+    var interpreter = new OMLtoUMLInterpreter()
+    interpreter.file_path = file_path
+    let tokenized_prorgam = interpreter.tokenize_program()
+
+    var oml_interpreter = new Interpreter()
+    let uml_program = oml_interpreter.run(tokenized_prorgam)
+
+    var uml_writer = new OMLWriter()
+    uml_writer.run(uml_program, interpreter.file_name)
+}
+
 
 export type GenerateOptions = {
     destination?: string;
@@ -68,7 +86,10 @@ export default function(): void {
         .argument('<file>', 'Source file to parse & validate (ending in ${fileExtensions})')
         .description('Indicates where a program parses & validates successfully, but produces no output code')
         .action(parseAndValidate)
+    program
+        .command('generateUML')
+        .argument('<file>', 'Source file to generate UML (ending in ${fileExtensions})')
+        .description('Script that generates .plantuml file')
+        .action(generateUML)
     program.parse(process.argv);
-
-    
 }

@@ -23,7 +23,7 @@ export class OMLtoUMLInterpreter{
         return tokenized_program
     }
 
-    public remove_comment(line){
+    public remove_comment(line: string[]){
         if (line.indexOf("//") > 0){
             let index = line.indexOf("//")
             return line.slice(0, index)
@@ -34,16 +34,12 @@ export class OMLtoUMLInterpreter{
         }
         return line
     }
-    tokenized_program = this.tokenize_program()
-    
 }
 var interpreter = new OMLtoUMLInterpreter()
-let tokenized_prorgam = interpreter.tokenized_program
+let tokenized_prorgam = interpreter.tokenize_program()
 
 var oml_interpreter = new Interpreter()
 let uml_program = oml_interpreter.run(tokenized_prorgam)
-
-//console.log(uml_program)
 
 var uml_writer = new OMLWriter()
 uml_writer.run(uml_program, interpreter.file_name)
