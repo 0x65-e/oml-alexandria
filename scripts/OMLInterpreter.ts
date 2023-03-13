@@ -6,7 +6,7 @@ export class Interpreter{
     ip = 0
     dict = {"contains": "o--", "isContainedBy": "--o"}
 
-    public run(tokenized_program){
+    public run(tokenized_program: string[][]){
         this.tokenized_program = tokenized_program
         this.setup_environemt()
         while (this.terminate == false){
@@ -71,7 +71,12 @@ export class Interpreter{
                 let to_line = this.tokenized_program[this.ip+2]
                 let forward_line = this.tokenized_program[this.ip+3].indexOf("forward") > -1 ? this.tokenized_program[this.ip+3] : []
                 if (line.indexOf("Contains") > 0){
-                    this.uml_program.push([from_line[1], this.dict[forward_line[1]], to_line[1]])
+                    if (forward_line[1] == "contains"){
+                        this.uml_program.push([from_line[1], "o--", to_line[1]])
+                    }
+                    else{
+                        this.uml_program.push([from_line[1], "--o", to_line[1]])
+                    }
                 }
                 if (line.indexOf("Performs") > 0){
                     let func_name = forward_line.indexOf("performs") > 0 ? to_line[1] : from_line[1]
@@ -104,7 +109,7 @@ export class Interpreter{
         }
     }
 
-    public parse_function(func_name, class_name){
+    public parse_function(func_name: string, class_name: string){
         let class_index = -1
         let func_index = -1
         for (var i = 0; i < this.uml_program.length; i++){
@@ -126,7 +131,7 @@ export class Interpreter{
         }
     }
 
-    public parse_property(property, class_name, scalar){
+    public parse_property(property: string, class_name: string, scalar: string){
         let class_index = -1
         for (var i = 0; i < this.uml_program.length; i++){
             if (this.uml_program[i].indexOf("class") >= 0 && this.uml_program[i].indexOf(class_name) > 0 ){
@@ -143,7 +148,7 @@ export class Interpreter{
         }
     }
 
-    public restrict_property(class_name){
+    public restrict_property(class_name: string){
         let property_ip = this.ip + 1
         let class_index = -1
         for (var i = 0; i < this.uml_program.length; i++){
@@ -154,7 +159,7 @@ export class Interpreter{
         while (this.tokenized_program[property_ip].indexOf("restricts") == 0){
             let property = this.tokenized_program[property_ip][3]
             let value = this.tokenized_program[property_ip].at(-1)
-            value = this.find_cardinality(value, this.tokenized_program[property_ip])
+            value = this.find_cardinality(value ? value : "", this.tokenized_program[property_ip])
             if (this.uml_program[class_index].indexOf("{") > 0 && value){
                 this.uml_program.splice(class_index+1, 0, ["","","",property + ":", value])
             }
@@ -167,7 +172,7 @@ export class Interpreter{
         }
     }
 
-    public find_cardinality(value, line){
+    public find_cardinality(value: string, line: string[]){
         if (line.indexOf("exactly") >= 0){
             value = "[" + value + "]"
         }

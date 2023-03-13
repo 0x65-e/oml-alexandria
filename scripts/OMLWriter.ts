@@ -7,7 +7,7 @@ export class OMLWriter{
     terminate = false
     file_path = ""
 
-    public run(uml_program, file_name){
+    public run(uml_program: string[][], file_name: string){
         this.uml_program = uml_program
         this.file_path = file_name.replace("examples", "scripts\\diagrams").replace(".oml", ".plantuml")
         if (existsSync(this.file_path)){

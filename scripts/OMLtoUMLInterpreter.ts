@@ -42,4 +42,4 @@ var oml_interpreter = new Interpreter()
 let uml_program = oml_interpreter.run(tokenized_prorgam)
 
 var uml_writer = new OMLWriter()
-uml_writer.run(uml_program, interpreter.file_name)
+uml_writer.run(uml_program, interpreter.file_name ? interpreter.file_name : "")
