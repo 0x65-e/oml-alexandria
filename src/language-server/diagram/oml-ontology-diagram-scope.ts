@@ -75,6 +75,7 @@ export interface OmlOntologyDiagramScope {
   readonly instanceAssertions: Map<NamedInstance, Set<AstNode>>;
 
   scope: () => Set<AstNode>;
+  classifierHasFeaturesOrEdges: (cls: Classifier) => Boolean;
 }
 
 enum Mode {
@@ -130,6 +131,19 @@ export class OmlOntologyDiagramScopeComputation
         this.includes(e.specializedTerm.ref) && this.includes(e.$container)
       );
     else return false;
+  }
+
+  classifierHasFeaturesOrEdges(cls: Classifier): Boolean {
+    const hasFeaturesOrEdges =
+      (this.scalarProperties.get(cls)?.size ?? 0) > 0 ||
+      (this.structuredProperties.get(cls)?.size ?? 0) > 0 ||
+      (this.entityAxioms.get(cls as Entity)?.size ?? 0) > 0;
+    if (isRelationEntity(cls)) {
+      return (
+        hasFeaturesOrEdges ||
+        (this.relationIncidentElements.get(cls)?.size ?? 0) > 0
+      );
+    } else return hasFeaturesOrEdges;
   }
 
   private analyzeOntology(ontology: Ontology | undefined): void {

@@ -46,6 +46,9 @@ import {
   isRelationRangeRestrictionAxiom,
   isRelationCardinalityRestrictionAxiom,
   isRelationTargetRestrictionAxiom,
+  SpecializableTerm,
+  SpecializableTermReference,
+  Member,
 } from "../generated/ast";
 import { getAbbreviatedIri } from "../util/oml-read";
 import {
@@ -77,16 +80,12 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
       .forEach((e) =>
         this.doSwitch(e, semantic2diagram, view, graph, frame, scope)
       );
-    console.log("showing axioms");
-    console.log(JSON.stringify(scope.entityAxioms));
     for (const [entity, axioms] of scope.entityAxioms.entries()) {
       for (const axiom of axioms) {
         this.showAxiom(entity, axiom, frame, semantic2diagram, view);
-        console.log("showing axiom");
-        console.log(JSON.stringify(axiom));
       }
     }
-    console.log("JSON.stringify(graph)");
+    console.log("JSON.stringify graph");
     console.log(JSON.stringify(graph));
     return graph;
   }
@@ -234,7 +233,7 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
           scope
         );
         if (ss && ts) {
-          if (scope || keys.length > 0) {
+          if (scope.classifierHasFeaturesOrEdges(element) || keys.length > 0) {
             const node = view.createRelationEntityNode(element, ss, ts);
             frame.children?.push(node);
             semantic2diagram.set(element, node);
@@ -469,7 +468,15 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
         "no entity node for showAxiom(SpecializationAxiom): " +
           getAbbreviatedIri(entity)
       );
-    const owningTerm = axiom.owningTerm?.ref;
+    const owningTerm = axiom.specializedTerm?.ref;
+    console.log("owningTerm?.name");
+    /*     console.log(owningTerm);
+    console.log(axiom.owningTerm?.ref?.name); */
+    console.log(axiom);
+    console.log(entity);
+    console.log(axiom.specializedTerm);
+/*     console.log(entity.$container);
+    console.log(specializingNode.id); */
     const specializedNode = owningTerm
       ? semantic2diagram.get(owningTerm)
       : null;
@@ -478,6 +485,7 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
         "no entity node for showAxiom(SpecializationAxiom): " +
           (owningTerm ? getAbbreviatedIri(owningTerm) : "")
       );
+    console.log(specializedNode.id);
 
     const edge = view.createSpecializationAxiomEdge(
       axiom,

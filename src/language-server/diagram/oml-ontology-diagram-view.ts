@@ -9,7 +9,6 @@ import {
   SModelElement,
   SNode,
   SShapeElement,
-  
 } from "sprotty-protocol";
 import {
   Aspect,
@@ -125,8 +124,11 @@ export class OmlOntologyDiagramView {
     };
 
     if (ontology === this.ontology) {
-      // TODO: Can't find SButton class analog
-      const button = <SShapeElement>{id: id + '.expand', type: SButton_ExpandButtonView, expanded: true};
+      //Todo: get expanding working
+/*       (node.children ?? [])[0].children?.push(<SShapeElement>{
+        id: id + ".expand",
+        type: SButton_ExpandButtonView,
+      }); */
       node.expanded = true;
     }
 
