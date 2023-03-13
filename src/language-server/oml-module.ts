@@ -8,6 +8,8 @@ import { OmlScopeComputation } from './oml-scope';
 import { OmlLinker } from './oml-linker';
 import { OmlRenameProvider } from './oml-rename-refactoring';
 import { OmlIRIProvider } from './oml-iri';
+import { OmlScopeProvider } from './oml-scope-provider';
+import { OmlHoverProvider } from './oml-hover';
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -38,11 +40,13 @@ export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedSer
     },
     references: {
         ScopeComputation: (services) => new OmlScopeComputation(services),
+        ScopeProvider: (services) => new OmlScopeProvider(services),
         Linker: (services) => new OmlLinker(services),
         OmlIRI: () => new OmlIRIProvider(),
     },
     lsp: {
-        RenameProvider: (services) => new OmlRenameProvider(services)
+        RenameProvider: (services) => new OmlRenameProvider(services),
+        HoverProvider: (services) => new OmlHoverProvider(services),
     }
 };
 
