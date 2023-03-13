@@ -1,0 +1,3 @@
+[submodule "oml-sprotty"]
+	path = oml-sprotty
+	url = git@github.com:Alec2435/oml-sprotty.git

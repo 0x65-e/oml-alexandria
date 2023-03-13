@@ -10,9 +10,10 @@
             "type": "extensionHost",
             "request": "launch",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
             ]
         },
+
         {
             "name": "Attach to Language Server",
             "type": "node",
@@ -23,7 +24,7 @@
             ],
             "sourceMaps": true,
             "outFiles": [
-                "${workspaceFolder}/out/**/*.js",
+                "${workspaceFolder}/pack/**/*.js",
                 "${workspaceFolder}/node_modules/langium"
             ]
         }
