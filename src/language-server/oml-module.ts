@@ -1,40 +1,98 @@
 import {
-    createDefaultModule, createDefaultSharedModule, DefaultSharedModuleContext, inject,
-    LangiumServices, LangiumSharedServices, Module, PartialLangiumServices
-} from 'langium';
-import { OmlGeneratedModule, OmlGeneratedSharedModule } from './generated/module';
-import { OmlValidator, registerValidationChecks } from './oml-validator';
-import { OmlScopeComputation } from './oml-scope';
-import { OmlLinker } from './oml-linker';
+  createDefaultModule,
+  createDefaultSharedModule,
+  DefaultSharedModuleContext,
+  inject,
+  Module,
+  PartialLangiumServices,
+} from "langium";
+import {
+  OmlGeneratedModule,
+  OmlGeneratedSharedModule,
+} from "./generated/module";
+import { OmlValidator, registerValidationChecks } from "./oml-validator";
+import { OmlScopeComputation } from "./oml-scope";
+import { OmlLinker } from "./oml-linker";
+import {
+  LangiumSprottyServices,
+  LangiumSprottySharedServices,
+  SprottyDiagramServices,
+  SprottySharedModule,
+} from "langium-sprotty";
+import { OmlDiagramGenerator } from "./diagram/oml-diagram-generator";
+import ElkConstructor from "elkjs/lib/elk.bundled";
+import {
+  DefaultElementFilter,
+  ElkFactory,
+  ElkLayoutEngine,
+  IElementFilter,
+  ILayoutConfigurator,
+} from "sprotty-elk/lib/elk-layout";
+import { OmlLayoutConfigurator } from "./diagram/layout-config";
+import { OmlIRIProvider } from "./oml-iri";
+import { OmlRenameProvider } from './oml-rename-refactoring';
+import { OmlScopeProvider } from './oml-scope-provider';
+import { OmlHoverProvider } from './oml-hover';
 
 /**
  * Declaration of custom services - add your own service classes here.
  */
 export type OmlAddedServices = {
-    validation: {
-        OmlValidator: OmlValidator
-    }
-}
+  validation: {
+    OmlValidator: OmlValidator;
+  };
+  layout: {
+    ElkFactory: ElkFactory;
+    ElementFilter: IElementFilter;
+    LayoutConfigurator: ILayoutConfigurator;
+  };
+  references: {
+    OmlIRI: OmlIRIProvider;
+  };
+};
 
 /**
  * Union of Langium default services and your custom services - use this as constructor parameter
  * of custom service classes.
  */
-export type OmlServices = LangiumServices & OmlAddedServices
+export type OmlServices = LangiumSprottyServices & OmlAddedServices;
 
 /**
  * Dependency injection module that overrides Langium default services and contributes the
  * declared custom services. The Langium defaults can be partially specified to override only
  * selected services, while the custom services must be fully specified.
  */
-export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedServices> = {
-    validation: {
-        OmlValidator: () => new OmlValidator()
-    },
-    references: {
-        ScopeComputation: (services) => new OmlScopeComputation(services),
-        Linker: (services) => new OmlLinker(services),
-    },
+export const OmlModule: Module<
+  OmlServices,
+  PartialLangiumServices & SprottyDiagramServices & OmlAddedServices
+> = {
+  validation: {
+    OmlValidator: () => new OmlValidator(),
+  },
+  references: {
+    ScopeComputation: (services) => new OmlScopeComputation(services),
+    ScopeProvider: (services) => new OmlScopeProvider(services),
+    Linker: (services) => new OmlLinker(services),
+    OmlIRI: () => new OmlIRIProvider(),
+  },
+  diagram: {
+    DiagramGenerator: (services) => new OmlDiagramGenerator(services),
+    ModelLayoutEngine: (services) =>
+      new ElkLayoutEngine(
+        services.layout.ElkFactory,
+        services.layout.ElementFilter,
+        services.layout.LayoutConfigurator
+      ) as any,
+  },
+  layout: {
+    ElkFactory: () => () => new ElkConstructor({ algorithms: ["layered"] }),
+    ElementFilter: () => new DefaultElementFilter(),
+    LayoutConfigurator: () => new OmlLayoutConfigurator(),
+  },
+  lsp: {
+    RenameProvider: (services) => new OmlRenameProvider(services),
+    HoverProvider: (services) => new OmlHoverProvider(services),
+  },
 };
 
 /**
@@ -53,19 +111,20 @@ export const OmlModule: Module<OmlServices, PartialLangiumServices & OmlAddedSer
  * @returns An object wrapping the shared services and the language-specific services
  */
 export function createOmlServices(context: DefaultSharedModuleContext): {
-    shared: LangiumSharedServices,
-    Oml: OmlServices
+  shared: LangiumSprottySharedServices;
+  Oml: OmlServices;
 } {
-    const shared = inject(
-        createDefaultSharedModule(context),
-        OmlGeneratedSharedModule
-    );
-    const Oml = inject(
-        createDefaultModule({ shared }),
-        OmlGeneratedModule,
-        OmlModule
-    );
-    shared.ServiceRegistry.register(Oml);
-    registerValidationChecks(Oml);
-    return { shared, Oml };
+  const shared = inject(
+    createDefaultSharedModule(context),
+    OmlGeneratedSharedModule,
+    SprottySharedModule
+  );
+  const Oml = inject(
+    createDefaultModule({ shared }),
+    OmlGeneratedModule,
+    OmlModule
+  );
+  shared.ServiceRegistry.register(Oml);
+  registerValidationChecks(Oml);
+  return { shared, Oml };
 }
