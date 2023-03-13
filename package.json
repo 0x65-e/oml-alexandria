@@ -170,7 +170,7 @@
         "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "npm run esbuild:dev --watch",
         "test-compile": "tsc -p ./",
-        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && cp pack/webview.js ../pack",
+        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack/",
         "build:extension": "tsc -b tsconfig.json",
         "build": "npm run build:sprotty && npm run esbuild:dev",
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
