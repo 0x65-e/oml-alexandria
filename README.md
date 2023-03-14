@@ -39,12 +39,20 @@ Install `vsce` if you plan on packaging the extension:
 ## Build
 
 ```shell
-yarn install
-yarn run build
-yarn run package
+  npm install
+  npm run build
+```
+
+This will build the development extension for debugging. On windows, run ```npm run build:win``` instead.
+
+If you'd like to build the production packaged extension, run:
+```shell
+  vsce package --no-yarn
 ```
 
 This will build the `oml-alexandria-<version>.vsix` extension file.
+
+You can clean up the build artifacts using ```npm run clean``` (or ```npm run clean:win``` on Windows).
 
 ## Install in VSCode
 

@@ -3,7 +3,7 @@
     "displayName": "OML Alexandria",
     "description": "Severless VSCode-compatible extension for OML",
     "version": "0.0.1",
-    "publisher": "Pteam Ptolemy",
+    "publisher": "pteam-ptolemy",
     "license": "Apache-2.0",
     "icon": "images/logo.png",
     "repository": {
@@ -11,7 +11,7 @@
         "url": "https://github.com/0x65-e/oml-alexandria.git"
     },
     "engines": {
-        "vscode": "^1.67.0"
+        "vscode": "^1.74.0"
     },
     "config": {
         "oml_version": "1.4.0"
@@ -173,15 +173,19 @@
     "main": "./pack/extension.js",
     "scripts": {
         "clean": "rm -rf pack out && mkdir pack",
+        "clean:win": "if exist pack rmdir /s /q pack && if exist out rmdir /s /q out && mkdir pack",
         "vscode:prepublish": "npm run build:prod",
         "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "npm run esbuild:dev --watch",
         "test-compile": "tsc -p ./",
         "build:sprotty": "cd oml-sprotty && yarn install && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack/",
+        "build:sprotty:win": "cd oml-sprotty && yarn install && yarn build && if not exist ..\\pack mkdir ..\\pack && copy pack\\webview.js ..\\pack\\",
         "build:extension": "tsc -b tsconfig.json",
         "build": "npm run build:sprotty && npm run esbuild:dev",
+        "build:win": "npm run build:sprotty:win && npm run esbuild:dev",
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
+        "build:prod:win": "npm run clean:win && npm run build:sprotty:win && npm run esbuild:prod",
         "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
         "langium:generate": "langium generate",
