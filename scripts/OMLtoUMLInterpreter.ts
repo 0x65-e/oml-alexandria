@@ -22,10 +22,10 @@ export class OMLtoUMLInterpreter {
         return tokenized_program;
     }
 
-    public remove_comment(line) {
-        if (line.indexOf("//") > 0) {
-            let index = line.indexOf("//");
-            return line.slice(0, index);
+    public remove_comment(line: string[]){
+        if (line.indexOf("//") > 0){
+            let index = line.indexOf("//")
+            return line.slice(0, index)
         }
         if (line.indexOf("@rdfs:comment") > 0) {
             let index = line.indexOf("@rdfs:comment");
@@ -33,15 +33,12 @@ export class OMLtoUMLInterpreter {
         }
         return line;
     }
-    tokenized_program = this.tokenize_program();
 }
-var interpreter = new OMLtoUMLInterpreter();
-let tokenized_prorgam = interpreter.tokenized_program;
+var interpreter = new OMLtoUMLInterpreter()
+let tokenized_prorgam = interpreter.tokenize_program()
 
 var oml_interpreter = new Interpreter();
 let uml_program = oml_interpreter.run(tokenized_prorgam);
 
-//console.log(uml_program)
-
-var uml_writer = new OMLWriter();
-uml_writer.run(uml_program, interpreter.file_name);
+var uml_writer = new OMLWriter()
+uml_writer.run(uml_program, interpreter.file_name ? interpreter.file_name : "")

@@ -6,10 +6,11 @@ package dnd {
          hasHealth: Health 
       } 
    abstract class Dragon { 
-         hasColor: Color 
          hasAge: Age 
       } 
-   abstract class ChromaticDragon 
+   abstract class ChromaticDragon { 
+         hasColor: Color 
+      } 
    abstract class AdultDragon { 
          hasAge: "Adult" 
          hasCR: [1] 
@@ -33,7 +34,7 @@ package dnd {
          contains: Dragon 
       } 
    class WhiteDragonLair { 
-         contains: WhiteDragon 
+         contains: AdultWhiteDragon 
       } 
    Dungeon o-- Monster 
    Dragon --|> Monster 
