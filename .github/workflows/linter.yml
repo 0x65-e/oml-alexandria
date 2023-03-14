@@ -1,0 +1,19 @@
+name: Build and lint check
+
+on:
+  push:
+    branches: '*'
+  pull_request:
+    branches: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+      - run: npx vitest run
