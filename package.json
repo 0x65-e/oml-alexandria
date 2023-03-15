@@ -1,16 +1,24 @@
 {
     "name": "oml-alexandria",
-    "displayName": "oml-alexandria",
-    "publisher": "alexandria-team",
-    "description": "Please enter a brief description here",
+    "displayName": "OML Alexandria",
+    "description": "Severless VSCode-compatible extension for OML",
     "version": "0.0.1",
+    "publisher": "pteam-ptolemy",
+    "license": "Apache-2.0",
+    "icon": "images/logo.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/0x65-e/oml-alexandria.git"
+    },
     "engines": {
-        "vscode": "^1.67.0"
+        "vscode": "^1.74.0"
+    },
+    "config": {
+        "oml_version": "1.4.0"
     },
     "categories": [
         "Programming Languages"
     ],
-    "repository": "https://github.com/0x65-e/oml-alexandria",
     "contributes": {
         "languages": [
             {
@@ -76,6 +84,11 @@
                 "command": "oml.diagram.export",
                 "title": "Export diagram to SVG",
                 "category": "OML Diagram"
+            },
+            {
+                "command": "oml.generate.uml",
+                "title": "Generate UML",
+                "category": "OML"
             }
         ],
         "menus": {
@@ -99,11 +112,20 @@
                 {
                     "command": "oml.diagram.export",
                     "when": "oml-diagram-focused"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "editorLangId == 'oml'"
                 }
             ],
             "editor/context": [
                 {
                     "command": "oml.diagram.open",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
                     "when": "editorLangId == 'oml'",
                     "group": "navigation"
                 }
@@ -113,12 +135,22 @@
                     "command": "oml.diagram.open",
                     "when": "editorLangId == 'oml'",
                     "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
                 }
             ],
             "explorer/context": [
                 {
                     "command": "oml.diagram.open",
-                    "when": "resourceExtname == '.sm'",
+                    "when": "resourceExtname == '.oml'",
+                    "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "resourceExtname == '.oml'",
                     "group": "navigation"
                 }
             ]
@@ -164,15 +196,16 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "clean": "rm -rf pack out && mkdir pack",
+        "clean": "npx shx rm -rf pack out && npx shx mkdir pack",
         "vscode:prepublish": "npm run build:prod",
         "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "npm run esbuild:dev --watch",
         "test-compile": "tsc -p ./",
-        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack/",
+        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && npx shx mkdir -p ../pack && npx shx cp pack/webview.js ../pack/",
         "build:extension": "tsc -b tsconfig.json",
         "build": "npm run build:sprotty && npm run esbuild:dev",
+        "build:win": "npm run build:sprotty:win && npm run esbuild:dev",
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
         "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
@@ -184,13 +217,12 @@
         "chevrotain": "~10.4.2",
         "commander": "~10.0.0",
         "elkjs": "^0.8.2",
+        "fs": "^0.0.1-security",
         "langium": "~1.1.0",
         "langium-sprotty": "^1.1.0",
         "sprotty-elk": "^0.13.1",
         "sprotty-vscode": "^0.5.0",
         "vscode-languageclient": "^8.0.2",
-        "fs": "^0.0.1-security",
-        "vitest": "^0.29.2",
         "vscode-languageserver": "~8.0.2",
         "vscode-uri": "~3.0.7"
     },
@@ -202,6 +234,8 @@
         "esbuild": "^0.17.11",
         "eslint": "~8.33.0",
         "langium-cli": "~1.1.0",
-        "typescript": "~4.9.5"
+        "typescript": "~4.9.5",
+        "vite": "^4.1.4",
+        "vitest": "^0.29.2"
     }
 }

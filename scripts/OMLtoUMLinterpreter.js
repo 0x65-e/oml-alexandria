@@ -10,7 +10,6 @@ var OMLtoUMLInterpreter = /** @class */ (function () {
         this.file_path = (0, path_1.join)(__dirname, '..', 'examples', 'dungeons.oml');
         this.file_name = this.file_path.split("/").pop();
         this.oml_file = (0, fs_1.readFileSync)(this.file_path, 'utf8');
-        this.tokenized_program = this.tokenize_program();
     }
     OMLtoUMLInterpreter.prototype.tokenize_program = function () {
         var tokenized_program = [];
@@ -40,9 +39,8 @@ var OMLtoUMLInterpreter = /** @class */ (function () {
 }());
 exports.OMLtoUMLInterpreter = OMLtoUMLInterpreter;
 var interpreter = new OMLtoUMLInterpreter();
-var tokenized_prorgam = interpreter.tokenized_program;
+var tokenized_prorgam = interpreter.tokenize_program();
 var oml_interpreter = new OMLInterpreter_1.Interpreter();
 var uml_program = oml_interpreter.run(tokenized_prorgam);
-//console.log(uml_program)
 var uml_writer = new OMLWriter_1.OMLWriter();
 uml_writer.run(uml_program, interpreter.file_name);
