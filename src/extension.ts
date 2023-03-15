@@ -6,16 +6,10 @@ import {
   ServerOptions,
   TransportKind,
 } from "vscode-languageclient/node";
-
-import {
-  registerDefaultCommands,
-  registerTextEditorSync,
-} from "sprotty-vscode";
-import {
-  LspSprottyEditorProvider,
-  LspSprottyViewProvider,
-  LspWebviewPanelManager,
-} from "sprotty-vscode/lib/lsp";
+import { registerDefaultCommands } from "sprotty-vscode";
+import { LspWebviewPanelManager } from "sprotty-vscode/lib/lsp";
+import { MemoryFileProvider, MEMORY_SCHEME } from "./scripts/memfile";
+import { generateUML } from "./scripts/uml-generator";
 
 let client: LanguageClient;
 
@@ -45,6 +39,11 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.workspace.getConfiguration('pteam-ptolemy.oml-alexandria').update('recommendJebbsPlantUML', false, true);
     }
   }
+
+  // Register a file system provider
+  context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(MEMORY_SCHEME, new MemoryFileProvider()));
+  // Register a command to run the OML to UML interpreter
+  context.subscriptions.push(vscode.commands.registerCommand("oml.generate.uml", generateUML));
 }
 
 // This function is called when the extension is deactivated.

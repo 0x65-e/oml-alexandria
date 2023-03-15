@@ -84,6 +84,11 @@
                 "command": "oml.diagram.export",
                 "title": "Export diagram to SVG",
                 "category": "OML Diagram"
+            },
+            {
+                "command": "oml.generate.uml",
+                "title": "Generate UML",
+                "category": "OML"
             }
         ],
         "menus": {
@@ -107,11 +112,20 @@
                 {
                     "command": "oml.diagram.export",
                     "when": "oml-diagram-focused"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "editorLangId == 'oml'"
                 }
             ],
             "editor/context": [
                 {
                     "command": "oml.diagram.open",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
                     "when": "editorLangId == 'oml'",
                     "group": "navigation"
                 }
@@ -121,12 +135,22 @@
                     "command": "oml.diagram.open",
                     "when": "editorLangId == 'oml'",
                     "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "editorLangId == 'oml'",
+                    "group": "navigation"
                 }
             ],
             "explorer/context": [
                 {
                     "command": "oml.diagram.open",
-                    "when": "resourceExtname == '.sm'",
+                    "when": "resourceExtname == '.oml'",
+                    "group": "navigation"
+                },
+                {
+                    "command": "oml.generate.uml",
+                    "when": "resourceExtname == '.oml'",
                     "group": "navigation"
                 }
             ]
@@ -172,20 +196,17 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "clean": "rm -rf pack out && mkdir pack",
-        "clean:win": "if exist pack rmdir /s /q pack && if exist out rmdir /s /q out && mkdir pack",
+        "clean": "npx shx rm -rf pack out && npx shx mkdir pack",
         "vscode:prepublish": "npm run build:prod",
         "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "npm run esbuild:dev --watch",
         "test-compile": "tsc -p ./",
-        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && mkdir -p ../pack && cp pack/webview.js ../pack/",
-        "build:sprotty:win": "cd oml-sprotty && yarn install && yarn build && if not exist ..\\pack mkdir ..\\pack && copy pack\\webview.js ..\\pack\\",
+        "build:sprotty": "cd oml-sprotty && yarn install && yarn build && npx shx mkdir -p ../pack && npx shx cp pack/webview.js ../pack/",
         "build:extension": "tsc -b tsconfig.json",
         "build": "npm run build:sprotty && npm run esbuild:dev",
         "build:win": "npm run build:sprotty:win && npm run esbuild:dev",
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
-        "build:prod:win": "npm run clean:win && npm run build:sprotty:win && npm run esbuild:prod",
         "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
         "langium:generate": "langium generate",
@@ -195,7 +216,6 @@
         "chalk": "~4.1.2",
         "chevrotain": "~10.4.2",
         "commander": "~10.0.0",
-        "fs": "^0.0.1-security",
         "elkjs": "^0.8.2",
         "fs": "^0.0.1-security",
         "langium": "~1.1.0",
