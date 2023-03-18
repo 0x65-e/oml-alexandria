@@ -79,7 +79,12 @@ export interface OmlTag extends SShapeElement {
   layout?: string;
 }
 
+/**
+ * Class responsible for creating the Sprotty elements
+ * for an OML Ontology diagram view
+ */
 export class OmlOntologyDiagramView {
+  /** The ontology that this view is based on */
   readonly ontology: Ontology;
   readonly idCache: IdCache;
 

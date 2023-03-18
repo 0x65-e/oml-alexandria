@@ -4,6 +4,14 @@ import path from 'path';
 import { isAnnotationPropertyReference, isAspectReference, isConceptReference, isEnumeratedScalarReference, isFacetedScalarReference, isImport, isMember, isOntology, isRelationEntity, isRelationEntityReference, isScalarPropertyReference, isSpecializableTerm, isSpecializableTermReference, isStructuredPropertyReference, isStructureReference, isVocabulary, Ontology } from '../language-server/generated/ast';
 import { extractDestinationAndName } from './cli-util';
 
+/**
+ * Displays information about the parsed AST `ontology` to a file at `destination`.
+ * 
+ * @param ontology a valid AST containing an OML Ontology
+ * @param filePath the name of the source file this `ontology` was parsed from
+ * @param destination the file name to print the generated dump. If undefined, the "generated/" subdirectory of `filePath` is used.
+ * @returns the file path to the generated output file
+ */
 export function dumpTree(ontology: Ontology, filePath: string, destination: string | undefined): string {
     const data = extractDestinationAndName(filePath, destination);
     const generatedFilePath = `${path.join(data.destination, data.name)}.txt`;

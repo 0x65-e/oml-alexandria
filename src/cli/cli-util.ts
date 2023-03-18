@@ -4,6 +4,13 @@ import fs from 'fs';
 import { AstNode, LangiumDocument, LangiumServices } from 'langium';
 import { URI } from 'vscode-uri';
 
+/**
+ * Extracts a LangiumDocument from the provided file
+ * 
+ * @param fileName the file name to load
+ * @param services instantiated service pack to get necessary services from
+ * @returns the parsed results
+ */
 export async function extractDocument(fileName: string, services: LangiumServices): Promise<LangiumDocument> {
     const extensions = services.LanguageMetaData.fileExtensions;
     if (!extensions.includes(path.extname(fileName))) {
@@ -33,6 +40,13 @@ export async function extractDocument(fileName: string, services: LangiumService
     return document;
 }
 
+/**
+ * Reads the given file and extracts the root node of the parsed AST
+ * 
+ * @param fileName the file name to load
+ * @param services instantiated service pack to get necessary services from
+ * @returns the root node of the parsed AST
+ */
 export async function extractAstNode<T extends AstNode>(fileName: string, services: LangiumServices): Promise<T> {
     return (await extractDocument(fileName, services)).parseResult?.value as T;
 }
@@ -42,6 +56,13 @@ interface FilePathData {
     name: string
 }
 
+/**
+ * Extracts the destination for a generated output file from an input file path
+ * 
+ * @param filePath the name of the input file. If `destination` is undefined, the output file will be created in a "generated/" subdirectory.
+ * @param destination the output destination. If undefined, `filePath` is used with "generated/" appended.
+ * @returns an object containing the name of the source file and the output destination.
+ */
 export function extractDestinationAndName(filePath: string, destination: string | undefined): FilePathData {
     filePath = path.basename(filePath, path.extname(filePath)).replace(/[.-]/g, '');
     return {

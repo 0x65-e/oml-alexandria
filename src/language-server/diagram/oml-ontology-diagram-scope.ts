@@ -5,7 +5,6 @@ import {
   Axiom,
   Classifier,
   Concept,
-  DescriptionStatement_Union,
   Entity,
   Feature,
   isAspect,
@@ -27,7 +26,6 @@ import {
   isRelationInstanceReference,
   isRelationRangeRestrictionAxiom,
   isRelationTargetRestrictionAxiom,
-  isReverseRelation,
   isScalar,
   isScalarProperty,
   isScalarPropertyRestrictionAxiom,
@@ -49,7 +47,6 @@ import {
   Structure,
   StructuredProperty,
   StructureInstance,
-  VocabularyStatement,
 } from "../generated/ast";
 import {
   findAllSuperTerms,
@@ -67,14 +64,32 @@ import {
   findTargetRelations,
 } from "../util/oml-search";
 
+/**
+ * Represents the scope of elements visible in an OML Ontology diagram
+ */
 export interface OmlOntologyDiagramScope {
+  /** Maps Classifiers to scalar properties that reference the classifier as its domain */
   readonly scalarProperties: Map<Classifier, Set<ScalarProperty>>;
+  /** Maps Classifiers to structured properties that reference the classifier as its domain */
   readonly structuredProperties: Map<Classifier, Set<StructuredProperty>>;
+  /** Maps Entities to axioms defined on those entities, including restrictions, key axioms, and specializations */
   readonly entityAxioms: Map<Entity, Set<Axiom>>;
-
+  /** Maps NamedInstances to the AstNodes that those instances reference */
   readonly instanceAssertions: Map<NamedInstance, Set<AstNode>>;
 
+  /**
+   * Get all graph nodes in scope
+   * 
+   * @returns a Set of all AstNodes visualized as nodes in the graph
+   */
   scope: () => Set<AstNode>;
+
+  /**
+   * Checks whether the given classifier `cls` has any properties or edges defined in the graph
+   * 
+   * @param cls the classifier to check
+   * @returns true if any properties or edges are defined on this classifier, false otherwise
+   */
   classifierHasFeaturesOrEdges: (cls: Classifier) => Boolean;
 }
 
@@ -85,6 +100,9 @@ enum Mode {
   Phase2,
 }
 
+/**
+ * Implementing class that calculates the scope of elements visible in an OML Ontology diagram
+ */
 export class OmlOntologyDiagramScopeComputation
   implements OmlOntologyDiagramScope
 {
@@ -133,6 +151,12 @@ export class OmlOntologyDiagramScopeComputation
     else return false;
   }
 
+  /**
+   * Checks whether the given classifier `cls` has any properties or edges defined in the graph
+   * 
+   * @param cls the classifier to check
+   * @returns true if any properties or edges are defined on this classifier, false otherwise
+   */
   classifierHasFeaturesOrEdges(cls: Classifier): Boolean {
     const hasFeaturesOrEdges =
       (this.scalarProperties.get(cls)?.size ?? 0) > 0 ||
@@ -164,6 +188,11 @@ export class OmlOntologyDiagramScopeComputation
     }
   }
 
+  /**
+   * Calculates the scope of this diagram
+   * 
+   * @returns OmlOntologyDiagramScope containing the scope of this diagram
+   */
   analyze(): OmlOntologyDiagramScope {
     this.analyzeOntology(this.ontology);
     // WARNING: We don't scan imported ontologies, because our Imports don't have a reference to the actual Ontology node.
@@ -185,6 +214,11 @@ export class OmlOntologyDiagramScopeComputation
     return this;
   }
 
+  /**
+   * Get all graph nodes in scope
+   * 
+   * @returns a Set of all AstNodes visualized as nodes in the graph
+   */
   scope(): Set<AstNode> {
     const s: Set<AstNode> = new Set();
     for (let x of this.aspects.keys()) {
@@ -362,7 +396,7 @@ export class OmlOntologyDiagramScopeComputation
     });
   }
 
-  doSwitch(element: AstNode): OmlOntologyDiagramScope {
+  private doSwitch(element: AstNode): OmlOntologyDiagramScope {
     if (this.mode == Mode.Phase1 && this.includes(element)) return this;
 
     if (isAspect(element)) {

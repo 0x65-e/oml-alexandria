@@ -1,8 +1,19 @@
-import { AstNode, AstNodeDescription, DefaultScopeProvider, getDocument, ReferenceInfo, Scope, Stream, stream } from "langium";
-// import { isDescriptionBundle, isVocabularyBundle } from "./generated/ast";
+import {
+    AstNode,
+    AstNodeDescription,
+    DefaultScopeProvider,
+    getDocument,
+    ReferenceInfo,
+    Scope,
+    Stream,
+    stream,
+} from "langium";
 
+/**
+ * Extension of the default Langium ScopeProvider implementation to
+ * support visibility of all elements defined in a file at the global scope.
+ */
 export class OmlScopeProvider extends DefaultScopeProvider {
-
     override getScope(context: ReferenceInfo): Scope {
         const scopes: Array<Stream<AstNodeDescription>> = [];
         const referenceType = this.reflection.getReferenceType(context);
@@ -13,14 +24,15 @@ export class OmlScopeProvider extends DefaultScopeProvider {
             let currentNode: AstNode | undefined = context.container;
             do {
                 const allDescriptions = precomputed.get(currentNode);
-                
+
                 if (allDescriptions.length > 0) {
-                    scopes.push(stream(allDescriptions).filter(
-                        desc => this.reflection.isSubtype(desc.type, referenceType)));
+                    scopes.push(
+                        stream(allDescriptions).filter((desc) => this.reflection.isSubtype(desc.type, referenceType))
+                    );
                 }
                 currentNode = currentNode.$container;
             } while (currentNode);
-            
+
             //Only add scope for vocabulary/description bundles
             // currentNode = context.container;
             // if(isVocabularyBundle(currentNode) || isDescriptionBundle(currentNode)) {

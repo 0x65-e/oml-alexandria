@@ -2,6 +2,9 @@ import { LayoutOptions } from "elkjs";
 import { DefaultLayoutConfigurator } from "sprotty-elk/lib/elk-layout";
 import { SGraph, SLabel, SModelIndex, SNode, SPort } from "sprotty-protocol";
 
+/**
+ * Class that configures an ELK layout for Sprotty
+ */
 export class OmlLayoutConfigurator extends DefaultLayoutConfigurator {
   protected override graphOptions(
     sgraph: SGraph,

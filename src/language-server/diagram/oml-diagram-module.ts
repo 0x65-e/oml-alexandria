@@ -1,3 +1,11 @@
+// These constants are intended to keep parity with those used
+// by the Java diagram server that works for Eclipse Theia
+// and the oml-sprotty webview.
+// If the view names change, these constants can be updated.
+
+// For the Oml Theia views and their registration by name, see:
+// oml-sprotty/src/di.config.ts
+
 export const OmlDiagram_SGraphView = "graph";
 
 export const OmlNode_ClassNodeView = "node:class";

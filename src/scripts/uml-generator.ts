@@ -2,6 +2,12 @@ import * as vscode from "vscode";
 import { MemoryFile, MemoryFileManager, MEMORY_SCHEME } from "./memfile";
 import { Interpreter } from "./oml-interpreter";
 
+/**
+ * Generates a PlantUML diagram source from the OML file located at
+ * `commandArgs[0]`, or failing that, the currently active text editor.
+ * 
+ * @param commandArgs the name of the OML source file, if not the active window.
+ */
 export async function generateUML(...commandArgs: any[]) {
     const uri: vscode.Uri | undefined = getURI(commandArgs);
     if (uri) {

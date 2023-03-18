@@ -1,3 +1,7 @@
+/**
+ * A code generator to convert textual OML syntax into
+ * a PlantUML diagram source.
+ */
 export class Interpreter {
     tokenized_program: string[][] = [];
     uml_program: string[][] = [];
@@ -14,7 +18,7 @@ export class Interpreter {
         return this.uml_program;
     }
 
-    public setup_environemt() {
+    private setup_environemt() {
         let env_ip = this.ip;
         let terminate = false;
         while (!terminate) {
@@ -38,7 +42,7 @@ export class Interpreter {
         }
     }
 
-    public process_line() {
+    private process_line() {
         let line = this.tokenized_program[this.ip];
         switch (line[0]) {
             case "concept":
@@ -103,14 +107,14 @@ export class Interpreter {
         this.advance_statement();
     }
 
-    public advance_statement() {
+    private advance_statement() {
         this.ip += 1;
         if (this.ip >= this.tokenized_program.length) {
             this.terminate = true;
         }
     }
 
-    public parse_function(func_name: string, class_name: string) {
+    private parse_function(func_name: string, class_name: string) {
         let class_index = -1;
         let func_index = -1;
         for (var i = 0; i < this.uml_program.length; i++) {
@@ -131,7 +135,7 @@ export class Interpreter {
         }
     }
 
-    public parse_property(property: string, class_name: string, scalar: string) {
+    private parse_property(property: string, class_name: string, scalar: string) {
         let class_index = -1;
         for (var i = 0; i < this.uml_program.length; i++) {
             if (this.uml_program[i].indexOf("class") >= 0 && this.uml_program[i].indexOf(class_name) > 0) {
@@ -147,7 +151,7 @@ export class Interpreter {
         }
     }
 
-    public restrict_property(class_name: string) {
+    private restrict_property(class_name: string) {
         let property_ip = this.ip + 1;
         let class_index = -1;
         for (var i = 0; i < this.uml_program.length; i++) {
@@ -170,7 +174,7 @@ export class Interpreter {
         }
     }
 
-    public find_cardinality(value: string, line: string[]) {
+    private find_cardinality(value: string, line: string[]) {
         if (line.indexOf("exactly") >= 0) {
             value = "[" + value + "]";
         }
