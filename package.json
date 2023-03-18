@@ -179,7 +179,7 @@
     },
     "main": "./pack/extension.js",
     "scripts": {
-        "clean": "npx shx rm -rf pack out && npx shx mkdir pack",
+        "clean": "npx shx rm -rf pack && npx shx mkdir pack",
         "vscode:prepublish": "npm run build:prod",
         "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
@@ -188,7 +188,6 @@
         "build:sprotty": "cd oml-sprotty && yarn install && yarn build && npx shx mkdir -p ../pack && npx shx cp pack/webview.js ../pack/",
         "build:extension": "tsc -b tsconfig.json",
         "build": "npm run build:sprotty && npm run esbuild:dev",
-        "build:win": "npm run build:sprotty:win && npm run esbuild:dev",
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
         "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
