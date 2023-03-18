@@ -209,6 +209,7 @@
         "build:prod": "npm run clean && npm run build:sprotty && npm run esbuild:prod",
         "watch": "npm run build:sprotty && npm run esbuild:watch",
         "lint": "eslint src --ext ts",
+        "docs": "npx shx rm -rf docs && typedoc --entryPointStrategy expand src/",
         "langium:generate": "langium generate",
         "langium:watch": "langium generate --watch"
     },
@@ -234,6 +235,8 @@
         "esbuild": "^0.17.11",
         "eslint": "~8.33.0",
         "langium-cli": "~1.1.0",
+        "typedoc": "^0.23.26",
+        "typedoc-plugin-merge-modules": "^4.0.1",
         "typescript": "~4.9.5",
         "vite": "^4.1.4",
         "vitest": "^0.29.2"

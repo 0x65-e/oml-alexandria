@@ -46,9 +46,6 @@ import {
   isRelationRangeRestrictionAxiom,
   isRelationCardinalityRestrictionAxiom,
   isRelationTargetRestrictionAxiom,
-  SpecializableTerm,
-  SpecializableTermReference,
-  Member,
 } from "../generated/ast";
 import { getAbbreviatedIri } from "../util/oml-read";
 import {
@@ -57,6 +54,9 @@ import {
 } from "./oml-ontology-diagram-scope";
 import { OmlNode, OmlOntologyDiagramView } from "./oml-ontology-diagram-view";
 
+/**
+ * Class that generates a view for an OML diagram model
+ */
 export class OmlDiagramGenerator extends LangiumDiagramGenerator {
   protected generateRoot(args: GeneratorContext<Ontology>): SModelRoot {
     const { document, idCache } = args;
@@ -811,7 +811,6 @@ export class OmlDiagramGenerator extends LangiumDiagramGenerator {
         });
   }
 
-  // TODO: addInstanceFeatures
   private addInstanceFeatures(
     i: NamedInstance,
     node: OmlNode,

@@ -11,6 +11,12 @@ import { OMLWriter } from "../../scripts/OMLWriter";
 import { Interpreter } from "../../scripts/OMLInterpreter"
 import { join } from 'path';
 
+/**
+ * Parses the OML file located at `filename` and displays information about the parsed AST.
+ * 
+ * @param fileName the OML file to parse
+ * @param opts additional generation options
+ */
 export const dumpAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
     const services = createOmlServices(NodeFileSystem).Oml;
     const model = await extractAstNode<Ontology>(fileName, services);
@@ -18,6 +24,11 @@ export const dumpAction = async (fileName: string, opts: GenerateOptions): Promi
     console.log(chalk.green(`Tree dumped successfully: ${generatedFilePath}`));
 };
 
+/**
+ * Parses the OML file located at `filename` and displays validation errors.
+ * 
+ * @param fileName the OML file to parse
+ */
 export const parseAndValidate = async (fileName: string): Promise<void> => {
     // retrieve the services for our language
     const services = createOmlServices(NodeFileSystem).Oml;
@@ -35,6 +46,11 @@ export const parseAndValidate = async (fileName: string): Promise<void> => {
     }
 };
 
+/**
+ * Parses the OML file located at `filename` and generates PlantUML code
+ * 
+ * @param fileName the OML file to parse
+ */
 export const generateUML = async (fileName: string): Promise<void> =>{
 
     let file_path = join( __dirname, fileName)
@@ -51,6 +67,7 @@ export const generateUML = async (fileName: string): Promise<void> =>{
 
 
 export type GenerateOptions = {
+    /** The destination file name to write to */
     destination?: string;
 }
 
@@ -66,7 +83,7 @@ export default function(): void {
         .command('dumpTree')
         .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
         .option('-d, --destination <dir>', 'destination directory of generating')
-        .description('dumpts the AST produced by the source file')
+        .description('Dumps the AST produced by the source file')
         .action(dumpAction);
     program
         .command('parseAndValidate')
