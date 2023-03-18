@@ -40,15 +40,6 @@
                 "path": "./syntaxes/oml.tmLanguage.json"
             }
         ],
-        "viewsContainers": {
-            "activitybar": [
-                {
-                    "id": "oml-container",
-                    "title": "OML",
-                    "icon": "$(symbol-structure)"
-                }
-            ]
-        },
         "views": {
             "oml-container": [
                 {
