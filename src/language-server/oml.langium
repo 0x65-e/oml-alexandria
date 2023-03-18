@@ -1,5 +1,4 @@
 grammar Oml
-// import 'oml-types'
 
 //includes start
 
@@ -22,8 +21,8 @@ interface Annotation {
 	property: @AnnotationProperty
 	value?: Literal
 	referenceValue?: @Member
-	owningElement?: @AnnotatedElement
-	owningReference?: @OmlReference
+	//owningElement?: @AnnotatedElement
+	//owningReference?: @OmlReference
 }
 
 interface AnnotationProperty extends Property, SpecializableTerm {
@@ -72,8 +71,8 @@ interface Import extends AnnotatedElement {
 
 interface SpecializationAxiom extends Axiom {
 	specializedTerm: @SpecializableTerm
-	owningTerm?: @SpecializableTerm
-	owningReference?: @SpecializableTermReference
+	//owningTerm?: @SpecializableTerm
+	//owningReference?: @SpecializableTermReference
 }
 
 interface Axiom {
@@ -86,9 +85,6 @@ interface OmlReference {
 interface SpecializableTermReference extends OmlReference, VocabularyStatement {
 	ownedSpecializations: SpecializationAxiom[]
 }
-
-//interface Literal {
-//}
 
 //interface VocabularyBundle extends VocabularyBox {
 //	ownedImports: VocabularyBundleImport[]
@@ -111,7 +107,7 @@ interface DescriptionImport extends Import {
 }
 
 interface DescriptionStatement extends Statement {
-	owningDescription: @Description
+	//owningDescription: @Description
 }
 
 interface DescriptionBundle extends DescriptionBox {
@@ -130,8 +126,8 @@ interface Classifier extends Type {
 }
 
 interface PropertyRestrictionAxiom extends RestrictionAxiom {
-	owningClassifier?: @Classifier
-	owningReference?: @ClassifierReference
+	//owningClassifier?: @Classifier
+	//owningReference?: @ClassifierReference
 }
 
 interface RestrictionAxiom extends Axiom {
@@ -148,8 +144,8 @@ interface Entity extends Classifier {
 
 interface RelationRestrictionAxiom extends RestrictionAxiom {
 	relation: @Relation
-	owningEntity?: @Entity
-	owningReference?: @EntityReference
+	//owningEntity?: @Entity
+	//owningReference?: @EntityReference
 }
 
 interface Relation extends Feature {
@@ -162,8 +158,8 @@ interface EntityReference extends ClassifierReference {
 
 interface KeyAxiom extends Axiom {
 	properties: @Feature[]
-	owningEntity?: @Entity
-	owningReference?: @EntityReference
+	//owningEntity?: @Entity
+	//owningReference?: @EntityReference
 }
 
 interface Aspect extends Entity {
@@ -188,8 +184,8 @@ interface Instance {
 }
 
 interface PropertyValueAssertion extends Assertion {
-	owningInstance?: @Instance
-	owningReference?: @NamedInstanceReference
+	//owningInstance?: @Instance
+	//owningReference?: @NamedInstanceReference
 }
 
 interface Assertion {
@@ -203,14 +199,14 @@ interface NamedInstanceReference extends OmlReference {
 interface LinkAssertion extends Assertion {
 	relation: @Relation
 	target: @NamedInstance
-	owningInstance?: @NamedInstance
-	owningReference?: @NamedInstanceReference
+	//owningInstance?: @NamedInstance
+	//owningReference?: @NamedInstanceReference
 }
 
 interface ConceptTypeAssertion extends TypeAssertion {
 	^type: @Concept
-	owningInstance?: @ConceptInstance
-	owningReference?: @ConceptInstanceReference
+	//owningInstance?: @ConceptInstance
+	//owningReference?: @ConceptInstanceReference
 }
 
 interface TypeAssertion extends Assertion {
@@ -292,8 +288,8 @@ interface Predicate {
 
 interface StructureInstance extends Instance {
 	^type: @Structure
-	owningAxiom?: @StructuredPropertyValueRestrictionAxiom
-	owningAssertion?: @StructuredPropertyValueAssertion
+	//owningAxiom?: @StructuredPropertyValueRestrictionAxiom
+	//owningAssertion?: @StructuredPropertyValueAssertion
 }
 
 //interface StructuredPropertyValueRestrictionAxiom extends StructuredPropertyRestrictionAxiom {
@@ -319,8 +315,8 @@ interface RelationInstance extends NamedInstance {
 
 interface RelationTypeAssertion extends TypeAssertion {
 	^type: @RelationEntity
-	owningInstance?: @RelationInstance
-	owningReference?: @RelationInstanceReference
+	//owningInstance?: @RelationInstance
+	//owningReference?: @RelationInstanceReference
 }
 
 interface RelationInstanceReference extends NamedInstanceReference {
@@ -501,21 +497,21 @@ SpecializableTerm returns SpecializableTerm:
       {Classifier} Classifier
     | {Scalar} Scalar
     | {AnnotationProperty} ownedAnnotations+=Annotation* 'annotation' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)?
-    | {ScalarProperty} ownedAnnotations+=Annotation* 'scalar' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' 'domain' domain=[Classifier:Ref] 'range' range=[Scalar:Ref] (functional?='functional')? ']')?
-    | {StructuredProperty} ownedAnnotations+=Annotation* 'structured' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' 'domain' domain=[Classifier:Ref] 'range' range=[Structure:Ref] (functional?='functional')? ']')?;
+    | {ScalarProperty} ownedAnnotations+=Annotation* 'scalar' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? '[' 'domain' domain=[Classifier:Ref] 'range' range=[Scalar:Ref] (functional?='functional')? ']'
+    | {StructuredProperty} ownedAnnotations+=Annotation* 'structured' 'property' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? '[' 'domain' domain=[Classifier:Ref] 'range' range=[Structure:Ref] (functional?='functional')? ']';
 
 Classifier returns Classifier:
       {Entity} Entity
-    | {Structure} ownedAnnotations+=Annotation * 'structure' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom* ']')?;
+    | {Structure} ownedAnnotations+=Annotation* 'structure' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' ownedPropertyRestrictions+=PropertyRestrictionAxiom* ']')?;
 
 Entity returns Entity:
       {Aspect} ownedAnnotations+=Annotation* 'aspect' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ']')?
     | {Concept} ownedAnnotations+=Annotation* 'concept' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (ownedKeys+=KeyAxiom | ownedPropertyRestrictions+=PropertyRestrictionAxiom | ownedRelationRestrictions+=RelationRestrictionAxiom)* ('enumerates' enumeratedInstances+=[ConceptInstance:Ref] (',' enumeratedInstances+=[ConceptInstance:Ref])*)? ']')?
-    | {RelationEntity} ownedAnnotations+=Annotation * 'relation' 'entity' name=ID  (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom  )* )? '[' 'from' source=[Entity:Ref ] 'to' target=[Entity:Ref ] 
+    | {RelationEntity} ownedAnnotations+=Annotation* 'relation' 'entity' name=ID (':>' ownedSpecializations+=SpecializationAxiom  (',' ownedSpecializations+=SpecializationAxiom)*)? '[' 'from' source=[Entity:Ref] 'to' target=[Entity:Ref] 
         (
-            (forwardRelation=ForwardRelation) | // TODO: This would allow multiple ForwardRelations to be defined
-            (reverseRelation=ReverseRelation)
-        )*
+            (forwardRelation=ForwardRelation (reverseRelation=ReverseRelation)?) |
+            (reverseRelation=ReverseRelation (forwardRelation=ForwardRelation)?)
+        )?
         (
             (functional?='functional' ) |
             (inverseFunctional?='inverse'  'functional' ) | 
@@ -530,15 +526,15 @@ Entity returns Entity:
 Scalar returns Scalar:
       {infer FacetedScalar} ownedAnnotations+=Annotation* 'scalar' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' 
         (
-            ('length' length=UnsignedInteger  ) |
-            ('minLength' minLength=UnsignedInteger  ) |
-            ('maxLength' maxLength=UnsignedInteger  ) |
-            ('pattern' pattern=STRING  ) |
-            ('language' language=ID  ) |
-            ('minInclusive' minInclusive=Literal  ) |
-            ('minExclusive' minExclusive=Literal  ) |
-            ('maxInclusive' maxInclusive=Literal  ) |
-            ('maxExclusive' maxExclusive=Literal  )
+            ('length' length=UnsignedInteger) |
+            ('minLength' minLength=UnsignedInteger) |
+            ('maxLength' maxLength=UnsignedInteger) |
+            ('pattern' pattern=STRING) |
+            ('language' language=ID) |
+            ('minInclusive' minInclusive=Literal) |
+            ('minExclusive' minExclusive=Literal) |
+            ('maxInclusive' maxInclusive=Literal) |
+            ('maxExclusive' maxExclusive=Literal)
         )* ']')? // TODO: Allows redefinition
     | {infer EnumeratedScalar} ownedAnnotations+=Annotation* 'enumerated' 'scalar' name=ID (':>' ownedSpecializations+=SpecializationAxiom (',' ownedSpecializations+=SpecializationAxiom)*)? ('[' (literals+=Literal (',' literals+=Literal)*)? ']')?;
 
