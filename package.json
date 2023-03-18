@@ -40,15 +40,6 @@
                 "path": "./syntaxes/oml.tmLanguage.json"
             }
         ],
-        "views": {
-            "oml-container": [
-                {
-                    "id": "oml",
-                    "type": "webview",
-                    "name": "OML"
-                }
-            ]
-        },
         "commands": [
             {
                 "command": "oml.diagram.open",
@@ -79,6 +70,7 @@
             {
                 "command": "oml.generate.uml",
                 "title": "Generate UML",
+                "icon": "$(file-symlink-file)",
                 "category": "OML"
             }
         ],
