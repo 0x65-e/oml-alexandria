@@ -112,34 +112,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
               }
             }
           }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningElement",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@2"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@17"
-              }
-            }
-          }
         }
       ],
       "name": "Annotation",
@@ -317,34 +289,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningTerm",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@9"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@18"
-              }
-            }
-          }
         }
       ],
       "name": "SpecializationAxiom",
@@ -480,28 +424,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "owningDescription",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@21"
-              }
-            }
-          },
-          "isOptional": false
-        }
-      ],
       "name": "DescriptionStatement",
       "superTypes": [
         {
           "$ref": "#/interfaces@11"
         }
-      ]
+      ],
+      "attributes": []
     },
     {
       "$type": "Interface",
@@ -575,42 +504,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "owningClassifier",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@27"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@30"
-              }
-            }
-          }
-        }
-      ],
       "name": "PropertyRestrictionAxiom",
       "superTypes": [
         {
           "$ref": "#/interfaces@29"
         }
-      ]
+      ],
+      "attributes": []
     },
     {
       "$type": "Interface",
@@ -702,34 +602,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningEntity",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@31"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@34"
-              }
-            }
-          }
         }
       ],
       "name": "RelationRestrictionAxiom",
@@ -807,34 +679,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningEntity",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@31"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@34"
-              }
-            }
-          }
         }
       ],
       "name": "KeyAxiom",
@@ -933,42 +777,13 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
     },
     {
       "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "owningInstance",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@39"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@42"
-              }
-            }
-          }
-        }
-      ],
       "name": "PropertyValueAssertion",
       "superTypes": [
         {
           "$ref": "#/interfaces@41"
         }
-      ]
+      ],
+      "attributes": []
     },
     {
       "$type": "Interface",
@@ -1045,34 +860,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningInstance",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@38"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@42"
-              }
-            }
-          }
         }
       ],
       "name": "LinkAssertion",
@@ -1098,34 +885,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningInstance",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/rules@11/definition/elements@0/elements@0"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@46"
-              }
-            }
-          }
         }
       ],
       "name": "ConceptTypeAssertion",
@@ -1553,34 +1312,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningAxiom",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/rules@31/definition/elements@0"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningAssertion",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/rules@41"
-              }
-            }
-          }
         }
       ],
       "name": "StructureInstance",
@@ -1631,34 +1362,6 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
             }
           },
           "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningInstance",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/rules@11/definition/elements@1/elements@0"
-              }
-            }
-          }
-        },
-        {
-          "$type": "TypeAttribute",
-          "name": "owningReference",
-          "isOptional": true,
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@60"
-              }
-            }
-          }
         }
       ],
       "name": "RelationTypeAssertion",
@@ -2875,74 +2578,68 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "cardinality": "?"
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": "["
+                "$type": "Keyword",
+                "value": "["
+              },
+              {
+                "$type": "Keyword",
+                "value": "domain"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "domain",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@27"
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": "domain"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "domain",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/interfaces@27"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@54"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "range"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "range",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/interfaces@53"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@54"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "functional",
-                    "operator": "?=",
-                    "terminal": {
-                      "$type": "Keyword",
-                      "value": "functional"
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
                     },
-                    "cardinality": "?"
+                    "arguments": []
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": "]"
-                  }
-                ],
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "range"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "range",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@53"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "functional",
+                "operator": "?=",
+                "terminal": {
+                  "$type": "Keyword",
+                  "value": "functional"
+                },
                 "cardinality": "?"
+              },
+              {
+                "$type": "Keyword",
+                "value": "]"
               }
             ]
           },
@@ -3033,74 +2730,68 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "cardinality": "?"
               },
               {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": "["
+                "$type": "Keyword",
+                "value": "["
+              },
+              {
+                "$type": "Keyword",
+                "value": "domain"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "domain",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@27"
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": "domain"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "domain",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/interfaces@27"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@54"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Keyword",
-                    "value": "range"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "range",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "CrossReference",
-                      "type": {
-                        "$ref": "#/interfaces@50"
-                      },
-                      "terminal": {
-                        "$type": "RuleCall",
-                        "rule": {
-                          "$ref": "#/rules@54"
-                        },
-                        "arguments": []
-                      },
-                      "deprecatedSyntax": false
-                    }
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "functional",
-                    "operator": "?=",
-                    "terminal": {
-                      "$type": "Keyword",
-                      "value": "functional"
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
                     },
-                    "cardinality": "?"
+                    "arguments": []
                   },
-                  {
-                    "$type": "Keyword",
-                    "value": "]"
-                  }
-                ],
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Keyword",
+                "value": "range"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "range",
+                "operator": "=",
+                "terminal": {
+                  "$type": "CrossReference",
+                  "type": {
+                    "$ref": "#/interfaces@50"
+                  },
+                  "terminal": {
+                    "$type": "RuleCall",
+                    "rule": {
+                      "$ref": "#/rules@54"
+                    },
+                    "arguments": []
+                  },
+                  "deprecatedSyntax": false
+                }
+              },
+              {
+                "$type": "Assignment",
+                "feature": "functional",
+                "operator": "?=",
+                "terminal": {
+                  "$type": "Keyword",
+                  "value": "functional"
+                },
                 "cardinality": "?"
+              },
+              {
+                "$type": "Keyword",
+                "value": "]"
               }
             ]
           }
@@ -3747,31 +3438,67 @@ export const OmlGrammar = (): Grammar => loadedOmlGrammar ?? (loadedOmlGrammar =
                 "$type": "Alternatives",
                 "elements": [
                   {
-                    "$type": "Assignment",
-                    "feature": "forwardRelation",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@8"
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "forwardRelation",
+                        "operator": "=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@8"
+                          },
+                          "arguments": []
+                        }
                       },
-                      "arguments": []
-                    }
+                      {
+                        "$type": "Assignment",
+                        "feature": "reverseRelation",
+                        "operator": "=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@9"
+                          },
+                          "arguments": []
+                        },
+                        "cardinality": "?"
+                      }
+                    ]
                   },
                   {
-                    "$type": "Assignment",
-                    "feature": "reverseRelation",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@9"
+                    "$type": "Group",
+                    "elements": [
+                      {
+                        "$type": "Assignment",
+                        "feature": "reverseRelation",
+                        "operator": "=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@9"
+                          },
+                          "arguments": []
+                        }
                       },
-                      "arguments": []
-                    }
+                      {
+                        "$type": "Assignment",
+                        "feature": "forwardRelation",
+                        "operator": "=",
+                        "terminal": {
+                          "$type": "RuleCall",
+                          "rule": {
+                            "$ref": "#/rules@8"
+                          },
+                          "arguments": []
+                        },
+                        "cardinality": "?"
+                      }
+                    ]
                   }
                 ],
-                "cardinality": "*"
+                "cardinality": "?"
               },
               {
                 "$type": "Alternatives",
