@@ -182,7 +182,7 @@
         "clean": "npx shx rm -rf pack && npx shx mkdir pack",
         "vscode:prepublish": "npm run build:prod",
         "esbuild:dev": "esbuild ./src/extension.ts ./src/language-server/main.ts ./src/cli/index.ts  --sourcemap --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
-        "esbuild:prod": "esbuild ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
+        "esbuild:prod": "esbuild --minify ./src/extension.ts ./src/language-server/main.ts --bundle --outdir=pack --external:vscode --format=cjs --platform=node",
         "esbuild:watch": "npm run esbuild:dev --watch",
         "test-compile": "tsc -p ./",
         "build:sprotty": "cd oml-sprotty && yarn install && yarn build && npx shx mkdir -p ../pack && npx shx cp pack/webview.js ../pack/",
