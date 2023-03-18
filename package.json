@@ -2,7 +2,7 @@
     "name": "oml-alexandria",
     "displayName": "OML Alexandria",
     "description": "Severless VSCode-compatible extension for OML",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "pteam-ptolemy",
     "license": "Apache-2.0",
     "icon": "images/logo.png",
@@ -14,7 +14,7 @@
         "vscode": "^1.74.0"
     },
     "config": {
-        "oml_version": "1.4.0"
+        "oml_version": "1.4.1"
     },
     "categories": [
         "Programming Languages"
@@ -200,7 +200,6 @@
         "chevrotain": "~10.4.2",
         "commander": "~10.0.0",
         "elkjs": "^0.8.2",
-        "fs": "^0.0.1-security",
         "langium": "~1.1.0",
         "langium-sprotty": "^1.1.0",
         "sprotty-elk": "^0.13.1",
@@ -216,6 +215,7 @@
         "@typescript-eslint/parser": "~5.51.0",
         "esbuild": "^0.17.11",
         "eslint": "~8.33.0",
+        "fs": "^0.0.1-security",
         "langium-cli": "~1.1.0",
         "typedoc": "^0.23.26",
         "typedoc-plugin-merge-modules": "^4.0.1",
